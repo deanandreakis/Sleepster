@@ -1,0 +1,517 @@
+TiSleep
+v7
+r0
+t309492282.023465
+cCheck dependencies
+cProcessInfoPlistFile "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/Info.plist" iSleep-Info.plist
+cCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/FlipsideView.xib"
+cCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/MainView.xib"
+cCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/MainWindow.xib"
+cCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.xib"
+cProcessPCH /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-fdfjwkvjziqakvezbwlmgjkkumjx/iSleep_Prefix.pch.gch iSleep_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/main.o "/Users/dean/Documents/iPhone Apps/iSleep/main.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/iSleepAppDelegate.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/FlipsideView.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/MainView.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/MainViewController.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/FlipsideViewController.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/BacklightViewController.o "/Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/BacklightView.o "/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cLd "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/iSleep" normal i386
+cGenerateDSYMFile "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app.dSYM" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/iSleep"
+cTouch "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app"
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk
+c000000004AF6281800000000000000EE
+t1257646104
+s238
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004ABDC853000000000026EE30
+t1253951571
+s2551344
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004ABDC952000000000027E880
+t1253951826
+s2615424
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004ABDC93F0000000000001355
+t1253951807
+s4949
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004ABDEE1D0000000000000788
+t1253961245
+s1928
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004ABDEEE200000000016721E0
+t1253961442
+s23536096
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/usr/include/Availability.h
+c000000004ABDCA4700000000000019F9
+t1253952071
+s6649
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk
+c000000004C494D260000000000000110
+t1279872294
+s272
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004BD1CD90000000000026F020
+t1272040848
+s2551840
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004BD1FFC200000000002A96A0
+t1272053698
+s2791072
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004BD1FF9E0000000000001355
+t1272053662
+s4949
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004BD20412000000000000098F
+t1272054802
+s2447
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004BD20471000000000222E640
+t1272054897
+s35841600
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h
+c000000004BD1CFC10000000000001A1A
+t1272041409
+s6682
+
+N/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.h
+c000000004C11B01900000000000000D4
+t1276227609
+s212
+i<UIKit/UIKit.h>
+
+N/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.m
+c000000004C11B04700000000000001BC
+t1276227655
+s444
+i"BacklightView.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.xib
+c000000004CC2429F0000000000004F28
+t1287799455
+s20264
+
+N/Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.h
+c000000004CC240F40000000000000221
+t1287799028
+s545
+
+N/Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.m
+c000000004CC24109000000000000044C
+t1287799049
+s1100
+i"BacklightViewController.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.h
+c000000004B1C3A6400000000000000BA
+t1260141156
+s186
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.m
+c000000004B1C3A6400000000000001BA
+t1260141156
+s442
+i"FlipsideView.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.h
+c000000004C11B0C2000000000000020F
+t1276227778
+s527
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.m
+c000000004B1C3A64000000000000044E
+t1260141156
+s1102
+i"FlipsideViewController.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.h
+c000000004B1C3A6400000000000000CA
+t1260141156
+s202
+i<UIKit/UIKit.h>
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.m
+c000000004B1C3A6400000000000001AE
+t1260141156
+s430
+i"MainView.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.h
+c000000004C2D620700000000000002A9
+t1278042631
+s681
+i"FlipsideViewController.h"
+i"BacklightViewController.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m
+c000000004C4D03EF0000000000000E7A
+t1280115695
+s3706
+i"MainViewController.h"
+i"MainView.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.h
+c000000004B1C3A6400000000000001BB
+t1260141156
+s443
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.m
+c000000004B1C3A640000000000000325
+t1260141156
+s805
+i"iSleepAppDelegate.h"
+i"MainViewController.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/FlipsideView.xib
+c000000004BD7B1700000000000004D4A
+t1272426864
+s19786
+
+N/Users/dean/Documents/iPhone Apps/iSleep/MainView.xib
+c000000004BEF51B30000000000005BD7
+t1273975219
+s23511
+
+N/Users/dean/Documents/iPhone Apps/iSleep/MainWindow.xib
+c000000004B1C3A640000000000001E0C
+t1260141156
+s7692
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app
+t1287799482
+s306
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app.dSYM
+t1287799482
+s102
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/BacklightView.nib
+t1287799481
+s1421
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/FlipsideView.nib
+t1280283108
+s1276
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/Info.plist
+t1287797017
+s587
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/MainView.nib
+t1280283108
+s2474
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/MainWindow.nib
+t1280283109
+s970
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/PkgInfo
+t1287797017
+s8
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/iSleep
+t1287799481
+s27956
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/BacklightView.o
+t1287797018
+s9600
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/BacklightViewController.o
+t1287799481
+s37116
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/FlipsideView.o
+t1287797018
+s9596
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/FlipsideViewController.o
+t1287797018
+s37088
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/MainView.o
+t1287797018
+s9512
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/MainViewController.o
+t1287799481
+s43768
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/iSleep.LinkFileList
+c000000004C4F91E40000000000000425
+t1280283108
+s1061
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/iSleepAppDelegate.o
+t1287799481
+s45088
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/main.o
+t1287797018
+s6308
+
+N/Users/dean/Documents/iPhone Apps/iSleep/iSleep_Prefix.pch
+c000000004B1C3A64000000000000013E
+t1260141156
+s318
+i<Availability.h>
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/Users/dean/Documents/iPhone Apps/iSleep/main.m
+c000000004B1C3A64000000000000016A
+t1260141156
+s362
+i<UIKit/UIKit.h>
+
+N/var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-fdfjwkvjziqakvezbwlmgjkkumjx/iSleep_Prefix.pch.gch
+t1287797018
+s13825936
+
+N/var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-grpzdgddzfpeywazxdmgubzslyqb/iSleep_Prefix.pch.gch
+t1280283110
+s13825936
+
+N/var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-hirowxaaztwhzlfmfokbpmmywizp/iSleep_Prefix.pch.gch
+t1260141185
+s13034960
+
+NiSleep-Info.plist
+c000000004C4F8F41000000000000038D
+t1280282433
+s909
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies309492281#309492281#0(0"0(0#1#0"8616326720#0"0#
+
+CCompileC build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/BacklightView.o "/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s309489818.907949
+e309489818.958025
+r1
+xCompileC
+xbuild/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/BacklightView.o
+x/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@64"Compile /Users/dean/Documents/iPhone Apps/iSleep/BacklightView.m309489818#309489818#0(0"0(0#0#56"/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.m8603052384#2059"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-fdfjwkvjziqakvezbwlmgjkkumjx/iSleep_Prefix.pch -c "/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/BacklightView.o"0#
+
+CCompileC build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/BacklightViewController.o "/Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s309492281.739572
+e309492281.880806
+r1
+xCompileC
+xbuild/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/BacklightViewController.o
+x/Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@74"Compile /Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.m309492281#309492281#0(0"0(0#0#66"/Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.m8614988096#2079"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-fdfjwkvjziqakvezbwlmgjkkumjx/iSleep_Prefix.pch -c "/Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/BacklightViewController.o"0#
+
+CCompileC build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/FlipsideView.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s309489818.747646
+e309489818.803793
+r1
+xCompileC
+xbuild/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/FlipsideView.o
+x/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@71"Compile /Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.m309489818#309489818#0(0"0(0#0#63"/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.m8603311744#2065"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-fdfjwkvjziqakvezbwlmgjkkumjx/iSleep_Prefix.pch -c "/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/FlipsideView.o"0#
+
+CCompileC build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/FlipsideViewController.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s309489818.824797
+e309489818.895593
+r1
+xCompileC
+xbuild/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/FlipsideViewController.o
+x/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@81"Compile /Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.m309489818#309489818#0(0"0(0#0#73"/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.m8602909312#2085"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-fdfjwkvjziqakvezbwlmgjkkumjx/iSleep_Prefix.pch -c "/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/FlipsideViewController.o"0#
+
+CCompileC build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/MainView.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s309489818.763267
+e309489818.824685
+r1
+xCompileC
+xbuild/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/MainView.o
+x/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@67"Compile /Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.m309489818#309489818#0(0"0(0#0#59"/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.m8596787648#2057"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-fdfjwkvjziqakvezbwlmgjkkumjx/iSleep_Prefix.pch -c "/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/MainView.o"0#
+
+CCompileC build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/MainViewController.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s309492281.662942
+e309492281.810335
+r1
+xCompileC
+xbuild/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/MainViewController.o
+x/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m: In function '-[MainViewController timerFired:]':
+o/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m:111: warning: incompatible Objective-C types 'struct MainViewController *', expected 'struct BacklightViewController *' when passing argument 1 of 'backlightViewControllerDidFinish:' from distinct Objective-C type
+lSLF07#2@77"Compile /Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m309492281#309492281#0(404"/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m: In function '-[MainViewController timerFired:]':/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m:111: warning: incompatible Objective-C types 'struct MainViewController *', expected 'struct BacklightViewController *' when passing argument 1 of 'backlightViewControllerDidFinish:' from distinct Objective-C type1(22@199"Incompatible Objective-C types 'struct MainViewController *', expected 'struct BacklightViewController *' when passing argument 1 of 'backlightViewControllerDidFinish:' from distinct Objective-C type309492281#120#284#0(6@69"/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m301808495#111#0#111#0#0"0(0#0#69"/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m8617698208#2077"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-fdfjwkvjziqakvezbwlmgjkkumjx/iSleep_Prefix.pch -c "/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/MainViewController.o"0#
+
+CCompileC build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/iSleepAppDelegate.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s309492281.661721
+e309492281.739351
+r1
+xCompileC
+xbuild/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/iSleepAppDelegate.o
+x/Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@76"Compile /Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.m309492281#309492281#0(0"0(0#0#68"/Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.m8622432288#2075"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-fdfjwkvjziqakvezbwlmgjkkumjx/iSleep_Prefix.pch -c "/Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/iSleepAppDelegate.o"0#
+
+CCompileC build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/main.o "/Users/dean/Documents/iPhone Apps/iSleep/main.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s309489818.553816
+e309489818.747542
+r1
+xCompileC
+xbuild/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/main.o
+x/Users/dean/Documents/iPhone Apps/iSleep/main.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@55"Compile /Users/dean/Documents/iPhone Apps/iSleep/main.m309489818#309489818#0(0"0(0#0#47"/Users/dean/Documents/iPhone Apps/iSleep/main.m8610663520#2041"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-fdfjwkvjziqakvezbwlmgjkkumjx/iSleep_Prefix.pch -c "/Users/dean/Documents/iPhone Apps/iSleep/main.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/main.o"0#
+
+CCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.xib"
+s309492281.033753
+e309492281.661392
+r1
+xCompileXIB
+x/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.xib
+lSLF07#2@28"CompileXIB BacklightView.xib309492281#309492281#0(0"0(0#0#58"/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.xib8624080064#649"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.2    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/BacklightView.nib" "/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.xib" --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk0#
+
+CCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/FlipsideView.xib"
+s301975908.377006
+e301975908.821514
+r1
+xCompileXIB
+x/Users/dean/Documents/iPhone Apps/iSleep/FlipsideView.xib
+lSLF07#2@27"CompileXIB FlipsideView.xib301975908#301975908#0(0"0(0#0#57"/Users/dean/Documents/iPhone Apps/iSleep/FlipsideView.xib8604031520#647"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.2    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/FlipsideView.nib" "/Users/dean/Documents/iPhone Apps/iSleep/FlipsideView.xib" --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk0#
+
+CCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/MainView.xib"
+s301975908.378799
+e301975908.887997
+r1
+xCompileXIB
+x/Users/dean/Documents/iPhone Apps/iSleep/MainView.xib
+lSLF07#2@23"CompileXIB MainView.xib301975908#301975908#0(0"0(0#0#53"/Users/dean/Documents/iPhone Apps/iSleep/MainView.xib8603949248#639"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.2    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/MainView.nib" "/Users/dean/Documents/iPhone Apps/iSleep/MainView.xib" --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk0#
+
+CCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/MainWindow.xib"
+s301975908.821611
+e301975909.188280
+r1
+xCompileXIB
+x/Users/dean/Documents/iPhone Apps/iSleep/MainWindow.xib
+lSLF07#2@25"CompileXIB MainWindow.xib301975908#301975909#0(0"0(0#0#55"/Users/dean/Documents/iPhone Apps/iSleep/MainWindow.xib18296010931765360#643"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.2    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/MainWindow.nib" "/Users/dean/Documents/iPhone Apps/iSleep/MainWindow.xib" --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk0#
+
+CGenerateDSYMFile "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app.dSYM" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/iSleep"
+s309492281.999931
+e309492282.020908
+r1
+xGenerateDSYMFile
+x/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app.dSYM
+x/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/iSleep
+lSLF07#2@106"GenerateDSYMFile build/Debug-iphonesimulator/iSleep.app.dSYM build/Debug-iphonesimulator/iSleep.app/iSleep309492282#309492282#0(0"0(0#0#86"/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/iSleep8615006784#454"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/dsymutil "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/iSleep" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app.dSYM"0#
+
+CLd "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/iSleep" normal i386
+s309492281.880898
+e309492281.999522
+r1
+xLd
+x/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/iSleep
+xnormal
+xi386
+lSLF07#2@91"Link /Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/iSleep309492281#309492281#0(0"0(0#0#0"8614387552#977"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv MACOSX_DEPLOYMENT_TARGET 10.5    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk "-L/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" -filelist "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/Objects-normal/i386/iSleep.LinkFileList" -mmacosx-version-min=10.5 -Xlinker -objc_abi_version -Xlinker 2 -framework Foundation -framework UIKit -framework CoreGraphics -o "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/iSleep"0#
+
+CProcessInfoPlistFile "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/Info.plist" iSleep-Info.plist
+s309489817.539181
+e309489817.557570
+r1
+xProcessInfoPlistFile
+x/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/Info.plist
+xiSleep-Info.plist
+lSLF07#2@25"Process iSleep-Info.plist309489817#309489817#0(0"0(0#0#58"/Users/dean/Documents/iPhone Apps/iSleep/iSleep-Info.plist7297009404609131520#550"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    builtin-infoPlistUtility iSleep-Info.plist -genpkginfo "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/PkgInfo" -expandbuildsettings -format binary -platform iphonesimulator -o "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app/Info.plist"0#
+
+CProcessPCH /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-fdfjwkvjziqakvezbwlmgjkkumjx/iSleep_Prefix.pch.gch iSleep_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s309489817.558095
+e309489818.553692
+r1
+xProcessPCH
+x/var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-fdfjwkvjziqakvezbwlmgjkkumjx/iSleep_Prefix.pch.gch
+xiSleep_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@28"Precompile iSleep_Prefix.pch309489817#309489818#0(0"0(0#0#58"/Users/dean/Documents/iPhone Apps/iSleep/iSleep_Prefix.pch8595859712#1930"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/DerivedSources" -c "/Users/dean/Documents/iPhone Apps/iSleep/iSleep_Prefix.pch" -o /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-fdfjwkvjziqakvezbwlmgjkkumjx/iSleep_Prefix.pch.gch0#
+
+CProcessPCH /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-grpzdgddzfpeywazxdmgubzslyqb/iSleep_Prefix.pch.gch iSleep_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s301975909.267114
+e301975910.158148
+r1
+xProcessPCH
+x/var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-grpzdgddzfpeywazxdmgubzslyqb/iSleep_Prefix.pch.gch
+xiSleep_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@28"Precompile iSleep_Prefix.pch301975909#301975910#0(0"0(0#0#58"/Users/dean/Documents/iPhone Apps/iSleep/iSleep_Prefix.pch8603805056#1876"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/DerivedSources" -c "/Users/dean/Documents/iPhone Apps/iSleep/iSleep_Prefix.pch" -o /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-grpzdgddzfpeywazxdmgubzslyqb/iSleep_Prefix.pch.gch0#
+
+CProcessPCH /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-hirowxaaztwhzlfmfokbpmmywizp/iSleep_Prefix.pch.gch iSleep_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s281833985.209692
+e281833985.993491
+r1
+xProcessPCH
+x/var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-hirowxaaztwhzlfmfokbpmmywizp/iSleep_Prefix.pch.gch
+xiSleep_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@28"Precompile iSleep_Prefix.pch281833985#281833985#0(0"0(0#0#58"/Users/dean/Documents/iPhone Apps/iSleep/iSleep_Prefix.pch4300885448#1772"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/iSleep-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphonesimulator/iSleep.build/DerivedSources" -c "/Users/dean/Documents/iPhone Apps/iSleep/iSleep_Prefix.pch" -o /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-hirowxaaztwhzlfmfokbpmmywizp/iSleep_Prefix.pch.gch0#
+
+CTouch "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app"
+s309492282.020993
+e309492282.023434
+r1
+xTouch
+x/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app
+lSLF07#2@85"Touch /Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app309492282#309492282#0(0"0(0#0#0"8622413728#347"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /usr/bin/touch -c "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/iSleep.app"0#
+

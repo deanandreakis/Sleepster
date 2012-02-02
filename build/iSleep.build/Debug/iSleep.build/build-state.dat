@@ -1,0 +1,80 @@
+TiSleep
+v7
+r1
+cCheck dependencies
+
+N/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.xib
+c000000004C1AF8CC0000000000003C7D
+t1276836044
+s15485
+
+N/Users/dean/Documents/iPhone Apps/iSleep/FlipsideView.xib
+c000000004BD7B1700000000000004D4A
+t1272426864
+s19786
+
+N/Users/dean/Documents/iPhone Apps/iSleep/MainView.xib
+c000000004BEF51B30000000000005BD7
+t1273975219
+s23511
+
+N/Users/dean/Documents/iPhone Apps/iSleep/MainWindow.xib
+c000000004B1C3A640000000000001E0C
+t1260141156
+s7692
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug/iSleep.app
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug/iSleep.app/Contents/Info.plist
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug/iSleep.app/Contents/PkgInfo
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug/iSleep.app/Contents/Resources/BacklightView.nib
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug/iSleep.app/Contents/Resources/FlipsideView.nib
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug/iSleep.app/Contents/Resources/MainView.nib
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug/iSleep.app/Contents/Resources/MainWindow.nib
+t2
+s0
+
+NiSleep-Info.plist
+c000000004B1C3A64000000000000038D
+t1260141156
+s909
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies298959534#298959534#0(68"[BEROR]error: There is no SDK with the name or path 'iphoneos3.1.2'1(4@60"error: There is no SDK with the name or path 'iphoneos3.1.2'298959534#18446744073709551615#0#0(1@0"0(0#1#0"3343187568374212096#0"0#
+
+CCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.xib"
+r0
+
+CCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/FlipsideView.xib"
+r0
+
+CCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/MainView.xib"
+r0
+
+CCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/MainWindow.xib"
+r0
+
+CProcessInfoPlistFile "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug/iSleep.app/Contents/Info.plist" iSleep-Info.plist
+r0
+
+CTouch "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug/iSleep.app"
+r0
+

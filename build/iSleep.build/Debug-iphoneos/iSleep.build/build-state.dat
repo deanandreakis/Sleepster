@@ -1,0 +1,388 @@
+TiSleep
+v7
+r1
+cCheck dependencies
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.2.sdk
+c000000004C059C0E0000000000000110
+t1275436046
+s272
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.2.sdk/ResourceRules.plist
+c000000004B9F103D00000000000001E5
+t1268715581
+s485
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.2.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004BA03AC100000000003B4B70
+t1268792001
+s3885936
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.2.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004B9F26D2000000000036A650
+t1268721362
+s3581520
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004B9F26B90000000000001355
+t1268721337
+s4949
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004B9F318D000000000000098F
+t1268724109
+s2447
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.2.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004B9F32090000000002703230
+t1268724233
+s40907312
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.2.sdk/usr/include/Availability.h
+c000000004B9F27C60000000000001A1A
+t1268721606
+s6682
+
+N/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.h
+c000000004C11B01900000000000000D4
+t1276227609
+s212
+i<UIKit/UIKit.h>
+
+N/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.m
+c000000004C11B04700000000000001BC
+t1276227655
+s444
+i"BacklightView.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.xib
+c000000004C1AF8CC0000000000003C7D
+t1276836044
+s15485
+
+N/Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.h
+c000000004C11B1390000000000000216
+t1276227897
+s534
+
+N/Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.m
+c000000004C11B2610000000000000451
+t1276228193
+s1105
+i"BacklightViewController.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.h
+c000000004B1C3A6400000000000000BA
+t1260141156
+s186
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.m
+c000000004B1C3A6400000000000001BA
+t1260141156
+s442
+i"FlipsideView.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.h
+c000000004C11B0C2000000000000020F
+t1276227778
+s527
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.m
+c000000004B1C3A64000000000000044E
+t1260141156
+s1102
+i"FlipsideViewController.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.h
+c000000004B1C3A6400000000000000CA
+t1260141156
+s202
+i<UIKit/UIKit.h>
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.m
+c000000004B1C3A6400000000000001AE
+t1260141156
+s430
+i"MainView.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.h
+c000000004C11B62D000000000000026E
+t1276229165
+s622
+i"FlipsideViewController.h"
+i"BacklightViewController.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m
+c000000004C11B6C80000000000000BDC
+t1276229320
+s3036
+i"MainViewController.h"
+i"MainView.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.h
+c000000004B1C3A6400000000000001BB
+t1260141156
+s443
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.m
+c000000004B1C3A640000000000000325
+t1260141156
+s805
+i"iSleepAppDelegate.h"
+i"MainViewController.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/FlipsideView.xib
+c000000004BD7B1700000000000004D4A
+t1272426864
+s19786
+
+N/Users/dean/Documents/iPhone Apps/iSleep/MainView.xib
+c000000004BEF51B30000000000005BD7
+t1273975219
+s23511
+
+N/Users/dean/Documents/iPhone Apps/iSleep/MainWindow.xib
+c000000004B1C3A640000000000001E0C
+t1260141156
+s7692
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphoneos/iSleep.app
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphoneos/iSleep.app.dSYM
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphoneos/iSleep.app/BacklightView.nib
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphoneos/iSleep.app/FlipsideView.nib
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphoneos/iSleep.app/Info.plist
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphoneos/iSleep.app/MainView.nib
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphoneos/iSleep.app/MainWindow.nib
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphoneos/iSleep.app/PkgInfo
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphoneos/iSleep.app/ResourceRules.plist
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphoneos/iSleep.app/iSleep
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv6/BacklightView.o
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv6/BacklightViewController.o
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv6/FlipsideView.o
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv6/FlipsideViewController.o
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv6/MainView.o
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv6/MainViewController.o
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv6/iSleep
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv6/iSleep.LinkFileList
+c00000000000000000000000000000000
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv6/iSleepAppDelegate.o
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv6/main.o
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv7/BacklightView.o
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv7/BacklightViewController.o
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv7/FlipsideView.o
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv7/FlipsideViewController.o
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv7/MainView.o
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv7/MainViewController.o
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv7/iSleep
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv7/iSleep.LinkFileList
+c00000000000000000000000000000000
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv7/iSleepAppDelegate.o
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv7/main.o
+t2
+s0
+
+N/Users/dean/Documents/iPhone Apps/iSleep/iSleep_Prefix.pch
+c000000004B1C3A64000000000000013E
+t1260141156
+s318
+i<Availability.h>
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/Users/dean/Documents/iPhone Apps/iSleep/main.m
+c000000004B1C3A64000000000000016A
+t1260141156
+s362
+i<UIKit/UIKit.h>
+
+N/var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-aconfihjljrrkdamdwgvzqzgpzmk/iSleep_Prefix.pch.gch
+t2
+s0
+
+N/var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-asohgoihqumtvbbzfbgondbynswu/iSleep_Prefix.pch.gch
+t2
+s0
+
+NiSleep-Info.plist
+c000000004B1C3A64000000000000038D
+t1260141156
+s909
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies298959910#298959910#0(262"[BEROR]Code Sign error: The identity 'iPhone Developer' doesn't match any valid certificate/private key pair in the default keychain[BWARN]warning: building with 'Targeted Device Family' set to iPhone only ('1') not supported with SDK 'Device - iPhone OS 3.2'.2(4@125"Code Sign error: The identity 'iPhone Developer' doesn't match any valid certificate/private key pair in the default keychain298959910#18446744073709551615#0#0(1@0"0(22@121"warning: building with 'Targeted Device Family' set to iPhone only ('1') not supported with SDK 'Device - iPhone OS 3.2'.298959910#18446744073709551615#0#0(1@0"0(0#1#0"3343187568374212096#0"0#
+
+CCompileC build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv6/BacklightView.o "/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv6/BacklightViewController.o "/Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv6/FlipsideView.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv6/FlipsideViewController.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv6/MainView.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv6/MainViewController.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv6/iSleepAppDelegate.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv6/main.o "/Users/dean/Documents/iPhone Apps/iSleep/main.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv7/BacklightView.o "/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.m" normal armv7 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv7/BacklightViewController.o "/Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.m" normal armv7 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv7/FlipsideView.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.m" normal armv7 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv7/FlipsideViewController.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.m" normal armv7 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv7/MainView.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.m" normal armv7 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv7/MainViewController.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m" normal armv7 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv7/iSleepAppDelegate.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.m" normal armv7 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv7/main.o "/Users/dean/Documents/iPhone Apps/iSleep/main.m" normal armv7 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.xib"
+r0
+
+CCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/FlipsideView.xib"
+r0
+
+CCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/MainView.xib"
+r0
+
+CCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/MainWindow.xib"
+r0
+
+CCpResource build/Debug-iphoneos/iSleep.app/ResourceRules.plist /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.2.sdk/ResourceRules.plist
+r0
+
+CCreateUniversalBinary "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphoneos/iSleep.app/iSleep" normal "armv6 armv7"
+r0
+
+CGenerateDSYMFile "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphoneos/iSleep.app.dSYM" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphoneos/iSleep.app/iSleep"
+r0
+
+CLd "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv6/iSleep" normal armv6
+r0
+
+CLd "/Users/dean/Documents/iPhone Apps/iSleep/build/iSleep.build/Debug-iphoneos/iSleep.build/Objects-normal/armv7/iSleep" normal armv7
+r0
+
+CProcessInfoPlistFile "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphoneos/iSleep.app/Info.plist" iSleep-Info.plist
+r0
+
+CProcessPCH /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-aconfihjljrrkdamdwgvzqzgpzmk/iSleep_Prefix.pch.gch iSleep_Prefix.pch normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CProcessPCH /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/iSleep_Prefix-asohgoihqumtvbbzfbgondbynswu/iSleep_Prefix.pch.gch iSleep_Prefix.pch normal armv7 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CTouch "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphoneos/iSleep.app"
+r0
+

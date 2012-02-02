@@ -1,0 +1,993 @@
+TSleepMate
+v7
+r0
+t318029916.156739
+cCheck dependencies
+cProcessInfoPlistFile "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/Info.plist" SleepMate-Info.plist
+cCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/FlipsideView.xib"
+cCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/MainView.xib"
+cCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/MainWindow.xib"
+cCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.xib"
+cCpResource build/Debug-iphonesimulator/SleepMate.app/player_play_256.png player_play_256.png
+cCpResource build/Debug-iphonesimulator/SleepMate.app/rain.mp3 rain.mp3
+cCpResource build/Debug-iphonesimulator/SleepMate.app/help.png help.png
+cCpResource build/Debug-iphonesimulator/SleepMate.app/Default.png Default.png
+cCpResource build/Debug-iphonesimulator/SleepMate.app/Default@2x.png Default@2x.png
+cCpResource build/Debug-iphonesimulator/SleepMate.app/kmoon.png kmoon.png
+cCpResource build/Debug-iphonesimulator/SleepMate.app/kmoon.png kmoon.png
+cCpResource build/Debug-iphonesimulator/SleepMate.app/kmoon@2x.png kmoon@2x.png
+cCpResource build/Debug-iphonesimulator/SleepMate.app/white.png white.png
+cCpResource build/Debug-iphonesimulator/SleepMate.app/campfire.mp3 campfire.mp3
+cCpResource build/Debug-iphonesimulator/SleepMate.app/forest.mp3 forest.mp3
+cCpResource build/Debug-iphonesimulator/SleepMate.app/stream.mp3 stream.mp3
+cCpResource build/Debug-iphonesimulator/SleepMate.app/waterfall.mp3 waterfall.mp3
+cCpResource build/Debug-iphonesimulator/SleepMate.app/waves.mp3 waves.mp3
+cCpResource build/Debug-iphonesimulator/SleepMate.app/wind.mp3 wind.mp3
+cProcessPCH /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-fkoaddqmnkfxbifroomiqgdxrzox/SleepMate_Prefix.pch.gch SleepMate_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/main.o "/Users/dean/Documents/iPhone Apps/iSleep/main.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/iSleepAppDelegate.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/FlipsideView.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/MainView.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/MainViewController.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/FlipsideViewController.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/BacklightViewController.o "/Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/BacklightView.o "/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+cLd "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/SleepMate" normal i386
+cGenerateDSYMFile "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app.dSYM" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/SleepMate"
+cTouch "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app"
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk
+c000000004CEC2EC00000000000000110
+t1290546880
+s272
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/AVFoundation.framework/AVFoundation
+c000000004BD2005600000000000102F0
+t1272053846
+s66288
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/AVFoundation.framework/Headers/AVFoundation.h
+c000000004BD2005500000000000000EB
+t1272053845
+s235
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004BD1CD90000000000026F020
+t1272040848
+s2551840
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004BD1FFC200000000002A96A0
+t1272053698
+s2791072
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004BD1FF9E0000000000001355
+t1272053662
+s4949
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004BD20412000000000000098F
+t1272054802
+s2447
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004BD20471000000000222E640
+t1272054897
+s35841600
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk/usr/include/Availability.h
+c000000004BD1CFC10000000000001A1A
+t1272041409
+s6682
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk
+c000000004CC128950000000000000110
+t1287727253
+s272
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/AVFoundation.framework/AVFoundation
+c000000004CC1288A00000000000F34A0
+t1287727242
+s996512
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/AVFoundation.framework/Headers/AVFoundation.h
+c000000004CC128840000000000000733
+t1287727236
+s1843
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004CC12246000000000029B310
+t1287725638
+s2732816
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004CC1226D000000000029D5D0
+t1287725677
+s2741712
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004CC1225F0000000000001466
+t1287725663
+s5222
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004CC1281F0000000000000AA1
+t1287727135
+s2721
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004CC12883000000000074D7B0
+t1287727235
+s7657392
+
+N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/usr/include/Availability.h
+c000000004CB3FA080000000000001ADD
+t1286863368
+s6877
+
+N/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.h
+c000000004C11B01900000000000000D4
+t1276227609
+s212
+i<UIKit/UIKit.h>
+
+N/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.m
+c000000004C11B04700000000000001BC
+t1276227655
+s444
+i"BacklightView.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.xib
+c000000004CE05B750000000000004EED
+t1289771893
+s20205
+
+N/Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.h
+c000000004D0F91300000000000000278
+t1292865840
+s632
+
+N/Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.m
+c000000004D0F9140000000000000033B
+t1292865856
+s827
+i"BacklightViewController.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.h
+c000000004B1C3A6400000000000000BA
+t1260141156
+s186
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.m
+c000000004B1C3A6400000000000001BA
+t1260141156
+s442
+i"FlipsideView.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.h
+c000000004D2A2396000000000000020E
+t1294607254
+s526
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.m
+c000000004D2A23A2000000000000043C
+t1294607266
+s1084
+i"FlipsideViewController.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.h
+c000000004B1C3A6400000000000000CA
+t1260141156
+s202
+i<UIKit/UIKit.h>
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.m
+c000000004B1C3A6400000000000001AE
+t1260141156
+s430
+i"MainView.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.h
+c000000004D447F510000000000000660
+t1296334673
+s1632
+i"FlipsideViewController.h"
+i"BacklightViewController.h"
+i<AVFoundation/AVFoundation.h>
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m
+c000000004D44874F0000000000004486
+t1296336719
+s17542
+i"MainViewController.h"
+i"MainView.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.h
+c000000004B1C3A6400000000000001BB
+t1260141156
+s443
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.m
+c000000004CC2E35E000000000000034D
+t1287840606
+s845
+i"iSleepAppDelegate.h"
+i"MainViewController.h"
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Default.png
+c000000004D2A3393000000000000932E
+t1294611347
+s37678
+
+N/Users/dean/Documents/iPhone Apps/iSleep/Default@2x.png
+c000000004D2A34C5000000000000DC00
+t1294611653
+s56320
+
+N/Users/dean/Documents/iPhone Apps/iSleep/FlipsideView.xib
+c000000004D2FDC18000000000000374D
+t1294982168
+s14157
+
+N/Users/dean/Documents/iPhone Apps/iSleep/MainView.xib
+c000000004D2FDEAD0000000000006AA1
+t1294982829
+s27297
+
+N/Users/dean/Documents/iPhone Apps/iSleep/MainWindow.xib
+c000000004B1C3A640000000000001E0C
+t1260141156
+s7692
+
+N/Users/dean/Documents/iPhone Apps/iSleep/SleepMate_Prefix.pch
+c000000004B1C3A64000000000000013E
+t1260141156
+s318
+i<Availability.h>
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/Users/dean/Documents/iPhone Apps/iSleep/app_icon.png
+c000000004D127432000000000000203A
+t1293055026
+s8250
+
+N/Users/dean/Documents/iPhone Apps/iSleep/audio_volume_high.png
+c000000004D1CECC500000000000028F0
+t1293741253
+s10480
+
+N/Users/dean/Documents/iPhone Apps/iSleep/audio_volume_low.png
+c000000004D1CEEBE000000000000218E
+t1293741758
+s8590
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app
+t1296337116
+s782
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app.dSYM
+t1296337116
+s102
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/BacklightView.nib
+t1296337114
+s1452
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/Default.png
+t1296337114
+s37678
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/Default@2x.png
+t1296337114
+s56320
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/FlipsideView.nib
+t1296337113
+s2065
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/Info.plist
+t1296337112
+s630
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/MainView.nib
+t1296337113
+s3372
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/MainWindow.nib
+t1296337114
+s970
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/PkgInfo
+t1296337112
+s8
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/SleepMate
+t1296337116
+s58416
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/app_icon.png
+t1293055361
+s8250
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/audio_volume_high.png
+t1293743168
+s10480
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/audio_volume_low.png
+t1293743168
+s8590
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/campfire.mp3
+t1296337114
+s1890846
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/forest.mp3
+t1296337114
+s1400998
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/help.png
+t1296337114
+s123909
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/kmoon.png
+t1296337114
+s6094
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/kmoon@2x.png
+t1296337114
+s15504
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/kmoon_57x57.png
+t1293158520
+s6094
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/player_play_256.png
+t1296337114
+s8301
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/rain.mp3
+t1296337114
+s1383861
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/stream.mp3
+t1296337114
+s938317
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/test.mp3
+t1290547926
+s3392208
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/waterfall.mp3
+t1296337114
+s1874963
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/waves.mp3
+t1296337114
+s2307969
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/white.png
+t1296337114
+s3009
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/wind.mp3
+t1296337114
+s2305879
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/BacklightView.o
+t1296337116
+s37452
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/BacklightViewController.o
+t1296337115
+s41360
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/FlipsideView.o
+t1296337115
+s37448
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/FlipsideViewController.o
+t1296337115
+s40808
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/MainView.o
+t1296337115
+s37364
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/MainViewController.o
+t1296337116
+s107460
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/SleepMate.LinkFileList
+c000000004D4488D80000000000000455
+t1296337112
+s1109
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/iSleepAppDelegate.o
+t1296337115
+s51924
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/main.o
+t1296337115
+s6308
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/StaticAnalyzer/normal/i386/BacklightView.plist
+t1292713493
+s276
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/StaticAnalyzer/normal/i386/BacklightViewController.plist
+t1292969048
+s276
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/StaticAnalyzer/normal/i386/FlipsideView.plist
+t1292713493
+s276
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/StaticAnalyzer/normal/i386/FlipsideViewController.plist
+t1292713493
+s276
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/StaticAnalyzer/normal/i386/MainView.plist
+t1292713493
+s276
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/StaticAnalyzer/normal/i386/MainViewController.plist
+t1292969048
+s276
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/StaticAnalyzer/normal/i386/iSleepAppDelegate.plist
+t1292969048
+s276
+
+N/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/StaticAnalyzer/normal/i386/main.plist
+t1292713492
+s276
+
+N/Users/dean/Documents/iPhone Apps/iSleep/campfire.mp3
+c000000004D44715900000000001CDA1E
+t1296331097
+s1890846
+
+N/Users/dean/Documents/iPhone Apps/iSleep/forest.mp3
+c000000004D4473BC00000000001560A6
+t1296331708
+s1400998
+
+N/Users/dean/Documents/iPhone Apps/iSleep/help.png
+c000000004D29F7F4000000000001E405
+t1294596084
+s123909
+
+N/Users/dean/Documents/iPhone Apps/iSleep/kmoon.png
+c000000004D14082E00000000000017CE
+t1293158446
+s6094
+
+N/Users/dean/Documents/iPhone Apps/iSleep/kmoon@2x.png
+c000000004D2A3B040000000000003C90
+t1294613252
+s15504
+
+N/Users/dean/Documents/iPhone Apps/iSleep/kmoon_57x57.png
+c000000004D14082E00000000000017CE
+t1293158446
+s6094
+
+N/Users/dean/Documents/iPhone Apps/iSleep/main.m
+c000000004B1C3A64000000000000016A
+t1260141156
+s362
+i<UIKit/UIKit.h>
+
+N/Users/dean/Documents/iPhone Apps/iSleep/player_play_256.png
+c000000004D14F868000000000000206D
+t1293219944
+s8301
+
+N/Users/dean/Documents/iPhone Apps/iSleep/rain.mp3
+c000000004D1D0A1E0000000000151DB5
+t1293748766
+s1383861
+
+N/Users/dean/Documents/iPhone Apps/iSleep/stream.mp3
+c000000004D44720100000000000E514D
+t1296331265
+s938317
+
+N/Users/dean/Documents/iPhone Apps/iSleep/test.mp3
+c000000004B40D558000000000033C2D0
+t1262540120
+s3392208
+
+N/Users/dean/Documents/iPhone Apps/iSleep/waterfall.mp3
+c000000004D4474E400000000001C9C13
+t1296332004
+s1874963
+
+N/Users/dean/Documents/iPhone Apps/iSleep/waves.mp3
+c000000004D4473470000000000233781
+t1296331591
+s2307969
+
+N/Users/dean/Documents/iPhone Apps/iSleep/white.png
+c000000004D2FDDD40000000000000BC1
+t1294982612
+s3009
+
+N/Users/dean/Documents/iPhone Apps/iSleep/wind.mp3
+c000000004D4474630000000000232F57
+t1296331875
+s2305879
+
+N/var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-bfzvykyqwaqvhtcuitzawjumynyj/SleepMate_Prefix.pch.pth
+t1292713492
+s2781536
+
+N/var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-fdfjwkvjziqakvezbwlmgjkkumjx/SleepMate_Prefix.pch.gch
+t2
+s0
+
+N/var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-fkoaddqmnkfxbifroomiqgdxrzox/SleepMate_Prefix.pch.gch
+t1296337115
+s15453392
+
+NSleepMate-Info.plist
+c000000004D2A3AAD0000000000000392
+t1294613165
+s914
+
+CAnalyze "/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.m"
+s314406293.347878
+e314406293.521775
+r1
+xAnalyze
+x/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.m
+lSLF07#2@64"Analyze /Users/dean/Documents/iPhone Apps/iSleep/BacklightView.m314406293#314406293#0(0"0(0#0#56"/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.m8603175168#2087"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -pipe -fdiagnostics-print-source-range-info -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fasm-blocks -mmacosx-version-min=10.6 -gdwarf-2 -fvisibility=hidden -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-bfzvykyqwaqvhtcuitzawjumynyj/SleepMate_Prefix.pch --analyze "/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/StaticAnalyzer/normal/i386/BacklightView.plist"0#
+
+CAnalyze "/Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.m"
+s314661848.586739
+e314661848.653774
+r1
+xAnalyze
+x/Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.m
+lSLF07#2@74"Analyze /Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.m314661848#314661848#0(0"0(0#0#66"/Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.m8641168544#2107"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -pipe -fdiagnostics-print-source-range-info -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fasm-blocks -mmacosx-version-min=10.6 -gdwarf-2 -fvisibility=hidden -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-bfzvykyqwaqvhtcuitzawjumynyj/SleepMate_Prefix.pch --analyze "/Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/StaticAnalyzer/normal/i386/BacklightViewController.plist"0#
+
+CAnalyze "/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.m"
+s314406292.940761
+e314406293.017058
+r1
+xAnalyze
+x/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.m
+lSLF07#2@71"Analyze /Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.m314406292#314406293#0(0"0(0#0#63"/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.m8622278912#2093"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -pipe -fdiagnostics-print-source-range-info -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fasm-blocks -mmacosx-version-min=10.6 -gdwarf-2 -fvisibility=hidden -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-bfzvykyqwaqvhtcuitzawjumynyj/SleepMate_Prefix.pch --analyze "/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/StaticAnalyzer/normal/i386/FlipsideView.plist"0#
+
+CAnalyze "/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.m"
+s314406293.164931
+e314406293.270294
+r1
+xAnalyze
+x/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.m
+lSLF07#2@81"Analyze /Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.m314406293#314406293#0(0"0(0#0#73"/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.m8627465568#2113"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -pipe -fdiagnostics-print-source-range-info -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fasm-blocks -mmacosx-version-min=10.6 -gdwarf-2 -fvisibility=hidden -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-bfzvykyqwaqvhtcuitzawjumynyj/SleepMate_Prefix.pch --analyze "/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/StaticAnalyzer/normal/i386/FlipsideViewController.plist"0#
+
+CAnalyze "/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.m"
+s314406293.017154
+e314406293.079517
+r1
+xAnalyze
+x/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.m
+lSLF07#2@67"Analyze /Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.m314406293#314406293#0(0"0(0#0#59"/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.m8603934496#2085"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -pipe -fdiagnostics-print-source-range-info -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fasm-blocks -mmacosx-version-min=10.6 -gdwarf-2 -fvisibility=hidden -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-bfzvykyqwaqvhtcuitzawjumynyj/SleepMate_Prefix.pch --analyze "/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/StaticAnalyzer/normal/i386/MainView.plist"0#
+
+CAnalyze "/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m"
+s314661848.397730
+e314661848.647353
+r1
+xAnalyze
+x/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m
+lSLF07#2@77"Analyze /Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m314661848#314661848#0(0"0(0#0#69"/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m8617476256#2105"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -pipe -fdiagnostics-print-source-range-info -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fasm-blocks -mmacosx-version-min=10.6 -gdwarf-2 -fvisibility=hidden -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-bfzvykyqwaqvhtcuitzawjumynyj/SleepMate_Prefix.pch --analyze "/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/StaticAnalyzer/normal/i386/MainViewController.plist"0#
+
+CAnalyze "/Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.m"
+s314661848.396329
+e314661848.586565
+r1
+xAnalyze
+x/Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.m
+lSLF07#2@76"Analyze /Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.m314661848#314661848#0(0"0(0#0#68"/Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.m8634659904#2103"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -pipe -fdiagnostics-print-source-range-info -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fasm-blocks -mmacosx-version-min=10.6 -gdwarf-2 -fvisibility=hidden -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-bfzvykyqwaqvhtcuitzawjumynyj/SleepMate_Prefix.pch --analyze "/Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/StaticAnalyzer/normal/i386/iSleepAppDelegate.plist"0#
+
+CAnalyze "/Users/dean/Documents/iPhone Apps/iSleep/main.m"
+s314406292.675068
+e314406292.827337
+r1
+xAnalyze
+x/Users/dean/Documents/iPhone Apps/iSleep/main.m
+lSLF07#2@55"Analyze /Users/dean/Documents/iPhone Apps/iSleep/main.m314406292#314406292#0(0"0(0#0#47"/Users/dean/Documents/iPhone Apps/iSleep/main.m8608554112#2069"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -pipe -fdiagnostics-print-source-range-info -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fasm-blocks -mmacosx-version-min=10.6 -gdwarf-2 -fvisibility=hidden -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-bfzvykyqwaqvhtcuitzawjumynyj/SleepMate_Prefix.pch --analyze "/Users/dean/Documents/iPhone Apps/iSleep/main.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/StaticAnalyzer/normal/i386/main.plist"0#
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies318029912#318029912#0(148"[WARN]Warning: Multiple build commands for output file /Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/kmoon.png1(22@141"Warning: Multiple build commands for output file /Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/kmoon.png318029912#18446744073709551615#0#0(1@0"0(0#1#0"8643604960#0"0#
+
+CCompileC build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/BacklightView.o "/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s318029915.996535
+e318029916.068896
+r1
+xCompileC
+xbuild/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/BacklightView.o
+x/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@64"Compile /Users/dean/Documents/iPhone Apps/iSleep/BacklightView.m318029915#318029916#0(0"0(0#0#56"/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.m8640208256#2078"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-fkoaddqmnkfxbifroomiqgdxrzox/SleepMate_Prefix.pch -c "/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/BacklightView.o"0#
+
+CCompileC build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/BacklightViewController.o "/Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s318029915.918200
+e318029915.996433
+r1
+xCompileC
+xbuild/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/BacklightViewController.o
+x/Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@74"Compile /Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.m318029915#318029916#0(0"0(0#0#66"/Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.m8643101984#2098"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-fkoaddqmnkfxbifroomiqgdxrzox/SleepMate_Prefix.pch -c "/Users/dean/Documents/iPhone Apps/iSleep/BacklightViewController.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/BacklightViewController.o"0#
+
+CCompileC build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/FlipsideView.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s318029915.671258
+e318029915.744715
+r1
+xCompileC
+xbuild/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/FlipsideView.o
+x/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@71"Compile /Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.m318029915#318029915#0(0"0(0#0#63"/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.m8644049344#2084"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-fkoaddqmnkfxbifroomiqgdxrzox/SleepMate_Prefix.pch -c "/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideView.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/FlipsideView.o"0#
+
+CCompileC build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/FlipsideViewController.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s318029915.845162
+e318029915.918109
+r1
+xCompileC
+xbuild/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/FlipsideViewController.o
+x/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@81"Compile /Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.m318029915#318029915#0(0"0(0#0#73"/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.m8644828640#2104"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-fkoaddqmnkfxbifroomiqgdxrzox/SleepMate_Prefix.pch -c "/Users/dean/Documents/iPhone Apps/iSleep/Classes/FlipsideViewController.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/FlipsideViewController.o"0#
+
+CCompileC build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/MainView.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s318029915.744814
+e318029915.845055
+r1
+xCompileC
+xbuild/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/MainView.o
+x/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@67"Compile /Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.m318029915#318029915#0(0"0(0#0#59"/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.m8643882944#2076"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-fkoaddqmnkfxbifroomiqgdxrzox/SleepMate_Prefix.pch -c "/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainView.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/MainView.o"0#
+
+CCompileC build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/MainViewController.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s318029915.775106
+e318029916.076234
+r1
+xCompileC
+xbuild/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/MainViewController.o
+x/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+o/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m: In function '-[MainViewController startSleeping]':
+o/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m:421: warning: multiple methods named '-play' found
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/AVFoundation.framework/Headers/AVAudioPlayer.h:34: warning: using '-(BOOL)play'
+o/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/AVFoundation.framework/Headers/AVPlayer.h:184: warning: also found '-(void)play'
+lSLF07#2@77"Compile /Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m318029915#318029916#0(624"/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m: In function '-[MainViewController startSleeping]':/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m:421: warning: multiple methods named '-play' found/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/AVFoundation.framework/Headers/AVAudioPlayer.h:34: warning: using '-(BOOL)play'/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/AVFoundation.framework/Headers/AVPlayer.h:184: warning: also found '-(void)play'3(22@36"Multiple methods named '-play' found318029915#122#121#0(6@69"/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m318029519#421#0#421#0#0"0(22@19"Using '-(BOOL)play'318029915#243#190#0(6@156"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/AVFoundation.framework/Headers/AVAudioPlayer.h309420036#34#0#34#0#0"0(22@24"Also found '-(void)play'318029915#433#191#0(6@151"/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/AVFoundation.framework/Headers/AVPlayer.h309420036#184#0#184#0#0"0(0#0#69"/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m8643303136#2096"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-fkoaddqmnkfxbifroomiqgdxrzox/SleepMate_Prefix.pch -c "/Users/dean/Documents/iPhone Apps/iSleep/Classes/MainViewController.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/MainViewController.o"0#
+
+CCompileC build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/iSleepAppDelegate.o "/Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s318029915.618102
+e318029915.774932
+r1
+xCompileC
+xbuild/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/iSleepAppDelegate.o
+x/Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@76"Compile /Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.m318029915#318029915#0(0"0(0#0#68"/Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.m8644207168#2094"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-fkoaddqmnkfxbifroomiqgdxrzox/SleepMate_Prefix.pch -c "/Users/dean/Documents/iPhone Apps/iSleep/Classes/iSleepAppDelegate.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/iSleepAppDelegate.o"0#
+
+CCompileC build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/main.o "/Users/dean/Documents/iPhone Apps/iSleep/main.m" normal i386 objective-c com.apple.compilers.gcc.4_2
+s318029915.616647
+e318029915.671152
+r1
+xCompileC
+xbuild/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/main.o
+x/Users/dean/Documents/iPhone Apps/iSleep/main.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@55"Compile /Users/dean/Documents/iPhone Apps/iSleep/main.m318029915#318029915#0(0"0(0#0#47"/Users/dean/Documents/iPhone Apps/iSleep/main.m8644678048#2060"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources" -include /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-fkoaddqmnkfxbifroomiqgdxrzox/SleepMate_Prefix.pch -c "/Users/dean/Documents/iPhone Apps/iSleep/main.m" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/main.o"0#
+
+CCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.xib"
+s318029913.828017
+e318029914.413465
+r1
+xCompileXIB
+x/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.xib
+lSLF07#2@28"CompileXIB BacklightView.xib318029913#318029914#0(0"0(0#0#58"/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.xib8643365600#652"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.2    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/BacklightView.nib" "/Users/dean/Documents/iPhone Apps/iSleep/BacklightView.xib" --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk0#
+
+CCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/FlipsideView.xib"
+s318029912.740043
+e318029913.772916
+r1
+xCompileXIB
+x/Users/dean/Documents/iPhone Apps/iSleep/FlipsideView.xib
+lSLF07#2@27"CompileXIB FlipsideView.xib318029912#318029913#0(0"0(0#0#57"/Users/dean/Documents/iPhone Apps/iSleep/FlipsideView.xib18296010931765360#650"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.2    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/FlipsideView.nib" "/Users/dean/Documents/iPhone Apps/iSleep/FlipsideView.xib" --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk0#
+
+CCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/MainView.xib"
+s318029912.741047
+e318029913.827916
+r1
+xCompileXIB
+x/Users/dean/Documents/iPhone Apps/iSleep/MainView.xib
+lSLF07#2@23"CompileXIB MainView.xib318029912#318029913#0(0"0(0#0#53"/Users/dean/Documents/iPhone Apps/iSleep/MainView.xib8644025088#642"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.2    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/MainView.nib" "/Users/dean/Documents/iPhone Apps/iSleep/MainView.xib" --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk0#
+
+CCompileXIB "/Users/dean/Documents/iPhone Apps/iSleep/MainWindow.xib"
+s318029913.773005
+e318029914.266110
+r1
+xCompileXIB
+x/Users/dean/Documents/iPhone Apps/iSleep/MainWindow.xib
+lSLF07#2@25"CompileXIB MainWindow.xib318029913#318029914#0(0"0(0#0#55"/Users/dean/Documents/iPhone Apps/iSleep/MainWindow.xib8643509056#646"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.2    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/MainWindow.nib" "/Users/dean/Documents/iPhone Apps/iSleep/MainWindow.xib" --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk0#
+
+CCpResource build/Debug-iphonesimulator/SleepMate.app/Default.png Default.png
+s318029914.271832
+e318029914.300024
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/SleepMate.app/Default.png
+xDefault.png
+lSLF07#2@16"Copy Default.png318029914#318029914#0(0"0(0#0#52"/Users/dean/Documents/iPhone Apps/iSleep/Default.png8644192800#545"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks "/Users/dean/Documents/iPhone Apps/iSleep/Default.png" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app"0#
+
+CCpResource build/Debug-iphonesimulator/SleepMate.app/Default@2x.png Default@2x.png
+s318029914.272824
+e318029914.300569
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/SleepMate.app/Default@2x.png
+xDefault@2x.png
+lSLF07#2@19"Copy Default@2x.png318029914#318029914#0(0"0(0#0#55"/Users/dean/Documents/iPhone Apps/iSleep/Default@2x.png8644079424#548"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks "/Users/dean/Documents/iPhone Apps/iSleep/Default@2x.png" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app"0#
+
+CCpResource build/Debug-iphonesimulator/SleepMate.app/app_icon.png app_icon.png
+s314748161.938936
+e314748161.978012
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/SleepMate.app/app_icon.png
+xapp_icon.png
+lSLF07#2@17"Copy app_icon.png314748161#314748161#0(0"0(0#0#53"/Users/dean/Documents/iPhone Apps/iSleep/app_icon.png8645152832#546"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks "/Users/dean/Documents/iPhone Apps/iSleep/app_icon.png" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app"0#
+
+CCpResource build/Debug-iphonesimulator/SleepMate.app/audio_volume_high.png audio_volume_high.png
+s315435968.088026
+e315435968.124149
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/SleepMate.app/audio_volume_high.png
+xaudio_volume_high.png
+lSLF07#2@26"Copy audio_volume_high.png315435968#315435968#0(0"0(0#0#62"/Users/dean/Documents/iPhone Apps/iSleep/audio_volume_high.png8721187392#555"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks "/Users/dean/Documents/iPhone Apps/iSleep/audio_volume_high.png" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app"0#
+
+CCpResource build/Debug-iphonesimulator/SleepMate.app/audio_volume_low.png audio_volume_low.png
+s315435968.088790
+e315435968.124296
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/SleepMate.app/audio_volume_low.png
+xaudio_volume_low.png
+lSLF07#2@25"Copy audio_volume_low.png315435968#315435968#0(0"0(0#0#61"/Users/dean/Documents/iPhone Apps/iSleep/audio_volume_low.png8650843776#554"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks "/Users/dean/Documents/iPhone Apps/iSleep/audio_volume_low.png" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app"0#
+
+CCpResource build/Debug-iphonesimulator/SleepMate.app/campfire.mp3 campfire.mp3
+s318029914.300793
+e318029914.705420
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/SleepMate.app/campfire.mp3
+xcampfire.mp3
+lSLF07#2@17"Copy campfire.mp3318029914#318029914#0(0"0(0#0#53"/Users/dean/Documents/iPhone Apps/iSleep/campfire.mp38642948928#546"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks "/Users/dean/Documents/iPhone Apps/iSleep/campfire.mp3" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app"0#
+
+CCpResource build/Debug-iphonesimulator/SleepMate.app/forest.mp3 forest.mp3
+s318029914.301702
+e318029914.554749
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/SleepMate.app/forest.mp3
+xforest.mp3
+lSLF07#2@15"Copy forest.mp3318029914#318029914#0(0"0(0#0#51"/Users/dean/Documents/iPhone Apps/iSleep/forest.mp38642275456#544"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks "/Users/dean/Documents/iPhone Apps/iSleep/forest.mp3" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app"0#
+
+CCpResource build/Debug-iphonesimulator/SleepMate.app/help.png help.png
+s318029914.268363
+e318029914.311027
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/SleepMate.app/help.png
+xhelp.png
+lSLF07#2@13"Copy help.png318029914#318029914#0(0"0(0#0#49"/Users/dean/Documents/iPhone Apps/iSleep/help.png8644233824#542"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks "/Users/dean/Documents/iPhone Apps/iSleep/help.png" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app"0#
+
+CCpResource build/Debug-iphonesimulator/SleepMate.app/kmoon.png kmoon.png
+s318029914.277693
+e318029914.311144
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/SleepMate.app/kmoon.png
+xkmoon.png
+lSLF07#2@14"Copy kmoon.png318029914#318029914#0(0"0(0#0#50"/Users/dean/Documents/iPhone Apps/iSleep/kmoon.png8643653856#543"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks "/Users/dean/Documents/iPhone Apps/iSleep/kmoon.png" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app"0#
+
+CCpResource build/Debug-iphonesimulator/SleepMate.app/kmoon@2x.png kmoon@2x.png
+s318029914.282792
+e318029914.311252
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/SleepMate.app/kmoon@2x.png
+xkmoon@2x.png
+lSLF07#2@17"Copy kmoon@2x.png318029914#318029914#0(0"0(0#0#53"/Users/dean/Documents/iPhone Apps/iSleep/kmoon@2x.png8643566720#546"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks "/Users/dean/Documents/iPhone Apps/iSleep/kmoon@2x.png" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app"0#
+
+CCpResource build/Debug-iphonesimulator/SleepMate.app/kmoon_57x57.png kmoon_57x57.png
+s314851320.369409
+e314851320.385843
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/SleepMate.app/kmoon_57x57.png
+xkmoon_57x57.png
+lSLF07#2@20"Copy kmoon_57x57.png314851320#314851320#0(0"0(0#0#56"/Users/dean/Documents/iPhone Apps/iSleep/kmoon_57x57.png8649432768#549"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks "/Users/dean/Documents/iPhone Apps/iSleep/kmoon_57x57.png" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app"0#
+
+CCpResource build/Debug-iphonesimulator/SleepMate.app/player_play_256.png player_play_256.png
+s318029914.266923
+e318029914.299902
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/SleepMate.app/player_play_256.png
+xplayer_play_256.png
+lSLF07#2@24"Copy player_play_256.png318029914#318029914#0(0"0(0#0#60"/Users/dean/Documents/iPhone Apps/iSleep/player_play_256.png8644008896#553"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks "/Users/dean/Documents/iPhone Apps/iSleep/player_play_256.png" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app"0#
+
+CCpResource build/Debug-iphonesimulator/SleepMate.app/rain.mp3 rain.mp3
+s318029914.267732
+e318029914.689858
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/SleepMate.app/rain.mp3
+xrain.mp3
+lSLF07#2@13"Copy rain.mp3318029914#318029914#0(0"0(0#0#49"/Users/dean/Documents/iPhone Apps/iSleep/rain.mp38643841376#542"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks "/Users/dean/Documents/iPhone Apps/iSleep/rain.mp3" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app"0#
+
+CCpResource build/Debug-iphonesimulator/SleepMate.app/stream.mp3 stream.mp3
+s318029914.303444
+e318029914.492483
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/SleepMate.app/stream.mp3
+xstream.mp3
+lSLF07#2@15"Copy stream.mp3318029914#318029914#0(0"0(0#0#51"/Users/dean/Documents/iPhone Apps/iSleep/stream.mp38641057792#544"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks "/Users/dean/Documents/iPhone Apps/iSleep/stream.mp3" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app"0#
+
+CCpResource build/Debug-iphonesimulator/SleepMate.app/test.mp3 test.mp3
+s312240726.136841
+e312240726.336680
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/SleepMate.app/test.mp3
+xtest.mp3
+lSLF07#2@13"Copy test.mp3312240726#312240726#0(0"0(0#0#49"/Users/dean/Documents/iPhone Apps/iSleep/test.mp38607842464#542"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks "/Users/dean/Documents/iPhone Apps/iSleep/test.mp3" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app"0#
+
+CCpResource build/Debug-iphonesimulator/SleepMate.app/waterfall.mp3 waterfall.mp3
+s318029914.305659
+e318029914.617869
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/SleepMate.app/waterfall.mp3
+xwaterfall.mp3
+lSLF07#2@18"Copy waterfall.mp3318029914#318029914#0(0"0(0#0#54"/Users/dean/Documents/iPhone Apps/iSleep/waterfall.mp38623912384#547"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks "/Users/dean/Documents/iPhone Apps/iSleep/waterfall.mp3" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app"0#
+
+CCpResource build/Debug-iphonesimulator/SleepMate.app/waves.mp3 waves.mp3
+s318029914.311442
+e318029914.571530
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/SleepMate.app/waves.mp3
+xwaves.mp3
+lSLF07#2@14"Copy waves.mp3318029914#318029914#0(0"0(0#0#50"/Users/dean/Documents/iPhone Apps/iSleep/waves.mp38644295552#543"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks "/Users/dean/Documents/iPhone Apps/iSleep/waves.mp3" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app"0#
+
+CCpResource build/Debug-iphonesimulator/SleepMate.app/white.png white.png
+s318029914.284692
+e318029914.311358
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/SleepMate.app/white.png
+xwhite.png
+lSLF07#2@14"Copy white.png318029914#318029914#0(0"0(0#0#50"/Users/dean/Documents/iPhone Apps/iSleep/white.png8643466848#543"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks "/Users/dean/Documents/iPhone Apps/iSleep/white.png" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app"0#
+
+CCpResource build/Debug-iphonesimulator/SleepMate.app/wind.mp3 wind.mp3
+s318029914.317414
+e318029914.617427
+r1
+xCpResource
+xbuild/Debug-iphonesimulator/SleepMate.app/wind.mp3
+xwind.mp3
+lSLF07#2@13"Copy wind.mp3318029914#318029914#0(0"0(0#0#49"/Users/dean/Documents/iPhone Apps/iSleep/wind.mp38643289728#542"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -resolve-src-symlinks "/Users/dean/Documents/iPhone Apps/iSleep/wind.mp3" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app"0#
+
+CGenerateDSYMFile "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app.dSYM" "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/SleepMate"
+s318029916.107108
+e318029916.152108
+r1
+xGenerateDSYMFile
+x/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app.dSYM
+x/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/SleepMate
+lSLF07#2@115"GenerateDSYMFile build/Debug-iphonesimulator/SleepMate.app.dSYM build/Debug-iphonesimulator/SleepMate.app/SleepMate318029916#318029916#0(0"0(0#0#92"/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/SleepMate8601776896#463"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/dsymutil "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/SleepMate" -o "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app.dSYM"0#
+
+CLd "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/SleepMate" normal i386
+s318029916.076335
+e318029916.107010
+r1
+xLd
+x/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/SleepMate
+xnormal
+xi386
+lSLF07#2@97"Link /Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/SleepMate318029916#318029916#0(0"0(0#0#0"8635847392#1016"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv MACOSX_DEPLOYMENT_TARGET 10.6    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk "-L/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" -filelist "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/Objects-normal/i386/SleepMate.LinkFileList" -mmacosx-version-min=10.6 -Xlinker -objc_abi_version -Xlinker 2 -framework Foundation -framework UIKit -framework CoreGraphics -framework AVFoundation -o "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/SleepMate"0#
+
+CProcessInfoPlistFile "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/Info.plist" SleepMate-Info.plist
+s318029912.692474
+e318029912.738931
+r1
+xProcessInfoPlistFile
+x/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/Info.plist
+xSleepMate-Info.plist
+lSLF07#2@28"Process SleepMate-Info.plist318029912#318029912#0(0"0(0#0#61"/Users/dean/Documents/iPhone Apps/iSleep/SleepMate-Info.plist8642928928#559"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    builtin-infoPlistUtility SleepMate-Info.plist -genpkginfo "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/PkgInfo" -expandbuildsettings -format binary -platform iphonesimulator -o "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app/Info.plist"0#
+
+CProcessPCH /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-bfzvykyqwaqvhtcuitzawjumynyj/SleepMate_Prefix.pch.pth SleepMate_Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.analyzer
+s314406290.582834
+e314406292.590053
+r1
+xProcessPCH
+x/var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-bfzvykyqwaqvhtcuitzawjumynyj/SleepMate_Prefix.pch.pth
+xSleepMate_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.analyzer
+lSLF07#2@31"Precompile SleepMate_Prefix.pch314406290#314406292#0(0"0(0#0#61"/Users/dean/Documents/iPhone Apps/iSleep/SleepMate_Prefix.pch6874028367510791168#1937"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/clang -x objective-c-header -arch i386 -fmessage-length=0 -pipe -fdiagnostics-print-source-range-info -std=c99 -Wno-trigraphs -fpascal-strings -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fasm-blocks -mmacosx-version-min=10.6 -gdwarf-2 -fvisibility=hidden -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources" -c "/Users/dean/Documents/iPhone Apps/iSleep/SleepMate_Prefix.pch" -o /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-bfzvykyqwaqvhtcuitzawjumynyj/SleepMate_Prefix.pch.pth0#
+
+CProcessPCH /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-fdfjwkvjziqakvezbwlmgjkkumjx/SleepMate_Prefix.pch.gch SleepMate_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s309528581.130483
+e309528581.938104
+r1
+xProcessPCH
+x/var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-fdfjwkvjziqakvezbwlmgjkkumjx/SleepMate_Prefix.pch.gch
+xSleepMate_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@31"Precompile SleepMate_Prefix.pch309528581#309528581#0(0"0(0#0#61"/Users/dean/Documents/iPhone Apps/iSleep/SleepMate_Prefix.pch8599111392#1987"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=30200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources" -c "/Users/dean/Documents/iPhone Apps/iSleep/SleepMate_Prefix.pch" -o /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-fdfjwkvjziqakvezbwlmgjkkumjx/SleepMate_Prefix.pch.gch0#
+
+CProcessPCH /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-fkoaddqmnkfxbifroomiqgdxrzox/SleepMate_Prefix.pch.gch SleepMate_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+s318029914.705559
+e318029915.616501
+r1
+xProcessPCH
+x/var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-fkoaddqmnkfxbifroomiqgdxrzox/SleepMate_Prefix.pch.gch
+xSleepMate_Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@31"Precompile SleepMate_Prefix.pch318029914#318029915#0(0"0(0#0#61"/Users/dean/Documents/iPhone Apps/iSleep/SleepMate_Prefix.pch8603961408#1946"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk -fexceptions -fvisibility=hidden -mmacosx-version-min=10.6 -gdwarf-2 -fobjc-abi-version=2 -fobjc-legacy-dispatch -D__IPHONE_OS_VERSION_MIN_REQUIRED=40200 -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-generated-files.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-own-target-headers.hmap" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-all-target-headers.hmap" -iquote "/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/SleepMate-project-headers.hmap" "-F/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/include" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources/i386" "-I/Users/dean/Documents/iPhone Apps/iSleep/build/SleepMate.build/Debug-iphonesimulator/SleepMate.build/DerivedSources" -c "/Users/dean/Documents/iPhone Apps/iSleep/SleepMate_Prefix.pch" -o /var/folders/lj/ljeUze3SHHCa9-p9KcR5Uk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/SleepMate_Prefix-fkoaddqmnkfxbifroomiqgdxrzox/SleepMate_Prefix.pch.gch0#
+
+CTouch "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app"
+s318029916.152193
+e318029916.156525
+r1
+xTouch
+x/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app
+lSLF07#2@88"Touch /Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app318029916#318029916#0(0"0(0#0#0"8645082272#350"    cd "/Users/dean/Documents/iPhone Apps/iSleep"    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /usr/bin/touch -c "/Users/dean/Documents/iPhone Apps/iSleep/build/Debug-iphonesimulator/SleepMate.app"0#
+
