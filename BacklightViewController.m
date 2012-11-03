@@ -17,6 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = backgroundColor;
+    
+    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0"))
+    {
+        [[UIScreen mainScreen] setBrightness:1.0];
+    }
 }
 
 
