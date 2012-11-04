@@ -60,7 +60,6 @@
 		background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Default.png"]];
     }
 	self.view.backgroundColor = background;
-    [background release];
 	
 	/*Setup battery state monitoring*/
 	[UIDevice currentDevice].batteryMonitoringEnabled = YES;
@@ -101,17 +100,6 @@
 	
 	self.song = songArray;
 	
-	[song0 release];
-	[song1 release];
-	[song2 release];
-	[song3 release];
-	[song4 release];
-	[song5 release];
-	[song6 release];
-	[song7 release];
-	[song8 release];
-    [song9 release];
-	[songArray release];
 	
 	for (int x = 0; x < 10; x++) {
 		[[song objectAtIndex:x] setNumberOfLoops:-1];
@@ -119,7 +107,7 @@
 		[[song objectAtIndex:x] setDelegate:self];
 	}
 	
-	[self.song retain];
+	self.song;
 	
 	UILabel *col1_label1 = [[UILabel alloc] initWithFrame:CGRectMake(0,0,50,20)];
 	col1_label1.text = @"\u221E";
@@ -150,12 +138,6 @@
 								col1_label3,col1_label4,col1_label5,nil];
 	self.musicTimerTypes = musicTimerArray;
 
-	[col1_label1 release];
-    [col1_label2 release];
-	[col1_label3 release];
-	[col1_label4 release];
-	[col1_label5 release];
-	[musicTimerArray release];
 	
 	/*Music Selection Array Objects*/
 	UILabel *col2_label1 = [[UILabel alloc] initWithFrame:CGRectMake(0,0,90,20)];
@@ -213,17 +195,6 @@
 								col2_label3,col2_label4,col2_label5,col2_label6,col2_label7,col2_label8,col2_label9,
                                     col2_label10,nil];
 	self.musicSelectionTypes = musicSelectionArray;
-	[col2_label1 release];
-	[col2_label2 release];
-	[col2_label3 release];
-	[col2_label4 release];
-	[col2_label5 release];
-	[col2_label6 release];
-	[col2_label7 release];
-	[col2_label8 release];
-	[col2_label9 release];
-    [col2_label10 release];
-	[musicSelectionArray release];
 	
 	/*nightLightColorArray Objects*/
 	UILabel *col3_label1 = [[UILabel alloc] initWithFrame:CGRectMake(0,0,90,20)];
@@ -306,22 +277,6 @@
 									 col3_label8,col3_label9,col3_label10,col3_label11,col3_label12,
 									 col3_label13,col3_label14,col3_label15,nil];
 	self.nightLightColorTypes = nightLightColorArray;
-	[col3_label1 release];
-	[col3_label2 release];
-	[col3_label3 release];
-	[col3_label4 release];
-	[col3_label5 release];
-	[col3_label6 release];
-	[col3_label7 release];
-	[col3_label8 release];
-	[col3_label9 release];
-	[col3_label10 release];
-	[col3_label11 release];
-	[col3_label12 release];
-	[col3_label13 release];
-	[col3_label14 release];
-	[col3_label15 release];
-	[nightLightColorArray release];
 	
 	playerState = NO;
 	
@@ -353,13 +308,11 @@
         {
             [timer invalidate];
         }
-        [controller release];
 	    playerState = NO;
 	}
     else if(![[song objectAtIndex:songIndex] isPlaying] && timerFired)
 	{
         [self dismissModalViewControllerAnimated:YES];
-        [controller release];
 	}
 }
 
@@ -371,7 +324,6 @@
 	fsController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 	[self presentModalViewController:fsController animated:YES];
 	
-	[fsController release];
 }
 
 
@@ -389,7 +341,6 @@
 							  cancelButtonTitle:@"Continue" 
 							  otherButtonTitles:nil];
 		[alert show];
-		[alert release];
 	}
 	
 	NSInteger segment = [picker selectedRowInComponent:kMusicTimer];
@@ -520,15 +471,6 @@
 }
 
 
-- (void)dealloc {
-	[picker release];
-	[musicSelectionTypes release];
-	[musicTimerTypes release];
-	[nightLightColorTypes release];
-    [song release];
-	
-    [super dealloc];
-}
 
 #pragma mark -
 #pragma mark Picker Data Source Methods

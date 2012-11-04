@@ -12,12 +12,12 @@
 
 
 @interface BacklightViewController : UIViewController {
-	id <BacklightViewControllerDelegate> bgDelegate;
-	UIColor *backgroundColor;
+	id <BacklightViewControllerDelegate> __weak bgDelegate;
+	UIColor *__weak backgroundColor;
 }
 
-@property (nonatomic, assign) id <BacklightViewControllerDelegate> bgDelegate;
-@property (nonatomic, assign) UIColor *backgroundColor;
+@property (nonatomic, weak) id <BacklightViewControllerDelegate> bgDelegate;
+@property (nonatomic, weak) UIColor *backgroundColor;
 - (IBAction)done:(id)sender;
 
 @end

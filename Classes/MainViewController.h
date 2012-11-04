@@ -46,11 +46,11 @@ AVAudioPlayerDelegate>
 @property (assign, nonatomic)NSInteger timeOut;
 @property (assign, nonatomic)NSInteger songIndex;
 @property (assign, nonatomic)float natureVolume;
-@property (nonatomic, retain)UIPickerView *picker;
-@property (nonatomic, retain)NSArray *musicSelectionTypes;
-@property (nonatomic, retain)NSArray *musicTimerTypes;
-@property (nonatomic, retain)NSArray *nightLightColorTypes;
-@property (nonatomic, retain)NSArray *song;
+@property (nonatomic, strong)UIPickerView *picker;
+@property (nonatomic, strong)NSArray *musicSelectionTypes;
+@property (nonatomic, strong)NSArray *musicTimerTypes;
+@property (nonatomic, strong)NSArray *nightLightColorTypes;
+@property (nonatomic, strong)NSArray *song;
 @property (assign, nonatomic)BOOL playerState;
 @property (readwrite)BOOL interruptedOnPlayback;
 @property (readwrite)BOOL timerFired;

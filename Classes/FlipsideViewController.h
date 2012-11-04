@@ -9,10 +9,10 @@
 @protocol FlipsideViewControllerDelegate;
 
 @interface FlipsideViewController : UIViewController {
-	id <FlipsideViewControllerDelegate> delegate;
+	id <FlipsideViewControllerDelegate> __weak delegate;
 }
 
-@property (nonatomic, assign) id <FlipsideViewControllerDelegate> delegate;
+@property (nonatomic, weak) id <FlipsideViewControllerDelegate> delegate;
 - (IBAction)done;
 - (IBAction)rate;
 
