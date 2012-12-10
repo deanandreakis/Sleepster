@@ -7,6 +7,10 @@
 //
 
 @class MainViewController;
+@class InformationViewController;
+@class SettingsViewController;
+@class SoundsViewController;
+@class BackgroundsViewController;
 
 @interface iSleepAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
@@ -15,6 +19,13 @@
 
 @property (nonatomic, strong) IBOutlet UIWindow *window;
 @property (nonatomic, strong) MainViewController *mainViewController;
+@property (nonatomic, strong) InformationViewController *fsController;
+@property (nonatomic, strong) SettingsViewController *settingsViewController;
+@property (nonatomic, strong) SoundsViewController *soundsViewController;
+@property (nonatomic, strong) BackgroundsViewController *backgroundsViewController;
+
+
+@property (strong, nonatomic) UITabBarController *tabBarController;
 
 @end
 

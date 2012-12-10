@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "MainView.h"
+#import <Social/Social.h>
 
 
 @implementation MainViewController
@@ -38,6 +39,49 @@
 	natureVolume = (float)volume;
 }
 
+- (IBAction) tweeterButton:(id)sender
+{
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+    {
+        SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+        [tweetSheet setInitialText:@"Tweeting from my own app! :)"];
+        [self presentViewController:tweetSheet animated:YES completion:nil];
+    }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Sorry"
+                                  message:@"You can't send a tweet right now, make sure \
+                                  your device has an internet connection and you have \
+                                  at least one Twitter account setup"
+                                  delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+        [alertView show];
+    }
+}
+
+- (IBAction) facebookButton:(id)sender
+{
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
+    {
+        SLComposeViewController *fbSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        [fbSheet setInitialText:@"Facebooking from my own app! :)"];
+        [self presentViewController:fbSheet animated:YES completion:nil];
+    }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Sorry"
+                                  message:@"You can't facebook right now, make sure \
+                                  your device has an internet connection and you have \
+                                  at least one Facebook account setup"
+                                  delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+        [alertView show];
+    }
+}
 
  // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -291,7 +335,7 @@
 
 
 
-- (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller {
+- (void)flipsideViewControllerDidFinish:(InformationViewController *)controller {
     
 	[self dismissModalViewControllerAnimated:YES];
 }
@@ -318,11 +362,11 @@
 
 - (IBAction)showInfo {    
 	
-	FlipsideViewController *fsController = [[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
+	/*FlipsideViewController *fsController = [[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
 	fsController.delegate = self;
 	
 	fsController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-	[self presentModalViewController:fsController animated:YES];
+	[self presentModalViewController:fsController animated:YES];*/
 	
 }
 

@@ -38,8 +38,15 @@
 		289233A60DB2D0840083E9F9 /* FlipsideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233A30DB2D0840083E9F9 /* FlipsideView.m */; };
 		289233A70DB2D0840083E9F9 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233A50DB2D0840083E9F9 /* MainView.m */; };
 		289233AE0DB2D0DB0083E9F9 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */; };
-		289233B00DB2D0DB0083E9F9 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */; };
+		289233B00DB2D0DB0083E9F9 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233AD0DB2D0DB0083E9F9 /* InformationViewController.m */; };
 		C128CCC31645DFBC00E1B8AC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C128CCC21645DFBC00E1B8AC /* Default-568h@2x.png */; };
+		C14E0EF4167573F100811389 /* SoundsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C14E0EF2167573F100811389 /* SoundsViewController.m */; };
+		C14E0EF5167573F100811389 /* SoundsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C14E0EF3167573F100811389 /* SoundsViewController.xib */; };
+		C14E0EF91675746A00811389 /* BackgroundsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C14E0EF71675746A00811389 /* BackgroundsViewController.m */; };
+		C14E0EFA1675746A00811389 /* BackgroundsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C14E0EF81675746A00811389 /* BackgroundsViewController.xib */; };
+		C14E0EFC1675772400811389 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C14E0EFB1675772400811389 /* Social.framework */; };
+		C1D7B40B1671A0860004D62E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D7B4091671A0860004D62E /* SettingsViewController.m */; };
+		C1D7B40C1671A0860004D62E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D7B40A1671A0860004D62E /* SettingsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,12 +88,22 @@
 		289233A50DB2D0840083E9F9 /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainView.m; path = Classes/MainView.m; sourceTree = "<group>"; };
 		289233A80DB2D0DB0083E9F9 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Classes/MainViewController.h; sourceTree = "<group>"; };
 		289233A90DB2D0DB0083E9F9 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Classes/MainViewController.m; sourceTree = "<group>"; };
-		289233AC0DB2D0DB0083E9F9 /* FlipsideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlipsideViewController.h; path = Classes/FlipsideViewController.h; sourceTree = "<group>"; };
-		289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlipsideViewController.m; path = Classes/FlipsideViewController.m; sourceTree = "<group>"; };
+		289233AC0DB2D0DB0083E9F9 /* InformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InformationViewController.h; path = Classes/InformationViewController.h; sourceTree = "<group>"; };
+		289233AD0DB2D0DB0083E9F9 /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InformationViewController.m; path = Classes/InformationViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* SleepMate_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SleepMate_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* SleepMate-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SleepMate-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		C128CCC21645DFBC00E1B8AC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		C14E0EF1167573F100811389 /* SoundsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundsViewController.h; sourceTree = "<group>"; };
+		C14E0EF2167573F100811389 /* SoundsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundsViewController.m; sourceTree = "<group>"; };
+		C14E0EF3167573F100811389 /* SoundsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SoundsViewController.xib; sourceTree = "<group>"; };
+		C14E0EF61675746A00811389 /* BackgroundsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundsViewController.h; sourceTree = "<group>"; };
+		C14E0EF71675746A00811389 /* BackgroundsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundsViewController.m; sourceTree = "<group>"; };
+		C14E0EF81675746A00811389 /* BackgroundsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BackgroundsViewController.xib; sourceTree = "<group>"; };
+		C14E0EFB1675772400811389 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		C1D7B4081671A0860004D62E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		C1D7B4091671A0860004D62E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		C1D7B40A1671A0860004D62E /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C14E0EFC1675772400811389 /* Social.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765590DF743DE002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -104,17 +122,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		05692F7011C1E68100A119A4 /* Backlight View */ = {
-			isa = PBXGroup;
-			children = (
-				05692F7111C1E6F800A119A4 /* BacklightViewController.h */,
-				05692F7211C1E6F800A119A4 /* BacklightViewController.m */,
-				05692F7411C1E73900A119A4 /* BacklightView.h */,
-				05692F7511C1E73900A119A4 /* BacklightView.m */,
-			);
-			name = "Backlight View";
-			sourceTree = "<group>";
-		};
 		080E96DDFE201D6D7F000001 /* Application Delegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,36 +140,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		281C6CD70DB2D82200F60ACC /* Flipside View */ = {
-			isa = PBXGroup;
-			children = (
-				289233A20DB2D0840083E9F9 /* FlipsideView.h */,
-				289233A30DB2D0840083E9F9 /* FlipsideView.m */,
-				289233AC0DB2D0DB0083E9F9 /* FlipsideViewController.h */,
-				289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */,
-			);
-			name = "Flipside View";
-			sourceTree = "<group>";
-		};
-		289233A00DB2D0730083E9F9 /* Main View */ = {
+		289233A00DB2D0730083E9F9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				052E288313691D7000AC496D /* AVAudioPlayer+PGFade.m */,
 				052E288213691D5E00AC496D /* AVAudioPlayer+PGFade.h */,
-				289233A40DB2D0840083E9F9 /* MainView.h */,
-				289233A50DB2D0840083E9F9 /* MainView.m */,
-				289233A80DB2D0DB0083E9F9 /* MainViewController.h */,
-				289233A90DB2D0DB0083E9F9 /* MainViewController.m */,
 			);
-			name = "Main View";
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				05692F7011C1E68100A119A4 /* Backlight View */,
-				289233A00DB2D0730083E9F9 /* Main View */,
-				281C6CD70DB2D82200F60ACC /* Flipside View */,
+				C14E0EFB1675772400811389 /* Social.framework */,
+				C1D7B40716719F8B0004D62E /* Controllers */,
+				C1D7B40516719F080004D62E /* Views */,
+				289233A00DB2D0730083E9F9 /* Utilities */,
 				080E96DDFE201D6D7F000001 /* Application Delegate */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -200,11 +193,7 @@
 				052C9A7B12F4ACEB00400088 /* wind.mp3 */,
 				053BF45312CD428400B2D546 /* rain.mp3 */,
 				053BF41312C5300500B2D546 /* player_play_256.png */,
-				280E754A0DD40C5E005A515E /* FlipsideView.xib */,
-				280E754B0DD40C5E005A515E /* MainView.xib */,
-				280E754C0DD40C5E005A515E /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* SleepMate-Info.plist */,
-				05692F7911C1EBF600A119A4 /* BacklightView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -218,6 +207,45 @@
 				288765580DF743DE002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C1D7B40516719F080004D62E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C14E0EF81675746A00811389 /* BackgroundsViewController.xib */,
+				C14E0EF3167573F100811389 /* SoundsViewController.xib */,
+				C1D7B40A1671A0860004D62E /* SettingsViewController.xib */,
+				280E754C0DD40C5E005A515E /* MainWindow.xib */,
+				280E754B0DD40C5E005A515E /* MainView.xib */,
+				280E754A0DD40C5E005A515E /* FlipsideView.xib */,
+				05692F7911C1EBF600A119A4 /* BacklightView.xib */,
+				289233A30DB2D0840083E9F9 /* FlipsideView.m */,
+				289233A20DB2D0840083E9F9 /* FlipsideView.h */,
+				289233A50DB2D0840083E9F9 /* MainView.m */,
+				289233A40DB2D0840083E9F9 /* MainView.h */,
+				05692F7511C1E73900A119A4 /* BacklightView.m */,
+				05692F7411C1E73900A119A4 /* BacklightView.h */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		C1D7B40716719F8B0004D62E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				05692F7111C1E6F800A119A4 /* BacklightViewController.h */,
+				05692F7211C1E6F800A119A4 /* BacklightViewController.m */,
+				289233A80DB2D0DB0083E9F9 /* MainViewController.h */,
+				289233A90DB2D0DB0083E9F9 /* MainViewController.m */,
+				289233AC0DB2D0DB0083E9F9 /* InformationViewController.h */,
+				289233AD0DB2D0DB0083E9F9 /* InformationViewController.m */,
+				C1D7B4081671A0860004D62E /* SettingsViewController.h */,
+				C1D7B4091671A0860004D62E /* SettingsViewController.m */,
+				C14E0EF1167573F100811389 /* SoundsViewController.h */,
+				C14E0EF2167573F100811389 /* SoundsViewController.m */,
+				C14E0EF61675746A00811389 /* BackgroundsViewController.h */,
+				C14E0EF71675746A00811389 /* BackgroundsViewController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,6 +321,9 @@
 				05AAF2FC1377085E00AD2167 /* kmoon@2x.png in Resources */,
 				05329D7E13D35FEE00F199CA /* ThunderStorm.mp3 in Resources */,
 				C128CCC31645DFBC00E1B8AC /* Default-568h@2x.png in Resources */,
+				C1D7B40C1671A0860004D62E /* SettingsViewController.xib in Resources */,
+				C14E0EF5167573F100811389 /* SoundsViewController.xib in Resources */,
+				C14E0EFA1675746A00811389 /* BackgroundsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,10 +339,13 @@
 				289233A60DB2D0840083E9F9 /* FlipsideView.m in Sources */,
 				289233A70DB2D0840083E9F9 /* MainView.m in Sources */,
 				289233AE0DB2D0DB0083E9F9 /* MainViewController.m in Sources */,
-				289233B00DB2D0DB0083E9F9 /* FlipsideViewController.m in Sources */,
+				289233B00DB2D0DB0083E9F9 /* InformationViewController.m in Sources */,
 				05692F7311C1E6F800A119A4 /* BacklightViewController.m in Sources */,
 				05692F7611C1E73900A119A4 /* BacklightView.m in Sources */,
 				052E288413691D7000AC496D /* AVAudioPlayer+PGFade.m in Sources */,
+				C1D7B40B1671A0860004D62E /* SettingsViewController.m in Sources */,
+				C14E0EF4167573F100811389 /* SoundsViewController.m in Sources */,
+				C14E0EF91675746A00811389 /* BackgroundsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,7 +379,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SleepMate_Prefix.pch;
 				INFOPLIST_FILE = "SleepMate-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = SleepMate;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -363,7 +397,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SleepMate_Prefix.pch;
 				INFOPLIST_FILE = "SleepMate-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = SleepMate;
 				SDKROOT = iphoneos;
 			};
@@ -379,7 +413,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SleepMate_Prefix.pch;
 				INFOPLIST_FILE = "SleepMate-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = SleepMate;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 			};

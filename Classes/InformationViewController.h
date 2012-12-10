@@ -8,7 +8,7 @@
 
 @protocol FlipsideViewControllerDelegate;
 
-@interface FlipsideViewController : UIViewController {
+@interface InformationViewController : UIViewController {
 	id <FlipsideViewControllerDelegate> __weak delegate;
 }
 
@@ -20,6 +20,6 @@
 
 
 @protocol FlipsideViewControllerDelegate
-- (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller;
+- (void)flipsideViewControllerDidFinish:(InformationViewController *)controller;
 @end
 

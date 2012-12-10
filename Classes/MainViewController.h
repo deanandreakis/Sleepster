@@ -6,7 +6,7 @@
 //  Copyright __MyCompanyName__ 2009. All rights reserved.
 //
 
-#import "FlipsideViewController.h"
+#import "InformationViewController.h"
 #import "BacklightViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "AVAudioPlayer+PGFade.h"
@@ -59,5 +59,7 @@ AVAudioPlayerDelegate>
 - (IBAction)startSleeping;
 - (void) timerFired: (NSTimer *) theTimer;
 - (IBAction)volumeSliderChanged:(id)sender;
+- (IBAction)tweeterButton:(id)sender;
+- (IBAction)facebookButton:(id)sender;
 
 @end
