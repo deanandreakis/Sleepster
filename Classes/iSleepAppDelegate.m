@@ -39,8 +39,14 @@
     settingsViewController = [[SettingsViewController alloc] initWithNibName:nil bundle:nil];
     settingsViewController.tabBarItem.title = @"Options";
     
-    soundsViewController = [[SoundsViewController alloc] initWithNibName:nil bundle:nil];
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    soundsViewController = [[SoundsViewController alloc] initWithCollectionViewLayout:layout];
     soundsViewController.tabBarItem.title = @"Sounds";
+    layout.itemSize = CGSizeMake(64, 64);
+    layout.minimumInteritemSpacing = 64;
+    layout.minimumLineSpacing = 64;
+    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    layout.sectionInset = UIEdgeInsetsMake(32, 32, 32, 32);
     
     backgroundsViewController = [[BackgroundsViewController alloc] initWithNibName:nil bundle:nil];
     backgroundsViewController.tabBarItem.title = @"Backgrounds";

@@ -17,15 +17,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = backgroundColor;
-    
-    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0"))
-    {
-        [[UIScreen mainScreen] setBrightness:1.0];
-    }
+    [[UIScreen mainScreen] setBrightness:1.0];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
 }
 
 
 - (IBAction)done:(id)sender {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
 	[self.bgDelegate backlightViewControllerDidFinish:self];	
 }
 
