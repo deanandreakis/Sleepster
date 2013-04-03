@@ -10,6 +10,7 @@
 #import "BacklightViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "AVAudioPlayer+PGFade.h"
+#import "SoundsViewController.h"
 
 #define kMusicSelection 0
 #define kMusicTimer 1
@@ -18,13 +19,13 @@
 
 @interface MainViewController : UIViewController 
     <FlipsideViewControllerDelegate,BacklightViewControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource,
-AVAudioPlayerDelegate>
+AVAudioPlayerDelegate, SoundsViewControllerDelegate>
 {
 	IBOutlet UIPickerView *picker;
 	NSArray *musicSelectionTypes;
 	NSArray *musicTimerTypes;
 	NSArray *nightLightColorTypes;
-	NSArray *song;
+	NSArray *songArray;
 	
 	enum{
 		kOffSegmentIndex = 0,
@@ -50,10 +51,11 @@ AVAudioPlayerDelegate>
 @property (nonatomic, strong)NSArray *musicSelectionTypes;
 @property (nonatomic, strong)NSArray *musicTimerTypes;
 @property (nonatomic, strong)NSArray *nightLightColorTypes;
-@property (nonatomic, strong)NSArray *song;
+@property (nonatomic, strong)NSArray *songArray;
 @property (assign, nonatomic)BOOL playerState;
 @property (readwrite)BOOL interruptedOnPlayback;
 @property (readwrite)BOOL timerFired;
+@property (strong, nonatomic) UIButton *menuBtn;
 
 - (IBAction)showInfo;
 - (IBAction)startSleeping;

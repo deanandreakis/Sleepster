@@ -12,54 +12,44 @@
 #import "SettingsViewController.h"
 #import "SoundsViewController.h"
 #import "BackgroundsViewController.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation iSleepAppDelegate
 
 
 @synthesize window;
-@synthesize mainViewController;
-@synthesize tabBarController, fsController, settingsViewController, soundsViewController, backgroundsViewController;
+@synthesize mainViewController, informationViewController, settingsViewController, soundsViewController, backgroundsViewController;
 
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     
-	application.idleTimerDisabled = YES;
+	[Crashlytics startWithAPIKey:@"2eaad7ad1fecfce6c414905676a8175bb2a1c253"];
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    application.idleTimerDisabled = YES;
+    
+    //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
-	MainViewController *aController = [[MainViewController alloc] initWithNibName:@"MainView" bundle:nil];
-	self.mainViewController = aController;
-	mainViewController.tabBarItem.title = @"Main";
-    
-    mainViewController.view.frame = [UIScreen mainScreen].applicationFrame;
-    
-    fsController = [[InformationViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
-	fsController.tabBarItem.title = @"Info";
-    
+    mainViewController = [[MainViewController alloc] initWithNibName:@"MainView" bundle:nil];
+    informationViewController = [[InformationViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
     settingsViewController = [[SettingsViewController alloc] initWithNibName:nil bundle:nil];
-    settingsViewController.tabBarItem.title = @"Options";
-    
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     soundsViewController = [[SoundsViewController alloc] initWithCollectionViewLayout:layout];
-    soundsViewController.tabBarItem.title = @"Sounds";
     layout.itemSize = CGSizeMake(64, 64);
     layout.minimumInteritemSpacing = 64;
     layout.minimumLineSpacing = 64;
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     layout.sectionInset = UIEdgeInsetsMake(32, 32, 32, 32);
-    
     backgroundsViewController = [[BackgroundsViewController alloc] initWithNibName:nil bundle:nil];
-    backgroundsViewController.tabBarItem.title = @"Backgrounds";
-    
-    tabBarController = [[UITabBarController alloc] init];
-    [tabBarController setViewControllers:[NSArray arrayWithObjects:aController,soundsViewController,backgroundsViewController,settingsViewController,fsController,nil]];
-                                          
-    //[window addSubview:[mainViewController view]];
-    [self.window setRootViewController:tabBarController];
-    //window.rootViewController = tabBarController;
-    [window makeKeyAndVisible];
+    [soundsViewController setDelegate:mainViewController];
+
+    //[self.window setRootViewController:self];
+    //[window makeKeyAndVisible];
 }
 
++ (iSleepAppDelegate *)appDelegate
+{
+    return (iSleepAppDelegate *)[[UIApplication sharedApplication] delegate];
+}
 
 
 @end

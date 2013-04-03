@@ -9,7 +9,9 @@
 #import "MainViewController.h"
 #import "MainView.h"
 #import <Social/Social.h>
-
+#import "iSleepAppDelegate.h"
+#import "ECSlidingViewController.h"
+#import "MenuViewController.h"
 
 @implementation MainViewController
 
@@ -20,10 +22,11 @@
 @synthesize musicSelectionTypes;
 @synthesize musicTimerTypes;
 @synthesize nightLightColorTypes;
-@synthesize song;
+@synthesize songArray;
 @synthesize playerState;
 @synthesize interruptedOnPlayback;
 @synthesize timerFired;
+@synthesize menuBtn;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
@@ -83,11 +86,32 @@
     }
 }
 
- // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
+}
+
+
 - (void)viewDidLoad {
 	
-	//NSLog (@"VIEW DID LOAD");
+    self.view.layer.shadowOpacity = 0.75f;
+    self.view.layer.shadowRadius = 10.0f;
+    self.view.layer.shadowColor = [UIColor blackColor].CGColor;
+    
+    if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuViewController class]])
+    {
+        self.slidingViewController.underLeftViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Menu"];
+    }
 	
+    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
+    
+    self.menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    menuBtn.frame = CGRectMake(8, 10, 34, 24);
+    [menuBtn setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
+    [menuBtn addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:self.menuBtn];
+    
 	BOOL hasHighResScreen = NO;
 	if ([UIScreen instancesRespondToSelector:@selector(scale)]) {
 		CGFloat scale = [[UIScreen mainScreen] scale];
@@ -139,19 +163,19 @@
 	AVAudioPlayer* song8 = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL fileURLWithPath:pathToMusicFile8] error:NULL];
     AVAudioPlayer* song9 = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL fileURLWithPath:pathToMusicFile9] error:NULL];
 	
-	NSArray* songArray = [[NSArray alloc] initWithObjects:song0,song1,song2,song3,song4,
+	NSArray* tempArray = [[NSArray alloc] initWithObjects:song0,song1,song2,song3,song4,
 						  song5,song6,song7,song8,song9,nil];
 	
-	self.song = songArray;
+	self.songArray = tempArray;
 	
 	
 	for (int x = 0; x < 10; x++) {
-		[[song objectAtIndex:x] setNumberOfLoops:-1];
-		[[song objectAtIndex:x] prepareToPlay];
-		[[song objectAtIndex:x] setDelegate:self];
+		[[songArray objectAtIndex:x] setNumberOfLoops:-1];
+		[[songArray objectAtIndex:x] prepareToPlay];
+		[[songArray objectAtIndex:x] setDelegate:self];
 	}
 	
-	self.song;
+	//self.song;
 	
 	UILabel *col1_label1 = [[UILabel alloc] initWithFrame:CGRectMake(0,0,50,20)];
 	col1_label1.text = @"\u221E";
@@ -330,6 +354,10 @@
 	
 	songIndex = 0;
 	
+    //TODO: Tell the SoundsViewController object that I am the delegate
+    //SoundsViewController* svc = (SoundsViewController*)[[[iSleepAppDelegate appDelegate].tabBarController viewControllers] objectAtIndex:1];
+    //[svc setDelegate:self];
+    
 	[super viewDidLoad];
 }
 
@@ -337,26 +365,26 @@
 
 - (void)flipsideViewControllerDidFinish:(InformationViewController *)controller {
     
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)backlightViewControllerDidFinish:(BacklightViewController *)controller {	
 	//NSLog (@"backlight view controller finished");
-	if([[song objectAtIndex:songIndex] isPlaying] && !timerFired)
+	if([[songArray objectAtIndex:songIndex] isPlaying] && !timerFired)
 	{
 		//NSLog (@" backlight view controller stop the song at index: %i", songIndex);
-        [self dismissModalViewControllerAnimated:YES];
-        [[song objectAtIndex:songIndex] pause];
-        [[song objectAtIndex:songIndex] setCurrentTime:0];
+        [self dismissViewControllerAnimated:YES completion:nil];
+        [[songArray objectAtIndex:songIndex] pause];
+        [[songArray objectAtIndex:songIndex] setCurrentTime:0];
 	    if(timeOut != kOffSegmentIndex)
         {
             [timer invalidate];
         }
 	    playerState = NO;
 	}
-    else if(![[song objectAtIndex:songIndex] isPlaying] && timerFired)
+    else if(![[songArray objectAtIndex:songIndex] isPlaying] && timerFired)
 	{
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
 	}
 }
 
@@ -370,6 +398,10 @@
 	
 }
 
+- (IBAction)revealMenu:(id)sender
+{
+    [self.slidingViewController anchorTopViewTo:ECRight];
+}
 
 
 - (IBAction) startSleeping {
@@ -478,13 +510,13 @@
 	
 	/*Play the background music selected*/
 	//NSLog (@"PLAY: SONG INDEX = %i", songIndex);
-	AVAudioPlayer * player = (AVAudioPlayer *)[song objectAtIndex:songIndex];
+	AVAudioPlayer * player = (AVAudioPlayer *)[songArray objectAtIndex:songIndex];
     [player setVolume:(natureVolume / 100)];
 	[player play];
 	//NSLog (@"PLAY RETURNED %i", retVal);
 	playerState = YES;
 	controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-	[self presentModalViewController:controller animated:YES];
+	[self presentViewController:controller animated:YES completion:nil];
 }
 	
 - (void) timerFired: (NSTimer *) theTimer
@@ -493,7 +525,7 @@
 	  and then the call to [timer invalidate] crashed the system*/
 
 	timerFired = YES;
-    [[song objectAtIndex:songIndex] stopWithFadeDuration:fadeoutTime];
+    [[songArray objectAtIndex:songIndex] stopWithFadeDuration:fadeoutTime];
 	//[[song objectAtIndex:songIndex] pause];
 	//[[song objectAtIndex:songIndex] setCurrentTime:0];
 	playerState = NO;
@@ -584,6 +616,14 @@
         playerState = YES;
         interruptedOnPlayback = NO;
     }
+}
+
+#pragma mark SoundsViewControllerDelegate methods
+
+- (void)songSelected:(AVAudioPlayer*)song
+{
+    NSLog(@"got the event");
+    [song setDelegate:self];
 }
 
 @end

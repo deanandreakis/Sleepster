@@ -6,8 +6,6 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
-
 @protocol BacklightViewControllerDelegate;
 
 
