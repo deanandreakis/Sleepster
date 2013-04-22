@@ -11,10 +11,8 @@
 #import "MenuViewController.h"
 
 @interface SoundsViewController ()
-
 @property(strong, nonatomic) NSArray* songArray;
 @property (strong, nonatomic) UIButton *menuBtn;
-
 @end
 
 @implementation SoundsViewController
@@ -42,10 +40,8 @@
     [menuBtn setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
     [menuBtn addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:self.menuBtn];//stopped at 2:11 of iOS Slide Menu Tutorial - Part 3
+    [self.view addSubview:self.menuBtn];    
     
-    
-    // Do any additional setup after loading the view from its nib.
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"SoundCell"];
     
     NSString *pathToMusicFile0 = [[NSBundle mainBundle] pathForResource:@"campfire" ofType:@"mp3"];
@@ -79,6 +75,63 @@
 		[[songArray objectAtIndex:x] setNumberOfLoops:-1];
 		[[songArray objectAtIndex:x] prepareToPlay];
 	}
+    /*
+	UILabel *col2_label1 = [[UILabel alloc] initWithFrame:CGRectMake(0,0,90,20)];
+	col2_label1.text = @"Campfire";
+	col2_label1.font = [UIFont fontWithName:@"Verdana-Bold" size:17];
+	//col1_label1.adjustsFontSizeToFitWidth = YES;
+	col2_label1.backgroundColor = [UIColor clearColor];
+	
+	UILabel *col2_label2 = [[UILabel alloc] initWithFrame:CGRectMake(0,0,90,20)];
+	col2_label2.text = @"Rain";
+	col2_label2.font = [UIFont fontWithName:@"Verdana-Bold" size:17];
+	col2_label2.backgroundColor = [UIColor clearColor];
+	
+	UILabel *col2_label3 = [[UILabel alloc] initWithFrame:CGRectMake(0,0,90,20)];
+	col2_label3.text = @"Forest";
+	col2_label3.font = [UIFont fontWithName:@"Verdana-Bold" size:17];
+	col2_label3.backgroundColor = [UIColor clearColor];
+	
+	UILabel *col2_label4 = [[UILabel alloc] initWithFrame:CGRectMake(0,0,90,20)];
+	col2_label4.text = @"Stream";
+	col2_label4.font = [UIFont fontWithName:@"Verdana-Bold" size:17];
+	col2_label4.backgroundColor = [UIColor clearColor];
+	
+	UILabel *col2_label5 = [[UILabel alloc] initWithFrame:CGRectMake(0,0,90,20)];
+	col2_label5.text = @"Waterfall";
+	col2_label5.font = [UIFont fontWithName:@"Verdana-Bold" size:17];
+	col2_label5.backgroundColor = [UIColor clearColor];
+	
+	UILabel *col2_label6 = [[UILabel alloc] initWithFrame:CGRectMake(0,0,90,20)];
+	col2_label6.text = @"Waves";
+	col2_label6.font = [UIFont fontWithName:@"Verdana-Bold" size:17];
+	col2_label6.backgroundColor = [UIColor clearColor];
+	
+	UILabel *col2_label7 = [[UILabel alloc] initWithFrame:CGRectMake(0,0,90,20)];
+	col2_label7.text = @"Wind";
+	col2_label7.font = [UIFont fontWithName:@"Verdana-Bold" size:17];
+	col2_label7.backgroundColor = [UIColor clearColor];
+	
+	UILabel *col2_label8 = [[UILabel alloc] initWithFrame:CGRectMake(0,0,90,20)];
+	col2_label8.text = @"Heavy Rain";
+	col2_label8.font = [UIFont fontWithName:@"Verdana-Bold" size:17];
+	col2_label8.backgroundColor = [UIColor clearColor];
+	
+	UILabel *col2_label9 = [[UILabel alloc] initWithFrame:CGRectMake(0,0,90,20)];
+	col2_label9.text = @"Lake Waves";
+	col2_label9.font = [UIFont fontWithName:@"Verdana-Bold" size:17];
+	col2_label9.backgroundColor = [UIColor clearColor];
+    
+    UILabel *col2_label10 = [[UILabel alloc] initWithFrame:CGRectMake(0,0,90,20)];
+	col2_label10.text = @"Thunder";
+	col2_label10.font = [UIFont fontWithName:@"Verdana-Bold" size:17];
+	col2_label10.backgroundColor = [UIColor clearColor];
+	
+	NSArray *musicSelectionArray = [[NSArray alloc] initWithObjects:col2_label1,col2_label2,
+                                    col2_label3,col2_label4,col2_label5,col2_label6,col2_label7,col2_label8,col2_label9,
+                                    col2_label10,nil];
+	self.musicSelectionTypes = musicSelectionArray;
+     */
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -98,27 +151,20 @@
 }
 
 #pragma mark - UICollectionView Datasource
-// 1
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    //NSString *searchTerm = self.searches[section];
-    //return [self.searchResults[searchTerm] count];
     return [songArray count];
 }
 
-// 2
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
-    //return [self.searches count];
     return 1;
 }
 
-// 3
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"SoundCell" forIndexPath:indexPath];
     cell.backgroundColor = [UIColor blueColor];
     return cell;
 }
 
-// 4
 /*- (UICollectionReusableView *)collectionView:
  (UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
  {
@@ -129,13 +175,11 @@
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    // TODO: Select Item
     [self.delegate songSelected:[songArray objectAtIndex:indexPath.item]];//tell the delegate we selected a song
     NSLog(@"selected index %d", indexPath.item);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    // TODO: Deselect item
 }
 
 @end

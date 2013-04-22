@@ -11,11 +11,12 @@
 #import "MenuViewController.h"
 
 @interface BackgroundsViewController ()
+@property (strong, nonatomic) NSArray *colorArray;
 @property (strong, nonatomic) UIButton *menuBtn;
 @end
 
 @implementation BackgroundsViewController
-@synthesize menuBtn;
+@synthesize menuBtn, colorArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,8 +47,18 @@
     [menuBtn setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
     [menuBtn addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:self.menuBtn];//stopped at 2:11 of iOS Slide Menu Tutorial - Part 3
+    [self.view addSubview:self.menuBtn];
     
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"BackgroundCell"];
+    
+    colorArray = [[NSArray alloc] initWithObjects:[UIColor whiteColor],
+                  [UIColor blueColor], [UIColor redColor],[UIColor greenColor],
+                  [UIColor blackColor],[UIColor darkGrayColor],
+                  [UIColor lightGrayColor],[UIColor grayColor],
+                  [UIColor cyanColor],[UIColor yellowColor],
+                  [UIColor magentaColor],[UIColor orangeColor],
+                  [UIColor purpleColor],[UIColor brownColor],
+                  [UIColor clearColor],nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -65,6 +76,39 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UICollectionView Datasource
+
+- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
+    return [colorArray count];
+}
+
+- (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
+    return 1;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"BackgroundCell" forIndexPath:indexPath];
+    cell.backgroundColor = [colorArray objectAtIndex:indexPath.item];
+    return cell;
+}
+
+/*- (UICollectionReusableView *)collectionView:
+ (UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+ {
+ return [[UICollectionReusableView alloc] init];
+ }*/
+
+
+#pragma mark - UICollectionViewDelegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.delegate backgroundSelected:[colorArray objectAtIndex:indexPath.item]];//tell the delegate we selected a background
+    NSLog(@"selected index %d", indexPath.item);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 @end

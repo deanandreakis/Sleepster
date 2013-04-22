@@ -45,10 +45,10 @@
     
     self.menu = [NSArray arrayWithObjects:@"Main", @"Sounds", @"Backgrounds", @"Information", @"Settings", nil];
     
-    [self.slidingViewController setAnchorRightRevealAmount:132.0f];
+    [self.slidingViewController setAnchorRightRevealAmount:150.0f];
     self.slidingViewController.underLeftWidthLayout = ECFullWidth;
     
-    
+    self.tableView.backgroundColor = [UIColor darkGrayColor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,6 +80,7 @@
     }
     
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.menu objectAtIndex:indexPath.row]];
+    cell.textLabel.font = [UIFont fontWithName:@"Verdana-Bold" size:17];
     // Configure the cell...
     
     return cell;

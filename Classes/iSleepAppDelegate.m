@@ -27,23 +27,24 @@
     
     application.idleTimerDisabled = YES;
     
-    //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-	
     mainViewController = [[MainViewController alloc] initWithNibName:@"MainView" bundle:nil];
     informationViewController = [[InformationViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
     settingsViewController = [[SettingsViewController alloc] initWithNibName:nil bundle:nil];
+    
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    
     soundsViewController = [[SoundsViewController alloc] initWithCollectionViewLayout:layout];
+    
+    backgroundsViewController = [[BackgroundsViewController alloc] initWithCollectionViewLayout:layout];
+    
     layout.itemSize = CGSizeMake(64, 64);
     layout.minimumInteritemSpacing = 64;
     layout.minimumLineSpacing = 64;
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     layout.sectionInset = UIEdgeInsetsMake(32, 32, 32, 32);
-    backgroundsViewController = [[BackgroundsViewController alloc] initWithNibName:nil bundle:nil];
+    
     [soundsViewController setDelegate:mainViewController];
-
-    //[self.window setRootViewController:self];
-    //[window makeKeyAndVisible];
+    [backgroundsViewController setDelegate:mainViewController];
 }
 
 + (iSleepAppDelegate *)appDelegate

@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BackgroundsViewController : UIViewController
+@protocol BackgroundsViewControllerDelegate <NSObject>
+- (void)backgroundSelected:(UIColor*)background;
+@end
+
+@interface BackgroundsViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+
+@property(assign) id<BackgroundsViewControllerDelegate> delegate;
 
 @end
