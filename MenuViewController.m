@@ -10,23 +10,26 @@
 #import "ECSlidingViewController.h"
 #import "iSleepAppDelegate.h"
 
-#define ROW_HEIGHT 91
+#define IMAGEVIEW_TAG 5
+#define LABELVIEW_TAG 6
 
 @interface MenuViewController ()
 
-@property (strong, nonatomic) NSArray *menu;
+@property (strong, nonatomic) NSArray *mainMenu;
+@property (strong, nonatomic) NSArray *toolsMenu;
+@property (strong, nonatomic) NSArray *mainMenuIcons;
+@property (strong, nonatomic) NSArray *toolsMenuIcons;
 
 @end
 
 @implementation MenuViewController
 
-@synthesize menu;
+@synthesize mainMenu, toolsMenu, mainMenuIcons, toolsMenuIcons;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -35,26 +38,21 @@
 {
     [super viewDidLoad];
     
-    //[self.tableView setRowHeight:ROW_HEIGHT];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.mainMenu = [NSArray arrayWithObjects:@"Main", @"Sounds", @"Backgrounds", nil];
+    self.toolsMenu = [NSArray arrayWithObjects:@"Information", @"Settings", @"Rate This App",nil];
+    self.mainMenuIcons = [NSArray arrayWithObjects:@"home-2.png", @"Speaker-1.png",  @"Picture-Landscape.png",nil];
+    self.toolsMenuIcons = [NSArray arrayWithObjects:@"Info.png", @"Settings.png",  @"Fav-1.png", nil];
     
-    self.menu = [NSArray arrayWithObjects:@"Main", @"Sounds", @"Backgrounds", @"Information", @"Settings", nil];
-    
-    [self.slidingViewController setAnchorRightRevealAmount:150.0f];
+    [self.slidingViewController setAnchorRightRevealAmount:290.0f];
     self.slidingViewController.underLeftWidthLayout = ECFullWidth;
     
     self.tableView.backgroundColor = [UIColor darkGrayColor];
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -62,68 +60,101 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.menu count];
+    if(section == 0)
+    {
+    return [self.mainMenu count];
+    } else {
+        return [self.toolsMenu count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = @"Cell";
+    NSString *CellIdentifier = @"pCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    UIImageView* imageView = (UIImageView *)[cell viewWithTag:IMAGEVIEW_TAG];
+    UILabel* labelView = (UILabel *)[cell viewWithTag:LABELVIEW_TAG];
+    
+    if(indexPath.section == 0)
+    {
+        imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [self.mainMenuIcons objectAtIndex:indexPath.row]]];
+        labelView.text = [NSString stringWithFormat:@"%@", [self.mainMenu objectAtIndex:indexPath.row]];
+    } else{
+        if(indexPath.row == 0)
+        {
+            CGRect frame = imageView.frame;
+            frame.origin.x = 12;
+            frame.origin.y = 12;
+            frame.size.width = 5;
+            frame.size.height = 20;
+            imageView.frame = frame;
+        }
+        imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [self.toolsMenuIcons objectAtIndex:indexPath.row]]];
+        labelView.text = [NSString stringWithFormat:@"%@", [self.toolsMenu objectAtIndex:indexPath.row]];
     }
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.menu objectAtIndex:indexPath.row]];
-    cell.textLabel.font = [UIFont fontWithName:@"Verdana-Bold" size:17];
-    // Configure the cell...
-    
+    labelView.font = [UIFont fontWithName:@"Verdana-Bold" size:18];
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    UIView* hView = nil;
+    hView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 305, 32)];
+    [hView setBackgroundColor:[UIColor lightGrayColor]];
+    
+    if(section == 1)
+    {
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5, 6, 305, 21)];
+        [label setText:@"Tools"];
+        [label setFont:[UIFont fontWithName:@"Verdana-Bold" size:15]];
+        label.textColor = [UIColor blackColor];
+        label.backgroundColor = [UIColor lightGrayColor];
+        [hView addSubview:label];
+    }
+    
+    return hView;
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
+    UIView* fView = nil;
+    fView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 305, 32)];
+    [fView setBackgroundColor:[UIColor darkGrayColor]];
+    
+    if(section == 1)
+    {
+        UIImageView* theImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"kmoon.png"]];
+        [theImageView setFrame:CGRectMake(50, 50, 50, 50)];
+        [fView addSubview:theImageView];
+    }
+    
+    return fView;
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if(section == 1)
+    {
+    return 32;
+    } else{
+        return 0;
+    }
 }
-*/
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if(section == 1)
+    {
+        return 132;
+    } else{
+        return 0;
+    }
+}
 
 #pragma mark - Table view delegate
 
@@ -131,32 +162,46 @@
 {
     UIViewController *newTopViewController = nil;
     
-    switch (indexPath.row) {
-        case 0:
-            newTopViewController = (UIViewController*)[iSleepAppDelegate appDelegate].mainViewController;
-            break;
-        case 1:
-            newTopViewController = (UIViewController*)[iSleepAppDelegate appDelegate].soundsViewController;
-            break;
-        case 2:
-            newTopViewController = (UIViewController*)[iSleepAppDelegate appDelegate].backgroundsViewController;
-            break;
-        case 3:
-            newTopViewController = (UIViewController*)[iSleepAppDelegate appDelegate].informationViewController;
-            break;
-        case 4:
-            newTopViewController = (UIViewController*)[iSleepAppDelegate appDelegate].settingsViewController;
-            break;
-        default:
-            break;
+    if(indexPath.section == 0)
+    {
+        switch (indexPath.row) {
+            case 0:
+                newTopViewController = (UIViewController*)[iSleepAppDelegate appDelegate].mainViewController;
+                break;
+            case 1:
+                newTopViewController = (UIViewController*)[iSleepAppDelegate appDelegate].soundsViewController;
+                break;
+            case 2:
+                newTopViewController = (UIViewController*)[iSleepAppDelegate appDelegate].backgroundsViewController;
+                break;
+            default:
+                break;
+        }
+    } else{
+        switch (indexPath.row) {
+            case 0:
+                newTopViewController = (UIViewController*)[iSleepAppDelegate appDelegate].informationViewController;
+                break;
+            case 1:
+                newTopViewController = (UIViewController*)[iSleepAppDelegate appDelegate].settingsViewController;
+                break;
+            case 2:
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=417667154"]];
+                break;
+            default:
+                break;
+        }
     }
     
-    [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
-        CGRect frame = self.slidingViewController.topViewController.view.frame;
-        self.slidingViewController.topViewController = newTopViewController;
-        self.slidingViewController.topViewController.view.frame = frame;
-        [self.slidingViewController resetTopView];
-    }];
+    if(newTopViewController != nil)
+    {
+        [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
+            CGRect frame = self.slidingViewController.topViewController.view.frame;
+            self.slidingViewController.topViewController = newTopViewController;
+            self.slidingViewController.topViewController.view.frame = frame;
+            [self.slidingViewController resetTopView];
+        }];
+    }
 }
 
 @end
