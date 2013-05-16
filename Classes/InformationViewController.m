@@ -45,6 +45,11 @@
     self.view.backgroundColor = [UIColor whiteColor];      
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [self.view addGestureRecognizer:self.slidingViewController.panGesture];

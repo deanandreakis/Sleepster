@@ -43,11 +43,12 @@
     self.mainMenuIcons = [NSArray arrayWithObjects:@"home-2.png", @"Speaker-1.png",  @"Picture-Landscape.png",nil];
     self.toolsMenuIcons = [NSArray arrayWithObjects:@"Info.png", @"Settings.png",  @"Fav-1.png", nil];
     
-    [self.slidingViewController setAnchorRightRevealAmount:290.0f];
+    [self.slidingViewController setAnchorRightRevealAmount:250.0f];
     self.slidingViewController.underLeftWidthLayout = ECFullWidth;
     
     self.tableView.backgroundColor = [UIColor darkGrayColor];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self.tableView setScrollEnabled:FALSE];
 }
 
 - (void)didReceiveMemoryWarning
@@ -122,6 +123,7 @@
     return hView;
 }
 
+/*
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIView* fView = nil;
@@ -136,7 +138,7 @@
     }
     
     return fView;
-}
+}*/
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if(section == 1)
@@ -148,12 +150,12 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if(section == 1)
-    {
-        return 132;
-    } else{
+    //if(section == 1)
+   // {
+     //   return 132;
+   // } else{
         return 0;
-    }
+   // }
 }
 
 #pragma mark - Table view delegate

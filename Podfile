@@ -1,3 +1,3 @@
 platform :ios
 
-pod 'ECSlidingViewController', '0.9.0'
+pod 'ECSlidingViewController', '0.10.0'
