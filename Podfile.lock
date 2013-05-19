@@ -1,10 +1,13 @@
 PODS:
   - ECSlidingViewController (0.10.0)
+  - FlatUIKit (1.0)
 
 DEPENDENCIES:
   - ECSlidingViewController (= 0.10.0)
+  - FlatUIKit
 
 SPEC CHECKSUMS:
   ECSlidingViewController: fc9a9a6564d4a64c0d8c7cf5583d2b9a469ecd04
+  FlatUIKit: 3d2c6375ed741a8e8ffe663a3c1fe52d84309f04
 
 COCOAPODS: 0.19.1

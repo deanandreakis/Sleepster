@@ -12,6 +12,10 @@
 #import "iSleepAppDelegate.h"
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
+#import "Constants.h"
+#import "FUIAlertView.h"
+#import "UIColor+FlatUI.h"
+#import "UIFont+FlatUI.h"
 
 @interface MainViewController ()
 
@@ -71,22 +75,7 @@
     
     [self.view addSubview:self.menuBtn];
     
-	BOOL hasHighResScreen = NO;
-	if ([UIScreen instancesRespondToSelector:@selector(scale)]) {
-		CGFloat scale = [[UIScreen mainScreen] scale];
-		if (scale > 1.0) {
-			hasHighResScreen = YES;
-		}
-	}
-	
-	UIColor *background;
-	if (hasHighResScreen) {
-		background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Default@2x.png"]];
-	}
-	else{
-		background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Default.png"]];
-    }
-	self.view.backgroundColor = background;
+	self.view.backgroundColor = UIColorFromRGB(0x2980b9);
 	
 	/*Setup battery state monitoring*/
 	[UIDevice currentDevice].batteryMonitoringEnabled = YES;
@@ -180,13 +169,23 @@
 	
 	//check for battery state; if unplugged show an alert
 	if ([UIDevice currentDevice].batteryState == UIDeviceBatteryStateUnplugged) {
-		UIAlertView *alert = [[UIAlertView alloc]
+		FUIAlertView *alertView = [[FUIAlertView alloc]
 							  initWithTitle:@"Plug In" 
 							  message:@"Please Plug In to Avoid Draining the Battery"
 							  delegate:nil
 							  cancelButtonTitle:@"Continue" 
 							  otherButtonTitles:nil];
-		[alert show];
+        /*alertView.titleLabel.textColor = [UIColor cloudsColor];
+        alertView.titleLabel.font = [UIFont boldFlatFontOfSize:16];
+        alertView.messageLabel.textColor = [UIColor cloudsColor];
+        alertView.messageLabel.font = [UIFont flatFontOfSize:14];
+        alertView.backgroundOverlay.backgroundColor = [[UIColor cloudsColor] colorWithAlphaComponent:0.8];
+        alertView.alertContainer.backgroundColor = [UIColor midnightBlueColor];
+        alertView.defaultButtonColor = [UIColor cloudsColor];
+        alertView.defaultButtonShadowColor = [UIColor asbestosColor];
+        alertView.defaultButtonFont = [UIFont boldFlatFontOfSize:16];
+        alertView.defaultButtonTitleColor = [UIColor asbestosColor];*/
+		[alertView show];
 	}
 	
 	NSInteger segment = [picker selectedRowInComponent:kMusicTimer];

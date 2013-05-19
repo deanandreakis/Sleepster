@@ -9,6 +9,7 @@
 #import "BackgroundsViewController.h"
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
+#import "Constants.h"
 
 @interface BackgroundsViewController ()
 @property (strong, nonatomic) NSArray *colorArray;
@@ -59,6 +60,8 @@
                   [UIColor magentaColor],[UIColor orangeColor],
                   [UIColor purpleColor],[UIColor brownColor],
                   [UIColor clearColor],nil];
+    
+    self.collectionView.backgroundColor = UIColorFromRGB(0x2980b9);
 }
 
 - (void)viewDidAppear:(BOOL)animated

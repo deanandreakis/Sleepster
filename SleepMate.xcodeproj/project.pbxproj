@@ -40,6 +40,7 @@
 		C1006CC416E59B4100372838 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1006CC316E59B4100372838 /* Crashlytics.framework */; };
 		C128CCC31645DFBC00E1B8AC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C128CCC21645DFBC00E1B8AC /* Default-568h@2x.png */; };
 		C138149116FF47B000293B48 /* menuButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C138149016FF47B000293B48 /* menuButton@2x.png */; };
+		C138164B17486CAE00F89C66 /* Constants.h in Sources */ = {isa = PBXBuildFile; fileRef = C138164A17486C2C00F89C66 /* Constants.h */; };
 		C1403BB51728B69500B75633 /* home-2.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BB41728B69500B75633 /* home-2.png */; };
 		C1403BB71728B6B400B75633 /* home-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BB61728B6B400B75633 /* home-2@2x.png */; };
 		C1403BB91728BB7C00B75633 /* Picture-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BB81728BB7C00B75633 /* Picture-Landscape.png */; };
@@ -114,6 +115,7 @@
 		C1006CC316E59B4100372838 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		C128CCC21645DFBC00E1B8AC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C138149016FF47B000293B48 /* menuButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuButton@2x.png"; sourceTree = "<group>"; };
+		C138164A17486C2C00F89C66 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		C1403BB41728B69500B75633 /* home-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-2.png"; sourceTree = "<group>"; };
 		C1403BB61728B6B400B75633 /* home-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-2@2x.png"; sourceTree = "<group>"; };
 		C1403BB81728BB7C00B75633 /* Picture-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Picture-Landscape.png"; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 		289233A00DB2D0730083E9F9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				C138164A17486C2C00F89C66 /* Constants.h */,
 				052E288313691D7000AC496D /* AVAudioPlayer+PGFade.m */,
 				052E288213691D5E00AC496D /* AVAudioPlayer+PGFade.h */,
 			);
@@ -191,7 +194,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				C14E0EFB1675772400811389 /* Social.framework */,
 				C1D7B40716719F8B0004D62E /* Controllers */,
 				C1D7B40516719F080004D62E /* Views */,
 				289233A00DB2D0730083E9F9 /* Utilities */,
@@ -254,6 +256,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C14E0EFB1675772400811389 /* Social.framework */,
 				C1006CC316E59B4100372838 /* Crashlytics.framework */,
 				05E1D072128EF5FA00922B40 /* AVFoundation.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
@@ -440,6 +443,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C138164B17486CAE00F89C66 /* Constants.h in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* iSleepAppDelegate.m in Sources */,
 				289233AE0DB2D0DB0083E9F9 /* MainViewController.m in Sources */,

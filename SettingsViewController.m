@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
+#import "Constants.h"
 
 @interface SettingsViewController ()
 
@@ -50,6 +51,8 @@
     [menuBtn addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:self.menuBtn];//stopped at 2:11 of iOS Slide Menu Tutorial - Part 3
+    
+    self.view.backgroundColor = UIColorFromRGB(0x2980b9);
 }
 
 - (void)viewDidAppear:(BOOL)animated

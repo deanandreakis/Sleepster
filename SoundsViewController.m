@@ -9,6 +9,7 @@
 #import "SoundsViewController.h"
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
+#import "Constants.h"
 
 @interface SoundsViewController ()
 @property(strong, nonatomic) NSArray* songArray;
@@ -132,6 +133,8 @@
                                     col2_label10,nil];
 	self.musicSelectionTypes = musicSelectionArray;
      */
+    
+    self.collectionView.backgroundColor = UIColorFromRGB(0x2980b9);
 }
 
 - (void)viewDidAppear:(BOOL)animated
