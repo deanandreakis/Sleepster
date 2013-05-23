@@ -13,8 +13,6 @@
 }
 
 @property (nonatomic, weak) id <FlipsideViewControllerDelegate> delegate;
-- (IBAction)done;
-- (IBAction)rate;
 
 @end
 

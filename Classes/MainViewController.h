@@ -12,13 +12,14 @@
 #import "AVAudioPlayer+PGFade.h"
 #import "SoundsViewController.h"
 #import "BackgroundsViewController.h"
+#import "FUIAlertView.h"
 
 #define kMusicTimer 0
 #define fadeoutTime 30
 
 @interface MainViewController : UIViewController 
     <FlipsideViewControllerDelegate,BacklightViewControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource,
-AVAudioPlayerDelegate, SoundsViewControllerDelegate, BackgroundsViewControllerDelegate>
+AVAudioPlayerDelegate, SoundsViewControllerDelegate, BackgroundsViewControllerDelegate, FUIAlertViewDelegate>
 {
 	IBOutlet UIPickerView *picker;
 	NSArray *musicTimerTypes;
@@ -51,7 +52,5 @@ AVAudioPlayerDelegate, SoundsViewControllerDelegate, BackgroundsViewControllerDe
 - (IBAction)startSleeping;
 - (void) timerFired: (NSTimer *) theTimer;
 - (IBAction)volumeSliderChanged:(id)sender;
-- (IBAction)tweeterButton:(id)sender;
-- (IBAction)facebookButton:(id)sender;
 
 @end

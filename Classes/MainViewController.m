@@ -8,7 +8,6 @@
 
 #import "MainViewController.h"
 #import "MainView.h"
-#import <Social/Social.h>
 #import "iSleepAppDelegate.h"
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
@@ -17,10 +16,12 @@
 #import "UIColor+FlatUI.h"
 #import "UIFont+FlatUI.h"
 
+
 @interface MainViewController ()
 
 @property(strong, nonatomic) AVAudioPlayer* theSong;
 @property(strong, nonatomic) UIColor* theColor;
+@property(strong, nonatomic) FUISegmentedControl* segmentedControl;
 
 @end
 
@@ -75,7 +76,7 @@
     
     [self.view addSubview:self.menuBtn];
     
-	self.view.backgroundColor = UIColorFromRGB(0x2980b9);
+	self.view.backgroundColor = [UIColor belizeHoleColor];
 	
 	/*Setup battery state monitoring*/
 	[UIDevice currentDevice].batteryMonitoringEnabled = YES;
@@ -167,28 +168,34 @@
 
 - (IBAction) startSleeping {
 	
-	//check for battery state; if unplugged show an alert
+    //check for battery state; if unplugged show an alert
 	if ([UIDevice currentDevice].batteryState == UIDeviceBatteryStateUnplugged) {
 		FUIAlertView *alertView = [[FUIAlertView alloc]
-							  initWithTitle:@"Plug In" 
-							  message:@"Please Plug In to Avoid Draining the Battery"
-							  delegate:nil
-							  cancelButtonTitle:@"Continue" 
-							  otherButtonTitles:nil];
-        /*alertView.titleLabel.textColor = [UIColor cloudsColor];
-        alertView.titleLabel.font = [UIFont boldFlatFontOfSize:16];
-        alertView.messageLabel.textColor = [UIColor cloudsColor];
-        alertView.messageLabel.font = [UIFont flatFontOfSize:14];
-        alertView.backgroundOverlay.backgroundColor = [[UIColor cloudsColor] colorWithAlphaComponent:0.8];
-        alertView.alertContainer.backgroundColor = [UIColor midnightBlueColor];
-        alertView.defaultButtonColor = [UIColor cloudsColor];
-        alertView.defaultButtonShadowColor = [UIColor asbestosColor];
-        alertView.defaultButtonFont = [UIFont boldFlatFontOfSize:16];
-        alertView.defaultButtonTitleColor = [UIColor asbestosColor];*/
+                                  initWithTitle:@"Plug In"
+                                  message:@"Please Plug In to Avoid Draining the Battery"
+                                  delegate:nil
+                                  cancelButtonTitle:@"Continue"
+                                  otherButtonTitles:nil];
+         alertView.titleLabel.textColor = [UIColor cloudsColor];
+         alertView.titleLabel.font = [UIFont fontWithName:@"Verdana-Bold" size:16];//[UIFont boldFlatFontOfSize:16];
+         alertView.messageLabel.textColor = [UIColor cloudsColor];
+         alertView.messageLabel.font = [UIFont fontWithName:@"Verdana-Bold" size:14];//[UIFont flatFontOfSize:14];
+         alertView.backgroundOverlay.backgroundColor = [[UIColor cloudsColor] colorWithAlphaComponent:0.8];
+         alertView.alertContainer.backgroundColor = [UIColor midnightBlueColor];
+         alertView.defaultButtonColor = [UIColor cloudsColor];
+         alertView.defaultButtonShadowColor = [UIColor asbestosColor];
+         alertView.defaultButtonFont = [UIFont fontWithName:@"Verdana-Bold" size:16];//[UIFont boldFlatFontOfSize:16];
+         alertView.defaultButtonTitleColor = [UIColor asbestosColor];
+         alertView.delegate = self;
 		[alertView show];
-	}
-	
-	NSInteger segment = [picker selectedRowInComponent:kMusicTimer];
+	} else {
+        [self reallyStartSleeping];
+    }
+}
+
+- (void)reallyStartSleeping
+{
+    NSInteger segment = [picker selectedRowInComponent:kMusicTimer];
 	switch (segment) {
 		case kFifteenMinSegmentIndex:
 			timeOut = 900 - fadeoutTime;//seconds
@@ -210,13 +217,13 @@
 			break;
 	}
 	
-
+    
 	if(timeOut != kOffSegmentIndex)
     {
 	    timer = [NSTimer scheduledTimerWithTimeInterval: timeOut
-		    									target: self
-			    								selector: @selector(timerFired:)
-				    							userInfo: nil
+                                                 target: self
+                                               selector: @selector(timerFired:)
+                                               userInfo: nil
                                                 repeats: NO];
 	}
     timerFired = NO;
@@ -231,8 +238,16 @@
 	playerState = YES;
 	controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 	[self presentViewController:controller animated:YES completion:nil];
+
 }
-	
+
+#pragma mark UIAlertView delegate method
+- (void)alertView:(FUIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self reallyStartSleeping];
+}
+
+#pragma mark NSTimer Fired
 - (void) timerFired: (NSTimer *) theTimer
 {
 	timerFired = YES;
@@ -312,50 +327,6 @@
 	natureVolume = (float)volume;
 }
 
-#pragma mark Social Network Methods
 
-- (IBAction) tweeterButton:(id)sender
-{
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
-    {
-        SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-        [tweetSheet setInitialText:@"Tweeting from my own app! :)"];
-        [self presentViewController:tweetSheet animated:YES completion:nil];
-    }
-    else
-    {
-        UIAlertView *alertView = [[UIAlertView alloc]
-                                  initWithTitle:@"Sorry"
-                                  message:@"You can't send a tweet right now, make sure \
-                                  your device has an internet connection and you have \
-                                  at least one Twitter account setup"
-                                  delegate:self
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-        [alertView show];
-    }
-}
-
-- (IBAction) facebookButton:(id)sender
-{
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
-    {
-        SLComposeViewController *fbSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-        [fbSheet setInitialText:@"Facebooking from my own app! :)"];
-        [self presentViewController:fbSheet animated:YES completion:nil];
-    }
-    else
-    {
-        UIAlertView *alertView = [[UIAlertView alloc]
-                                  initWithTitle:@"Sorry"
-                                  message:@"You can't facebook right now, make sure \
-                                  your device has an internet connection and you have \
-                                  at least one Facebook account setup"
-                                  delegate:self
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-        [alertView show];
-    }
-}
 
 @end

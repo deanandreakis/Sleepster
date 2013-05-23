@@ -13,7 +13,6 @@
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<string>IBProxyObject</string>
-			<string>IBUIButton</string>
 			<string>IBUIImageView</string>
 			<string>IBUILabel</string>
 			<string>IBUIView</string>
@@ -47,7 +46,7 @@
 						<string key="NSFrame">{{112, 192}, {96, 96}}</string>
 						<reference key="NSSuperview" ref="249263867"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="501017669"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -67,7 +66,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string type="base64-UTF8" key="IBUIText">U2xlZXBzdGVyIHYxLjQKCk5hdHVyZSBTb3VuZHMgKyBTbGVlcCBUaW1lciAKKyBOaWdodGxpZ2h0CgpD
+						<string type="base64-UTF8" key="IBUIText">U2xlZXBzdGVyIHYyLjAKCk5hdHVyZSBTb3VuZHMgKyBTbGVlcCBUaW1lciAKKyBOaWdodGxpZ2h0CgpD
 b3B5cmlnaHQgMjAxMyBEZWFuIEFuZHJlYWtpcwoKQWxsIFJpZ2h0cyBSZXNlcnZlZAo</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
@@ -96,40 +95,6 @@ b3B5cmlnaHQgMjAxMyBEZWFuIEFuZHJlYWtpcwoKQWxsIFJpZ2h0cyBSZXNlcnZlZAo</string>
 						</object>
 						<double key="preferredMaxLayoutWidth">320</double>
 					</object>
-					<object class="IBUIButton" id="501017669">
-						<reference key="NSNextResponder" ref="249263867"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{98, 331}, {124, 37}}</string>
-						<reference key="NSSuperview" ref="249263867"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Rate This App!</string>
-						<reference key="IBUIHighlightedTitleColor" ref="1060613193"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<object class="NSColor" key="IBUINormalTitleShadowColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MC41AA</bytes>
-						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription">
-							<string key="name">Helvetica-Bold</string>
-							<string key="family">Helvetica</string>
-							<int key="traits">2</int>
-							<double key="pointSize">15</double>
-						</object>
-						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">Helvetica-Bold</string>
-							<double key="NSSize">15</double>
-							<int key="NSfFlags">16</int>
-						</object>
-					</object>
 				</object>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
@@ -153,15 +118,6 @@ b3B5cmlnaHQgMjAxMyBEZWFuIEFuZHJlYWtpcwoKQWxsIFJpZ2h0cyBSZXNlcnZlZAo</string>
 						<reference key="destination" ref="249263867"/>
 					</object>
 					<int key="connectionID">41</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">rate</string>
-						<reference key="source" ref="501017669"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">58</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -193,7 +149,6 @@ b3B5cmlnaHQgMjAxMyBEZWFuIEFuZHJlYWtpcwoKQWxsIFJpZ2h0cyBSZXNlcnZlZAo</string>
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="494155985"/>
 							<reference ref="466968362"/>
-							<reference ref="501017669"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -205,11 +160,6 @@ b3B5cmlnaHQgMjAxMyBEZWFuIEFuZHJlYWtpcwoKQWxsIFJpZ2h0cyBSZXNlcnZlZAo</string>
 					<object class="IBObjectRecord">
 						<int key="objectID">55</int>
 						<reference key="object" ref="466968362"/>
-						<reference key="parent" ref="249263867"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">56</int>
-						<reference key="object" ref="501017669"/>
 						<reference key="parent" ref="249263867"/>
 					</object>
 				</object>
@@ -225,14 +175,12 @@ b3B5cmlnaHQgMjAxMyBEZWFuIEFuZHJlYWtpcwoKQWxsIFJpZ2h0cyBSZXNlcnZlZAo</string>
 					<string>40.IBPluginDependency</string>
 					<string>52.IBPluginDependency</string>
 					<string>55.IBPluginDependency</string>
-					<string>56.IBPluginDependency</string>
 				</object>
 				<object class="NSArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>InformationViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIResponder</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -264,11 +212,15 @@ b3B5cmlnaHQgMjAxMyBEZWFuIEFuZHJlYWtpcwoKQWxsIFJpZ2h0cyBSZXNlcnZlZAo</string>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>done</string>
+							<string>facebookButton:</string>
 							<string>rate</string>
 							<string>revealMenu:</string>
+							<string>tweeterButton:</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -279,8 +231,10 @@ b3B5cmlnaHQgMjAxMyBEZWFuIEFuZHJlYWtpcwoKQWxsIFJpZ2h0cyBSZXNlcnZlZAo</string>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>done</string>
+							<string>facebookButton:</string>
 							<string>rate</string>
 							<string>revealMenu:</string>
+							<string>tweeterButton:</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -289,11 +243,19 @@ b3B5cmlnaHQgMjAxMyBEZWFuIEFuZHJlYWtpcwoKQWxsIFJpZ2h0cyBSZXNlcnZlZAo</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
+								<string key="name">facebookButton:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
 								<string key="name">rate</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">revealMenu:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">tweeterButton:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 						</object>

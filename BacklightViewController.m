@@ -8,7 +8,6 @@
 
 #import "BacklightViewController.h"
 
-
 @implementation BacklightViewController
 
 @synthesize bgDelegate;
@@ -20,7 +19,6 @@
     [[UIScreen mainScreen] setBrightness:1.0];
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
 }
-
 
 - (IBAction)done:(id)sender {
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
