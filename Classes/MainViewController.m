@@ -15,21 +15,22 @@
 #import "FUIAlertView.h"
 #import "UIColor+FlatUI.h"
 #import "UIFont+FlatUI.h"
-
+#import "FUISegmentedControl.h"
+#import "UISlider+FlatUI.h"
 
 @interface MainViewController ()
 
 @property(strong, nonatomic) AVAudioPlayer* theSong;
 @property(strong, nonatomic) UIColor* theColor;
-@property(strong, nonatomic) FUISegmentedControl* segmentedControl;
+@property(strong, nonatomic) FUISegmentedControl* segmentedControl; //use this for time selection
+@property(strong, nonatomic) UISlider* volumeSlider;
 
 @end
 
 @implementation MainViewController
 
 @synthesize timeOut;
-@synthesize natureVolume;
-@synthesize picker;
+@synthesize natureVolume, volumeSlider, segmentedControl;
 @synthesize musicTimerTypes;
 @synthesize playerState;
 @synthesize interruptedOnPlayback;
@@ -90,40 +91,43 @@
 	NSError *activationError = nil;
     [[AVAudioSession sharedInstance] setActive: YES error: &activationError];
 	
-	UILabel *col1_label1 = [[UILabel alloc] initWithFrame:CGRectMake(0,0,50,20)];
-	col1_label1.text = @"\u221E";
-	col1_label1.font = [UIFont fontWithName:@"Verdana-Bold" size:17];
-	col1_label1.backgroundColor = [UIColor clearColor];
-        
-    UILabel *col1_label2 = [[UILabel alloc] initWithFrame:CGRectMake(0,0,50,20)];
-	col1_label2.text = @"15";
-	col1_label2.font = [UIFont fontWithName:@"Verdana-Bold" size:17];
-	col1_label2.backgroundColor = [UIColor clearColor];
-	
-	UILabel *col1_label3 = [[UILabel alloc] initWithFrame:CGRectMake(0,0,50,20)];
-	col1_label3.text = @"30";
-	col1_label3.font = [UIFont fontWithName:@"Verdana-Bold" size:17];
-	col1_label3.backgroundColor = [UIColor clearColor];
-	
-	UILabel *col1_label4 = [[UILabel alloc] initWithFrame:CGRectMake(0,0,50,20)];
-	col1_label4.text = @"60";
-	col1_label4.font = [UIFont fontWithName:@"Verdana-Bold" size:17];
-	col1_label4.backgroundColor = [UIColor clearColor];
-	
-	UILabel *col1_label5 = [[UILabel alloc] initWithFrame:CGRectMake(0,0,50,20)];
-	col1_label5.text = @"90";
-	col1_label5.font = [UIFont fontWithName:@"Verdana-Bold" size:17];
-	col1_label5.backgroundColor = [UIColor clearColor];
-	
-	NSArray *musicTimerArray = [[NSArray alloc] initWithObjects:col1_label1, col1_label2,
-								col1_label3,col1_label4,col1_label5,nil];
-	self.musicTimerTypes = musicTimerArray;
+	NSArray *segmentLabels = [[NSArray alloc] initWithObjects:@"\u221E", @"15", @"30", @"60", @"90",nil];
 
 	playerState = NO;
 	
 	interruptedOnPlayback = NO;
 	
+    timeOut = kOffSegmentIndex;
+    
 	natureVolume = 50.0;
+    
+    volumeSlider = [[UISlider alloc] init];
+    volumeSlider.frame = CGRectMake(14, 340, 293, 23);
+    volumeSlider.minimumValue = 1.0;
+    volumeSlider.maximumValue = 100.0;
+    [volumeSlider setValue:50.0];
+    [volumeSlider addTarget:self action:@selector(volumeSliderChanged:) forControlEvents:UIControlEventValueChanged];
+    [volumeSlider configureFlatSliderWithTrackColor:[UIColor silverColor]
+                                  progressColor:[UIColor peterRiverColor]
+                                     thumbColor:[UIColor concreteColor]];
+    [self.view addSubview:volumeSlider];
+    
+    
+    segmentedControl = [[FUISegmentedControl alloc] initWithItems:segmentLabels];
+    segmentedControl.frame = CGRectMake(14, 60, 293, 44);
+    [segmentedControl addTarget:self
+                         action:@selector(segmentedControlChanged:)
+               forControlEvents:UIControlEventValueChanged];
+    segmentedControl.selectedFont = [UIFont boldFlatFontOfSize:16];
+    segmentedControl.selectedFontColor = [UIColor cloudsColor];
+    segmentedControl.deselectedFont = [UIFont flatFontOfSize:16];
+    segmentedControl.deselectedFontColor = [UIColor cloudsColor];
+    segmentedControl.selectedColor = [UIColor peterRiverColor];
+    segmentedControl.deselectedColor = [UIColor silverColor];
+    segmentedControl.dividerColor = [UIColor midnightBlueColor];
+    segmentedControl.cornerRadius = 5.0;
+    segmentedControl.selectedSegmentIndex = 0;
+    [self.view addSubview:segmentedControl];
 		  
 	[super viewDidLoad];
 }
@@ -195,29 +199,6 @@
 
 - (void)reallyStartSleeping
 {
-    NSInteger segment = [picker selectedRowInComponent:kMusicTimer];
-	switch (segment) {
-		case kFifteenMinSegmentIndex:
-			timeOut = 900 - fadeoutTime;//seconds
-			break;
-		case kThirtyMinSegmentIndex:
-			timeOut = 1800 - fadeoutTime;//seconds
-			break;
-		case kSixtyMinSegmentIndex:
-			timeOut = 3600 - fadeoutTime;//seconds
-			break;
-		case kNinetyMinSegmentIndex:
-			timeOut = 5400 - fadeoutTime;//seconds
-			break;
-        case kOffSegmentIndex:
-			timeOut = kOffSegmentIndex;//seconds
-			break;
-		default:
-			timeOut = kOffSegmentIndex;
-			break;
-	}
-	
-    
 	if(timeOut != kOffSegmentIndex)
     {
 	    timer = [NSTimer scheduledTimerWithTimeInterval: timeOut
@@ -238,7 +219,6 @@
 	playerState = YES;
 	controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 	[self presentViewController:controller animated:YES completion:nil];
-
 }
 
 #pragma mark UIAlertView delegate method
@@ -255,27 +235,6 @@
 	playerState = NO;
 }
 
-
-#pragma mark -
-#pragma mark Picker Data Source Methods
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-	return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return [self.musicTimerTypes count];
-}
-
-#pragma mark Picker Delegate Methods
-- (UIView *)pickerView:(UIPickerView *)pickerView 
-    viewForRow:(NSInteger)row 
-    forComponent:(NSInteger)component 
-    reusingView:(UIView *)view
-{
-    return [self.musicTimerTypes objectAtIndex:row];
-}
 
 #pragma mark AVAudioPlayer delegate methods
 - (void)audioPlayerBeginInterruption:(AVAudioPlayer *)player {
@@ -311,7 +270,7 @@
     self.theSong = song;
 }
 
-#pragma msrk BackgroundsViewControllerDelegate methods
+#pragma mark BackgroundsViewControllerDelegate methods
 - (void)backgroundSelected:(UIColor *)background
 {
     NSLog(@"got background event");
@@ -327,6 +286,33 @@
 	natureVolume = (float)volume;
 }
 
+#pragma mark Segmented Control
+
+- (IBAction)segmentedControlChanged:(id)sender
+{
+	FUISegmentedControl *scontrol = (FUISegmentedControl *)sender;
+    NSInteger segment = scontrol.selectedSegmentIndex;
+	switch (segment) {
+		case kFifteenMinSegmentIndex:
+			timeOut = 900 - fadeoutTime;//seconds
+			break;
+		case kThirtyMinSegmentIndex:
+			timeOut = 1800 - fadeoutTime;//seconds
+			break;
+		case kSixtyMinSegmentIndex:
+			timeOut = 3600 - fadeoutTime;//seconds
+			break;
+		case kNinetyMinSegmentIndex:
+			timeOut = 5400 - fadeoutTime;//seconds
+			break;
+        case kOffSegmentIndex:
+			timeOut = kOffSegmentIndex;//seconds
+			break;
+		default:
+			timeOut = kOffSegmentIndex;
+			break;
+	}
+}
 
 
 @end

@@ -63,6 +63,8 @@
 		C1A78EB616ED100900DB71CB /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A78EB516ED100900DB71CB /* MenuViewController.m */; };
 		C1D7B40B1671A0860004D62E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D7B4091671A0860004D62E /* SettingsViewController.m */; };
 		C1D7B40C1671A0860004D62E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D7B40A1671A0860004D62E /* SettingsViewController.xib */; };
+		C1E5F65B175C1CA10000BF16 /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E5F65A175C1CA10000BF16 /* Play.png */; };
+		C1E5F65D175C1CBD0000BF16 /* Play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E5F65C175C1CBD0000BF16 /* Play@2x.png */; };
 		CE4C3BA38EEB46FC8E922DE1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8B19F5C3941AD91C5F4F8 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -143,6 +145,8 @@
 		C1D7B4081671A0860004D62E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		C1D7B4091671A0860004D62E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		C1D7B40A1671A0860004D62E /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		C1E5F65A175C1CA10000BF16 /* Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Play.png; sourceTree = "<group>"; };
+		C1E5F65C175C1CBD0000BF16 /* Play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Play@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +223,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C1E5F65A175C1CA10000BF16 /* Play.png */,
+				C1E5F65C175C1CBD0000BF16 /* Play@2x.png */,
 				C1403BCA1728BEE100B75633 /* Fav-1.png */,
 				C1403BC81728BED300B75633 /* Fav-1@2x.png */,
 				C1403BC61728BE4000B75633 /* Settings@2x.png */,
@@ -403,6 +409,8 @@
 				C1403BC71728BE4000B75633 /* Settings@2x.png in Resources */,
 				C1403BC91728BED300B75633 /* Fav-1@2x.png in Resources */,
 				C1403BCB1728BEE100B75633 /* Fav-1.png in Resources */,
+				C1E5F65B175C1CA10000BF16 /* Play.png in Resources */,
+				C1E5F65D175C1CBD0000BF16 /* Play@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

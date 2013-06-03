@@ -18,10 +18,9 @@
 #define fadeoutTime 30
 
 @interface MainViewController : UIViewController 
-    <FlipsideViewControllerDelegate,BacklightViewControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource,
+    <FlipsideViewControllerDelegate,BacklightViewControllerDelegate,
 AVAudioPlayerDelegate, SoundsViewControllerDelegate, BackgroundsViewControllerDelegate, FUIAlertViewDelegate>
 {
-	IBOutlet UIPickerView *picker;
 	NSArray *musicTimerTypes;
 	
     enum{
@@ -42,7 +41,6 @@ AVAudioPlayerDelegate, SoundsViewControllerDelegate, BackgroundsViewControllerDe
 
 @property (assign, nonatomic)NSInteger timeOut;
 @property (assign, nonatomic)float natureVolume;
-@property (nonatomic, strong)UIPickerView *picker;
 @property (nonatomic, strong)NSArray *musicTimerTypes;
 @property (assign, nonatomic)BOOL playerState;
 @property (readwrite)BOOL interruptedOnPlayback;
