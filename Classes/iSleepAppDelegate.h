@@ -13,18 +13,14 @@
 @class BackgroundsViewController;
 
 @interface iSleepAppDelegate : NSObject <UIApplicationDelegate> {
-    UIWindow *window;
-    MainViewController *mainViewController;
 }
 
-@property (nonatomic, strong) IBOutlet UIWindow *window;
+@property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) MainViewController *mainViewController;
 @property (nonatomic, strong) InformationViewController *informationViewController;
 @property (nonatomic, strong) SettingsViewController *settingsViewController;
 @property (nonatomic, strong) SoundsViewController *soundsViewController;
 @property (nonatomic, strong) BackgroundsViewController *backgroundsViewController;
-
-
 @property (strong, nonatomic) UITabBarController *tabBarController;
 
 + (iSleepAppDelegate *)appDelegate;

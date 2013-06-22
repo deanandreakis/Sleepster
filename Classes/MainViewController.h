@@ -12,14 +12,13 @@
 #import "AVAudioPlayer+PGFade.h"
 #import "SoundsViewController.h"
 #import "BackgroundsViewController.h"
-#import "FUIAlertView.h"
 
 #define kMusicTimer 0
 #define fadeoutTime 30
 
 @interface MainViewController : UIViewController 
     <FlipsideViewControllerDelegate,BacklightViewControllerDelegate,
-AVAudioPlayerDelegate, SoundsViewControllerDelegate, BackgroundsViewControllerDelegate, FUIAlertViewDelegate>
+AVAudioPlayerDelegate, SoundsViewControllerDelegate, BackgroundsViewControllerDelegate, UIAlertViewDelegate>
 {
 	NSArray *musicTimerTypes;
 	

@@ -9,20 +9,13 @@
 #import "MainViewController.h"
 #import "MainView.h"
 #import "iSleepAppDelegate.h"
-#import "ECSlidingViewController.h"
-#import "MenuViewController.h"
 #import "Constants.h"
-#import "FUIAlertView.h"
-#import "UIColor+FlatUI.h"
-#import "UIFont+FlatUI.h"
-#import "FUISegmentedControl.h"
-#import "UISlider+FlatUI.h"
 
 @interface MainViewController ()
 
 @property(strong, nonatomic) AVAudioPlayer* theSong;
 @property(strong, nonatomic) UIColor* theColor;
-@property(strong, nonatomic) FUISegmentedControl* segmentedControl; //use this for time selection
+@property(strong, nonatomic) UISegmentedControl* segmentedControl; //use this for time selection
 @property(strong, nonatomic) UISlider* volumeSlider;
 
 @end
@@ -51,33 +44,11 @@
 
 #pragma mark -
 #pragma mark View Cycle
-- (void)viewDidAppear:(BOOL)animated
-{
-    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-}
 
 
 - (void)viewDidLoad {
-	
-    self.view.layer.shadowOpacity = 0.75f;
-    self.view.layer.shadowRadius = 10.0f;
-    self.view.layer.shadowColor = [UIColor blackColor].CGColor;
     
-    if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuViewController class]])
-    {
-        self.slidingViewController.underLeftViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Menu"];
-    }
-	
-    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-    
-    self.menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    menuBtn.frame = CGRectMake(8, 10, 34, 24);
-    [menuBtn setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
-    [menuBtn addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:self.menuBtn];
-    
-	self.view.backgroundColor = [UIColor belizeHoleColor];
+	self.view.backgroundColor = [UIColor whiteColor];
 	
 	/*Setup battery state monitoring*/
 	[UIDevice currentDevice].batteryMonitoringEnabled = YES;
@@ -107,25 +78,14 @@
     volumeSlider.maximumValue = 100.0;
     [volumeSlider setValue:50.0];
     [volumeSlider addTarget:self action:@selector(volumeSliderChanged:) forControlEvents:UIControlEventValueChanged];
-    [volumeSlider configureFlatSliderWithTrackColor:[UIColor silverColor]
-                                  progressColor:[UIColor peterRiverColor]
-                                     thumbColor:[UIColor concreteColor]];
     [self.view addSubview:volumeSlider];
     
     
-    segmentedControl = [[FUISegmentedControl alloc] initWithItems:segmentLabels];
+    segmentedControl = [[UISegmentedControl alloc] initWithItems:segmentLabels];
     segmentedControl.frame = CGRectMake(14, 60, 293, 44);
     [segmentedControl addTarget:self
                          action:@selector(segmentedControlChanged:)
                forControlEvents:UIControlEventValueChanged];
-    segmentedControl.selectedFont = [UIFont boldFlatFontOfSize:16];
-    segmentedControl.selectedFontColor = [UIColor cloudsColor];
-    segmentedControl.deselectedFont = [UIFont flatFontOfSize:16];
-    segmentedControl.deselectedFontColor = [UIColor cloudsColor];
-    segmentedControl.selectedColor = [UIColor peterRiverColor];
-    segmentedControl.deselectedColor = [UIColor silverColor];
-    segmentedControl.dividerColor = [UIColor midnightBlueColor];
-    segmentedControl.cornerRadius = 5.0;
     segmentedControl.selectedSegmentIndex = 0;
     [self.view addSubview:segmentedControl];
 		  
@@ -147,6 +107,7 @@
 }
 
 - (void)backlightViewControllerDidFinish:(BacklightViewController *)controller {	
+    
     if([theSong isPlaying] && !timerFired)
 	{
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -164,32 +125,16 @@
 	}
 }
 
-- (IBAction)revealMenu:(id)sender
-{
-    [self.slidingViewController anchorTopViewTo:ECRight];
-}
-
-
 - (IBAction) startSleeping {
 	
     //check for battery state; if unplugged show an alert
 	if ([UIDevice currentDevice].batteryState == UIDeviceBatteryStateUnplugged) {
-		FUIAlertView *alertView = [[FUIAlertView alloc]
+		UIAlertView *alertView = [[UIAlertView alloc]
                                   initWithTitle:@"Plug In"
                                   message:@"Please Plug In to Avoid Draining the Battery"
                                   delegate:nil
                                   cancelButtonTitle:@"Continue"
                                   otherButtonTitles:nil];
-         alertView.titleLabel.textColor = [UIColor cloudsColor];
-         alertView.titleLabel.font = [UIFont fontWithName:@"Verdana-Bold" size:16];//[UIFont boldFlatFontOfSize:16];
-         alertView.messageLabel.textColor = [UIColor cloudsColor];
-         alertView.messageLabel.font = [UIFont fontWithName:@"Verdana-Bold" size:14];//[UIFont flatFontOfSize:14];
-         alertView.backgroundOverlay.backgroundColor = [[UIColor cloudsColor] colorWithAlphaComponent:0.8];
-         alertView.alertContainer.backgroundColor = [UIColor midnightBlueColor];
-         alertView.defaultButtonColor = [UIColor cloudsColor];
-         alertView.defaultButtonShadowColor = [UIColor asbestosColor];
-         alertView.defaultButtonFont = [UIFont fontWithName:@"Verdana-Bold" size:16];//[UIFont boldFlatFontOfSize:16];
-         alertView.defaultButtonTitleColor = [UIColor asbestosColor];
          alertView.delegate = self;
 		[alertView show];
 	} else {
@@ -222,7 +167,7 @@
 }
 
 #pragma mark UIAlertView delegate method
-- (void)alertView:(FUIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [self reallyStartSleeping];
 }
@@ -290,7 +235,7 @@
 
 - (IBAction)segmentedControlChanged:(id)sender
 {
-	FUISegmentedControl *scontrol = (FUISegmentedControl *)sender;
+	UISegmentedControl *scontrol = (UISegmentedControl *)sender;
     NSInteger segment = scontrol.selectedSegmentIndex;
 	switch (segment) {
 		case kFifteenMinSegmentIndex:

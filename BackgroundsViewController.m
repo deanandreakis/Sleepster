@@ -7,8 +7,8 @@
 //
 
 #import "BackgroundsViewController.h"
-#import "ECSlidingViewController.h"
-#import "MenuViewController.h"
+//#import "ECSlidingViewController.h"
+//#import "MenuViewController.h"
 #import "Constants.h"
 
 @interface BackgroundsViewController ()
@@ -31,25 +31,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    self.view.layer.shadowOpacity = 0.75f;
-    self.view.layer.shadowRadius = 10.0f;
-    self.view.layer.shadowColor = [UIColor blackColor].CGColor;
-    
-    if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuViewController class]])
-    {
-        self.slidingViewController.underLeftViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Menu"];
-    }
-	
-    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-    
-    self.menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    menuBtn.frame = CGRectMake(8, 10, 34, 24);
-    [menuBtn setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
-    [menuBtn addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:self.menuBtn];
-    
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"BackgroundCell"];
     
     colorArray = [[NSArray alloc] initWithObjects:[UIColor whiteColor],
@@ -61,19 +42,9 @@
                   [UIColor purpleColor],[UIColor brownColor],
                   [UIColor clearColor],nil];
     
-    self.collectionView.backgroundColor = UIColorFromRGB(0x2980b9);
+    self.collectionView.backgroundColor = [UIColor whiteColor];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-}
-
-
-- (IBAction)revealMenu:(id)sender
-{
-    [self.slidingViewController anchorTopViewTo:ECRight];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -96,12 +67,6 @@
     cell.backgroundColor = [colorArray objectAtIndex:indexPath.item];
     return cell;
 }
-
-/*- (UICollectionReusableView *)collectionView:
- (UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
- {
- return [[UICollectionReusableView alloc] init];
- }*/
 
 
 #pragma mark - UICollectionViewDelegate

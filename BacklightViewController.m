@@ -22,7 +22,7 @@
 
 - (IBAction)done:(id)sender {
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
-	[self.bgDelegate backlightViewControllerDidFinish:self];	
+    [self.bgDelegate backlightViewControllerDidFinish:self];
 }
 
 

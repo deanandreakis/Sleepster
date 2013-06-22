@@ -7,8 +7,6 @@
 //
 
 #import "SettingsViewController.h"
-#import "ECSlidingViewController.h"
-#import "MenuViewController.h"
 #import "Constants.h"
 
 @interface SettingsViewController ()
@@ -34,36 +32,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.view.layer.shadowOpacity = 0.75f;
-    self.view.layer.shadowRadius = 10.0f;
-    self.view.layer.shadowColor = [UIColor blackColor].CGColor;
-    
-    if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuViewController class]])
-    {
-        self.slidingViewController.underLeftViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Menu"];
-    }
-	
-    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-    
-    self.menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    menuBtn.frame = CGRectMake(8, 10, 34, 24);
-    [menuBtn setBackgroundImage:[UIImage imageNamed:@"menuButton.png"] forState:UIControlStateNormal];
-    [menuBtn addTarget:self action:@selector(revealMenu:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:self.menuBtn];//stopped at 2:11 of iOS Slide Menu Tutorial - Part 3
-    
-    self.view.backgroundColor = UIColorFromRGB(0x2980b9);
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-}
-
-
-- (IBAction)revealMenu:(id)sender
-{
-    [self.slidingViewController anchorTopViewTo:ECRight];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning

@@ -37,10 +37,8 @@
 		288765590DF743DE002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765580DF743DE002DB57D /* CoreGraphics.framework */; };
 		289233AE0DB2D0DB0083E9F9 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */; };
 		289233B00DB2D0DB0083E9F9 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233AD0DB2D0DB0083E9F9 /* InformationViewController.m */; };
-		C1006CC416E59B4100372838 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1006CC316E59B4100372838 /* Crashlytics.framework */; };
 		C128CCC31645DFBC00E1B8AC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C128CCC21645DFBC00E1B8AC /* Default-568h@2x.png */; };
 		C138149116FF47B000293B48 /* menuButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C138149016FF47B000293B48 /* menuButton@2x.png */; };
-		C138164B17486CAE00F89C66 /* Constants.h in Sources */ = {isa = PBXBuildFile; fileRef = C138164A17486C2C00F89C66 /* Constants.h */; };
 		C1403BB51728B69500B75633 /* home-2.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BB41728B69500B75633 /* home-2.png */; };
 		C1403BB71728B6B400B75633 /* home-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BB61728B6B400B75633 /* home-2@2x.png */; };
 		C1403BB91728BB7C00B75633 /* Picture-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BB81728BB7C00B75633 /* Picture-Landscape.png */; };
@@ -58,9 +56,7 @@
 		C14E0EF91675746A00811389 /* BackgroundsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C14E0EF71675746A00811389 /* BackgroundsViewController.m */; };
 		C14E0EFA1675746A00811389 /* BackgroundsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C14E0EF81675746A00811389 /* BackgroundsViewController.xib */; };
 		C14E0EFC1675772400811389 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C14E0EFB1675772400811389 /* Social.framework */; };
-		C1A78EB016ED0AC000DB71CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1A78EAF16ED0AC000DB71CB /* Main.storyboard */; };
-		C1A78EB316ED0F7D00DB71CB /* InitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A78EB216ED0F7D00DB71CB /* InitViewController.m */; };
-		C1A78EB616ED100900DB71CB /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A78EB516ED100900DB71CB /* MenuViewController.m */; };
+		C1C55ED31775DF5300CF1591 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1006CC316E59B4100372838 /* Crashlytics.framework */; };
 		C1D7B40B1671A0860004D62E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D7B4091671A0860004D62E /* SettingsViewController.m */; };
 		C1D7B40C1671A0860004D62E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D7B40A1671A0860004D62E /* SettingsViewController.xib */; };
 		C1E5F65B175C1CA10000BF16 /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E5F65A175C1CA10000BF16 /* Play.png */; };
@@ -137,11 +133,6 @@
 		C14E0EF71675746A00811389 /* BackgroundsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundsViewController.m; sourceTree = "<group>"; };
 		C14E0EF81675746A00811389 /* BackgroundsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BackgroundsViewController.xib; sourceTree = "<group>"; };
 		C14E0EFB1675772400811389 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		C1A78EAF16ED0AC000DB71CB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		C1A78EB116ED0F7D00DB71CB /* InitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitViewController.h; sourceTree = "<group>"; };
-		C1A78EB216ED0F7D00DB71CB /* InitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitViewController.m; sourceTree = "<group>"; };
-		C1A78EB416ED100900DB71CB /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
-		C1A78EB516ED100900DB71CB /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		C1D7B4081671A0860004D62E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		C1D7B4091671A0860004D62E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		C1D7B40A1671A0860004D62E /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -154,12 +145,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1C55ED31775DF5300CF1591 /* Crashlytics.framework in Frameworks */,
 				C14E0EFC1675772400811389 /* Social.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765590DF743DE002DB57D /* CoreGraphics.framework in Frameworks */,
 				05E1D073128EF5FA00922B40 /* AVFoundation.framework in Frameworks */,
-				C1006CC416E59B4100372838 /* Crashlytics.framework in Frameworks */,
 				CE4C3BA38EEB46FC8E922DE1 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,7 +267,6 @@
 		C1D7B40516719F080004D62E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C1A78EAF16ED0AC000DB71CB /* Main.storyboard */,
 				C14E0EF81675746A00811389 /* BackgroundsViewController.xib */,
 				C14E0EF3167573F100811389 /* SoundsViewController.xib */,
 				C1D7B40A1671A0860004D62E /* SettingsViewController.xib */,
@@ -309,10 +299,6 @@
 				C14E0EF2167573F100811389 /* SoundsViewController.m */,
 				C14E0EF61675746A00811389 /* BackgroundsViewController.h */,
 				C14E0EF71675746A00811389 /* BackgroundsViewController.m */,
-				C1A78EB116ED0F7D00DB71CB /* InitViewController.h */,
-				C1A78EB216ED0F7D00DB71CB /* InitViewController.m */,
-				C1A78EB416ED100900DB71CB /* MenuViewController.h */,
-				C1A78EB516ED100900DB71CB /* MenuViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -345,7 +331,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0500;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "SleepMate" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -395,7 +381,6 @@
 				C1D7B40C1671A0860004D62E /* SettingsViewController.xib in Resources */,
 				C14E0EF5167573F100811389 /* SoundsViewController.xib in Resources */,
 				C14E0EFA1675746A00811389 /* BackgroundsViewController.xib in Resources */,
-				C1A78EB016ED0AC000DB71CB /* Main.storyboard in Resources */,
 				C138149116FF47B000293B48 /* menuButton@2x.png in Resources */,
 				C1403BB51728B69500B75633 /* home-2.png in Resources */,
 				C1403BB71728B6B400B75633 /* home-2@2x.png in Resources */,
@@ -451,7 +436,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C138164B17486CAE00F89C66 /* Constants.h in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* iSleepAppDelegate.m in Sources */,
 				289233AE0DB2D0DB0083E9F9 /* MainViewController.m in Sources */,
@@ -462,8 +446,6 @@
 				C1D7B40B1671A0860004D62E /* SettingsViewController.m in Sources */,
 				C14E0EF4167573F100811389 /* SoundsViewController.m in Sources */,
 				C14E0EF91675746A00811389 /* BackgroundsViewController.m in Sources */,
-				C1A78EB316ED0F7D00DB71CB /* InitViewController.m in Sources */,
-				C1A78EB616ED100900DB71CB /* MenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,13 +455,12 @@
 		055D856712F6651500A8EF6B /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -492,7 +473,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -502,7 +483,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SleepMate_Prefix.pch;
 				INFOPLIST_FILE = "SleepMate-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = SleepMate;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -515,6 +496,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -525,7 +507,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SleepMate_Prefix.pch;
 				INFOPLIST_FILE = "SleepMate-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = SleepMate;
 				SDKROOT = iphoneos;
 			};
@@ -537,6 +519,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -546,7 +529,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SleepMate_Prefix.pch;
 				INFOPLIST_FILE = "SleepMate-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = SleepMate;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 			};
@@ -555,12 +538,12 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -568,12 +551,11 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 			};
 			name = Release;

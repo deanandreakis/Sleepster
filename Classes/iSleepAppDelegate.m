@@ -17,8 +17,8 @@
 @implementation iSleepAppDelegate
 
 
-@synthesize window;
-@synthesize mainViewController, informationViewController, settingsViewController, soundsViewController, backgroundsViewController;
+@synthesize window = _window;
+@synthesize mainViewController, informationViewController, settingsViewController, soundsViewController, backgroundsViewController,tabBarController;
 
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
@@ -27,15 +27,29 @@
     
     application.idleTimerDisabled = YES;
     
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
     mainViewController = [[MainViewController alloc] initWithNibName:@"MainView" bundle:nil];
+    mainViewController.tabBarItem.title = @"Main";
+    mainViewController.tabBarItem.image = [UIImage imageNamed:@"home-2.png"];
+    
     informationViewController = [[InformationViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
+    informationViewController.tabBarItem.title = @"Information";
+    informationViewController.tabBarItem.image = [UIImage imageNamed:@"Info.png"];
+    
     settingsViewController = [[SettingsViewController alloc] initWithNibName:nil bundle:nil];
+    settingsViewController.tabBarItem.title = @"Settings";
+    settingsViewController.tabBarItem.image = [UIImage imageNamed:@"Settings.png"];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     
     soundsViewController = [[SoundsViewController alloc] initWithCollectionViewLayout:layout];
+    soundsViewController.tabBarItem.title = @"Sounds";
+    soundsViewController.tabBarItem.image = [UIImage imageNamed:@"Speaker-1.png"];
     
     backgroundsViewController = [[BackgroundsViewController alloc] initWithCollectionViewLayout:layout];
+    backgroundsViewController.tabBarItem.title = @"Backgrounds";
+    backgroundsViewController.tabBarItem.image = [UIImage imageNamed:@"Picture-Landscape.png"];
     
     layout.itemSize = CGSizeMake(64, 64);
     layout.minimumInteritemSpacing = 64;
@@ -45,6 +59,13 @@
     
     [soundsViewController setDelegate:mainViewController];
     [backgroundsViewController setDelegate:mainViewController];
+    
+    tabBarController = [[UITabBarController alloc] init];
+    NSArray* array = [NSArray arrayWithObjects:mainViewController,soundsViewController,backgroundsViewController,settingsViewController,informationViewController,nil];
+    [tabBarController setViewControllers:array animated:YES];
+    
+    [self.window setRootViewController:tabBarController];
+    [self.window makeKeyAndVisible];
 }
 
 + (iSleepAppDelegate *)appDelegate
