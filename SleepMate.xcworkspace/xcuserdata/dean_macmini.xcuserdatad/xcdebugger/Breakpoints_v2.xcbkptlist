@@ -29,23 +29,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/MainViewController.m"
-            timestampString = "393602882.283606"
+            timestampString = "394234331.084788"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "-backlightViewControllerDidFinish:"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "-brightnessSliderChanged:"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            symbolName = "[NSString setRasterizationScale]"
-            moduleName = "">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

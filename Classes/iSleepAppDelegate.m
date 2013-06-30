@@ -37,7 +37,7 @@
     informationViewController.tabBarItem.title = @"Information";
     informationViewController.tabBarItem.image = [UIImage imageNamed:@"Info.png"];
     
-    settingsViewController = [[SettingsViewController alloc] initWithNibName:nil bundle:nil];
+    settingsViewController = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
     settingsViewController.tabBarItem.title = @"Settings";
     settingsViewController.tabBarItem.image = [UIImage imageNamed:@"Settings.png"];
     

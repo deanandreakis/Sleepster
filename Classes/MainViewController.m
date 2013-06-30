@@ -7,7 +7,6 @@
 //
 
 #import "MainViewController.h"
-#import "MainView.h"
 #import "iSleepAppDelegate.h"
 #import "Constants.h"
 
@@ -15,15 +14,14 @@
 
 @property(strong, nonatomic) AVAudioPlayer* theSong;
 @property(strong, nonatomic) UIColor* theColor;
-@property(strong, nonatomic) UISegmentedControl* segmentedControl; //use this for time selection
-@property(strong, nonatomic) UISlider* volumeSlider;
+@property (assign, nonatomic)float natureBrightness;
 
 @end
 
 @implementation MainViewController
 
 @synthesize timeOut;
-@synthesize natureVolume, volumeSlider, segmentedControl;
+@synthesize natureVolume, natureBrightness;
 @synthesize musicTimerTypes;
 @synthesize playerState;
 @synthesize interruptedOnPlayback;
@@ -37,7 +35,7 @@
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         NSString *pathToMusicFile0 = [[NSBundle mainBundle] pathForResource:@"campfire" ofType:@"mp3"];
         theSong = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL fileURLWithPath:pathToMusicFile0] error:NULL];
-        theColor = [UIColor blueColor];
+        theColor = [UIColor whiteColor];
             }
     return self;
 }
@@ -48,7 +46,7 @@
 
 - (void)viewDidLoad {
     
-	self.view.backgroundColor = [UIColor whiteColor];
+	self.view.backgroundColor = theColor;//[UIColor whiteColor];
 	
 	/*Setup battery state monitoring*/
 	[UIDevice currentDevice].batteryMonitoringEnabled = YES;
@@ -62,8 +60,6 @@
 	NSError *activationError = nil;
     [[AVAudioSession sharedInstance] setActive: YES error: &activationError];
 	
-	NSArray *segmentLabels = [[NSArray alloc] initWithObjects:@"\u221E", @"15", @"30", @"60", @"90",nil];
-
 	playerState = NO;
 	
 	interruptedOnPlayback = NO;
@@ -71,24 +67,8 @@
     timeOut = kOffSegmentIndex;
     
 	natureVolume = 50.0;
+    natureBrightness = 0.5;
     
-    volumeSlider = [[UISlider alloc] init];
-    volumeSlider.frame = CGRectMake(14, 340, 293, 23);
-    volumeSlider.minimumValue = 1.0;
-    volumeSlider.maximumValue = 100.0;
-    [volumeSlider setValue:50.0];
-    [volumeSlider addTarget:self action:@selector(volumeSliderChanged:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:volumeSlider];
-    
-    
-    segmentedControl = [[UISegmentedControl alloc] initWithItems:segmentLabels];
-    segmentedControl.frame = CGRectMake(14, 60, 293, 44);
-    [segmentedControl addTarget:self
-                         action:@selector(segmentedControlChanged:)
-               forControlEvents:UIControlEventValueChanged];
-    segmentedControl.selectedSegmentIndex = 0;
-    [self.view addSubview:segmentedControl];
-		  
 	[super viewDidLoad];
 }
 
@@ -157,6 +137,7 @@
 	BacklightViewController *controller = [[BacklightViewController alloc] initWithNibName:@"BacklightView" bundle:nil];
 	controller.bgDelegate = self;
     controller.backgroundColor = theColor;
+    controller.brightness = natureBrightness;
 	
 	/*Play the background music selected*/
 	[theSong setVolume:(natureVolume / 100)];
@@ -220,6 +201,7 @@
 {
     NSLog(@"got background event");
     self.theColor = background;
+    self.view.backgroundColor = theColor;
 }
 
 #pragma mark Volume Slider
@@ -229,6 +211,15 @@
 	UISlider *slider = (UISlider *)sender;
 	int volume = (int)(slider.value + 0.5f);
 	natureVolume = (float)volume;
+}
+
+#pragma mark Brightness Slider
+
+- (IBAction)brightnessSliderChanged:(id)sender
+{
+	UISlider *slider = (UISlider *)sender;
+	natureBrightness = slider.value;
+    [[UIScreen mainScreen] setBrightness:natureBrightness];
 }
 
 #pragma mark Segmented Control
@@ -259,5 +250,23 @@
 	}
 }
 
+#pragma mark sound button control
+
+- (IBAction)soundButtonSelected:(id)sender
+{
+    if([theSong isPlaying])
+	{
+        [theSong pause];
+        [theSong setCurrentTime:0];
+	    playerState = NO;
+	}
+    else
+	{
+        /*Play the background music selected*/
+        [theSong setVolume:(natureVolume / 100)];
+        [theSong play];
+        playerState = YES;
+	}
+}
 
 @end

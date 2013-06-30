@@ -11,12 +11,12 @@
 @implementation BacklightViewController
 
 @synthesize bgDelegate;
-@synthesize backgroundColor;
+@synthesize backgroundColor, brightness;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = backgroundColor;
-    [[UIScreen mainScreen] setBrightness:1.0];
+    [[UIScreen mainScreen] setBrightness:brightness];
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
 }
 
