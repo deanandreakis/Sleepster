@@ -41,21 +41,28 @@
     settingsViewController.tabBarItem.title = @"Settings";
     settingsViewController.tabBarItem.image = [UIImage imageNamed:@"Settings.png"];
     
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    UICollectionViewFlowLayout *backgroundLayout = [[UICollectionViewFlowLayout alloc] init];
+    UICollectionViewFlowLayout *soundLayout = [[UICollectionViewFlowLayout alloc] init];
     
-    soundsViewController = [[SoundsViewController alloc] initWithCollectionViewLayout:layout];
+    soundsViewController = [[SoundsViewController alloc] initWithCollectionViewLayout:soundLayout];
     soundsViewController.tabBarItem.title = @"Sounds";
     soundsViewController.tabBarItem.image = [UIImage imageNamed:@"Speaker-1.png"];
     
-    backgroundsViewController = [[BackgroundsViewController alloc] initWithCollectionViewLayout:layout];
+    backgroundsViewController = [[BackgroundsViewController alloc] initWithCollectionViewLayout:backgroundLayout];
     backgroundsViewController.tabBarItem.title = @"Backgrounds";
     backgroundsViewController.tabBarItem.image = [UIImage imageNamed:@"Picture-Landscape.png"];
     
-    layout.itemSize = CGSizeMake(64, 64);
-    layout.minimumInteritemSpacing = 64;
-    layout.minimumLineSpacing = 64;
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    layout.sectionInset = UIEdgeInsetsMake(32, 32, 32, 32);
+    soundLayout.itemSize = CGSizeMake(50, 50);
+    soundLayout.minimumInteritemSpacing = 2;
+    soundLayout.minimumLineSpacing = 20;
+    soundLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    soundLayout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
+    
+    backgroundLayout.itemSize = CGSizeMake(50, 50);
+    backgroundLayout.minimumInteritemSpacing = 2;
+    backgroundLayout.minimumLineSpacing = 20;
+    backgroundLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    backgroundLayout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
     
     [soundsViewController setDelegate:mainViewController];
     [backgroundsViewController setDelegate:mainViewController];

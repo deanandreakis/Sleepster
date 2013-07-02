@@ -250,23 +250,4 @@
 	}
 }
 
-#pragma mark sound button control
-
-- (IBAction)soundButtonSelected:(id)sender
-{
-    if([theSong isPlaying])
-	{
-        [theSong pause];
-        [theSong setCurrentTime:0];
-	    playerState = NO;
-	}
-    else
-	{
-        /*Play the background music selected*/
-        [theSong setVolume:(natureVolume / 100)];
-        [theSong play];
-        playerState = YES;
-	}
-}
-
 @end

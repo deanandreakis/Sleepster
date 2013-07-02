@@ -7,8 +7,6 @@
 //
 
 #import "BackgroundsViewController.h"
-//#import "ECSlidingViewController.h"
-//#import "MenuViewController.h"
 #import "Constants.h"
 
 @interface BackgroundsViewController ()

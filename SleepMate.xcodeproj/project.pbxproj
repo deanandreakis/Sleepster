@@ -36,11 +36,12 @@
 		C138149116FF47B000293B48 /* menuButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C138149016FF47B000293B48 /* menuButton@2x.png */; };
 		C13D53A9177D274300CF2E78 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C13D53A8177D274300CF2E78 /* Default-568h@2x.png */; };
 		C13D53AB177D274E00CF2E78 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C13D53AA177D274E00CF2E78 /* Default.png */; };
-		C13D53AD177D275900CF2E78 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C13D53AC177D275900CF2E78 /* Default@2x.png */; };
 		C13D53B0177F67D700CF2E78 /* Speaker-2.png in Resources */ = {isa = PBXBuildFile; fileRef = C13D53AE177F67D700CF2E78 /* Speaker-2.png */; };
 		C13D53B1177F67D700CF2E78 /* Speaker-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C13D53AF177F67D700CF2E78 /* Speaker-2@2x.png */; };
 		C13D53B4177F741300CF2E78 /* Brightness.png in Resources */ = {isa = PBXBuildFile; fileRef = C13D53B2177F741300CF2E78 /* Brightness.png */; };
 		C13D53B5177F741300CF2E78 /* Brightness@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C13D53B3177F741300CF2E78 /* Brightness@2x.png */; };
+		C13D53B7178074DC00CF2E78 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C13D53B6178074DC00CF2E78 /* Default@2x.png */; };
+		C13D53B91782748D00CF2E78 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C13D53B81782748D00CF2E78 /* Localizable.strings */; };
 		C1403BB51728B69500B75633 /* home-2.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BB41728B69500B75633 /* home-2.png */; };
 		C1403BB71728B6B400B75633 /* home-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BB61728B6B400B75633 /* home-2@2x.png */; };
 		C1403BB91728BB7C00B75633 /* Picture-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BB81728BB7C00B75633 /* Picture-Landscape.png */; };
@@ -108,11 +109,12 @@
 		C138164A17486C2C00F89C66 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		C13D53A8177D274300CF2E78 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C13D53AA177D274E00CF2E78 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		C13D53AC177D275900CF2E78 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C13D53AE177F67D700CF2E78 /* Speaker-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Speaker-2.png"; sourceTree = "<group>"; };
 		C13D53AF177F67D700CF2E78 /* Speaker-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Speaker-2@2x.png"; sourceTree = "<group>"; };
 		C13D53B2177F741300CF2E78 /* Brightness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brightness.png; sourceTree = "<group>"; };
 		C13D53B3177F741300CF2E78 /* Brightness@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Brightness@2x.png"; sourceTree = "<group>"; };
+		C13D53B6178074DC00CF2E78 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		C13D53B81782748D00CF2E78 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		C1403BB41728B69500B75633 /* home-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-2.png"; sourceTree = "<group>"; };
 		C1403BB61728B6B400B75633 /* home-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-2@2x.png"; sourceTree = "<group>"; };
 		C1403BB81728BB7C00B75633 /* Picture-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Picture-Landscape.png"; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C13D53B81782748D00CF2E78 /* Localizable.strings */,
 				C1E5F65A175C1CA10000BF16 /* Play.png */,
 				C1E5F65C175C1CBD0000BF16 /* Play@2x.png */,
 				C1403BCA1728BEE100B75633 /* Fav-1.png */,
@@ -222,10 +225,10 @@
 				C13D53B3177F741300CF2E78 /* Brightness@2x.png */,
 				C1403BC61728BE4000B75633 /* Settings@2x.png */,
 				C1403BC41728BE2500B75633 /* Settings.png */,
+				C13D53B6178074DC00CF2E78 /* Default@2x.png */,
 				C13D53AE177F67D700CF2E78 /* Speaker-2.png */,
 				C13D53AF177F67D700CF2E78 /* Speaker-2@2x.png */,
 				C1403BC21728BE0900B75633 /* Info.png */,
-				C13D53AC177D275900CF2E78 /* Default@2x.png */,
 				C13D53AA177D274E00CF2E78 /* Default.png */,
 				C1403BC01728BDF800B75633 /* Info@2x.png */,
 				C1403BBE1728BD0200B75633 /* Speaker-1@2x.png */,
@@ -365,12 +368,12 @@
 				052C9A7E12F4ACEB00400088 /* stream.mp3 in Resources */,
 				052C9A7F12F4ACEB00400088 /* waterfall.mp3 in Resources */,
 				052C9A8012F4ACEB00400088 /* waves.mp3 in Resources */,
+				C13D53B7178074DC00CF2E78 /* Default@2x.png in Resources */,
 				C13D53B0177F67D700CF2E78 /* Speaker-2.png in Resources */,
 				052C9A8112F4ACEB00400088 /* wind.mp3 in Resources */,
 				05E2B91E13197465005B3F97 /* heavy-rain.mp3 in Resources */,
 				05E2B92213197477005B3F97 /* lake-waves.mp3 in Resources */,
 				05AAF2FA1377084B00AD2167 /* kmoon.png in Resources */,
-				C13D53AD177D275900CF2E78 /* Default@2x.png in Resources */,
 				05AAF2FC1377085E00AD2167 /* kmoon@2x.png in Resources */,
 				05329D7E13D35FEE00F199CA /* ThunderStorm.mp3 in Resources */,
 				C1D7B40C1671A0860004D62E /* SettingsViewController.xib in Resources */,
@@ -385,6 +388,7 @@
 				C13D53B5177F741300CF2E78 /* Brightness@2x.png in Resources */,
 				C1403BBF1728BD0200B75633 /* Speaker-1@2x.png in Resources */,
 				C1403BC11728BDF800B75633 /* Info@2x.png in Resources */,
+				C13D53B91782748D00CF2E78 /* Localizable.strings in Resources */,
 				C13D53B1177F67D700CF2E78 /* Speaker-2@2x.png in Resources */,
 				C1403BC31728BE0900B75633 /* Info.png in Resources */,
 				C13D53A9177D274300CF2E78 /* Default-568h@2x.png in Resources */,
