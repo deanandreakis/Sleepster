@@ -10,7 +10,20 @@
 	<string>46</string>
 	<key>objects</key>
 	<dict>
-		<key>04DD2A18806B42AC8B315592</key>
+		<key>1F8CC4D9ED314EBCB03334E4</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>../Podfile</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+			<key>xcLanguageSpecificationIdentifier</key>
+			<string>xcode.lang.ruby</string>
+		</dict>
+		<key>56555A2C5ACA4BB09B472AA8</key>
 		<dict>
 			<key>children</key>
 			<array/>
@@ -21,21 +34,7 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>0A689D4404624DD3AD200FF6</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>7FF84D8D46194C28A5020541</string>
-				<string>E4EE8F7E368D49BF964B4072</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>0BA4CCB8F32C4BD19BC86B05</key>
+		<key>82708CE90BF8422DAA392BDF</key>
 		<dict>
 			<key>children</key>
 			<array/>
@@ -46,21 +45,21 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>3052D0BEA21B4927BDAD1D76</key>
+		<key>896877B97680474580678B6B</key>
 		<dict>
-			<key>children</key>
+			<key>buildConfigurations</key>
 			<array>
-				<string>45990D79218C4455927E5277</string>
-				<string>0BA4CCB8F32C4BD19BC86B05</string>
-				<string>04DD2A18806B42AC8B315592</string>
-				<string>B03945FDB74B4F63A9C773B7</string>
+				<string>EAE8A3F1FD7A4D8895B9791F</string>
+				<string>D8DD92774DDE4DA388B84EF5</string>
 			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
 			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>XCConfigurationList</string>
 		</dict>
-		<key>45990D79218C4455927E5277</key>
+		<key>AF20BD6F64404E8A84DD08E1</key>
 		<dict>
 			<key>children</key>
 			<array/>
@@ -71,34 +70,33 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>7FF84D8D46194C28A5020541</key>
+		<key>C91279259A904FFA89865201</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>AF20BD6F64404E8A84DD08E1</string>
+				<string>82708CE90BF8422DAA392BDF</string>
+				<string>56555A2C5ACA4BB09B472AA8</string>
+				<string>1F8CC4D9ED314EBCB03334E4</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D8DD92774DDE4DA388B84EF5</key>
 		<dict>
 			<key>buildSettings</key>
 			<dict>
 				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>7.0</string>
+				<string>4.3</string>
 			</dict>
 			<key>isa</key>
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
-			<string>Release</string>
+			<string>Debug</string>
 		</dict>
-		<key>B03945FDB74B4F63A9C773B7</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>Podfile</string>
-			<key>path</key>
-			<string>../Podfile</string>
-			<key>sourceTree</key>
-			<string>SOURCE_ROOT</string>
-			<key>xcLanguageSpecificationIdentifier</key>
-			<string>xcode.lang.ruby</string>
-		</dict>
-		<key>DB5E381B1293459FB6477874</key>
+		<key>E57ACE51D38344B7982DE004</key>
 		<dict>
 			<key>attributes</key>
 			<dict>
@@ -106,7 +104,7 @@
 				<string>0450</string>
 			</dict>
 			<key>buildConfigurationList</key>
-			<string>0A689D4404624DD3AD200FF6</string>
+			<string>896877B97680474580678B6B</string>
 			<key>compatibilityVersion</key>
 			<string>Xcode 3.2</string>
 			<key>developmentRegion</key>
@@ -120,28 +118,32 @@
 				<string>en</string>
 			</array>
 			<key>mainGroup</key>
-			<string>3052D0BEA21B4927BDAD1D76</string>
+			<string>C91279259A904FFA89865201</string>
 			<key>productRefGroup</key>
-			<string>0BA4CCB8F32C4BD19BC86B05</string>
+			<string>82708CE90BF8422DAA392BDF</string>
+			<key>projectDirPath</key>
+			<string></string>
 			<key>projectReferences</key>
 			<array/>
+			<key>projectRoot</key>
+			<string></string>
 			<key>targets</key>
 			<array/>
 		</dict>
-		<key>E4EE8F7E368D49BF964B4072</key>
+		<key>EAE8A3F1FD7A4D8895B9791F</key>
 		<dict>
 			<key>buildSettings</key>
 			<dict>
 				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>7.0</string>
+				<string>4.3</string>
 			</dict>
 			<key>isa</key>
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
-			<string>Debug</string>
+			<string>Release</string>
 		</dict>
 	</dict>
 	<key>rootObject</key>
-	<string>DB5E381B1293459FB6477874</string>
+	<string>E57ACE51D38344B7982DE004</string>
 </dict>
 </plist>

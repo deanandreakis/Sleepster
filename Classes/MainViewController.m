@@ -15,6 +15,7 @@
 @property(strong, nonatomic) AVAudioPlayer* theSong;
 @property(strong, nonatomic) UIColor* theColor;
 @property (assign, nonatomic)float natureBrightness;
+@property (strong, nonatomic) TimerViewController* controller;
 
 @end
 
@@ -28,7 +29,7 @@
 @synthesize timerFired;
 @synthesize menuBtn;
 @synthesize theSong;
-@synthesize theColor;
+@synthesize theColor, controller;
 
 #pragma mark Constructor
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -69,6 +70,10 @@
 	natureVolume = 50.0;
     natureBrightness = 0.5;
     
+    controller = [[TimerViewController alloc] initWithNibName:@"TimerViewController" bundle:nil];
+	controller.timerDelegate = self;
+    controller.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+
 	[super viewDidLoad];
 }
 
@@ -134,17 +139,17 @@
 	}
     timerFired = NO;
 	
-	BacklightViewController *controller = [[BacklightViewController alloc] initWithNibName:@"BacklightView" bundle:nil];
-	controller.bgDelegate = self;
-    controller.backgroundColor = theColor;
-    controller.brightness = natureBrightness;
+	BacklightViewController *blcontroller = [[BacklightViewController alloc] initWithNibName:@"BacklightView" bundle:nil];
+	blcontroller.bgDelegate = self;
+    blcontroller.backgroundColor = theColor;
+    blcontroller.brightness = natureBrightness;
 	
 	/*Play the background music selected*/
 	[theSong setVolume:(natureVolume / 100)];
 	[theSong play];
 	playerState = YES;
-	controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-	[self presentViewController:controller animated:YES completion:nil];
+	blcontroller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+	[self presentViewController:blcontroller animated:YES completion:nil];
 }
 
 #pragma mark UIAlertView delegate method
@@ -222,32 +227,23 @@
     [[UIScreen mainScreen] setBrightness:natureBrightness];
 }
 
-#pragma mark Segmented Control
+#pragma mark Timer Button
 
-- (IBAction)segmentedControlChanged:(id)sender
+- (IBAction)timerButtonSelected:(id)sender
 {
-	UISegmentedControl *scontrol = (UISegmentedControl *)sender;
-    NSInteger segment = scontrol.selectedSegmentIndex;
-	switch (segment) {
-		case kFifteenMinSegmentIndex:
-			timeOut = 900 - fadeoutTime;//seconds
-			break;
-		case kThirtyMinSegmentIndex:
-			timeOut = 1800 - fadeoutTime;//seconds
-			break;
-		case kSixtyMinSegmentIndex:
-			timeOut = 3600 - fadeoutTime;//seconds
-			break;
-		case kNinetyMinSegmentIndex:
-			timeOut = 5400 - fadeoutTime;//seconds
-			break;
-        case kOffSegmentIndex:
-			timeOut = kOffSegmentIndex;//seconds
-			break;
-		default:
-			timeOut = kOffSegmentIndex;
-			break;
-	}
+    //open the TimerViewController
+    //TimerViewController *controller = [[TimerViewController alloc] initWithNibName:@"TimerViewController" bundle:nil];
+	//controller.timerDelegate = self;
+    //controller.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+	[self presentViewController:controller animated:YES completion:nil];
+}
+
+#pragma mark TimerViewControllerDelegate
+
+- (void)timerViewControllerDidFinish:(NSInteger)timeValue
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    self.timeOut = timeValue;
 }
 
 @end

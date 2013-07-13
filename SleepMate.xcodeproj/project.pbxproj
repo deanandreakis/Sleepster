@@ -59,12 +59,13 @@
 		C14E0EF91675746A00811389 /* BackgroundsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C14E0EF71675746A00811389 /* BackgroundsViewController.m */; };
 		C14E0EFA1675746A00811389 /* BackgroundsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C14E0EF81675746A00811389 /* BackgroundsViewController.xib */; };
 		C14E0EFC1675772400811389 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C14E0EFB1675772400811389 /* Social.framework */; };
+		C19DB54E178E58E8001820A7 /* TimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C19DB54C178E58E8001820A7 /* TimerViewController.m */; };
+		C19DB54F178E58E8001820A7 /* TimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C19DB54D178E58E8001820A7 /* TimerViewController.xib */; };
 		C1C55ED31775DF5300CF1591 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1006CC316E59B4100372838 /* Crashlytics.framework */; };
 		C1D7B40B1671A0860004D62E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D7B4091671A0860004D62E /* SettingsViewController.m */; };
 		C1D7B40C1671A0860004D62E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D7B40A1671A0860004D62E /* SettingsViewController.xib */; };
 		C1E5F65B175C1CA10000BF16 /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E5F65A175C1CA10000BF16 /* Play.png */; };
 		C1E5F65D175C1CBD0000BF16 /* Play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E5F65C175C1CBD0000BF16 /* Play@2x.png */; };
-		CE4C3BA38EEB46FC8E922DE1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8B19F5C3941AD91C5F4F8 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,7 +93,6 @@
 		1D3623240D0F684500981E51 /* iSleepAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSleepAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* iSleepAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iSleepAppDelegate.m; sourceTree = "<group>"; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		1FD8B19F5C3941AD91C5F4F8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		215E431C004344B1A70254A6 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		280E754A0DD40C5E005A515E /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlipsideView.xib; sourceTree = "<group>"; };
 		280E754B0DD40C5E005A515E /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
@@ -134,6 +134,9 @@
 		C14E0EF71675746A00811389 /* BackgroundsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundsViewController.m; sourceTree = "<group>"; };
 		C14E0EF81675746A00811389 /* BackgroundsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BackgroundsViewController.xib; sourceTree = "<group>"; };
 		C14E0EFB1675772400811389 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		C19DB54B178E58E8001820A7 /* TimerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerViewController.h; sourceTree = "<group>"; };
+		C19DB54C178E58E8001820A7 /* TimerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerViewController.m; sourceTree = "<group>"; };
+		C19DB54D178E58E8001820A7 /* TimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerViewController.xib; sourceTree = "<group>"; };
 		C1D7B4081671A0860004D62E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		C1D7B4091671A0860004D62E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		C1D7B40A1671A0860004D62E /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -152,7 +155,6 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765590DF743DE002DB57D /* CoreGraphics.framework in Frameworks */,
 				05E1D073128EF5FA00922B40 /* AVFoundation.framework in Frameworks */,
-				CE4C3BA38EEB46FC8E922DE1 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +267,6 @@
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765580DF743DE002DB57D /* CoreGraphics.framework */,
-				1FD8B19F5C3941AD91C5F4F8 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -273,6 +274,7 @@
 		C1D7B40516719F080004D62E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C19DB54D178E58E8001820A7 /* TimerViewController.xib */,
 				C14E0EF81675746A00811389 /* BackgroundsViewController.xib */,
 				C14E0EF3167573F100811389 /* SoundsViewController.xib */,
 				C1D7B40A1671A0860004D62E /* SettingsViewController.xib */,
@@ -298,6 +300,8 @@
 				C14E0EF2167573F100811389 /* SoundsViewController.m */,
 				C14E0EF61675746A00811389 /* BackgroundsViewController.h */,
 				C14E0EF71675746A00811389 /* BackgroundsViewController.m */,
+				C19DB54B178E58E8001820A7 /* TimerViewController.h */,
+				C19DB54C178E58E8001820A7 /* TimerViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -357,6 +361,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C19DB54F178E58E8001820A7 /* TimerViewController.xib in Resources */,
 				280E754D0DD40C5E005A515E /* FlipsideView.xib in Resources */,
 				280E754E0DD40C5E005A515E /* MainView.xib in Resources */,
 				05692F7A11C1EBF600A119A4 /* BacklightView.xib in Resources */,
@@ -441,6 +446,7 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* iSleepAppDelegate.m in Sources */,
+				C19DB54E178E58E8001820A7 /* TimerViewController.m in Sources */,
 				289233AE0DB2D0DB0083E9F9 /* MainViewController.m in Sources */,
 				289233B00DB2D0DB0083E9F9 /* InformationViewController.m in Sources */,
 				05692F7311C1E6F800A119A4 /* BacklightViewController.m in Sources */,

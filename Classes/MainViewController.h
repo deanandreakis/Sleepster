@@ -12,24 +12,17 @@
 #import "AVAudioPlayer+PGFade.h"
 #import "SoundsViewController.h"
 #import "BackgroundsViewController.h"
+#import "TimerViewController.h"
 
 #define kMusicTimer 0
-#define fadeoutTime 30
+
 
 @interface MainViewController : UIViewController 
     <FlipsideViewControllerDelegate,BacklightViewControllerDelegate,
-AVAudioPlayerDelegate, SoundsViewControllerDelegate, BackgroundsViewControllerDelegate, UIAlertViewDelegate>
+AVAudioPlayerDelegate, SoundsViewControllerDelegate, BackgroundsViewControllerDelegate, UIAlertViewDelegate,
+UIActionSheetDelegate, TimerViewControllerDelegate>
 {
-	NSArray *musicTimerTypes;
-	
-    enum{
-		kOffSegmentIndex = 0,
-		kFifteenMinSegmentIndex,
-		kThirtyMinSegmentIndex,
-		kSixtyMinSegmentIndex,
-		kNinetyMinSegmentIndex
-	} kSegment;
-	
+	NSArray *musicTimerTypes;	
 	NSInteger timeOut;
 	float natureVolume;
 	NSTimer* timer;
