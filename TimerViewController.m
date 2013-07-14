@@ -106,7 +106,7 @@
 			timeOut = kOffSegmentIndex;
 			break;
     }
-    [self.timerDelegate timerViewControllerDidFinish:timeOut];
+    [self.timerDelegate timerViewControllerDidFinish:timeOut timerString:[self.minutesArray objectAtIndex:row]];
 }
 
 

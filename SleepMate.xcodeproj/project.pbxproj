@@ -61,6 +61,8 @@
 		C14E0EFC1675772400811389 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C14E0EFB1675772400811389 /* Social.framework */; };
 		C19DB54E178E58E8001820A7 /* TimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C19DB54C178E58E8001820A7 /* TimerViewController.m */; };
 		C19DB54F178E58E8001820A7 /* TimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C19DB54D178E58E8001820A7 /* TimerViewController.xib */; };
+		C19DB55117922923001820A7 /* Timer.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55017922923001820A7 /* Timer.png */; };
+		C19DB55317922947001820A7 /* Timer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55217922947001820A7 /* Timer@2x.png */; };
 		C1C55ED31775DF5300CF1591 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1006CC316E59B4100372838 /* Crashlytics.framework */; };
 		C1D7B40B1671A0860004D62E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D7B4091671A0860004D62E /* SettingsViewController.m */; };
 		C1D7B40C1671A0860004D62E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D7B40A1671A0860004D62E /* SettingsViewController.xib */; };
@@ -137,6 +139,8 @@
 		C19DB54B178E58E8001820A7 /* TimerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerViewController.h; sourceTree = "<group>"; };
 		C19DB54C178E58E8001820A7 /* TimerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerViewController.m; sourceTree = "<group>"; };
 		C19DB54D178E58E8001820A7 /* TimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerViewController.xib; sourceTree = "<group>"; };
+		C19DB55017922923001820A7 /* Timer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Timer.png; sourceTree = "<group>"; };
+		C19DB55217922947001820A7 /* Timer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Timer@2x.png"; sourceTree = "<group>"; };
 		C1D7B4081671A0860004D62E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		C1D7B4091671A0860004D62E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		C1D7B40A1671A0860004D62E /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -219,6 +223,7 @@
 			children = (
 				C13D53B81782748D00CF2E78 /* Localizable.strings */,
 				C1E5F65A175C1CA10000BF16 /* Play.png */,
+				C19DB55017922923001820A7 /* Timer.png */,
 				C1E5F65C175C1CBD0000BF16 /* Play@2x.png */,
 				C1403BCA1728BEE100B75633 /* Fav-1.png */,
 				C1403BC81728BED300B75633 /* Fav-1@2x.png */,
@@ -229,6 +234,7 @@
 				C1403BC41728BE2500B75633 /* Settings.png */,
 				C13D53B6178074DC00CF2E78 /* Default@2x.png */,
 				C13D53AE177F67D700CF2E78 /* Speaker-2.png */,
+				C19DB55217922947001820A7 /* Timer@2x.png */,
 				C13D53AF177F67D700CF2E78 /* Speaker-2@2x.png */,
 				C1403BC21728BE0900B75633 /* Info.png */,
 				C13D53AA177D274E00CF2E78 /* Default.png */,
@@ -369,6 +375,7 @@
 				053BF41412C5300500B2D546 /* player_play_256.png in Resources */,
 				053BF45412CD428400B2D546 /* rain.mp3 in Resources */,
 				052C9A7C12F4ACEB00400088 /* campfire.mp3 in Resources */,
+				C19DB55317922947001820A7 /* Timer@2x.png in Resources */,
 				052C9A7D12F4ACEB00400088 /* forest.mp3 in Resources */,
 				052C9A7E12F4ACEB00400088 /* stream.mp3 in Resources */,
 				052C9A7F12F4ACEB00400088 /* waterfall.mp3 in Resources */,
@@ -394,6 +401,7 @@
 				C1403BBF1728BD0200B75633 /* Speaker-1@2x.png in Resources */,
 				C1403BC11728BDF800B75633 /* Info@2x.png in Resources */,
 				C13D53B91782748D00CF2E78 /* Localizable.strings in Resources */,
+				C19DB55117922923001820A7 /* Timer.png in Resources */,
 				C13D53B1177F67D700CF2E78 /* Speaker-2@2x.png in Resources */,
 				C1403BC31728BE0900B75633 /* Info.png in Resources */,
 				C13D53A9177D274300CF2E78 /* Default-568h@2x.png in Resources */,

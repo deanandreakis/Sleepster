@@ -14,8 +14,9 @@
 
 @property(strong, nonatomic) AVAudioPlayer* theSong;
 @property(strong, nonatomic) UIColor* theColor;
-@property (assign, nonatomic)float natureBrightness;
+@property (assign, nonatomic) float natureBrightness;
 @property (strong, nonatomic) TimerViewController* controller;
+@property (strong, nonatomic) IBOutlet UILabel* timerLabel;
 
 @end
 
@@ -29,7 +30,7 @@
 @synthesize timerFired;
 @synthesize menuBtn;
 @synthesize theSong;
-@synthesize theColor, controller;
+@synthesize theColor, controller, timerLabel;
 
 #pragma mark Constructor
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -66,6 +67,7 @@
 	interruptedOnPlayback = NO;
 	
     timeOut = kOffSegmentIndex;
+    timerLabel.text = @"\u221E";
     
 	natureVolume = 50.0;
     natureBrightness = 0.5;
@@ -231,19 +233,16 @@
 
 - (IBAction)timerButtonSelected:(id)sender
 {
-    //open the TimerViewController
-    //TimerViewController *controller = [[TimerViewController alloc] initWithNibName:@"TimerViewController" bundle:nil];
-	//controller.timerDelegate = self;
-    //controller.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-	[self presentViewController:controller animated:YES completion:nil];
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 #pragma mark TimerViewControllerDelegate
 
-- (void)timerViewControllerDidFinish:(NSInteger)timeValue
+- (void)timerViewControllerDidFinish:(NSInteger)timeValue timerString:(NSString*)string
 {
     [self dismissViewControllerAnimated:YES completion:nil];
     self.timeOut = timeValue;
+    self.timerLabel.text = string;
 }
 
 @end

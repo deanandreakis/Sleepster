@@ -11,7 +11,7 @@
 #define fadeoutTime 30
 
 @protocol TimerViewControllerDelegate
-- (void)timerViewControllerDidFinish:(NSInteger)timeValue;
+- (void)timerViewControllerDidFinish:(NSInteger)timeValue timerString:(NSString*)string;
 @end
 
 @interface TimerViewController : UIViewController  <UIPickerViewDataSource, UIPickerViewDelegate>
