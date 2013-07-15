@@ -52,8 +52,6 @@
 		C1403BC31728BE0900B75633 /* Info.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BC21728BE0900B75633 /* Info.png */; };
 		C1403BC51728BE2500B75633 /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BC41728BE2500B75633 /* Settings.png */; };
 		C1403BC71728BE4000B75633 /* Settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BC61728BE4000B75633 /* Settings@2x.png */; };
-		C1403BC91728BED300B75633 /* Fav-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BC81728BED300B75633 /* Fav-1@2x.png */; };
-		C1403BCB1728BEE100B75633 /* Fav-1.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BCA1728BEE100B75633 /* Fav-1.png */; };
 		C14E0EF4167573F100811389 /* SoundsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C14E0EF2167573F100811389 /* SoundsViewController.m */; };
 		C14E0EF5167573F100811389 /* SoundsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C14E0EF3167573F100811389 /* SoundsViewController.xib */; };
 		C14E0EF91675746A00811389 /* BackgroundsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C14E0EF71675746A00811389 /* BackgroundsViewController.m */; };
@@ -63,6 +61,12 @@
 		C19DB54F178E58E8001820A7 /* TimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C19DB54D178E58E8001820A7 /* TimerViewController.xib */; };
 		C19DB55117922923001820A7 /* Timer.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55017922923001820A7 /* Timer.png */; };
 		C19DB55317922947001820A7 /* Timer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55217922947001820A7 /* Timer@2x.png */; };
+		C19DB55517924ABD001820A7 /* Fav-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55417924ABD001820A7 /* Fav-1@2x.png */; };
+		C19DB55717924ACD001820A7 /* Fav-1.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55617924ACD001820A7 /* Fav-1.png */; };
+		C19DB55917935138001820A7 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55817935138001820A7 /* twitter.png */; };
+		C19DB55B17935250001820A7 /* twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55A17935250001820A7 /* twitter@2x.png */; };
+		C19DB55D1793531A001820A7 /* facebook-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55C1793531A001820A7 /* facebook-logo.png */; };
+		C19DB55F1793534F001820A7 /* facebook-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55E1793534F001820A7 /* facebook-logo@2x.png */; };
 		C1C55ED31775DF5300CF1591 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1006CC316E59B4100372838 /* Crashlytics.framework */; };
 		C1D7B40B1671A0860004D62E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D7B4091671A0860004D62E /* SettingsViewController.m */; };
 		C1D7B40C1671A0860004D62E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D7B40A1671A0860004D62E /* SettingsViewController.xib */; };
@@ -127,8 +131,6 @@
 		C1403BC21728BE0900B75633 /* Info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Info.png; sourceTree = "<group>"; };
 		C1403BC41728BE2500B75633 /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings.png; sourceTree = "<group>"; };
 		C1403BC61728BE4000B75633 /* Settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings@2x.png"; sourceTree = "<group>"; };
-		C1403BC81728BED300B75633 /* Fav-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Fav-1@2x.png"; sourceTree = "<group>"; };
-		C1403BCA1728BEE100B75633 /* Fav-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Fav-1.png"; sourceTree = "<group>"; };
 		C14E0EF1167573F100811389 /* SoundsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundsViewController.h; sourceTree = "<group>"; };
 		C14E0EF2167573F100811389 /* SoundsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundsViewController.m; sourceTree = "<group>"; };
 		C14E0EF3167573F100811389 /* SoundsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SoundsViewController.xib; sourceTree = "<group>"; };
@@ -141,6 +143,12 @@
 		C19DB54D178E58E8001820A7 /* TimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerViewController.xib; sourceTree = "<group>"; };
 		C19DB55017922923001820A7 /* Timer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Timer.png; sourceTree = "<group>"; };
 		C19DB55217922947001820A7 /* Timer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Timer@2x.png"; sourceTree = "<group>"; };
+		C19DB55417924ABD001820A7 /* Fav-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Fav-1@2x.png"; sourceTree = "<group>"; };
+		C19DB55617924ACD001820A7 /* Fav-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Fav-1.png"; sourceTree = "<group>"; };
+		C19DB55817935138001820A7 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
+		C19DB55A17935250001820A7 /* twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter@2x.png"; sourceTree = "<group>"; };
+		C19DB55C1793531A001820A7 /* facebook-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-logo.png"; sourceTree = "<group>"; };
+		C19DB55E1793534F001820A7 /* facebook-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-logo@2x.png"; sourceTree = "<group>"; };
 		C1D7B4081671A0860004D62E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		C1D7B4091671A0860004D62E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		C1D7B40A1671A0860004D62E /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -222,17 +230,21 @@
 			isa = PBXGroup;
 			children = (
 				C13D53B81782748D00CF2E78 /* Localizable.strings */,
+				C19DB55417924ABD001820A7 /* Fav-1@2x.png */,
 				C1E5F65A175C1CA10000BF16 /* Play.png */,
+				C19DB55617924ACD001820A7 /* Fav-1.png */,
 				C19DB55017922923001820A7 /* Timer.png */,
 				C1E5F65C175C1CBD0000BF16 /* Play@2x.png */,
-				C1403BCA1728BEE100B75633 /* Fav-1.png */,
-				C1403BC81728BED300B75633 /* Fav-1@2x.png */,
 				C13D53A8177D274300CF2E78 /* Default-568h@2x.png */,
+				C19DB55C1793531A001820A7 /* facebook-logo.png */,
 				C13D53B2177F741300CF2E78 /* Brightness.png */,
+				C19DB55E1793534F001820A7 /* facebook-logo@2x.png */,
 				C13D53B3177F741300CF2E78 /* Brightness@2x.png */,
 				C1403BC61728BE4000B75633 /* Settings@2x.png */,
 				C1403BC41728BE2500B75633 /* Settings.png */,
+				C19DB55817935138001820A7 /* twitter.png */,
 				C13D53B6178074DC00CF2E78 /* Default@2x.png */,
+				C19DB55A17935250001820A7 /* twitter@2x.png */,
 				C13D53AE177F67D700CF2E78 /* Speaker-2.png */,
 				C19DB55217922947001820A7 /* Timer@2x.png */,
 				C13D53AF177F67D700CF2E78 /* Speaker-2@2x.png */,
@@ -377,7 +389,10 @@
 				052C9A7C12F4ACEB00400088 /* campfire.mp3 in Resources */,
 				C19DB55317922947001820A7 /* Timer@2x.png in Resources */,
 				052C9A7D12F4ACEB00400088 /* forest.mp3 in Resources */,
+				C19DB55717924ACD001820A7 /* Fav-1.png in Resources */,
+				C19DB55F1793534F001820A7 /* facebook-logo@2x.png in Resources */,
 				052C9A7E12F4ACEB00400088 /* stream.mp3 in Resources */,
+				C19DB55D1793531A001820A7 /* facebook-logo.png in Resources */,
 				052C9A7F12F4ACEB00400088 /* waterfall.mp3 in Resources */,
 				052C9A8012F4ACEB00400088 /* waves.mp3 in Resources */,
 				C13D53B7178074DC00CF2E78 /* Default@2x.png in Resources */,
@@ -389,8 +404,10 @@
 				05AAF2FC1377085E00AD2167 /* kmoon@2x.png in Resources */,
 				05329D7E13D35FEE00F199CA /* ThunderStorm.mp3 in Resources */,
 				C1D7B40C1671A0860004D62E /* SettingsViewController.xib in Resources */,
+				C19DB55917935138001820A7 /* twitter.png in Resources */,
 				C14E0EF5167573F100811389 /* SoundsViewController.xib in Resources */,
 				C14E0EFA1675746A00811389 /* BackgroundsViewController.xib in Resources */,
+				C19DB55517924ABD001820A7 /* Fav-1@2x.png in Resources */,
 				C138149116FF47B000293B48 /* menuButton@2x.png in Resources */,
 				C1403BB51728B69500B75633 /* home-2.png in Resources */,
 				C1403BB71728B6B400B75633 /* home-2@2x.png in Resources */,
@@ -403,13 +420,12 @@
 				C13D53B91782748D00CF2E78 /* Localizable.strings in Resources */,
 				C19DB55117922923001820A7 /* Timer.png in Resources */,
 				C13D53B1177F67D700CF2E78 /* Speaker-2@2x.png in Resources */,
+				C19DB55B17935250001820A7 /* twitter@2x.png in Resources */,
 				C1403BC31728BE0900B75633 /* Info.png in Resources */,
 				C13D53A9177D274300CF2E78 /* Default-568h@2x.png in Resources */,
 				C1403BC51728BE2500B75633 /* Settings.png in Resources */,
 				C1403BC71728BE4000B75633 /* Settings@2x.png in Resources */,
-				C1403BC91728BED300B75633 /* Fav-1@2x.png in Resources */,
 				C13D53B4177F741300CF2E78 /* Brightness.png in Resources */,
-				C1403BCB1728BEE100B75633 /* Fav-1.png in Resources */,
 				C1E5F65B175C1CA10000BF16 /* Play.png in Resources */,
 				C1E5F65D175C1CBD0000BF16 /* Play@2x.png in Resources */,
 			);

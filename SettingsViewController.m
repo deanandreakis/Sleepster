@@ -41,4 +41,32 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark sound and background values
+
+-(IBAction)soundMixSwitch:(id)sender
+{
+    //TODO: storekit logic
+    UISwitch* switcher = (UISwitch *)sender;
+    if([switcher isOn])
+    {
+        //NSLog(@"switch is ON");
+    }
+    else{
+        //NSLog(@"switch is OFF");
+    }
+}
+
+-(IBAction)backgroundMixSwitch:(id)sender
+{
+    //TODO: storekit logic
+    UISwitch* switcher = (UISwitch *)sender;
+    if([switcher isOn])
+    {
+        //NSLog(@"switch is ON");
+    }
+    else{
+        //NSLog(@"switch is OFF");
+    }
+}
+
 @end
