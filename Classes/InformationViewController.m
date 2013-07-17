@@ -22,7 +22,7 @@
 
 @implementation InformationViewController
 
-@synthesize delegate;
+
 @synthesize menuBtn;
 
 - (void)viewDidLoad {

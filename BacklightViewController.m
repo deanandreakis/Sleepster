@@ -18,11 +18,27 @@
     self.view.backgroundColor = backgroundColor;
     [[UIScreen mainScreen] setBrightness:brightness];
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(batteryLevelDidChange:)
+                                                 name:UIDeviceBatteryLevelDidChangeNotification
+                                               object:nil];
 }
 
 - (IBAction)done:(id)sender {
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     [self.bgDelegate backlightViewControllerDidFinish:self];
+}
+
+-(void)batteryLevelDidChange
+{
+    float batteryLevel = [UIDevice currentDevice].batteryLevel;
+    if(batteryLevel <= 0.1f)
+    {
+        [self done:nil];
+    }
+    NSLog(@"BATTERY LEVEL CHANGED TO: %f", batteryLevel);
 }
 
 

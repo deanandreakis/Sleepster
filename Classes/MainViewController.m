@@ -10,6 +10,9 @@
 #import "iSleepAppDelegate.h"
 #import "Constants.h"
 
+#define UNPLUGGEDGREATER20 90
+#define UNPLUGGEDLESS20 91
+
 @interface MainViewController ()
 
 @property(strong, nonatomic) AVAudioPlayer* theSong;
@@ -38,6 +41,8 @@
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         NSString *pathToMusicFile0 = [[NSBundle mainBundle] pathForResource:@"campfire" ofType:@"mp3"];
         theSong = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL fileURLWithPath:pathToMusicFile0] error:NULL];
+        [theSong setNumberOfLoops:-1];
+		[theSong prepareToPlay];
         theColor = [UIColor whiteColor];
             }
     return self;
@@ -49,7 +54,7 @@
 
 - (void)viewDidLoad {
     
-	self.view.backgroundColor = theColor;//[UIColor whiteColor];
+	self.view.backgroundColor = theColor;
 	
 	/*Setup battery state monitoring*/
 	[UIDevice currentDevice].batteryMonitoringEnabled = YES;
@@ -89,12 +94,6 @@
 }
 
 
-
-- (void)flipsideViewControllerDidFinish:(InformationViewController *)controller {
-    
-	[self dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (void)backlightViewControllerDidFinish:(BacklightViewController *)controller {	
     
     if([theSong isPlaying] && !timerFired)
@@ -117,16 +116,32 @@
 - (IBAction) startSleeping {
 	
     //check for battery state; if unplugged show an alert
-	if ([UIDevice currentDevice].batteryState == UIDeviceBatteryStateUnplugged) {
+	if ([UIDevice currentDevice].batteryState == UIDeviceBatteryStateUnplugged &&
+        [UIDevice currentDevice].batteryLevel >= 0.2f)
+    {
 		UIAlertView *alertView = [[UIAlertView alloc]
                                   initWithTitle:NSLocalizedString(@"Plug In",nil)
                                   message:NSLocalizedString(@"Please Plug In to Avoid Draining the Battery",nil)
-                                  delegate:nil
+                                  delegate:self
                                   cancelButtonTitle:NSLocalizedString(@"Continue",nil)
                                   otherButtonTitles:nil];
-         alertView.delegate = self;
-		[alertView show];
-	} else {
+		alertView.tag = UNPLUGGEDGREATER20;
+        [alertView show];
+	}
+    else if ([UIDevice currentDevice].batteryState == UIDeviceBatteryStateUnplugged &&
+       [UIDevice currentDevice].batteryLevel < 0.2f)
+    {
+		UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:NSLocalizedString(@"Plug In",nil)
+                                  message:NSLocalizedString(@"batteryproblem",nil)
+                                  delegate:self
+                                  cancelButtonTitle:NSLocalizedString(@"Continue",nil)
+                                  otherButtonTitles:nil];
+		alertView.tag = UNPLUGGEDLESS20;
+        [alertView show];
+	}
+    else //device is plugged in/charging
+    {
         [self reallyStartSleeping];
     }
 }
@@ -159,7 +174,18 @@
 #pragma mark UIAlertView delegate method
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [self reallyStartSleeping];
+    if(alertView.tag == UNPLUGGEDGREATER20)
+    {
+        [self reallyStartSleeping];
+    }
+    else if(alertView.tag == UNPLUGGEDLESS20)
+    {
+        //user plugs in while the alert is dispalyed
+        if ([UIDevice currentDevice].batteryState != UIDeviceBatteryStateUnplugged)//plugged in
+        {
+            [self reallyStartSleeping];
+        }
+    }
 }
 
 #pragma mark NSTimer Fired

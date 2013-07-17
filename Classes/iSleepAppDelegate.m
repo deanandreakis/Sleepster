@@ -25,8 +25,6 @@
     
 	[Crashlytics startWithAPIKey:@"2eaad7ad1fecfce6c414905676a8175bb2a1c253"];
     
-    application.idleTimerDisabled = YES;
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     mainViewController = [[MainViewController alloc] initWithNibName:@"MainView" bundle:nil];

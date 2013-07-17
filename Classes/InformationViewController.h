@@ -9,15 +9,8 @@
 @protocol FlipsideViewControllerDelegate;
 
 @interface InformationViewController : UIViewController {
-	id <FlipsideViewControllerDelegate> __weak delegate;
 }
 
-@property (nonatomic, weak) id <FlipsideViewControllerDelegate> delegate;
 
-@end
-
-
-@protocol FlipsideViewControllerDelegate
-- (void)flipsideViewControllerDidFinish:(InformationViewController *)controller;
 @end
 

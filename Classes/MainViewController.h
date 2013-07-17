@@ -18,7 +18,7 @@
 
 
 @interface MainViewController : UIViewController 
-    <FlipsideViewControllerDelegate,BacklightViewControllerDelegate,
+    <BacklightViewControllerDelegate,
 AVAudioPlayerDelegate, SoundsViewControllerDelegate, BackgroundsViewControllerDelegate, UIAlertViewDelegate,
 UIActionSheetDelegate, TimerViewControllerDelegate>
 {
