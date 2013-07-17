@@ -13,12 +13,13 @@
 @property (strong, nonatomic) IBOutlet UIPickerView* pickerView;
 @property (assign, nonatomic) NSInteger timeOut;
 @property (strong, nonatomic) NSArray *minutesArray;
+@property (strong, nonatomic) IBOutlet UILabel* minutesLabel;
 
 @end
 
 @implementation TimerViewController
 
-@synthesize pickerView, timeOut, timerDelegate, minutesArray;
+@synthesize pickerView, timeOut, timerDelegate, minutesArray, minutesLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,7 +37,9 @@
     pickerView.delegate = self;
     pickerView.dataSource = self;
     timeOut = 0;
-    self.minutesArray = [NSArray arrayWithObjects:@"\u221E", @"15", @"30", @"60", @"90", nil];
+    //self.minutesArray = [NSArray arrayWithObjects:@"\u221E", @"15", @"30", @"60", @"90", nil];
+    self.minutesArray = [NSArray arrayWithObjects:NSLocalizedString(@"OFF",nil), @"15", @"30", @"60", @"90", nil];
+    self.minutesLabel.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,6 +79,14 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
+    if(row == 0)
+    {
+        self.minutesLabel.hidden = YES;
+    }
+    else
+    {
+        self.minutesLabel.hidden = NO;
+    }
 }
 
 

@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TimerViewController">
             <connections>
+                <outlet property="minutesLabel" destination="2Pn-Vz-IAe" id="9GC-KZ-57Z"/>
                 <outlet property="pickerView" destination="nG2-PX-gNU" id="eYr-Ur-VqM"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>

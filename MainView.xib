@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
             <connections>
+                <outlet property="minutesLabel" destination="JT5-0t-Syx" id="mwY-Vi-e3z"/>
                 <outlet property="timerLabel" destination="LMr-h4-7sS" id="lxk-D9-p4T"/>
                 <outlet property="view" destination="34" id="35"/>
             </connections>

@@ -17,6 +17,7 @@
 @property (assign, nonatomic) float natureBrightness;
 @property (strong, nonatomic) TimerViewController* controller;
 @property (strong, nonatomic) IBOutlet UILabel* timerLabel;
+@property (strong, nonatomic) IBOutlet UILabel* minutesLabel;
 
 @end
 
@@ -30,7 +31,7 @@
 @synthesize timerFired;
 @synthesize menuBtn;
 @synthesize theSong;
-@synthesize theColor, controller, timerLabel;
+@synthesize theColor, controller, timerLabel, minutesLabel;
 
 #pragma mark Constructor
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -67,7 +68,8 @@
 	interruptedOnPlayback = NO;
 	
     timeOut = kOffSegmentIndex;
-    timerLabel.text = @"\u221E";
+    timerLabel.text = @"OFF";
+    self.minutesLabel.hidden = YES;
     
 	natureVolume = 50.0;
     natureBrightness = 0.5;
@@ -117,10 +119,10 @@
     //check for battery state; if unplugged show an alert
 	if ([UIDevice currentDevice].batteryState == UIDeviceBatteryStateUnplugged) {
 		UIAlertView *alertView = [[UIAlertView alloc]
-                                  initWithTitle:@"Plug In"
-                                  message:@"Please Plug In to Avoid Draining the Battery"
+                                  initWithTitle:NSLocalizedString(@"Plug In",nil)
+                                  message:NSLocalizedString(@"Please Plug In to Avoid Draining the Battery",nil)
                                   delegate:nil
-                                  cancelButtonTitle:@"Continue"
+                                  cancelButtonTitle:NSLocalizedString(@"Continue",nil)
                                   otherButtonTitles:nil];
          alertView.delegate = self;
 		[alertView show];
@@ -243,6 +245,14 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     self.timeOut = timeValue;
     self.timerLabel.text = string;
+    if([string isEqualToString:NSLocalizedString(@"OFF",nil)])
+    {
+        self.minutesLabel.hidden = YES;
+    }
+    else
+    {
+        self.minutesLabel.hidden = NO;
+    }
 }
 
 @end
