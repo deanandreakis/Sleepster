@@ -34,7 +34,7 @@
 -(void)batteryLevelDidChange
 {
     float batteryLevel = [UIDevice currentDevice].batteryLevel;
-    if(batteryLevel <= 0.1f)
+    if(batteryLevel <= 0.1f && [UIDevice currentDevice].batteryState == UIDeviceBatteryStateUnplugged)
     {
         [self done:nil];
     }
