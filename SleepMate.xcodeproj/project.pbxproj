@@ -33,6 +33,7 @@
 		288765590DF743DE002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765580DF743DE002DB57D /* CoreGraphics.framework */; };
 		289233AE0DB2D0DB0083E9F9 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */; };
 		289233B00DB2D0DB0083E9F9 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233AD0DB2D0DB0083E9F9 /* InformationViewController.m */; };
+		3BE26FC5BF3743EE86055DBB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A62217691834AE09BD858BB /* libPods.a */; };
 		C138149116FF47B000293B48 /* menuButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C138149016FF47B000293B48 /* menuButton@2x.png */; };
 		C13D53A9177D274300CF2E78 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C13D53A8177D274300CF2E78 /* Default-568h@2x.png */; };
 		C13D53AB177D274E00CF2E78 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C13D53AA177D274E00CF2E78 /* Default.png */; };
@@ -68,6 +69,13 @@
 		C19DB55D1793531A001820A7 /* facebook-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55C1793531A001820A7 /* facebook-logo.png */; };
 		C19DB55F1793534F001820A7 /* facebook-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55E1793534F001820A7 /* facebook-logo@2x.png */; };
 		C1C55ED31775DF5300CF1591 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1006CC316E59B4100372838 /* Crashlytics.framework */; };
+		C1C6080517982E0C0099590F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C6080417982E0C0099590F /* CoreData.framework */; };
+		C1C6080917982F650099590F /* SleepsterModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C1C6080717982F650099590F /* SleepsterModel.xcdatamodeld */; };
+		C1C60810179849140099590F /* Background.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C6080F179849140099590F /* Background.m */; };
+		C1C6081417984DFC0099590F /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C6081317984DFC0099590F /* DatabaseManager.m */; };
+		C1C608191798620B0099590F /* FlickrAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C608181798620B0099590F /* FlickrAPIClient.m */; };
+		C1C6081B1798638E0099590F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C6081A1798638E0099590F /* SystemConfiguration.framework */; };
+		C1C6081D1798639A0099590F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C6081C1798639A0099590F /* MobileCoreServices.framework */; };
 		C1D7B40B1671A0860004D62E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D7B4091671A0860004D62E /* SettingsViewController.m */; };
 		C1D7B40C1671A0860004D62E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D7B40A1671A0860004D62E /* SettingsViewController.xib */; };
 		C1E5F65B175C1CA10000BF16 /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E5F65A175C1CA10000BF16 /* Play.png */; };
@@ -109,6 +117,7 @@
 		289233AD0DB2D0DB0083E9F9 /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InformationViewController.m; path = Classes/InformationViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* SleepMate_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SleepMate_Prefix.pch; sourceTree = "<group>"; };
+		8A62217691834AE09BD858BB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D1107310486CEB800E47090 /* SleepMate-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SleepMate-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		C1006CC316E59B4100372838 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		C138149016FF47B000293B48 /* menuButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuButton@2x.png"; sourceTree = "<group>"; };
@@ -149,6 +158,17 @@
 		C19DB55A17935250001820A7 /* twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter@2x.png"; sourceTree = "<group>"; };
 		C19DB55C1793531A001820A7 /* facebook-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-logo.png"; sourceTree = "<group>"; };
 		C19DB55E1793534F001820A7 /* facebook-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-logo@2x.png"; sourceTree = "<group>"; };
+		C1C6080417982E0C0099590F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C1C6080817982F650099590F /* SleepsterModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SleepsterModel.xcdatamodel; sourceTree = "<group>"; };
+		C1C6080E179849140099590F /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
+		C1C6080F179849140099590F /* Background.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Background.m; sourceTree = "<group>"; };
+		C1C6081117984D580099590F /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
+		C1C6081217984DFC0099590F /* DatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseManager.h; sourceTree = "<group>"; };
+		C1C6081317984DFC0099590F /* DatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseManager.m; sourceTree = "<group>"; };
+		C1C608171798620B0099590F /* FlickrAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrAPIClient.h; sourceTree = "<group>"; };
+		C1C608181798620B0099590F /* FlickrAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrAPIClient.m; sourceTree = "<group>"; };
+		C1C6081A1798638E0099590F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C1C6081C1798639A0099590F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C1D7B4081671A0860004D62E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		C1D7B4091671A0860004D62E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		C1D7B40A1671A0860004D62E /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -161,12 +181,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1C6081D1798639A0099590F /* MobileCoreServices.framework in Frameworks */,
+				C1C6081B1798638E0099590F /* SystemConfiguration.framework in Frameworks */,
+				C1C6080517982E0C0099590F /* CoreData.framework in Frameworks */,
 				C1C55ED31775DF5300CF1591 /* Crashlytics.framework in Frameworks */,
 				C14E0EFC1675772400811389 /* Social.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765590DF743DE002DB57D /* CoreGraphics.framework in Frameworks */,
 				05E1D073128EF5FA00922B40 /* AVFoundation.framework in Frameworks */,
+				3BE26FC5BF3743EE86055DBB /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +218,7 @@
 		289233A00DB2D0730083E9F9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				C1C6081117984D580099590F /* SynthesizeSingleton.h */,
 				C138164A17486C2C00F89C66 /* Constants.h */,
 				052E288313691D7000AC496D /* AVAudioPlayer+PGFade.m */,
 				052E288213691D5E00AC496D /* AVAudioPlayer+PGFade.h */,
@@ -204,6 +229,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				C1C60816179861F00099590F /* API */,
+				C1C6080617982F2A0099590F /* Model */,
 				C1D7B40716719F8B0004D62E /* Controllers */,
 				C1D7B40516719F080004D62E /* Views */,
 				289233A00DB2D0730083E9F9 /* Utilities */,
@@ -279,14 +306,39 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C1C6081C1798639A0099590F /* MobileCoreServices.framework */,
+				C1C6081A1798638E0099590F /* SystemConfiguration.framework */,
+				C1C6080417982E0C0099590F /* CoreData.framework */,
 				C14E0EFB1675772400811389 /* Social.framework */,
 				C1006CC316E59B4100372838 /* Crashlytics.framework */,
 				05E1D072128EF5FA00922B40 /* AVFoundation.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765580DF743DE002DB57D /* CoreGraphics.framework */,
+				8A62217691834AE09BD858BB /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C1C6080617982F2A0099590F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C1C6081217984DFC0099590F /* DatabaseManager.h */,
+				C1C6081317984DFC0099590F /* DatabaseManager.m */,
+				C1C6080E179849140099590F /* Background.h */,
+				C1C6080F179849140099590F /* Background.m */,
+				C1C6080717982F650099590F /* SleepsterModel.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C1C60816179861F00099590F /* API */ = {
+			isa = PBXGroup;
+			children = (
+				C1C608171798620B0099590F /* FlickrAPIClient.h */,
+				C1C608181798620B0099590F /* FlickrAPIClient.m */,
+			);
+			name = API;
 			sourceTree = "<group>";
 		};
 		C1D7B40516719F080004D62E /* Views */ = {
@@ -331,6 +383,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "SleepMate" */;
 			buildPhases = (
+				9886B3527ED34D82A735302C /* Check Pods Manifest.lock */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
@@ -447,6 +500,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9886B3527ED34D82A735302C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 		C1006CC216E59A9000372838 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -469,15 +538,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				C1C608191798620B0099590F /* FlickrAPIClient.m in Sources */,
 				1D3623260D0F684500981E51 /* iSleepAppDelegate.m in Sources */,
+				C1C6080917982F650099590F /* SleepsterModel.xcdatamodeld in Sources */,
 				C19DB54E178E58E8001820A7 /* TimerViewController.m in Sources */,
 				289233AE0DB2D0DB0083E9F9 /* MainViewController.m in Sources */,
 				289233B00DB2D0DB0083E9F9 /* InformationViewController.m in Sources */,
 				05692F7311C1E6F800A119A4 /* BacklightViewController.m in Sources */,
+				C1C60810179849140099590F /* Background.m in Sources */,
 				052E288413691D7000AC496D /* AVAudioPlayer+PGFade.m in Sources */,
 				C1D7B40B1671A0860004D62E /* SettingsViewController.m in Sources */,
 				C14E0EF4167573F100811389 /* SoundsViewController.m in Sources */,
 				C14E0EF91675746A00811389 /* BackgroundsViewController.m in Sources */,
+				C1C6081417984DFC0099590F /* DatabaseManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,6 +689,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C1C6080717982F650099590F /* SleepsterModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C1C6080817982F650099590F /* SleepsterModel.xcdatamodel */,
+			);
+			currentVersion = C1C6080817982F650099590F /* SleepsterModel.xcdatamodel */;
+			path = SleepsterModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
 }
