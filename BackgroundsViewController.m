@@ -8,10 +8,12 @@
 
 #import "BackgroundsViewController.h"
 #import "Constants.h"
+#import "Background.h"
 
 @interface BackgroundsViewController ()
 @property (strong, nonatomic) NSArray *colorArray;
 @property (strong, nonatomic) UIButton *menuBtn;
+@property (nonatomic, strong) NSArray *backgrounds;
 @end
 
 @implementation BackgroundsViewController
@@ -41,6 +43,11 @@
                   [UIColor clearColor],nil];
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
+    
+    /* Fetch Flickr Photos */
+    [Background fetchPics:^(NSArray *backgrounds) {
+        self.backgrounds = backgrounds;
+    }];
 }
 
 
