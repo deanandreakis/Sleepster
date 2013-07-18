@@ -9,6 +9,7 @@
 #import "Background.h"
 #import "FlickrAPIClient.h"
 #import "Constants.h"
+#import "DatabaseManager.h"
 
 @implementation Background
 
@@ -21,6 +22,8 @@
 
 //params
 //&api_key=6dbd76ac76dcb9f495b15ed1caddd80a&tags=ocean%2Criver%2Ccrickets&privacy_filter=1&group_id=11011571%40N00&format=json&nojsoncallback=1
+
+//http://www.flickr.com/services/api/flickr.photos.search.html
 
 + (void)fetchPics:(PicsBlock)block {
     
@@ -38,7 +41,7 @@
                                           success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                               NSLog(@"Response: %@", responseObject);
                                               NSMutableArray *results = [NSMutableArray array];
-                                              for (id picDictionary in responseObject[@"photo"]) {
+                                              for (id picDictionary in responseObject[@"photos"][@"photo"]) {
                                                   Background *background = [Background postWithDictionary:picDictionary];
                                                   [results addObject:background];
                                               }
@@ -54,13 +57,19 @@
 }
 
 + (id)postWithDictionary:(NSDictionary *)dictionary {
-    Background *background = [[Background alloc] init];
+    NSManagedObjectContext *context = [[DatabaseManager sharedDatabaseManager] managedObjectContext];
+    Background *background = [NSEntityDescription insertNewObjectForEntityForName:@"Background"
+                                            inManagedObjectContext:context];
     background.bTitle = dictionary[@"title"];
     background.isImage = @YES;
     background.isFavorite = @NO;
     background.bColor = nil;
     background.bThumbnailUrl = [Background createThumbnailUrl:dictionary];
     background.bFullSizeUrl = [Background createFullSizeUrl:dictionary];
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
     return background;
 }
 
