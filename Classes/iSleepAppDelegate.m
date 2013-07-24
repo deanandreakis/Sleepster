@@ -28,6 +28,14 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    //initialize CoreData
+    [[DatabaseManager sharedDatabaseManager] managedObjectContext];
+    
+    if([[DatabaseManager sharedDatabaseManager] isDBNotExist])
+    {
+        [[DatabaseManager sharedDatabaseManager] prePopulate];
+    }
+    
     mainViewController = [[MainViewController alloc] initWithNibName:@"MainView" bundle:nil];
     mainViewController.tabBarItem.title = @"Main";
     mainViewController.tabBarItem.image = [UIImage imageNamed:@"home-2.png"];

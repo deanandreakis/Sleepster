@@ -12,7 +12,7 @@
 - (void)backgroundSelected:(UIColor*)background;
 @end
 
-@interface BackgroundsViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface BackgroundsViewController : UICollectionViewController <NSFetchedResultsControllerDelegate,UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property(assign) id<BackgroundsViewControllerDelegate> delegate;
 

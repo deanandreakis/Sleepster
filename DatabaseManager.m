@@ -9,6 +9,7 @@
 #import "DatabaseManager.h"
 #import "SynthesizeSingleton.h"
 #import "iSleepAppDelegate.h"
+#import "Background.h"
 
 @implementation DatabaseManager
 
@@ -116,7 +117,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DatabaseManager);
          
          */
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+        //abort();
     }    
     
     return __persistentStoreCoordinator;
@@ -139,107 +140,36 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DatabaseManager);
 }
 
 
-//- (void)prePopulate:(NSString *)tripName startDate:(NSDate *)startDate endDate:(NSDate *)endDate
-//{
-//    NSManagedObjectContext *context = [self managedObjectContext];
-//    Trip *trip = [NSEntityDescription insertNewObjectForEntityForName:@"Trip" 
-//                                               inManagedObjectContext:context];
-//    trip.name = tripName;
-//    trip.startDate = startDate;
-//    trip.endDate = endDate;
-//    
-//    /*This block reads strings from custom.strings and populates a Home array with them*/
-//    int numHomeStrings = 11; // number of pre-populated home strings
-//    NSString *homeString = @"Home_";
-//    NSMutableArray *homeArray = [NSMutableArray arrayWithCapacity:numHomeStrings];
-//    Home *home[numHomeStrings];
-//    for (int index = 0; index < numHomeStrings; index++) {
-//        home[index] = [NSEntityDescription insertNewObjectForEntityForName:@"Home" 
-//                                                    inManagedObjectContext:context];
-//        NSNumber *number = [NSNumber numberWithInt:index];
-//        home[index].itemDescription = NSLocalizedStringFromTable ([homeString stringByAppendingString:
-//                                                                   [number stringValue]], @"Custom", nil);
-//        home[index].completionStatus = FALSE;
-//        home[index].trip = trip;
-//        [homeArray addObject:home[index]];
-//    }
-//    
-//    /*This block reads strings from custom.strings and populates a Packing array with them*/
-//    int numPackStrings = 8; // number of pre-populated pack strings
-//    NSString *packString = @"Packing_";
-//    NSMutableArray *packArray = [NSMutableArray arrayWithCapacity:numPackStrings];
-//    Packing *pack[numPackStrings];
-//    for (int index = 0; index < numPackStrings; index++) {
-//        pack[index] = [NSEntityDescription insertNewObjectForEntityForName:@"Packing" 
-//                                                    inManagedObjectContext:context];
-//        NSNumber *number = [NSNumber numberWithInt:index];
-//        pack[index].itemDescription = NSLocalizedStringFromTable ([packString stringByAppendingString:
-//                                                                   [number stringValue]], @"Custom", nil);
-//        pack[index].completionStatus = FALSE;
-//        pack[index].trip = trip;
-//        [packArray addObject:pack[index]];
-//    }
-//    
-//    /*This block reads strings from custom.strings and populates a Leaving array with them*/
-//    int numLeavingStrings = 12; // number of pre-populated pack strings
-//    NSString *leavingString = @"Leaving_";
-//    NSMutableArray *leavingArray = [NSMutableArray arrayWithCapacity:numLeavingStrings];
-//    Leaving *leaving[numLeavingStrings];
-//    for (int index = 0; index < numLeavingStrings; index++) {
-//        leaving[index] = [NSEntityDescription insertNewObjectForEntityForName:@"Leaving" 
-//                                                       inManagedObjectContext:context];
-//        NSNumber *number = [NSNumber numberWithInt:index];
-//        leaving[index].itemDescription = NSLocalizedStringFromTable ([leavingString stringByAppendingString:
-//                                                                      [number stringValue]], @"Custom", nil);
-//        leaving[index].completionStatus = FALSE;
-//        leaving[index].trip = trip;
-//        [leavingArray addObject:leaving[index]];
-//    }
-//    
-//    /*This block reads strings from custom.strings and populates an Itinerary array with them*/
-//    int numItineraryStrings = 4; // number of pre-populated returning strings
-//    NSString *itineraryString = @"Itinerary_";
-//    NSMutableArray *itineraryArray = [NSMutableArray arrayWithCapacity:numItineraryStrings];
-//    Itinerary *itinerary[numItineraryStrings];
-//    for (int index = 0; index < numItineraryStrings; index++) {
-//        itinerary[index] = [NSEntityDescription insertNewObjectForEntityForName:@"Itinerary" 
-//                                                       inManagedObjectContext:context];
-//        NSNumber *number = [NSNumber numberWithInt:index];
-//        itinerary[index].itemDescription = NSLocalizedStringFromTable ([itineraryString stringByAppendingString:
-//                                                                      [number stringValue]], @"Custom", nil);
-//        itinerary[index].completionStatus = FALSE;
-//        itinerary[index].trip = trip;
-//        [itineraryArray addObject:itinerary[index]];
-//    }
-//    
-//    /*This block reads strings from custom.strings and populates an Returning array with them*/
-//    int numReturningStrings = 5; // number of pre-populated returning strings
-//    NSString *returningString = @"Returning_";
-//    NSMutableArray *returningArray = [NSMutableArray arrayWithCapacity:numReturningStrings];
-//    Returning *returning[numReturningStrings];
-//    for (int index = 0; index < numReturningStrings; index++) {
-//        returning[index] = [NSEntityDescription insertNewObjectForEntityForName:@"Returning" 
-//                                                         inManagedObjectContext:context];
-//        NSNumber *number = [NSNumber numberWithInt:index];
-//        returning[index].itemDescription = NSLocalizedStringFromTable ([returningString stringByAppendingString:
-//                                                                        [number stringValue]], @"Custom", nil);
-//        returning[index].completionStatus = FALSE;
-//        returning[index].trip = trip;
-//        [returningArray addObject:returning[index]];
-//    }
-//    
-//    //Adds the Home, Packing, Leaving, Itinierary, Returning entities to the Trip Entitiy
-//    [trip addHome:[NSOrderedSet orderedSetWithArray:homeArray]];
-//    [trip addPacking:[NSOrderedSet orderedSetWithArray:packArray]];
-//    [trip addLeaving:[NSOrderedSet orderedSetWithArray:leavingArray]];
-//    [trip addItinerary:[NSOrderedSet orderedSetWithArray:itineraryArray]];
-//    [trip addReturning:[NSOrderedSet orderedSetWithArray:returningArray]];
-//    
-//    NSError *error;
-//    if (![context save:&error]) {
-//        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-//    }
-//}
+- (void)prePopulate
+{
+    NSArray* colorArray = [[NSArray alloc] initWithObjects:@"whiteColor",
+                  @"blueColor", @"redColor", @"greenColor",
+                  @"blackColor",@"darkGrayColor",
+                  @"lightGrayColor",@"grayColor",
+                  @"cyanColor",@"yellowColor",
+                  @"magentaColor",@"orangeColor",
+                  @"purpleColor",@"brownColor",
+                  @"clearColor",nil];
+    
+    NSManagedObjectContext *context = [self managedObjectContext];
+    Background *bg[[colorArray count]];
+    for (int index = 0; index < [colorArray count]; index++) {
+        bg[index] = [NSEntityDescription insertNewObjectForEntityForName:@"Background"
+                                                    inManagedObjectContext:context];
+        bg[index].bTitle = colorArray[index];
+        bg[index].bThumbnailUrl = nil;
+        bg[index].bFullSizeUrl = nil;
+        bg[index].bColor = colorArray[index];
+        bg[index].isFavorite = @YES;
+        bg[index].isImage = @NO;
+        bg[index].isSelected = @NO;
+    }
+    
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+}
 
 /*
 - (void) printAllTrips
@@ -271,5 +201,26 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DatabaseManager);
         }
     }
 }*/
+
+
+ - (BOOL) isDBNotExist
+ {
+     // Test listing all Trips
+     NSError *error;
+     NSManagedObjectContext *context = [self managedObjectContext];
+     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Background"
+                                               inManagedObjectContext:context];
+     [fetchRequest setEntity:entity];
+     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+     if([fetchedObjects count] == 0)
+     {
+         return TRUE;
+     }
+     else
+     {
+         return FALSE;
+     }
+ }
 
 @end

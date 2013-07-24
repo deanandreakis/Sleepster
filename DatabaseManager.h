@@ -15,9 +15,9 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 + (DatabaseManager *)sharedDatabaseManager;
-//- (void) prePopulate:(NSString *)tripName startDate:(NSDate *)startDate endDate:(NSDate *)endDate;
+- (void) prePopulate;
 - (void) initializeDB;
-//- (void) printAllTrips;
+- (BOOL)isDBNotExist;
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 

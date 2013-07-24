@@ -18,6 +18,7 @@
 @dynamic bThumbnailUrl;
 @dynamic isImage;
 @dynamic isFavorite;
+@dynamic isSelected;
 @dynamic bColor;
 
 //params
@@ -63,6 +64,7 @@
     background.bTitle = dictionary[@"title"];
     background.isImage = @YES;
     background.isFavorite = @NO;
+    background.isSelected = @NO;
     background.bColor = nil;
     background.bThumbnailUrl = [Background createThumbnailUrl:dictionary];
     background.bFullSizeUrl = [Background createFullSizeUrl:dictionary];
