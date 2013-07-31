@@ -14,5 +14,6 @@
 #define FLICKR_API_KEY @"ab284ac09b04f83cf5af22e4bc3b6e56"
 #define FLICKR_SECRET e2e0f5b8158b1f83
 
+#define FLICKR_THUMBNAIL_SIZE 70
 
 #endif

@@ -7,9 +7,10 @@
 //http://www.raywenderlich.com/22324/beginning-uicollectionview-in-ios-6-part-12
 
 #import <UIKit/UIKit.h>
+#import "Background.h"
 
 @protocol BackgroundsViewControllerDelegate <NSObject>
-- (void)backgroundSelected:(UIColor*)background;
+- (void)backgroundSelected:(Background*)background;
 @end
 
 @interface BackgroundsViewController : UICollectionViewController <NSFetchedResultsControllerDelegate,UICollectionViewDataSource, UICollectionViewDelegate>

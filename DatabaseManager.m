@@ -152,6 +152,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DatabaseManager);
                   @"clearColor",nil];
     
     NSManagedObjectContext *context = [self managedObjectContext];
+    [context lock];
     Background *bg[[colorArray count]];
     for (int index = 0; index < [colorArray count]; index++) {
         bg[index] = [NSEntityDescription insertNewObjectForEntityForName:@"Background"
@@ -169,6 +170,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DatabaseManager);
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
+    [context unlock];
+    
+    [Background fetchPics:^(NSArray *backgrounds) {
+    }];
 }
 
 /*

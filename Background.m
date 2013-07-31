@@ -30,7 +30,7 @@
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             FLICKR_API_KEY, @"api_key",
-                            @"ocean", @"tags",
+                            @"ocean,waves,rain,wind,waterfall,stream,forest,fire", @"tags",
                             @"1", @"privacy_filter",
                             @"11011571@N00", @"group_id",
                             @"json", @"format",
@@ -46,6 +46,7 @@
                                                   Background *background = [Background postWithDictionary:picDictionary];
                                                   [results addObject:background];
                                               }
+                                              NSLog(@"FLICKR RESULT NUMBER:%d",[results count]);
                                               if (block)
                                                   block(results);
                                           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -59,6 +60,7 @@
 
 + (id)postWithDictionary:(NSDictionary *)dictionary {
     NSManagedObjectContext *context = [[DatabaseManager sharedDatabaseManager] managedObjectContext];
+    [context lock];
     Background *background = [NSEntityDescription insertNewObjectForEntityForName:@"Background"
                                             inManagedObjectContext:context];
     background.bTitle = dictionary[@"title"];
@@ -72,6 +74,7 @@
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
+    [context unlock];
     return background;
 }
 

@@ -232,11 +232,18 @@
 }
 
 #pragma mark BackgroundsViewControllerDelegate methods
-- (void)backgroundSelected:(UIColor *)background
+- (void)backgroundSelected:(Background *)background
 {
     NSLog(@"got background event");
-    self.theColor = background;
-    self.view.backgroundColor = theColor;
+    if([background.isImage  isEqual: @NO])
+    {
+        self.theColor = [self convertStringToUIColor:background.bColor];
+        self.view.backgroundColor = theColor;
+    }
+    else
+    {
+        //put code here to set an ImageView.image equal to image passed in background object
+    }
 }
 
 #pragma mark Volume Slider
@@ -279,6 +286,30 @@
     {
         self.minutesLabel.hidden = NO;
     }
+}
+
+#pragma mark - Utility Functions
+- (UIColor*)convertStringToUIColor:(NSString*)colorString
+{
+    UIColor* finalColor = [UIColor whiteColor];
+    
+    if([colorString isEqualToString:@"whiteColor"]) finalColor = [UIColor whiteColor];
+    if([colorString isEqualToString:@"blueColor"]) finalColor =  [UIColor blueColor];
+    if([colorString isEqualToString:@"redColor"]) finalColor = [UIColor redColor];
+    if([colorString isEqualToString:@"greenColor"]) finalColor = [UIColor greenColor];
+    if([colorString isEqualToString:@"blackColor"]) finalColor = [UIColor blackColor];
+    if([colorString isEqualToString:@"darkGrayColor"]) finalColor = [UIColor darkGrayColor];
+    if([colorString isEqualToString:@"lightGrayColor"]) finalColor = [UIColor lightGrayColor];
+    if([colorString isEqualToString:@"grayColor"]) finalColor = [UIColor grayColor];
+    if([colorString isEqualToString:@"cyanColor"]) finalColor = [UIColor cyanColor];
+    if([colorString isEqualToString:@"yellowColor"]) finalColor = [UIColor yellowColor];
+    if([colorString isEqualToString:@"magentaColor"]) finalColor = [UIColor magentaColor];
+    if([colorString isEqualToString:@"orangeColor"]) finalColor = [UIColor orangeColor];
+    if([colorString isEqualToString:@"purpleColor"]) finalColor = [UIColor purpleColor];
+    if([colorString isEqualToString:@"brownColor"]) finalColor = [UIColor brownColor];
+    if([colorString isEqualToString:@"clearColor"]) finalColor = [UIColor clearColor];
+    
+    return finalColor;
 }
 
 @end

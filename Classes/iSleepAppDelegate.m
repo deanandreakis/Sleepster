@@ -14,6 +14,7 @@
 #import "BackgroundsViewController.h"
 #import <Crashlytics/Crashlytics.h>
 #import "DatabaseManager.h"
+#import "Constants.h"
 
 @implementation iSleepAppDelegate
 
@@ -65,11 +66,11 @@
     soundLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     soundLayout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
     
-    backgroundLayout.itemSize = CGSizeMake(50, 50);
+    backgroundLayout.itemSize = CGSizeMake(FLICKR_THUMBNAIL_SIZE, FLICKR_THUMBNAIL_SIZE);
     backgroundLayout.minimumInteritemSpacing = 2;
     backgroundLayout.minimumLineSpacing = 20;
     backgroundLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    backgroundLayout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
+    backgroundLayout.sectionInset = UIEdgeInsetsMake(20, 20, 60, 20);
     
     [soundsViewController setDelegate:mainViewController];
     [backgroundsViewController setDelegate:mainViewController];

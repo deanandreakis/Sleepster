@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "Background.h"
 #import "DatabaseManager.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface BackgroundsViewController ()
 @property (strong, nonatomic) UIButton *menuBtn;
@@ -18,6 +19,11 @@
 @end
 
 @implementation BackgroundsViewController
+{
+    NSMutableArray *_objectChanges;
+    NSMutableArray *_sectionChanges;
+}
+
 @synthesize menuBtn;
 @synthesize fetchedResultsController = __fetchedResultsController;
 
@@ -37,10 +43,8 @@
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
     
-    /* Fetch Flickr Photos */
-    //[Background fetchPics:^(NSArray *backgrounds) {
-    //    self.backgrounds = backgrounds;
-    //}];
+    _objectChanges = [NSMutableArray array];
+    _sectionChanges = [NSMutableArray array];
 }
 
 
@@ -88,7 +92,25 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"BackgroundCell" forIndexPath:indexPath];
     NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.backgroundColor = [self convertStringToUIColor:(NSString*)[managedObject valueForKey:@"bColor"]];
+    Background *bg = (Background*)managedObject;
+    
+    if([bg.isImage  isEqual: @YES])
+    {
+        UIImageView* imageView = [[UIImageView alloc] initWithImage:nil];
+        imageView.frame = CGRectMake(0, 0, FLICKR_THUMBNAIL_SIZE, FLICKR_THUMBNAIL_SIZE);//this is same size as backgroundLayout.itemSize set in app delegate
+        NSURL *imageUrl = [NSURL URLWithString:bg.bThumbnailUrl];
+        [imageView setImageWithURL:imageUrl
+                             placeholderImage:nil];
+        [cell.contentView addSubview:imageView];
+        cell.backgroundColor = [UIColor clearColor];
+    }
+    else
+    {
+        cell.backgroundColor = [self convertStringToUIColor:(NSString*)bg.bColor];
+        for(UIView *subview in [cell.contentView subviews]) {
+            [subview removeFromSuperview];
+        }
+    }
     return cell;
 }
 
@@ -97,8 +119,8 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    UIColor* colorSelected = [self convertStringToUIColor:(NSString*)[managedObject valueForKey:@"bColor"]];
-    [self.delegate backgroundSelected:colorSelected];//tell the delegate we selected a background
+    //UIColor* colorSelected = [self convertStringToUIColor:(NSString*)[managedObject valueForKey:@"bColor"]];
+    [self.delegate backgroundSelected:(Background*)managedObject];//tell the delegate we selected a background
     NSLog(@"selected index %d", indexPath.item);
 }
 
@@ -126,7 +148,7 @@
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"isFavorite" ascending:YES];
     NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"bTitle" ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor1, sortDescriptor2,nil];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor1,sortDescriptor2, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
@@ -147,13 +169,159 @@
 	    //abort();
 	}
     
+    //NSLog(@"FetchedResultsConmtroller Number returned:%d",[self.fetchedResultsController.fetchedObjects count]);
+    
     return __fetchedResultsController;
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
+           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+{
+    
+    NSMutableDictionary *change = [NSMutableDictionary new];
+    
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            change[@(type)] = @(sectionIndex);
+            break;
+        case NSFetchedResultsChangeDelete:
+            change[@(type)] = @(sectionIndex);
+            break;
+    }
+    
+    [_sectionChanges addObject:change];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath
+{
+    
+    NSMutableDictionary *change = [NSMutableDictionary new];
+    switch(type)
+    {
+        case NSFetchedResultsChangeInsert:
+            change[@(type)] = newIndexPath;
+            break;
+        case NSFetchedResultsChangeDelete:
+            change[@(type)] = indexPath;
+            break;
+        case NSFetchedResultsChangeUpdate:
+            change[@(type)] = indexPath;
+            break;
+        case NSFetchedResultsChangeMove:
+            change[@(type)] = @[indexPath, newIndexPath];
+            break;
+    }
+    [_objectChanges addObject:change];
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    // In the simplest, most efficient, case, reload the collection view.
-    [self.collectionView reloadData];
+    if ([_sectionChanges count] > 0)
+    {
+        [self.collectionView performBatchUpdates:^{
+            
+            for (NSDictionary *change in _sectionChanges)
+            {
+                [change enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, id obj, BOOL *stop) {
+                    
+                    NSFetchedResultsChangeType type = [key unsignedIntegerValue];
+                    switch (type)
+                    {
+                        case NSFetchedResultsChangeInsert:
+                            [self.collectionView insertSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
+                            break;
+                        case NSFetchedResultsChangeDelete:
+                            [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
+                            break;
+                        case NSFetchedResultsChangeUpdate:
+                            [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
+                            break;
+                    }
+                }];
+            }
+        } completion:nil];
+    }
+    
+    if ([_objectChanges count] > 0 && [_sectionChanges count] == 0)
+    {
+        
+        if ([self shouldReloadCollectionViewToPreventKnownIssue] || self.collectionView.window == nil) {
+            // This is to prevent a bug in UICollectionView from occurring.
+            // The bug presents itself when inserting the first object or deleting the last object in a collection view.
+            // http://stackoverflow.com/questions/12611292/uicollectionview-assertion-failure
+            // This code should be removed once the bug has been fixed, it is tracked in OpenRadar
+            // http://openradar.appspot.com/12954582
+            [self.collectionView reloadData];
+            
+        } else {
+            
+            [self.collectionView performBatchUpdates:^{
+                
+                for (NSDictionary *change in _objectChanges)
+                {
+                    [change enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, id obj, BOOL *stop) {
+                        
+                        NSFetchedResultsChangeType type = [key unsignedIntegerValue];
+                        switch (type)
+                        {
+                            case NSFetchedResultsChangeInsert:
+                                [self.collectionView insertItemsAtIndexPaths:@[obj]];
+                                [self.collectionView.window endEditing:YES];
+                                break;
+                            case NSFetchedResultsChangeDelete:
+                                [self.collectionView deleteItemsAtIndexPaths:@[obj]];
+                                break;
+                            case NSFetchedResultsChangeUpdate:
+                                [self.collectionView reloadItemsAtIndexPaths:@[obj]];
+                                break;
+                            case NSFetchedResultsChangeMove:
+                                [self.collectionView moveItemAtIndexPath:obj[0] toIndexPath:obj[1]];
+                                break;
+                        }
+                    }];
+                }
+            } completion:nil];
+        }
+    }
+    
+    [_sectionChanges removeAllObjects];
+    [_objectChanges removeAllObjects];
+}
+
+- (BOOL)shouldReloadCollectionViewToPreventKnownIssue {
+    __block BOOL shouldReload = NO;
+    for (NSDictionary *change in _objectChanges) {
+        [change enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            NSFetchedResultsChangeType type = [key unsignedIntegerValue];
+            NSIndexPath *indexPath = obj;
+            switch (type) {
+                case NSFetchedResultsChangeInsert:
+                    if ([self.collectionView numberOfItemsInSection:indexPath.section] == 0) {
+                        shouldReload = YES;
+                    } else {
+                        shouldReload = NO;
+                    }
+                    break;
+                case NSFetchedResultsChangeDelete:
+                    if ([self.collectionView numberOfItemsInSection:indexPath.section] == 1) {
+                        shouldReload = YES;
+                    } else {
+                        shouldReload = NO;
+                    }
+                    break;
+                case NSFetchedResultsChangeUpdate:
+                    shouldReload = NO;
+                    break;
+                case NSFetchedResultsChangeMove:
+                    shouldReload = NO;
+                    break;
+            }
+        }];
+    }
+    
+    return shouldReload;
 }
 
 @end
