@@ -7,15 +7,18 @@
 //
 
 #import "BacklightViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @implementation BacklightViewController
 
 @synthesize bgDelegate;
-@synthesize backgroundColor, brightness;
+@synthesize backgroundColor, brightness, bgImageView, bgImageURL;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = backgroundColor;
+    [self.bgImageView setImageWithURL:self.bgImageURL
+                     placeholderImage:nil];
     [[UIScreen mainScreen] setBrightness:brightness];
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];

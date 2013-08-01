@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "iSleepAppDelegate.h"
 #import "Constants.h"
+#import "UIImageView+AFNetworking.h"
 
 #define UNPLUGGEDGREATER20 90
 #define UNPLUGGEDLESS20 91
@@ -21,12 +22,14 @@
 @property (strong, nonatomic) TimerViewController* controller;
 @property (strong, nonatomic) IBOutlet UILabel* timerLabel;
 @property (strong, nonatomic) IBOutlet UILabel* minutesLabel;
+@property (strong, nonatomic) IBOutlet UIImageView* bgImageView;
+@property (strong,nonatomic) NSURL* bgImageURL;
 
 @end
 
 @implementation MainViewController
 
-@synthesize timeOut;
+@synthesize timeOut, bgImageURL;
 @synthesize natureVolume, natureBrightness;
 @synthesize musicTimerTypes;
 @synthesize playerState;
@@ -34,7 +37,7 @@
 @synthesize timerFired;
 @synthesize menuBtn;
 @synthesize theSong;
-@synthesize theColor, controller, timerLabel, minutesLabel;
+@synthesize theColor, controller, timerLabel, minutesLabel, bgImageView;
 
 #pragma mark Constructor
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -162,7 +165,10 @@
 	blcontroller.bgDelegate = self;
     blcontroller.backgroundColor = theColor;
     blcontroller.brightness = natureBrightness;
-	
+    blcontroller.bgImageURL = self.bgImageURL;
+    //blcontroller.bgImageView.image = self.bgImageView.image;
+	//[blcontroller.bgImageView setImage:self.bgImageView.image];
+    
 	/*Play the background music selected*/
 	[theSong setVolume:(natureVolume / 100)];
 	[theSong play];
@@ -239,10 +245,17 @@
     {
         self.theColor = [self convertStringToUIColor:background.bColor];
         self.view.backgroundColor = theColor;
+        [self.bgImageView setImage:nil];
+        self.bgImageURL = nil;
     }
     else
     {
         //put code here to set an ImageView.image equal to image passed in background object
+        NSURL *imageUrl = [NSURL URLWithString:background.bFullSizeUrl];
+        [self.bgImageView setImageWithURL:imageUrl
+                  placeholderImage:nil];
+        self.bgImageURL = imageUrl;
+        self.view.backgroundColor = [UIColor clearColor];
     }
 }
 

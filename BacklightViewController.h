@@ -15,6 +15,8 @@
 @property (nonatomic, strong) id <BacklightViewControllerDelegate> bgDelegate;
 @property (nonatomic, strong) UIColor *backgroundColor;
 @property (nonatomic) float brightness;
+@property (strong, nonatomic) IBOutlet UIImageView* bgImageView;
+@property (strong, nonatomic) NSURL* bgImageURL;
 - (IBAction)done:(id)sender;
 
 @end
