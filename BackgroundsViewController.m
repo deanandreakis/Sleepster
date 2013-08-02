@@ -40,6 +40,7 @@
 {
     [super viewDidLoad];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"BackgroundCell"];
+    self.collectionView.allowsMultipleSelection = @YES;
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
     
@@ -125,6 +126,7 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"deselected index %d", indexPath.item);
 }
 
 #pragma mark - Fetched results controller

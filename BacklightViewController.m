@@ -8,6 +8,7 @@
 
 #import "BacklightViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation BacklightViewController
 
@@ -34,7 +35,7 @@
     [self.bgDelegate backlightViewControllerDidFinish:self];
 }
 
--(void)batteryLevelDidChange
+-(void)batteryLevelDidChange:(NSNotification *)notification
 {
     float batteryLevel = [UIDevice currentDevice].batteryLevel;
     if(batteryLevel <= 0.1f && [UIDevice currentDevice].batteryState == UIDeviceBatteryStateUnplugged)
