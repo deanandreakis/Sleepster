@@ -11,6 +11,8 @@
 #import "Background.h"
 #import "DatabaseManager.h"
 #import "UIImageView+AFNetworking.h"
+#import "iSleepAppDelegate.h"
+#import "SettingsViewController.h"
 
 @interface BackgroundsViewController ()
 @property (strong, nonatomic) UIButton *menuBtn;
@@ -40,7 +42,6 @@
 {
     [super viewDidLoad];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"BackgroundCell"];
-    self.collectionView.allowsMultipleSelection = @YES;
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
     
@@ -48,6 +49,18 @@
     _sectionChanges = [NSMutableArray array];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    if([[iSleepAppDelegate appDelegate].settingsViewController bgSwitchState])//TODO: are all objects here initd at statup???
+    {
+        //allows multiple selection
+        self.collectionView.allowsMultipleSelection = YES;
+    }
+    else
+    {
+        self.collectionView.allowsMultipleSelection = NO;
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {

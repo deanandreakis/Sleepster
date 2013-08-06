@@ -11,13 +11,14 @@
 
 @interface SettingsViewController ()
 
-@property (strong, nonatomic) UIButton *menuBtn;
+@property (strong, nonatomic) IBOutlet UISwitch *bgSwitch;
+@property (strong, nonatomic) IBOutlet UISwitch *soundSwitch;
 
 @end
 
 @implementation SettingsViewController
 
-@synthesize menuBtn;
+@synthesize bgSwitch, soundSwitch;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -60,13 +61,33 @@
 {
     //TODO: storekit logic
     UISwitch* switcher = (UISwitch *)sender;
-    if([switcher isOn])
+    if([switcher isOn])//switch changed to on
     {
         //NSLog(@"switch is ON");
+        NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];//check if its ok to be on
+        if(![store boolForKey:BG_STOREKIT_STATUS]) { //feature has not been purchased
+            
+            //put code here to put up alert/ui to ask if they want to purchase this feature
+            //if they dont want to purchase then bgSwitch.on = @NO;
+            
+        }
+        
     }
     else{
         //NSLog(@"switch is OFF");
     }
+}
+
+#pragma mark switch states
+
+-(BOOL)bgSwitchState
+{
+    return [bgSwitch isOn];
+}
+
+-(BOOL)soundSwitchState
+{
+    return [soundSwitch isOn];
 }
 
 @end

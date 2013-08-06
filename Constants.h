@@ -16,4 +16,7 @@
 
 #define FLICKR_THUMBNAIL_SIZE 70
 
+#define BG_STOREKIT_STATUS @"enable_multiple_bg_selection"
+#define SOUND_STOREKIT_STATUS @"enable_sound_mixing"
+
 #endif

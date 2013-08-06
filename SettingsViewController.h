@@ -10,4 +10,6 @@
 
 @interface SettingsViewController : UIViewController
 
+-(BOOL)bgSwitchState;
+
 @end
