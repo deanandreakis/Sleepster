@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = backgroundColor;
+    self.bgImageView.backgroundColor = backgroundColor;
     [self.bgImageView setImageWithURL:self.bgImageURL
                      placeholderImage:nil];
     [[UIScreen mainScreen] setBrightness:brightness];

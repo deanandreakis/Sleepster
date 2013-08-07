@@ -57,7 +57,7 @@
 
 - (void)viewDidLoad {
     
-	self.view.backgroundColor = theColor;
+	self.bgImageView.backgroundColor = theColor;
 	
 	/*Setup battery state monitoring*/
 	[UIDevice currentDevice].batteryMonitoringEnabled = YES;
@@ -244,7 +244,8 @@
     if([background.isImage  isEqual: @NO])
     {
         self.theColor = [self convertStringToUIColor:background.bColor];
-        self.view.backgroundColor = theColor;
+        //self.view.backgroundColor = theColor;
+        self.bgImageView.backgroundColor = theColor;
         [self.bgImageView setImage:nil];
         self.bgImageURL = nil;
     }
@@ -255,7 +256,7 @@
         [self.bgImageView setImageWithURL:imageUrl
                   placeholderImage:nil];
         self.bgImageURL = imageUrl;
-        self.view.backgroundColor = [UIColor clearColor];
+        self.view.backgroundColor = [UIColor whiteColor];
     }
 }
 

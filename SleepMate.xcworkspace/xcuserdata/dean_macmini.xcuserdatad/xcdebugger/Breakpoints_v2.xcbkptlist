@@ -23,19 +23,13 @@
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Classes/MainViewController.m"
-            timestampString = "397016567.027988"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "243"
-            endingLineNumber = "243"
-            landmarkName = "-backgroundSelected:"
-            landmarkType = "5">
+            symbolName = "__IOHIDEventQueueDequeueCopy_block_invoke"
+            moduleName = "">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -44,13 +38,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BackgroundsViewController.m"
-            timestampString = "397449405.616054"
+            filePath = "BacklightViewController.m"
+            timestampString = "397537491.465499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "-done:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
