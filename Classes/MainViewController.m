@@ -237,6 +237,11 @@
     self.theSong = song;
 }
 
+//DESIGN of Multiple BG's: add an array to hold bg objects. Have API's for bg selected and
+//bg deselected and just add/remove to the array when these are called from the bg view controller.
+//When viewWillAppear() is called for this view, setup a timer to iterate thru the array every 30 seconds
+//or so and just execute the logic below to set the bgImageView etc. Probably then best to just pass this
+//array of bg objects to the BacklightViewController so it can do the exact same thing.
 #pragma mark BackgroundsViewControllerDelegate methods
 - (void)backgroundSelected:(Background *)background
 {
@@ -259,6 +264,12 @@
         self.view.backgroundColor = [UIColor whiteColor];
     }
 }
+
+- (void)backgroundDeSelected:(Background *)background
+{
+    
+}
+
 
 #pragma mark Volume Slider
 

@@ -76,6 +76,8 @@
 		C1C608191798620B0099590F /* FlickrAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C608181798620B0099590F /* FlickrAPIClient.m */; };
 		C1C6081B1798638E0099590F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C6081A1798638E0099590F /* SystemConfiguration.framework */; };
 		C1C6081D1798639A0099590F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C6081C1798639A0099590F /* MobileCoreServices.framework */; };
+		C1CD259617B321600099F66D /* circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1CD259517B321600099F66D /* circle@2x.png */; };
+		C1CD259817B321690099F66D /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = C1CD259717B321690099F66D /* circle.png */; };
 		C1D7B40B1671A0860004D62E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D7B4091671A0860004D62E /* SettingsViewController.m */; };
 		C1D7B40C1671A0860004D62E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D7B40A1671A0860004D62E /* SettingsViewController.xib */; };
 		C1E5F65B175C1CA10000BF16 /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E5F65A175C1CA10000BF16 /* Play.png */; };
@@ -170,6 +172,8 @@
 		C1C608181798620B0099590F /* FlickrAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrAPIClient.m; sourceTree = "<group>"; };
 		C1C6081A1798638E0099590F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C1C6081C1798639A0099590F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		C1CD259517B321600099F66D /* circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle@2x.png"; sourceTree = "<group>"; };
+		C1CD259717B321690099F66D /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		C1D7B4081671A0860004D62E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		C1D7B4091671A0860004D62E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		C1D7B40A1671A0860004D62E /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -258,8 +262,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C1CD259517B321600099F66D /* circle@2x.png */,
 				C13D53B81782748D00CF2E78 /* Localizable.strings */,
 				C19DB55417924ABD001820A7 /* Fav-1@2x.png */,
+				C1CD259717B321690099F66D /* circle.png */,
 				C1E5F65A175C1CA10000BF16 /* Play.png */,
 				C19DB55617924ACD001820A7 /* Fav-1.png */,
 				C19DB55017922923001820A7 /* Timer.png */,
@@ -453,6 +459,7 @@
 				053BF45412CD428400B2D546 /* rain.mp3 in Resources */,
 				052C9A7C12F4ACEB00400088 /* campfire.mp3 in Resources */,
 				C19DB55317922947001820A7 /* Timer@2x.png in Resources */,
+				C1CD259817B321690099F66D /* circle.png in Resources */,
 				052C9A7D12F4ACEB00400088 /* forest.mp3 in Resources */,
 				C19DB55717924ACD001820A7 /* Fav-1.png in Resources */,
 				C19DB55F1793534F001820A7 /* facebook-logo@2x.png in Resources */,
@@ -460,6 +467,7 @@
 				C19DB55D1793531A001820A7 /* facebook-logo.png in Resources */,
 				052C9A7F12F4ACEB00400088 /* waterfall.mp3 in Resources */,
 				052C9A8012F4ACEB00400088 /* waves.mp3 in Resources */,
+				C1CD259617B321600099F66D /* circle@2x.png in Resources */,
 				C13D53B7178074DC00CF2E78 /* Default@2x.png in Resources */,
 				C13D53B0177F67D700CF2E78 /* Speaker-2.png in Resources */,
 				052C9A8112F4ACEB00400088 /* wind.mp3 in Resources */,

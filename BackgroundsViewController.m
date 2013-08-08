@@ -133,12 +133,13 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    //UIColor* colorSelected = [self convertStringToUIColor:(NSString*)[managedObject valueForKey:@"bColor"]];
     [self.delegate backgroundSelected:(Background*)managedObject];//tell the delegate we selected a background
     NSLog(@"selected index %d", indexPath.item);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self.delegate backgroundDeSelected:(Background*)managedObject];//tell the delegate we deselected a background
     NSLog(@"deselected index %d", indexPath.item);
 }
 
