@@ -18,6 +18,7 @@
 @property (strong, nonatomic) UIButton *menuBtn;
 @property (nonatomic, strong) NSArray *backgrounds;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) UIImageView* selectedImageView;
 @end
 
 @implementation BackgroundsViewController
@@ -26,7 +27,7 @@
     NSMutableArray *_sectionChanges;
 }
 
-@synthesize menuBtn;
+@synthesize menuBtn, selectedImageView;
 @synthesize fetchedResultsController = __fetchedResultsController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -47,6 +48,11 @@
     
     _objectChanges = [NSMutableArray array];
     _sectionChanges = [NSMutableArray array];
+    
+    NSString *pathToSelectedImage = [[NSBundle mainBundle] pathForResource:@"check_mark_green" ofType:@"png"];
+    UIImage* selectedImage = [[UIImage alloc] initWithContentsOfFile:pathToSelectedImage];
+    selectedImageView = [[UIImageView alloc] initWithImage:selectedImage];
+    selectedImageView.frame = CGRectMake(0, 0, 20, 20);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -125,6 +131,12 @@
             [subview removeFromSuperview];
         }
     }
+    
+    if(cell.selected || [bg.isSelected isEqual:@YES])
+    {
+        [cell.contentView addSubview:selectedImageView];
+    }
+    
     return cell;
 }
 
@@ -132,14 +144,25 @@
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    //TODO: set the isSelected attribute of the Background object to YES and then check it in
     NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
     [self.delegate backgroundSelected:(Background*)managedObject];//tell the delegate we selected a background
+    
+    UICollectionViewCell *cell =[collectionView cellForItemAtIndexPath:indexPath];
+    [cell setSelected:YES];
+    [cell.contentView addSubview:selectedImageView];
+    
     NSLog(@"selected index %d", indexPath.item);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
     [self.delegate backgroundDeSelected:(Background*)managedObject];//tell the delegate we deselected a background
+    
+    UICollectionViewCell *cell =[collectionView cellForItemAtIndexPath:indexPath];
+    [cell setSelected:NO];
+    [selectedImageView removeFromSuperview];
+    
     NSLog(@"deselected index %d", indexPath.item);
 }
 
