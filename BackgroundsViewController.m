@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSArray *backgrounds;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) UIImageView* selectedImageView;
+@property (strong, nonatomic) NSIndexPath* selectedIndexPath;
 @end
 
 @implementation BackgroundsViewController
@@ -27,7 +28,7 @@
     NSMutableArray *_sectionChanges;
 }
 
-@synthesize menuBtn, selectedImageView;
+@synthesize menuBtn, selectedImageView, selectedIndexPath;
 @synthesize fetchedResultsController = __fetchedResultsController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -66,6 +67,8 @@
     {
         self.collectionView.allowsMultipleSelection = NO;
     }
+    
+    [self.collectionView selectItemAtIndexPath:selectedIndexPath animated:FALSE scrollPosition:UICollectionViewScrollPositionTop];
 }
 
 - (void)didReceiveMemoryWarning
@@ -132,10 +135,19 @@
         }
     }
     
-    if(cell.selected || [bg.isSelected isEqual:@YES])
+    if(cell.selected || [indexPath isEqual:selectedIndexPath])
     {
         [cell.contentView addSubview:selectedImageView];
+    } else {
+        for(UIView *subview in [cell.contentView subviews]) {
+            if([subview isEqual:selectedImageView])
+            {
+                [subview removeFromSuperview];
+            }
+        }
     }
+    
+    //NSLog(@"CELL FOR ROW index %d", indexPath.item);
     
     return cell;
 }
@@ -144,26 +156,31 @@
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    //TODO: set the isSelected attribute of the Background object to YES and then check it in
     NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    [self.delegate backgroundSelected:(Background*)managedObject];//tell the delegate we selected a background
+    Background *bg = (Background*)managedObject;
+    [self.delegate backgroundSelected:bg];//tell the delegate we selected a background
     
     UICollectionViewCell *cell =[collectionView cellForItemAtIndexPath:indexPath];
-    [cell setSelected:YES];
     [cell.contentView addSubview:selectedImageView];
+    selectedIndexPath = indexPath;
     
-    NSLog(@"selected index %d", indexPath.item);
+    //NSLog(@"SELECTED index %d", indexPath.item);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    [self.delegate backgroundDeSelected:(Background*)managedObject];//tell the delegate we deselected a background
+    Background *bg = (Background*)managedObject;
+    [self.delegate backgroundDeSelected:bg];//tell the delegate we deselected a background
     
     UICollectionViewCell *cell =[collectionView cellForItemAtIndexPath:indexPath];
-    [cell setSelected:NO];
-    [selectedImageView removeFromSuperview];
+    for(UIView *subview in [cell.contentView subviews]) {
+        if([subview isEqual:selectedImageView])
+        {
+            [subview removeFromSuperview];
+        }
+    }
     
-    NSLog(@"deselected index %d", indexPath.item);
+    //NSLog(@"DESELECTED index %d", indexPath.item);
 }
 
 #pragma mark - Fetched results controller
