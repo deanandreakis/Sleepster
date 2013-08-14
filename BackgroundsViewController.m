@@ -14,12 +14,14 @@
 #import "iSleepAppDelegate.h"
 #import "SettingsViewController.h"
 
+#define SELECTED_IMAGE_TAG 99
+
 @interface BackgroundsViewController ()
 @property (strong, nonatomic) UIButton *menuBtn;
 @property (nonatomic, strong) NSArray *backgrounds;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
-@property (strong, nonatomic) UIImageView* selectedImageView;
-@property (strong, nonatomic) NSIndexPath* selectedIndexPath;
+//@property (strong, nonatomic) UIImageView* selectedImageView;
+@property (strong, nonatomic) NSMutableArray* selectedIndexPath;
 @end
 
 @implementation BackgroundsViewController
@@ -28,7 +30,7 @@
     NSMutableArray *_sectionChanges;
 }
 
-@synthesize menuBtn, selectedImageView, selectedIndexPath;
+@synthesize menuBtn, selectedIndexPath;
 @synthesize fetchedResultsController = __fetchedResultsController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -50,10 +52,7 @@
     _objectChanges = [NSMutableArray array];
     _sectionChanges = [NSMutableArray array];
     
-    NSString *pathToSelectedImage = [[NSBundle mainBundle] pathForResource:@"check_mark_green" ofType:@"png"];
-    UIImage* selectedImage = [[UIImage alloc] initWithContentsOfFile:pathToSelectedImage];
-    selectedImageView = [[UIImageView alloc] initWithImage:selectedImage];
-    selectedImageView.frame = CGRectMake(0, 0, 20, 20);
+    selectedIndexPath = [[NSMutableArray alloc] initWithCapacity:5];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -68,7 +67,10 @@
         self.collectionView.allowsMultipleSelection = NO;
     }
     
-    [self.collectionView selectItemAtIndexPath:selectedIndexPath animated:FALSE scrollPosition:UICollectionViewScrollPositionTop];
+    for (NSObject* object in self.collectionView.indexPathsForSelectedItems) {
+        NSIndexPath* indexPath = (NSIndexPath*)object;
+        [self.collectionView selectItemAtIndexPath:indexPath animated:FALSE scrollPosition:UICollectionViewScrollPositionNone];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -135,16 +137,25 @@
         }
     }
     
-    if(cell.selected || [indexPath isEqual:selectedIndexPath])
+    
+    if([self.collectionView.indexPathsForSelectedItems containsObject:indexPath])
+    //if([selectedIndexPath containsObject:indexPath])
     {
+        NSString *pathToSelectedImage = [[NSBundle mainBundle] pathForResource:@"check_mark_green" ofType:@"png"];
+        UIImage* selectedImage = [[UIImage alloc] initWithContentsOfFile:pathToSelectedImage];
+        UIImageView* selectedImageView = [[UIImageView alloc] initWithImage:selectedImage];
+        selectedImageView.frame = CGRectMake(0, 0, 20, 20);
+        selectedImageView.tag = SELECTED_IMAGE_TAG;
         [cell.contentView addSubview:selectedImageView];
+        [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
     } else {
         for(UIView *subview in [cell.contentView subviews]) {
-            if([subview isEqual:selectedImageView])
+            if(subview.tag == SELECTED_IMAGE_TAG)
             {
                 [subview removeFromSuperview];
             }
         }
+        [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
     }
     
     //NSLog(@"CELL FOR ROW index %d", indexPath.item);
@@ -156,15 +167,24 @@
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    Background *bg = (Background*)managedObject;
-    [self.delegate backgroundSelected:bg];//tell the delegate we selected a background
-    
-    UICollectionViewCell *cell =[collectionView cellForItemAtIndexPath:indexPath];
-    [cell.contentView addSubview:selectedImageView];
-    selectedIndexPath = indexPath;
-    
-    //NSLog(@"SELECTED index %d", indexPath.item);
+    //if(![selectedIndexPath containsObject:indexPath])
+    //if(![self.collectionView.indexPathsForSelectedItems containsObject:indexPath])
+    //{
+        NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        Background *bg = (Background*)managedObject;
+        [self.delegate backgroundSelected:bg];//tell the delegate we selected a background
+        
+        UICollectionViewCell *cell =[collectionView cellForItemAtIndexPath:indexPath];
+        NSString *pathToSelectedImage = [[NSBundle mainBundle] pathForResource:@"check_mark_green" ofType:@"png"];
+        UIImage* selectedImage = [[UIImage alloc] initWithContentsOfFile:pathToSelectedImage];
+        UIImageView* selectedImageView = [[UIImageView alloc] initWithImage:selectedImage];
+        selectedImageView.frame = CGRectMake(0, 0, 20, 20);
+        selectedImageView.tag = SELECTED_IMAGE_TAG;
+        [cell.contentView addSubview:selectedImageView];
+        //[selectedIndexPath addObject:indexPath];
+        //[collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+    //}
+    NSLog(@"SELECTED index %d", indexPath.item);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -174,13 +194,16 @@
     
     UICollectionViewCell *cell =[collectionView cellForItemAtIndexPath:indexPath];
     for(UIView *subview in [cell.contentView subviews]) {
-        if([subview isEqual:selectedImageView])
+        if(subview.tag == SELECTED_IMAGE_TAG)
         {
             [subview removeFromSuperview];
         }
     }
     
-    //NSLog(@"DESELECTED index %d", indexPath.item);
+    //[collectionView deselectItemAtIndexPath:indexPath animated:NO];
+    //[selectedIndexPath removeObject:indexPath];
+    
+    NSLog(@"DESELECTED index %d", indexPath.item);
 }
 
 #pragma mark - Fetched results controller

@@ -11,5 +11,6 @@
 @interface SettingsViewController : UIViewController
 
 -(BOOL)bgSwitchState;
+-(BOOL)soundSwitchState;
 
 @end

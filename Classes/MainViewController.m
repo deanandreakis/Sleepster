@@ -24,12 +24,15 @@
 @property (strong, nonatomic) IBOutlet UILabel* minutesLabel;
 @property (strong, nonatomic) IBOutlet UIImageView* bgImageView;
 @property (strong,nonatomic) NSURL* bgImageURL;
+@property (strong, nonatomic) NSMutableArray* bgarray;
+@property (strong, nonatomic) NSTimer* bgTimer;
+@property (assign, nonatomic) int bgTimerCounter;
 
 @end
 
 @implementation MainViewController
 
-@synthesize timeOut, bgImageURL;
+@synthesize timeOut, bgImageURL, bgarray, bgTimer, bgTimerCounter;
 @synthesize natureVolume, natureBrightness;
 @synthesize musicTimerTypes;
 @synthesize playerState;
@@ -58,6 +61,7 @@
 - (void)viewDidLoad {
     
 	self.bgImageView.backgroundColor = theColor;
+    self.view.backgroundColor = [UIColor whiteColor];
 	
 	/*Setup battery state monitoring*/
 	[UIDevice currentDevice].batteryMonitoringEnabled = YES;
@@ -85,11 +89,32 @@
     controller = [[TimerViewController alloc] initWithNibName:@"TimerViewController" bundle:nil];
 	controller.timerDelegate = self;
     controller.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-
+    
+    bgarray = [[NSMutableArray alloc] initWithCapacity:5];
+    
 	[super viewDidLoad];
 }
 
 - (void)viewDidUnload {
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    bgTimerCounter = 0;
+    if([bgarray count] > 0)
+    {
+        //start a timer and rotate thru Background objects
+        bgTimer = [NSTimer scheduledTimerWithTimeInterval:3
+                                                 target: self
+                                               selector: @selector(bgTimerFired:)
+                                               userInfo: nil
+                                                repeats: YES];
+    }
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [bgTimer invalidate];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -151,7 +176,9 @@
 
 - (void)reallyStartSleeping
 {
-	if(timeOut != kOffSegmentIndex)
+	[bgTimer invalidate];
+    
+    if(timeOut != kOffSegmentIndex)
     {
 	    timer = [NSTimer scheduledTimerWithTimeInterval: timeOut
                                                  target: self
@@ -202,6 +229,18 @@
 	playerState = NO;
 }
 
+#pragma mark BG NSTimer Fired
+- (void) bgTimerFired: (NSTimer *) theTimer
+{
+    [self displayBackground:bgarray[bgTimerCounter]];
+    if(bgTimerCounter < ([bgarray count] - 1))
+    {
+        bgTimerCounter++;
+    } else {
+        bgTimerCounter = 0;
+    }
+}
+
 
 #pragma mark AVAudioPlayer delegate methods
 - (void)audioPlayerBeginInterruption:(AVAudioPlayer *)player {
@@ -245,11 +284,25 @@
 #pragma mark BackgroundsViewControllerDelegate methods
 - (void)backgroundSelected:(Background *)background
 {
-    NSLog(@"got background event");
+    //NSLog(@"got background selected event");
+    if(![bgarray containsObject:background])
+    {
+        [bgarray addObject:background];
+    }
+}
+
+- (void)backgroundDeSelected:(Background *)background
+{
+    //NSLog(@"got background deselected event");
+    [bgarray removeObject:background];
+}
+
+#pragma mark background setter
+- (void)displayBackground:(Background *)background
+{
     if([background.isImage  isEqual: @NO])
     {
         self.theColor = [self convertStringToUIColor:background.bColor];
-        //self.view.backgroundColor = theColor;
         self.bgImageView.backgroundColor = theColor;
         [self.bgImageView setImage:nil];
         self.bgImageURL = nil;
@@ -259,15 +312,10 @@
         //put code here to set an ImageView.image equal to image passed in background object
         NSURL *imageUrl = [NSURL URLWithString:background.bFullSizeUrl];
         [self.bgImageView setImageWithURL:imageUrl
-                  placeholderImage:nil];
+                         placeholderImage:nil];
         self.bgImageURL = imageUrl;
-        self.view.backgroundColor = [UIColor whiteColor];
+        self.bgImageView.backgroundColor = [UIColor whiteColor];
     }
-}
-
-- (void)backgroundDeSelected:(Background *)background
-{
-    
 }
 
 
