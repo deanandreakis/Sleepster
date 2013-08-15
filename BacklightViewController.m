@@ -10,16 +10,22 @@
 #import "UIImageView+AFNetworking.h"
 #import <Crashlytics/Crashlytics.h>
 
+@interface BacklightViewController ()
+
+@property(assign, nonatomic) int bgTimerCounter;
+@property (strong, nonatomic) NSTimer* bgTimer;
+
+@end
+
 @implementation BacklightViewController
 
 @synthesize bgDelegate;
-@synthesize backgroundColor, brightness, bgImageView, bgImageURL;
+@synthesize backgroundColor, brightness, bgImageView, bgImageURL, bgTimerCounter, bgTimer;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.bgImageView.backgroundColor = backgroundColor;
-    [self.bgImageView setImageWithURL:self.bgImageURL
-                     placeholderImage:nil];
+    [self.bgImageView setImage:nil];
     [[UIScreen mainScreen] setBrightness:brightness];
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
@@ -29,7 +35,44 @@
                                                object:nil];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    bgTimerCounter = 0;
+    if([bgImageURL count] > 0)
+    {
+        [self bgTimerFired:nil];
+        //start a timer and rotate thru Background objects
+        bgTimer = [NSTimer scheduledTimerWithTimeInterval:30
+                                                   target: self
+                                                 selector: @selector(bgTimerFired:)
+                                                 userInfo: nil
+                                                  repeats: YES];
+    }
+}
+
+#pragma mark BG NSTimer Fired
+- (void) bgTimerFired: (NSTimer *) theTimer
+{
+    [self displayBackground];
+    if(bgTimerCounter < ([bgImageURL count] - 1))
+    {
+        bgTimerCounter++;
+    } else {
+        bgTimerCounter = 0;
+    }
+}
+
+#pragma mark background setter
+- (void)displayBackground
+{
+    NSURL* imageUrl = (NSURL*)bgImageURL[bgTimerCounter];
+    [self.bgImageView setImageWithURL:imageUrl
+                         placeholderImage:nil];
+}
+
+
 - (IBAction)done:(id)sender {
+    [bgTimer invalidate];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     [self.bgDelegate backlightViewControllerDidFinish:self];
@@ -42,7 +85,7 @@
     {
         [self done:nil];
     }
-    NSLog(@"BATTERY LEVEL CHANGED TO: %f", batteryLevel);
+    //NSLog(@"BATTERY LEVEL CHANGED TO: %f", batteryLevel);
 }
 
 

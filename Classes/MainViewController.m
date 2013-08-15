@@ -101,8 +101,11 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     bgTimerCounter = 0;
+    [self.bgImageView setImage:nil];
+    self.bgImageURL = nil;
     if([bgarray count] > 0)
     {
+        [self bgTimerFired:nil];
         //start a timer and rotate thru Background objects
         bgTimer = [NSTimer scheduledTimerWithTimeInterval:3
                                                  target: self
@@ -192,10 +195,12 @@
 	blcontroller.bgDelegate = self;
     blcontroller.backgroundColor = theColor;
     blcontroller.brightness = natureBrightness;
-    blcontroller.bgImageURL = self.bgImageURL;
-    //blcontroller.bgImageView.image = self.bgImageView.image;
-	//[blcontroller.bgImageView setImage:self.bgImageView.image];
-    
+    NSMutableArray* tempArray = [[NSMutableArray alloc] initWithCapacity:5];
+    for (Background* bg in bgarray) {
+        NSURL* url = [NSURL URLWithString:bg.bFullSizeUrl];;
+        [tempArray addObject:url];
+    }
+    blcontroller.bgImageURL = tempArray;
 	/*Play the background music selected*/
 	[theSong setVolume:(natureVolume / 100)];
 	[theSong play];
