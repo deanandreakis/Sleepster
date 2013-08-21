@@ -29,12 +29,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BackgroundsViewController.m"
-            timestampString = "398138248.053963"
+            timestampString = "398743993.762385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -45,13 +45,59 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BackgroundsViewController.m"
-            timestampString = "398139328.325835"
+            timestampString = "398743993.762385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
-            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BackgroundsViewController.m"
+            timestampString = "398743821.760251"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "-viewWillAppear:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[BackgroundsViewController viewWillAppear:]"
+                  moduleName = "SleepMate"
+                  urlString = "file://localhost/Users/dean_macmini/Documents/iPhone%20Apps/iSleep/BackgroundsViewController.m"
+                  timestampString = "398745010.367859"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "358">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[BackgroundsViewController viewWillAppear:]"
+                  moduleName = "SleepMate"
+                  urlString = "file://localhost/Users/dean_macmini/Documents/iPhone%20Apps/iSleep/BackgroundsViewController.m"
+                  timestampString = "398745010.36809"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "1262">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

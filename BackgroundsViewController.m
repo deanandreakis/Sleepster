@@ -64,13 +64,33 @@
     }
     else
     {
+        //if([self.collectionView.indexPathsForSelectedItems count] > 1)//more then one item selected
+        if([selectedIndexPath count] > 1)//more then one item selected
+        {
+            for (NSObject* object in selectedIndexPath) { //self.collectionView.indexPathsForSelectedItems) {
+                NSIndexPath* indexPath = (NSIndexPath*)object;
+                [self.collectionView deselectItemAtIndexPath:indexPath animated:FALSE];
+                
+                UICollectionViewCell *cell =[self.collectionView cellForItemAtIndexPath:indexPath];
+                for(UIView *subview in [cell.contentView subviews]) {
+                    if(subview.tag == SELECTED_IMAGE_TAG)
+                    {
+                        [subview removeFromSuperview];
+                    }
+                }
+            }
+            [selectedIndexPath removeAllObjects];
+            //TODO: put code here to select a permanent bg image
+        }
         self.collectionView.allowsMultipleSelection = NO;
     }
     
-    for (NSObject* object in self.collectionView.indexPathsForSelectedItems) {
+    //BUG: If we dont allow multiple selection then I think the indexPathsForSelectedItems array
+    //is not useful and does not contain the single selected item
+    /*for (NSObject* object in self.collectionView.indexPathsForSelectedItems) {
         NSIndexPath* indexPath = (NSIndexPath*)object;
         [self.collectionView selectItemAtIndexPath:indexPath animated:FALSE scrollPosition:UICollectionViewScrollPositionNone];
-    }
+    }*/
 }
 
 - (void)didReceiveMemoryWarning
@@ -138,8 +158,8 @@
     }
     
     
-    if([self.collectionView.indexPathsForSelectedItems containsObject:indexPath])
-    //if([selectedIndexPath containsObject:indexPath])
+    //if([self.collectionView.indexPathsForSelectedItems containsObject:indexPath])
+    if([selectedIndexPath containsObject:indexPath])
     {
         NSString *pathToSelectedImage = [[NSBundle mainBundle] pathForResource:@"check_mark_green" ofType:@"png"];
         UIImage* selectedImage = [[UIImage alloc] initWithContentsOfFile:pathToSelectedImage];
@@ -159,6 +179,7 @@
     }
     
     //NSLog(@"CELL FOR ROW index %d", indexPath.item);
+    //NSLog(@"NUM IN ARRAY %d", [self.collectionView.indexPathsForSelectedItems count]);
     
     return cell;
 }
@@ -167,9 +188,9 @@
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    //if(![selectedIndexPath containsObject:indexPath])
+    if(![selectedIndexPath containsObject:indexPath])
     //if(![self.collectionView.indexPathsForSelectedItems containsObject:indexPath])
-    //{
+    {
         NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
         Background *bg = (Background*)managedObject;
         [self.delegate backgroundSelected:bg];//tell the delegate we selected a background
@@ -181,9 +202,9 @@
         selectedImageView.frame = CGRectMake(0, 0, 20, 20);
         selectedImageView.tag = SELECTED_IMAGE_TAG;
         [cell.contentView addSubview:selectedImageView];
-        //[selectedIndexPath addObject:indexPath];
+        [selectedIndexPath addObject:indexPath];
         //[collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-    //}
+    }
     NSLog(@"SELECTED index %d", indexPath.item);
 }
 
@@ -201,7 +222,7 @@
     }
     
     //[collectionView deselectItemAtIndexPath:indexPath animated:NO];
-    //[selectedIndexPath removeObject:indexPath];
+    [selectedIndexPath removeObject:indexPath];
     
     NSLog(@"DESELECTED index %d", indexPath.item);
 }

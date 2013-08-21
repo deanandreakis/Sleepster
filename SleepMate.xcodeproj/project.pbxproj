@@ -43,6 +43,7 @@
 		C13D53B5177F741300CF2E78 /* Brightness@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C13D53B3177F741300CF2E78 /* Brightness@2x.png */; };
 		C13D53B7178074DC00CF2E78 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C13D53B6178074DC00CF2E78 /* Default@2x.png */; };
 		C13D53B91782748D00CF2E78 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C13D53B81782748D00CF2E78 /* Localizable.strings */; };
+		C13D6CC317C45D1B00EFC786 /* libFlurry_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C13D6CC217C45D1B00EFC786 /* libFlurry_4.2.3.a */; };
 		C1403BB51728B69500B75633 /* home-2.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BB41728B69500B75633 /* home-2.png */; };
 		C1403BB71728B6B400B75633 /* home-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BB61728B6B400B75633 /* home-2@2x.png */; };
 		C1403BB91728BB7C00B75633 /* Picture-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BB81728BB7C00B75633 /* Picture-Landscape.png */; };
@@ -135,6 +136,8 @@
 		C13D53B3177F741300CF2E78 /* Brightness@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Brightness@2x.png"; sourceTree = "<group>"; };
 		C13D53B6178074DC00CF2E78 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C13D53B81782748D00CF2E78 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		C13D6CC117C45CFA00EFC786 /* Flurry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		C13D6CC217C45D1B00EFC786 /* libFlurry_4.2.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.2.3.a; sourceTree = "<group>"; };
 		C1403BB41728B69500B75633 /* home-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-2.png"; sourceTree = "<group>"; };
 		C1403BB61728B6B400B75633 /* home-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-2@2x.png"; sourceTree = "<group>"; };
 		C1403BB81728BB7C00B75633 /* Picture-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Picture-Landscape.png"; sourceTree = "<group>"; };
@@ -197,6 +200,7 @@
 				C14E0EFC1675772400811389 /* Social.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				C13D6CC317C45D1B00EFC786 /* libFlurry_4.2.3.a in Frameworks */,
 				288765590DF743DE002DB57D /* CoreGraphics.framework in Frameworks */,
 				05E1D073128EF5FA00922B40 /* AVFoundation.framework in Frameworks */,
 				3BE26FC5BF3743EE86055DBB /* libPods.a in Frameworks */,
@@ -227,6 +231,7 @@
 		289233A00DB2D0730083E9F9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				C13D6CC117C45CFA00EFC786 /* Flurry.h */,
 				C1C6081117984D580099590F /* SynthesizeSingleton.h */,
 				C138164A17486C2C00F89C66 /* Constants.h */,
 				052E288313691D7000AC496D /* AVAudioPlayer+PGFade.m */,
@@ -320,6 +325,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C13D6CC217C45D1B00EFC786 /* libFlurry_4.2.3.a */,
 				C1C6081C1798639A0099590F /* MobileCoreServices.framework */,
 				C1C6081A1798638E0099590F /* SystemConfiguration.framework */,
 				C1C6080417982E0C0099590F /* CoreData.framework */,
@@ -618,6 +624,10 @@
 				GCC_PREFIX_HEADER = SleepMate_Prefix.pch;
 				INFOPLIST_FILE = "SleepMate-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/dean_macmini/Documents/iPhone\\ Apps/iSleep",
+				);
 				PRODUCT_NAME = SleepMate;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -644,6 +654,10 @@
 				GCC_PREFIX_HEADER = SleepMate_Prefix.pch;
 				INFOPLIST_FILE = "SleepMate-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/dean_macmini/Documents/iPhone\\ Apps/iSleep",
+				);
 				PRODUCT_NAME = SleepMate;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -668,6 +682,10 @@
 				GCC_PREFIX_HEADER = SleepMate_Prefix.pch;
 				INFOPLIST_FILE = "SleepMate-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/dean_macmini/Documents/iPhone\\ Apps/iSleep",
+				);
 				PRODUCT_NAME = SleepMate;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

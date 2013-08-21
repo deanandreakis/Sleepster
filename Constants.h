@@ -19,4 +19,6 @@
 #define BG_STOREKIT_STATUS @"enable_multiple_bg_selection"
 #define SOUND_STOREKIT_STATUS @"enable_sound_mixing"
 
+#define FLURRY_KEY @"D34VV6Z525ZTGNRCJXWC"
+
 #endif

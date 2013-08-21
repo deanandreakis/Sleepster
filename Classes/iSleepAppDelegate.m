@@ -15,6 +15,7 @@
 #import <Crashlytics/Crashlytics.h>
 #import "DatabaseManager.h"
 #import "Constants.h"
+#import "Flurry.h"
 
 @implementation iSleepAppDelegate
 
@@ -26,6 +27,8 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     
 	[Crashlytics startWithAPIKey:@"2eaad7ad1fecfce6c414905676a8175bb2a1c253"];
+    
+    [Flurry startSession:FLURRY_KEY];
     
     NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
     [store synchronize];

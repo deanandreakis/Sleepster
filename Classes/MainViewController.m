@@ -10,6 +10,8 @@
 #import "iSleepAppDelegate.h"
 #import "Constants.h"
 #import "UIImageView+AFNetworking.h"
+#import "iSleepAppDelegate.h"
+#import "SettingsViewController.h"
 
 #define UNPLUGGEDGREATER20 90
 #define UNPLUGGEDLESS20 91
@@ -100,6 +102,16 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    //cover the case where someone has selected mutiple bg's and then tuned off the option to
+    //support mult bg's/rotate bg's.
+    if(![[iSleepAppDelegate appDelegate].settingsViewController bgSwitchState])//TODO: are all objects here initd at statup???
+    {
+        if([bgarray count] > 1)
+        {
+            [bgarray removeAllObjects];
+        }
+        //TODO put code here to add permanent bg object
+    }
     bgTimerCounter = 0;
     [self.bgImageView setImage:nil];
     self.bgImageURL = nil;
