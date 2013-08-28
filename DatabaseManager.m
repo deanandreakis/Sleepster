@@ -10,6 +10,13 @@
 #import "SynthesizeSingleton.h"
 #import "iSleepAppDelegate.h"
 #import "Background.h"
+#import "Constants.h"
+
+@interface DatabaseManager ()
+
+@property(assign, nonatomic) BOOL isPermObjectsExist;
+
+@end
 
 @implementation DatabaseManager
 
@@ -18,6 +25,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DatabaseManager);
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
+@synthesize isPermObjectsExist;
 
 - (void)saveContext
 {
@@ -142,35 +150,37 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DatabaseManager);
 
 - (void)prePopulate
 {
-    NSArray* colorArray = [[NSArray alloc] initWithObjects:@"whiteColor",
-                  @"blueColor", @"redColor", @"greenColor",
-                  @"blackColor",@"darkGrayColor",
-                  @"lightGrayColor",@"grayColor",
-                  @"cyanColor",@"yellowColor",
-                  @"magentaColor",@"orangeColor",
-                  @"purpleColor",@"brownColor",
-                  @"clearColor",nil];
-    
-    NSManagedObjectContext *context = [self managedObjectContext];
-    [context lock];
-    Background *bg[[colorArray count]];
-    for (int index = 0; index < [colorArray count]; index++) {
-        bg[index] = [NSEntityDescription insertNewObjectForEntityForName:@"Background"
-                                                    inManagedObjectContext:context];
-        bg[index].bTitle = colorArray[index];
-        bg[index].bThumbnailUrl = nil;
-        bg[index].bFullSizeUrl = nil;
-        bg[index].bColor = colorArray[index];
-        bg[index].isFavorite = @YES;
-        bg[index].isImage = @NO;
-        bg[index].isSelected = @NO;
+    if(!isPermObjectsExist) {
+        NSArray* colorArray = [[NSArray alloc] initWithObjects:@"whiteColor",
+                      @"blueColor", @"redColor", @"greenColor",
+                      @"blackColor",@"darkGrayColor",
+                      @"lightGrayColor",@"grayColor",
+                      @"cyanColor",@"yellowColor",
+                      @"magentaColor",@"orangeColor",
+                      @"purpleColor",@"brownColor",
+                      @"clearColor",nil];
+        
+        NSManagedObjectContext *context = [self managedObjectContext];
+        [context lock];
+        Background *bg[[colorArray count]];
+        for (int index = 0; index < [colorArray count]; index++) {
+            bg[index] = [NSEntityDescription insertNewObjectForEntityForName:@"Background"
+                                                        inManagedObjectContext:context];
+            bg[index].bTitle = colorArray[index];
+            bg[index].bThumbnailUrl = nil;
+            bg[index].bFullSizeUrl = nil;
+            bg[index].bColor = colorArray[index];
+            bg[index].isFavorite = @YES;
+            bg[index].isImage = @NO;
+            bg[index].isSelected = @NO;
+        }
+        
+        NSError *error;
+        if (![context save:&error]) {
+            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        }
+        [context unlock];
     }
-    
-    NSError *error;
-    if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    }
-    [context unlock];
     
     [Background fetchPics:^(NSArray *backgrounds) {
     }];
@@ -218,8 +228,22 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DatabaseManager);
                                                inManagedObjectContext:context];
      [fetchRequest setEntity:entity];
      NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-     if([fetchedObjects count] == 0)
+     if([fetchedObjects count] < MIN_NUM_BG_OBJECTS)//change to less then or equal to permanent objects
      {
+         if([fetchedObjects count] >= NUM_PERMANENT_BG_OBJECTS)
+         {
+             isPermObjectsExist = YES;
+         } else {
+             isPermObjectsExist = NO;
+         }
+         //iterate thru db and remove all objects
+         /*for (NSManagedObject *object in fetchedObjects) {
+             [context deleteObject:object];
+         }
+         NSError *error;
+         if (![context save:&error]) {
+             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+         }*/
          return TRUE;
      }
      else

@@ -210,7 +210,9 @@
     NSMutableArray* tempArray = [[NSMutableArray alloc] initWithCapacity:5];
     for (Background* bg in bgarray) {
         NSURL* url = [NSURL URLWithString:bg.bFullSizeUrl];;
-        [tempArray addObject:url];
+        if(url != nil) {
+            [tempArray addObject:url];
+        }
     }
     blcontroller.bgImageURL = tempArray;
 	/*Play the background music selected*/

@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 //@property (strong, nonatomic) UIImageView* selectedImageView;
 @property (strong, nonatomic) NSMutableArray* selectedIndexPath;
+@property (nonatomic, assign) BOOL isSingleSelectToDeselect;
 @end
 
 @implementation BackgroundsViewController
@@ -30,7 +31,7 @@
     NSMutableArray *_sectionChanges;
 }
 
-@synthesize menuBtn, selectedIndexPath;
+@synthesize menuBtn, selectedIndexPath, isSingleSelectToDeselect;
 @synthesize fetchedResultsController = __fetchedResultsController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -81,16 +82,28 @@
             }
             [selectedIndexPath removeAllObjects];
             //TODO: put code here to select a permanent bg image
+        } else if([selectedIndexPath count] == 1) {
+            //we are in single select mode and there is one item selected
+            isSingleSelectToDeselect = YES;
+        } else if([selectedIndexPath count] == 0) {
+            isSingleSelectToDeselect = NO;
         }
         self.collectionView.allowsMultipleSelection = NO;
     }
     
     //BUG: If we dont allow multiple selection then I think the indexPathsForSelectedItems array
     //is not useful and does not contain the single selected item
-    /*for (NSObject* object in self.collectionView.indexPathsForSelectedItems) {
+    
+    //BUG: SOmetimes last single selected item is not deselected so we need to add logic to
+    //selectedItem to say if we are in single select mode and we selected an item we need to call deselect
+    //on the old item in the array.
+    NSLog(@"SELECTED INDEX PATH NUM OBJECTS IS %d", [selectedIndexPath count]);
+    for (NSObject* object in selectedIndexPath) {//self.collectionView.indexPathsForSelectedItems) {
         NSIndexPath* indexPath = (NSIndexPath*)object;
         [self.collectionView selectItemAtIndexPath:indexPath animated:FALSE scrollPosition:UICollectionViewScrollPositionNone];
-    }*/
+        UICollectionViewCell *cell =[self.collectionView cellForItemAtIndexPath:indexPath];
+        [cell setSelected:TRUE];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -168,6 +181,7 @@
         selectedImageView.tag = SELECTED_IMAGE_TAG;
         [cell.contentView addSubview:selectedImageView];
         [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+        [cell setSelected:TRUE];
     } else {
         for(UIView *subview in [cell.contentView subviews]) {
             if(subview.tag == SELECTED_IMAGE_TAG)
@@ -176,6 +190,7 @@
             }
         }
         [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
+        [cell setSelected:FALSE];
     }
     
     //NSLog(@"CELL FOR ROW index %d", indexPath.item);
@@ -188,6 +203,12 @@
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(isSingleSelectToDeselect && ([selectedIndexPath count] == 1)) {
+        [self.collectionView.delegate collectionView:collectionView didDeselectItemAtIndexPath:[selectedIndexPath objectAtIndex:0]];
+        isSingleSelectToDeselect = NO;
+        NSLog(@"TRIGGER!!!!!!!!!!!!");
+    }
+    
     if(![selectedIndexPath containsObject:indexPath])
     //if(![self.collectionView.indexPathsForSelectedItems containsObject:indexPath])
     {
@@ -204,8 +225,9 @@
         [cell.contentView addSubview:selectedImageView];
         [selectedIndexPath addObject:indexPath];
         //[collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+        NSLog(@"SELECTED index %d", indexPath.item);
     }
-    NSLog(@"SELECTED index %d", indexPath.item);
+    //NSLog(@"SELECTED index %d", indexPath.item);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -254,7 +276,10 @@
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[[DatabaseManager sharedDatabaseManager] managedObjectContext] sectionNameKeyPath:nil cacheName:@"Master"];
+    //NOTE: The cacheName param is set to nil on purpose!!!! When the db keeps rebuilding itself due to not pulling
+    //down images from Flickr upon startup, this cache would prevent a new actual fetch from occuring and result in
+    //a coredata related exception.
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[[DatabaseManager sharedDatabaseManager] managedObjectContext] sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
