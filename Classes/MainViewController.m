@@ -330,8 +330,9 @@
     {
         //put code here to set an ImageView.image equal to image passed in background object
         NSURL *imageUrl = [NSURL URLWithString:background.bFullSizeUrl];
+        UIImage *placeholder = [UIImage imageNamed:@"thumbnail-default.png"];
         [self.bgImageView setImageWithURL:imageUrl
-                         placeholderImage:nil];
+                         placeholderImage:placeholder];
         self.bgImageURL = imageUrl;
         self.bgImageView.backgroundColor = [UIColor whiteColor];
     }

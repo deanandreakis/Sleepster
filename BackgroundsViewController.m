@@ -157,8 +157,9 @@
         UIImageView* imageView = [[UIImageView alloc] initWithImage:nil];
         imageView.frame = CGRectMake(0, 0, FLICKR_THUMBNAIL_SIZE, FLICKR_THUMBNAIL_SIZE);//this is same size as backgroundLayout.itemSize set in app delegate
         NSURL *imageUrl = [NSURL URLWithString:bg.bThumbnailUrl];
+        UIImage *placeholder = [UIImage imageNamed:@"thumbnail-default.png"];
         [imageView setImageWithURL:imageUrl
-                             placeholderImage:nil];
+                             placeholderImage:placeholder];
         [cell.contentView addSubview:imageView];
         cell.backgroundColor = [UIColor clearColor];
     }

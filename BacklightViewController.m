@@ -66,8 +66,9 @@
 - (void)displayBackground
 {
     NSURL* imageUrl = (NSURL*)bgImageURL[bgTimerCounter];
+    UIImage *placeholder = [UIImage imageNamed:@"thumbnail-default.png"];
     [self.bgImageView setImageWithURL:imageUrl
-                         placeholderImage:nil];
+                         placeholderImage:placeholder];
 }
 
 
