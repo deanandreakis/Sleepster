@@ -56,21 +56,14 @@
     settingsViewController.tabBarItem.image = [UIImage imageNamed:@"Settings.png"];
     
     UICollectionViewFlowLayout *backgroundLayout = [[UICollectionViewFlowLayout alloc] init];
-    UICollectionViewFlowLayout *soundLayout = [[UICollectionViewFlowLayout alloc] init];
     
-    soundsViewController = [[SoundsViewController alloc] initWithCollectionViewLayout:soundLayout];
+    soundsViewController = [[SoundsViewController alloc] initWithNibName:@"SoundsViewController" bundle:nil];
     soundsViewController.tabBarItem.title = @"Sounds";
     soundsViewController.tabBarItem.image = [UIImage imageNamed:@"Speaker-1.png"];
     
     backgroundsViewController = [[BackgroundsViewController alloc] initWithCollectionViewLayout:backgroundLayout];
     backgroundsViewController.tabBarItem.title = @"Backgrounds";
     backgroundsViewController.tabBarItem.image = [UIImage imageNamed:@"Picture-Landscape.png"];
-    
-    soundLayout.itemSize = CGSizeMake(50, 50);
-    soundLayout.minimumInteritemSpacing = 2;
-    soundLayout.minimumLineSpacing = 20;
-    soundLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    soundLayout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
     
     backgroundLayout.itemSize = CGSizeMake(FLICKR_THUMBNAIL_SIZE, FLICKR_THUMBNAIL_SIZE);
     backgroundLayout.minimumInteritemSpacing = 2;

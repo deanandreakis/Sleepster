@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3383" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3394" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Background" representedClassName="Background" syncable="YES">
         <attribute name="bColor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bFullSizeUrl" optional="YES" attributeType="String" syncable="YES"/>
@@ -9,7 +9,15 @@
         <attribute name="isImage" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isSelected" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
+    <entity name="Sound" representedClassName="Sound" syncable="YES">
+        <attribute name="bTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isSelected" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="soundUrl1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="soundUrl2" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Background" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Sound" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

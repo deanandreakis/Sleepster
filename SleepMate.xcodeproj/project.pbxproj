@@ -35,6 +35,7 @@
 		289233B00DB2D0DB0083E9F9 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233AD0DB2D0DB0083E9F9 /* InformationViewController.m */; };
 		3BE26FC5BF3743EE86055DBB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A62217691834AE09BD858BB /* libPods.a */; };
 		C109245517D0447C00AAB6AE /* thumbnail-default.png in Resources */ = {isa = PBXBuildFile; fileRef = C109245417D0447C00AAB6AE /* thumbnail-default.png */; };
+		C109245817D5520700AAB6AE /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = C109245717D5520700AAB6AE /* Sound.m */; };
 		C138149116FF47B000293B48 /* menuButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C138149016FF47B000293B48 /* menuButton@2x.png */; };
 		C13D53A9177D274300CF2E78 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C13D53A8177D274300CF2E78 /* Default-568h@2x.png */; };
 		C13D53AB177D274E00CF2E78 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C13D53AA177D274E00CF2E78 /* Default.png */; };
@@ -127,6 +128,8 @@
 		8D1107310486CEB800E47090 /* SleepMate-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SleepMate-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		C1006CC316E59B4100372838 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		C109245417D0447C00AAB6AE /* thumbnail-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail-default.png"; sourceTree = "<group>"; };
+		C109245617D5520700AAB6AE /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
+		C109245717D5520700AAB6AE /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sound.m; sourceTree = "<group>"; };
 		C1244DD217B085E200622B3D /* SleepMate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SleepMate.entitlements; sourceTree = "<group>"; };
 		C138149016FF47B000293B48 /* menuButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuButton@2x.png"; sourceTree = "<group>"; };
 		C138164A17486C2C00F89C66 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -351,6 +354,8 @@
 				C1C6080E179849140099590F /* Background.h */,
 				C1C6080F179849140099590F /* Background.m */,
 				C1C6080717982F650099590F /* SleepsterModel.xcdatamodeld */,
+				C109245617D5520700AAB6AE /* Sound.h */,
+				C109245717D5520700AAB6AE /* Sound.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -578,6 +583,7 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				C1C608191798620B0099590F /* FlickrAPIClient.m in Sources */,
 				1D3623260D0F684500981E51 /* iSleepAppDelegate.m in Sources */,
+				C109245817D5520700AAB6AE /* Sound.m in Sources */,
 				C1C6080917982F650099590F /* SleepsterModel.xcdatamodeld in Sources */,
 				C19DB54E178E58E8001820A7 /* TimerViewController.m in Sources */,
 				289233AE0DB2D0DB0083E9F9 /* MainViewController.m in Sources */,
