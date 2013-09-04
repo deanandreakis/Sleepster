@@ -8,6 +8,8 @@
 
 #import "SoundsViewController.h"
 #import "Constants.h"
+#import "iSleepAppDelegate.h"
+#import "SettingsViewController.h"
 
 #define SELECTED_IMAGE_TAG 99
 
@@ -15,11 +17,13 @@
 @property(strong, nonatomic) NSArray* songArray;
 @property(strong, nonatomic) NSArray* musicSelectionArray;
 @property (strong, nonatomic) UIButton *menuBtn;
+@property (strong, nonatomic) NSMutableArray* selectedIndexPath;
+@property (nonatomic, assign) BOOL isSingleSelectToDeselect;
 @end
 
 @implementation SoundsViewController
 
-@synthesize songArray, musicSelectionArray;
+@synthesize songArray, musicSelectionArray, selectedIndexPath, isSingleSelectToDeselect;
 @synthesize menuBtn;
 
 - (void)viewDidLoad
@@ -112,6 +116,51 @@
 	musicSelectionArray = [[NSArray alloc] initWithObjects:col2_label1,col2_label2,
                                     col2_label3,col2_label4,col2_label5,col2_label6,col2_label7,col2_label8,col2_label9,
                                     col2_label10,nil];
+    
+    selectedIndexPath = [[NSMutableArray alloc] initWithCapacity:5];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    if([[iSleepAppDelegate appDelegate].settingsViewController soundSwitchState])//TODO: are all objects here initd at statup???
+    {
+        //allows multiple selection
+        self.tableView.allowsMultipleSelection = YES;
+    }
+    else
+    {
+        if([selectedIndexPath count] > 1)//more then one item selected
+        {
+            for (NSObject* object in selectedIndexPath) {
+                NSIndexPath* indexPath = (NSIndexPath*)object;
+                [self.tableView deselectRowAtIndexPath:indexPath animated:FALSE];
+                UITableViewCell *cell =[self.tableView cellForRowAtIndexPath:indexPath];
+                cell.accessoryView = nil;
+            }
+            [selectedIndexPath removeAllObjects];
+            //TODO: put code here to select a permanent bg image
+        } else if([selectedIndexPath count] == 1) {
+            //we are in single select mode and there is one item selected
+            isSingleSelectToDeselect = YES;
+        } else if([selectedIndexPath count] == 0) {
+            isSingleSelectToDeselect = NO;
+        }
+        self.tableView.allowsMultipleSelection = NO;
+    }
+    
+    //BUG: If we dont allow multiple selection then I think the indexPathsForSelectedItems array
+    //is not useful and does not contain the single selected item
+    
+    //BUG: SOmetimes last single selected item is not deselected so we need to add logic to
+    //selectedItem to say if we are in single select mode and we selected an item we need to call deselect
+    //on the old item in the array.
+    NSLog(@"SELECTED INDEX PATH NUM OBJECTS IS %d", [selectedIndexPath count]);
+    for (NSObject* object in selectedIndexPath) {//self.collectionView.indexPathsForSelectedItems) {
+        NSIndexPath* indexPath = (NSIndexPath*)object;
+        [self.tableView selectRowAtIndexPath:indexPath animated:FALSE scrollPosition:UITableViewScrollPositionNone];
+        UITableViewCell *cell =[self.tableView cellForRowAtIndexPath:indexPath];
+        [cell setSelected:TRUE];
+    }
 }
 
 
@@ -144,6 +193,22 @@
     cell.textLabel.font = tempLabel.font;
     cell.textLabel.backgroundColor = tempLabel.backgroundColor;
     
+    if([selectedIndexPath containsObject:indexPath])
+    {
+        NSString *pathToSelectedImage = [[NSBundle mainBundle] pathForResource:@"check_mark_green" ofType:@"png"];
+        UIImage* selectedImage = [[UIImage alloc] initWithContentsOfFile:pathToSelectedImage];
+        UIImageView* selectedImageView = [[UIImageView alloc] initWithImage:selectedImage];
+        selectedImageView.frame = CGRectMake(0, 0, 20, 20);
+        selectedImageView.tag = SELECTED_IMAGE_TAG;
+        cell.accessoryView = selectedImageView;
+        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        [cell setSelected:TRUE];
+    } else {
+        cell.accessoryView = nil;
+        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+        [cell setSelected:FALSE];
+    }
+    
     return cell;
 }
 
@@ -152,30 +217,35 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.delegate songSelected:[songArray objectAtIndex:indexPath.item]];//tell the delegate we selected a song
-    NSLog(@"selected index %d", indexPath.row);
+    if(isSingleSelectToDeselect && ([selectedIndexPath count] == 1)) {
+        [self.tableView.delegate tableView:tableView didDeselectRowAtIndexPath:[selectedIndexPath objectAtIndex:0]];
+        isSingleSelectToDeselect = NO;
+        NSLog(@"TRIGGER!!!!!!!!!!!!");
+    }
     
-    UITableViewCell *cell =[tableView cellForRowAtIndexPath:indexPath];
-    NSString *pathToSelectedImage = [[NSBundle mainBundle] pathForResource:@"check_mark_green" ofType:@"png"];
-    UIImage* selectedImage = [[UIImage alloc] initWithContentsOfFile:pathToSelectedImage];
-    UIImageView* selectedImageView = [[UIImageView alloc] initWithImage:selectedImage];
-    selectedImageView.frame = CGRectMake(0, 0, 20, 20);
-    selectedImageView.tag = SELECTED_IMAGE_TAG;
-    cell.accessoryView = selectedImageView;
-    //[cell.accessoryView addSubview:selectedImageView];
+    if(![selectedIndexPath containsObject:indexPath]) {
+        [self.delegate songSelected:[songArray objectAtIndex:indexPath.row]];//tell the delegate we selected a song
+        NSLog(@"selected index %d", indexPath.row);
+        
+        UITableViewCell *cell =[tableView cellForRowAtIndexPath:indexPath];
+        NSString *pathToSelectedImage = [[NSBundle mainBundle] pathForResource:@"check_mark_green" ofType:@"png"];
+        UIImage* selectedImage = [[UIImage alloc] initWithContentsOfFile:pathToSelectedImage];
+        UIImageView* selectedImageView = [[UIImageView alloc] initWithImage:selectedImage];
+        selectedImageView.frame = CGRectMake(0, 0, 20, 20);
+        selectedImageView.tag = SELECTED_IMAGE_TAG;
+        cell.accessoryView = selectedImageView;
+        [selectedIndexPath addObject:indexPath];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.delegate songDeSelected:[songArray objectAtIndex:indexPath.row]];//tell the delegate we deselected a song
     NSLog(@"deselected index %d", indexPath.row);
     
     UITableViewCell *cell =[tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryView = nil;
-    /*for(UIView *subview in [cell.accessoryView subviews]) {
-        if(subview.tag == SELECTED_IMAGE_TAG)
-        {
-            [subview removeFromSuperview];
-        }
-    }*/
+    
+    [selectedIndexPath removeObject:indexPath];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

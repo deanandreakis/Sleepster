@@ -10,6 +10,7 @@
 
 @protocol SoundsViewControllerDelegate <NSObject>
 - (void)songSelected:(AVAudioPlayer*)song;
+- (void)songDeSelected:(AVAudioPlayer*)song;
 @end
 
 @interface SoundsViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>

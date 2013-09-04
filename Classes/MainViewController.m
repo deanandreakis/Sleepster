@@ -19,6 +19,7 @@
 @interface MainViewController ()
 
 @property(strong, nonatomic) AVAudioPlayer* theSong;
+@property(strong, nonatomic) NSMutableArray* theSongArray;
 @property(strong, nonatomic) UIColor* theColor;
 @property (assign, nonatomic) float natureBrightness;
 @property (strong, nonatomic) TimerViewController* controller;
@@ -41,7 +42,7 @@
 @synthesize interruptedOnPlayback;
 @synthesize timerFired;
 @synthesize menuBtn;
-@synthesize theSong;
+@synthesize theSong, theSongArray;
 @synthesize theColor, controller, timerLabel, minutesLabel, bgImageView;
 
 #pragma mark Constructor
@@ -93,6 +94,7 @@
     controller.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     
     bgarray = [[NSMutableArray alloc] initWithCapacity:5];
+    theSongArray = [[NSMutableArray alloc] initWithCapacity:5];
     
 	[super viewDidLoad];
 }
@@ -136,21 +138,38 @@
     [super didReceiveMemoryWarning];
 }
 
+- (BOOL)areSongsPlaying
+{
+    BOOL retVal = FALSE;
+    
+    for (AVAudioPlayer* song in theSongArray) {
+        if([song isPlaying]){
+            retVal = TRUE;
+            break;
+        }
+    }
+    
+    return retVal;
+}
 
 - (void)backlightViewControllerDidFinish:(BacklightViewController *)controller {	
     
-    if([theSong isPlaying] && !timerFired)
+    if([self areSongsPlaying] && !timerFired)
 	{
         [self dismissViewControllerAnimated:YES completion:nil];
-        [theSong pause];
-        [theSong setCurrentTime:0];
+        //[theSong pause];
+        //[theSong setCurrentTime:0];
+        for (AVAudioPlayer* song in theSongArray) {
+            [song pause];
+            [song setCurrentTime:0];
+        }
 	    if(timeOut != kOffSegmentIndex)
         {
             [timer invalidate];
         }
 	    playerState = NO;
 	}
-    else if(![theSong isPlaying] && timerFired)
+    else if(![self areSongsPlaying] && timerFired)
 	{
         [self dismissViewControllerAnimated:YES completion:nil];
 	}
@@ -215,10 +234,16 @@
         }
     }
     blcontroller.bgImageURL = tempArray;
-	/*Play the background music selected*/
-	[theSong setVolume:(natureVolume / 100)];
-	[theSong play];
-	playerState = YES;
+	
+    /*Play the background music selected*/
+	for (AVAudioPlayer* song in theSongArray) {
+        [song setVolume:(natureVolume / 100)];
+        [song play];
+    }
+    //[theSong setVolume:(natureVolume / 100)];
+	//[theSong play];
+	
+    playerState = YES;
 	blcontroller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 	[self presentViewController:blcontroller animated:YES completion:nil];
 }
@@ -244,7 +269,10 @@
 - (void) timerFired: (NSTimer *) theTimer
 {
 	timerFired = YES;
-    [theSong stopWithFadeDuration:fadeoutTime];
+    for (AVAudioPlayer* song in theSongArray) {
+        [song stopWithFadeDuration:fadeoutTime];
+    }
+    //[theSong stopWithFadeDuration:fadeoutTime];
 	playerState = NO;
 }
 
@@ -291,8 +319,20 @@
 - (void)songSelected:(AVAudioPlayer*)song
 {
     NSLog(@"got song event");
-    [song setDelegate:self];
-    self.theSong = song;
+    //[song setDelegate:self];
+    //self.theSong = song;
+    
+    if(![theSongArray containsObject:song])
+    {
+        [theSongArray addObject:song];
+        [song setDelegate:self];
+    }
+}
+
+- (void)songDeSelected:(AVAudioPlayer*)song
+{
+    //NSLog(@"got song removal event");
+    [theSongArray removeObject:song];
 }
 
 //DESIGN of Multiple BG's: add an array to hold bg objects. Have API's for bg selected and
