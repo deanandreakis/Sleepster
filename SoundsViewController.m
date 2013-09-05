@@ -126,6 +126,7 @@
     {
         //allows multiple selection
         self.tableView.allowsMultipleSelection = YES;
+        isSingleSelectToDeselect = NO;
     }
     else
     {

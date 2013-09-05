@@ -157,8 +157,6 @@
     if([self areSongsPlaying] && !timerFired)
 	{
         [self dismissViewControllerAnimated:YES completion:nil];
-        //[theSong pause];
-        //[theSong setCurrentTime:0];
         for (AVAudioPlayer* song in theSongArray) {
             [song pause];
             [song setCurrentTime:0];
@@ -172,6 +170,23 @@
     else if(![self areSongsPlaying] && timerFired)
 	{
         [self dismissViewControllerAnimated:YES completion:nil];
+	}
+    else if(![self areSongsPlaying] && !timerFired)
+	{
+        [self dismissViewControllerAnimated:YES completion:nil];
+        if(timeOut != kOffSegmentIndex)
+        {
+            [timer invalidate];
+        }
+	}
+    else if([self areSongsPlaying] && timerFired)
+	{
+        [self dismissViewControllerAnimated:YES completion:nil];
+        for (AVAudioPlayer* song in theSongArray) {
+            [song pause];
+            [song setCurrentTime:0];
+        }
+        playerState = NO;
 	}
 }
 
