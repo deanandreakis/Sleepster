@@ -19,6 +19,7 @@ typedef void (^PicsBlock)(NSArray *pics);
 @property (nonatomic, retain) NSNumber * isImage;
 @property (nonatomic, retain) NSNumber * isFavorite;
 @property (nonatomic, retain) NSNumber * isSelected;
+@property (nonatomic, retain) NSNumber * isLocalImage;
 @property (nonatomic, retain) NSString * bColor;
 
 + (void)fetchPics:(PicsBlock)block;

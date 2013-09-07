@@ -7,6 +7,7 @@
         <attribute name="bTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isImage" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isLocalImage" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isSelected" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
     <entity name="Sound" representedClassName="Sound" syncable="YES">

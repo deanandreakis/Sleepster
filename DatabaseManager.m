@@ -172,8 +172,21 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DatabaseManager);
             bg[index].bColor = colorArray[index];
             bg[index].isFavorite = @YES;
             bg[index].isImage = @NO;
+            bg[index].isLocalImage = @NO;
             bg[index].isSelected = @NO;
         }
+        
+        Background *bgImage1;
+        bgImage1 = [NSEntityDescription insertNewObjectForEntityForName:@"Background"
+                                                 inManagedObjectContext:context];
+        bgImage1.bTitle = @"z_Independence Grove";
+        bgImage1.bThumbnailUrl = @"igrove_1";//name of resource file in jpg format
+        bgImage1.bFullSizeUrl = @"igrove_1";
+        bgImage1.bColor = nil;
+        bgImage1.isFavorite = @YES;
+        bgImage1.isImage = @YES;
+        bgImage1.isLocalImage = @YES;
+        bgImage1.isSelected = @NO;
         
         NSError *error;
         if (![context save:&error]) {

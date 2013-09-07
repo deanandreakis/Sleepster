@@ -17,6 +17,7 @@
 @dynamic bFullSizeUrl;
 @dynamic bThumbnailUrl;
 @dynamic isImage;
+@dynamic isLocalImage;
 @dynamic isFavorite;
 @dynamic isSelected;
 @dynamic bColor;
@@ -65,6 +66,7 @@
                                             inManagedObjectContext:context];
     background.bTitle = dictionary[@"title"];
     background.isImage = @YES;
+    background.isLocalImage = @NO;
     background.isFavorite = @NO;
     background.isSelected = @NO;
     background.bColor = nil;

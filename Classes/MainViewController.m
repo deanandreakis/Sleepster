@@ -243,7 +243,15 @@
     blcontroller.brightness = natureBrightness;
     NSMutableArray* tempArray = [[NSMutableArray alloc] initWithCapacity:5];
     for (Background* bg in bgarray) {
-        NSURL* url = [NSURL URLWithString:bg.bFullSizeUrl];;
+        
+        NSURL *url = nil;
+        if([bg.isLocalImage isEqual:@NO]){
+            url = [NSURL URLWithString:bg.bFullSizeUrl];
+        } else {
+            url = [[NSBundle mainBundle]
+                        URLForResource:bg.bFullSizeUrl withExtension:@"jpg"];
+        }
+        
         if(url != nil) {
             [tempArray addObject:url];
         }
@@ -384,10 +392,20 @@
     else
     {
         //put code here to set an ImageView.image equal to image passed in background object
-        NSURL *imageUrl = [NSURL URLWithString:background.bFullSizeUrl];
-        UIImage *placeholder = [UIImage imageNamed:@"thumbnail-default.png"];
-        [self.bgImageView setImageWithURL:imageUrl
-                         placeholderImage:placeholder];
+        NSURL *imageUrl = nil;
+        if([background.isLocalImage isEqual:@NO]){
+            imageUrl = [NSURL URLWithString:background.bFullSizeUrl];
+            UIImage *placeholder = [UIImage imageNamed:@"thumbnail-default.png"];
+            [self.bgImageView setImageWithURL:imageUrl
+                             placeholderImage:placeholder];
+        } else {
+            imageUrl = [[NSBundle mainBundle]
+             URLForResource:background.bFullSizeUrl withExtension:@"jpg"];
+            NSString *pathToImage = [[NSBundle mainBundle] pathForResource:background.bFullSizeUrl ofType:@"jpg"];
+            UIImage* imageG = [[UIImage alloc] initWithContentsOfFile:pathToImage];
+            [self.bgImageView setImage:imageG];
+        }
+        
         self.bgImageURL = imageUrl;
         self.bgImageView.backgroundColor = [UIColor whiteColor];
     }
