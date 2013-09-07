@@ -12,13 +12,14 @@
 #import "UIImageView+AFNetworking.h"
 #import "iSleepAppDelegate.h"
 #import "SettingsViewController.h"
+#import "DatabaseManager.h"
 
 #define UNPLUGGEDGREATER20 90
 #define UNPLUGGEDLESS20 91
 
 @interface MainViewController ()
 
-@property(strong, nonatomic) AVAudioPlayer* theSong;
+
 @property(strong, nonatomic) NSMutableArray* theSongArray;
 @property(strong, nonatomic) UIColor* theColor;
 @property (assign, nonatomic) float natureBrightness;
@@ -30,7 +31,10 @@
 @property (strong, nonatomic) NSMutableArray* bgarray;
 @property (strong, nonatomic) NSTimer* bgTimer;
 @property (assign, nonatomic) int bgTimerCounter;
-
+@property (assign, nonatomic) BOOL isBgInit;//indicates that the bg item has been pulled from the db and put into the array
+@property (assign, nonatomic) BOOL isSoundInit;
+@property (assign, nonatomic) BOOL isBgOrig;//indicates that the bg item in the array is the default one
+@property (assign, nonatomic) BOOL isSoundOrig;
 @end
 
 @implementation MainViewController
@@ -42,18 +46,18 @@
 @synthesize interruptedOnPlayback;
 @synthesize timerFired;
 @synthesize menuBtn;
-@synthesize theSong, theSongArray;
+@synthesize theSongArray, isBgInit, isSoundInit, isBgOrig, isSoundOrig;
 @synthesize theColor, controller, timerLabel, minutesLabel, bgImageView;
 
 #pragma mark Constructor
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        NSString *pathToMusicFile0 = [[NSBundle mainBundle] pathForResource:@"campfire" ofType:@"mp3"];
-        theSong = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL fileURLWithPath:pathToMusicFile0] error:NULL];
-        [theSong setNumberOfLoops:-1];
-		[theSong prepareToPlay];
         theColor = [UIColor whiteColor];
-            }
+        isSoundInit = FALSE;
+        isBgInit = FALSE;
+        isSoundOrig = FALSE;
+        isBgOrig = FALSE;
+    }
     return self;
 }
 
@@ -96,6 +100,40 @@
     bgarray = [[NSMutableArray alloc] initWithCapacity:5];
     theSongArray = [[NSMutableArray alloc] initWithCapacity:5];
     
+    if (!isBgInit) {
+        //go pull the bg object out of database and put in bgarray
+        NSError *error;
+        NSManagedObjectContext *context = [[DatabaseManager sharedDatabaseManager] managedObjectContext];
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Background"
+                                                  inManagedObjectContext:context];
+        [fetchRequest setEntity:entity];
+        
+        // Edit the sort key as appropriate.
+        NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"isLocalImage" ascending:NO];
+        NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor1, nil];
+        
+        [fetchRequest setSortDescriptors:sortDescriptors];
+        
+        NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+        [bgarray addObject:fetchedObjects[0]];
+        
+        isBgInit = TRUE;
+        isBgOrig = TRUE;
+    }
+    
+    if (!isSoundInit) {
+        //put sound object in sound array
+        NSString *pathToMusicFile3 = [[NSBundle mainBundle] pathForResource:@"stream" ofType:@"mp3"];
+        AVAudioPlayer* song3 = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL fileURLWithPath:pathToMusicFile3] error:NULL];
+        [song3 setNumberOfLoops:-1];
+		[song3 prepareToPlay];
+        [theSongArray addObject:song3];
+        [song3 setDelegate:self];
+        isSoundInit = TRUE;
+        isSoundOrig = TRUE;
+    }
+    
 	[super viewDidLoad];
 }
 
@@ -115,7 +153,7 @@
         //TODO put code here to add permanent bg object
     }
     bgTimerCounter = 0;
-    [self.bgImageView setImage:nil];
+    [self.bgImageView setImage:nil];//displays the bg image
     self.bgImageURL = nil;
     if([bgarray count] > 0)
     {
@@ -341,10 +379,11 @@
 
 - (void)songSelected:(AVAudioPlayer*)song
 {
-    NSLog(@"got song event");
-    //[song setDelegate:self];
-    //self.theSong = song;
-    
+    if(isSoundOrig)
+    {
+        [theSongArray removeAllObjects];
+        isSoundOrig = FALSE;
+    }
     if(![theSongArray containsObject:song])
     {
         [theSongArray addObject:song];
@@ -366,7 +405,11 @@
 #pragma mark BackgroundsViewControllerDelegate methods
 - (void)backgroundSelected:(Background *)background
 {
-    //NSLog(@"got background selected event");
+    if(isBgOrig)
+    {
+        [bgarray removeAllObjects];
+        isBgOrig = FALSE;
+    }
     if(![bgarray containsObject:background])
     {
         [bgarray addObject:background];
