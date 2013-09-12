@@ -35,6 +35,8 @@
 @property (assign, nonatomic) BOOL isSoundInit;
 @property (assign, nonatomic) BOOL isBgOrig;//indicates that the bg item in the array is the default one
 @property (assign, nonatomic) BOOL isSoundOrig;
+@property (strong, nonatomic) IBOutlet UISlider* volumeSlider;
+@property (strong, nonatomic) IBOutlet UISlider* brightnessSlider;
 @end
 
 @implementation MainViewController
@@ -47,7 +49,7 @@
 @synthesize timerFired;
 @synthesize menuBtn;
 @synthesize theSongArray, isBgInit, isSoundInit, isBgOrig, isSoundOrig;
-@synthesize theColor, controller, timerLabel, minutesLabel, bgImageView;
+@synthesize theColor, controller, timerLabel, minutesLabel, bgImageView, volumeSlider, brightnessSlider;
 
 #pragma mark Constructor
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -96,6 +98,7 @@
     controller = [[TimerViewController alloc] initWithNibName:@"TimerViewController" bundle:nil];
 	controller.timerDelegate = self;
     controller.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    //controller.restorationIdentifier = RESTORATION_ID_TIMER_VC;
     
     bgarray = [[NSMutableArray alloc] initWithCapacity:5];
     theSongArray = [[NSMutableArray alloc] initWithCapacity:5];
@@ -172,6 +175,58 @@
     [bgTimer invalidate];
 }
 
+#pragma mark state preservation and restoration
+- (void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    [super encodeRestorableStateWithCoder:coder];
+    
+    //[coder encodeObject:self.musicTimerTypes forKey:@"musicTimerTypes"];//NSArray *musicTimerTypes;
+    //[coder encodeInteger:self.timeOut forKey:@"timeOut"];//NSInteger timeOut;
+	[coder encodeFloat:self.natureVolume forKey:@"natureVolume"];//float natureVolume;
+	//[coder encodeObject:timer forKey:@"timer"];//NSTimer* timer;
+	//[coder encodeBool:self.playerState forKey:@"playerState"];//BOOL playerState;
+	//[coder encodeBool:self.interruptedOnPlayback forKey:@"interruptedOnPlayback"];//BOOL interruptedOnPlayback;
+	//[coder encodeBool:self.timerFired forKey:@"timerFired"];//BOOL timerFired;
+    //[coder encodeObject:self.theSongArray forKey:@"theSongArray"];//NSMutableArray* theSongArray;
+    //[coder encodeObject:self.theColor forKey:@"theColor"];//UIColor* theColor;
+    [coder encodeFloat:self.natureBrightness forKey:@"natureBrightness"];//float natureBrightness;
+    //[coder encodeObject:self.bgImageView forKey:@"bgImageView"];//IBOutlet UIImageView* bgImageView;
+    //[coder encodeObject:self.bgImageURL forKey:@"bgImageURL"];//NSURL* bgImageURL;
+    //[coder encodeObject:self.bgarray forKey:@"bgArray"];//NSMutableArray* bgarray;
+    //[coder encodeObject:self.bgTimer forKey:@"bgTimer"];//NSTimer* bgTimer;
+    //[coder encodeInt:self.bgTimerCounter forKey:@"bgTimerCounter"];//int bgTimerCounter;
+    [coder encodeBool:self.isBgInit forKey:@"isBgInit"];//BOOL isBgInit;
+    [coder encodeBool:self.isSoundInit forKey:@"isSoundInit"];//BOOL isSoundInit;
+    [coder encodeBool:self.isBgOrig forKey:@"isBgOrig"];//BOOL isBgOrig;
+    [coder encodeBool:self.isSoundOrig forKey:@"isSoundOrig"];//BOOL isSoundOrig;
+}
+
+- (void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    [super decodeRestorableStateWithCoder:coder];
+    
+    //self.musicTimerTypes = [coder decodeObjectForKey:@"musicTimerTypes"];
+    //self.timeOut = [coder decodeIntegerForKey:@"timeOut"];//NSInteger timeOut;
+	self.natureVolume = [coder decodeFloatForKey:@"natureVolume"];//float natureVolume;
+    [self.volumeSlider setValue:self.natureVolume animated:NO];
+	//timer = [coder decodeObjectForKey:@"timer"];//NSTimer* timer;
+	//self.playerState =  [coder decodeBoolForKey:@"playerState"];//BOOL playerState;
+	//self.interruptedOnPlayback = [coder decodeBoolForKey:@"interruptedOnPlayback"];//BOOL interruptedOnPlayback;
+	//self.timerFired = [coder decodeBoolForKey:@"timerFired"];//BOOL timerFired;
+    //self.theSongArray = [coder decodeObjectForKey:@"theSongArray"];//NSMutableArray* theSongArray;
+    //self.theColor =  [coder decodeObjectForKey:@"theColor"];//UIColor* theColor;
+    self.natureBrightness = [coder decodeFloatForKey:@"natureBrightness"];//float natureBrightness;
+    [self.brightnessSlider setValue:self.natureBrightness animated:NO];
+    //self.bgImageView = [coder decodeObjectForKey:@"bgImageView"];//IBOutlet UIImageView* bgImageView;
+    //self.bgImageURL = [coder decodeObjectForKey:@"bgImageURL"];//NSURL* bgImageURL;
+    //self.bgarray = [coder decodeObjectForKey:@"bgArray"];//NSMutableArray* bgarray;
+    //self.bgTimer = [coder decodeObjectForKey:@"bgTimer"];//NSTimer* bgTimer;
+    //self.bgTimerCounter = [coder decodeIntForKey:@"bgTimerCounter"];//int bgTimerCounter;
+    self.isBgInit = [coder decodeBoolForKey:@"isBgInit"];//BOOL isBgInit;
+    self.isSoundInit = [coder decodeBoolForKey:@"isSoundInit"];//BOOL isSoundInit;
+    self.isBgOrig = [coder decodeBoolForKey:@"isBgOrig"];//BOOL isBgOrig;
+    self.isSoundOrig = [coder decodeBoolForKey:@"isSoundOrig"];//BOOL isSoundOrig;
+}
+
+#pragma mark basic methods
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -279,6 +334,7 @@
 	blcontroller.bgDelegate = self;
     blcontroller.backgroundColor = theColor;
     blcontroller.brightness = natureBrightness;
+    //blcontroller.restorationIdentifier = RESTORATION_ID_BACKLIGHT_VC;
     NSMutableArray* tempArray = [[NSMutableArray alloc] initWithCapacity:5];
     for (Background* bg in bgarray) {
         
@@ -301,9 +357,7 @@
         [song setVolume:(natureVolume / 100)];
         [song play];
     }
-    //[theSong setVolume:(natureVolume / 100)];
-	//[theSong play];
-	
+    
     playerState = YES;
 	blcontroller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 	[self presentViewController:blcontroller animated:YES completion:nil];

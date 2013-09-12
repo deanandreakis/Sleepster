@@ -21,7 +21,18 @@
 
 #define FLURRY_KEY @"D34VV6Z525ZTGNRCJXWC"
 
+#define CRASHLYTICS_KEY @"2eaad7ad1fecfce6c414905676a8175bb2a1c253"
+
 #define MIN_NUM_BG_OBJECTS 50
 #define NUM_PERMANENT_BG_OBJECTS 15
+
+#define RESTORATION_ID_MAIN_VC @"MainViewControllerID"
+#define RESTORATION_ID_INFO_VC @"InformationViewControllerID"
+#define RESTORATION_ID_SETTINGS_VC @"SettingsViewControllerID"
+#define RESTORATION_ID_SOUNDS_VC @"SoundsViewControllerID"
+#define RESTORATION_ID_BG_VC @"BackgroundsViewControllerID"
+#define RESTORATION_ID_TAB_BAR_C @"UITabBarControllerID"
+#define RESTORATION_ID_BACKLIGHT_VC @"BacklightViewControllerID"
+#define RESTORATION_ID_TIMER_VC @"TimerViewControllerID"
 
 #endif

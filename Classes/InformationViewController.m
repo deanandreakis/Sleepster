@@ -10,7 +10,9 @@
 #import "Constants.h"
 #import <Social/Social.h>
 
-#define reviewString @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=417667154"
+#define reviewString @"itms-apps://itunes.com/apps/Sleepster"
+
+//@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=417667154"
 
 @interface InformationViewController ()
 
@@ -42,8 +44,8 @@
 //TODO: Broken in Beta 3...test again later
 -(IBAction)rateButton:(id)sender
 {
-    NSString * theUrl = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=417667154&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software";
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:theUrl]];
+    //NSString * theUrl = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=417667154&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software";
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:reviewString]];
 }
 
 #pragma mark Social Network Methods
@@ -86,6 +88,17 @@
                                   otherButtonTitles:nil];
         [alertView show];
     }
+}
+
+#pragma mark state preservation and restoration
+- (void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    [super encodeRestorableStateWithCoder:coder];
+    
+}
+
+- (void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    [super decodeRestorableStateWithCoder:coder];
+    
 }
 
 @end

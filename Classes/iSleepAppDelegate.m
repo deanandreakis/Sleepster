@@ -23,10 +23,9 @@
 @synthesize window = _window;
 @synthesize mainViewController, informationViewController, settingsViewController, soundsViewController, backgroundsViewController,tabBarController;
 
-
-- (void)applicationDidFinishLaunching:(UIApplication *)application {
+- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-	[Crashlytics startWithAPIKey:@"2eaad7ad1fecfce6c414905676a8175bb2a1c253"];
+	[Crashlytics startWithAPIKey:CRASHLYTICS_KEY];
     
     [Flurry startSession:FLURRY_KEY];
     
@@ -46,24 +45,29 @@
     mainViewController = [[MainViewController alloc] initWithNibName:@"MainView" bundle:nil];
     mainViewController.tabBarItem.title = @"Main";
     mainViewController.tabBarItem.image = [UIImage imageNamed:@"home-2.png"];
+    mainViewController.restorationIdentifier = RESTORATION_ID_MAIN_VC;
     
     informationViewController = [[InformationViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
     informationViewController.tabBarItem.title = @"Information";
     informationViewController.tabBarItem.image = [UIImage imageNamed:@"Info.png"];
+    informationViewController.restorationIdentifier = RESTORATION_ID_INFO_VC;
     
     settingsViewController = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
     settingsViewController.tabBarItem.title = @"Settings";
     settingsViewController.tabBarItem.image = [UIImage imageNamed:@"Settings.png"];
+    settingsViewController.restorationIdentifier = RESTORATION_ID_SETTINGS_VC;
     
     UICollectionViewFlowLayout *backgroundLayout = [[UICollectionViewFlowLayout alloc] init];
     
     soundsViewController = [[SoundsViewController alloc] initWithNibName:@"SoundsViewController" bundle:nil];
     soundsViewController.tabBarItem.title = @"Sounds";
     soundsViewController.tabBarItem.image = [UIImage imageNamed:@"Speaker-1.png"];
+    //soundsViewController.restorationIdentifier = RESTORATION_ID_SOUNDS_VC;
     
     backgroundsViewController = [[BackgroundsViewController alloc] initWithCollectionViewLayout:backgroundLayout];
     backgroundsViewController.tabBarItem.title = @"Backgrounds";
     backgroundsViewController.tabBarItem.image = [UIImage imageNamed:@"Picture-Landscape.png"];
+    //backgroundsViewController.restorationIdentifier = RESTORATION_ID_BG_VC;
     
     backgroundLayout.itemSize = CGSizeMake(FLICKR_THUMBNAIL_SIZE, FLICKR_THUMBNAIL_SIZE);
     backgroundLayout.minimumInteritemSpacing = 2;
@@ -75,11 +79,14 @@
     [backgroundsViewController setDelegate:mainViewController];
     
     tabBarController = [[UITabBarController alloc] init];
+    tabBarController.restorationIdentifier = RESTORATION_ID_TAB_BAR_C;
     NSArray* array = [NSArray arrayWithObjects:mainViewController,soundsViewController,backgroundsViewController,settingsViewController,informationViewController,nil];
     [tabBarController setViewControllers:array animated:YES];
     
     [self.window setRootViewController:tabBarController];
     [self.window makeKeyAndVisible];
+    
+    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -119,6 +126,43 @@
 {
     // Saves changes in the application's managed object context before the application terminates.
     [[DatabaseManager sharedDatabaseManager] saveContext];
+}
+
+#pragma mark state preservation and restoration
+- (BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder {
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder {
+    return YES;
+}
+
+- (void)application:(UIApplication *)application willEncodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+}
+
+- (void)application:(UIApplication *)application didDecodeRestorableStateWithCoder:(NSCoder *)coder {
+    
+}
+
+- (UIViewController *)application:(UIApplication *)application viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder {
+
+    /*We dont need to return the view controllers created above since the willFinishLaunchingWithOptions method
+     executes before the restoration process, thus all those view controllers are created and in memory and the implicit
+     search by the system will find those objects.*/
+    return nil;
+    
+    /*NSString* identifier = (NSString*)[identifierComponents lastObject];
+    if([identifier isEqualToString:@"SettingsViewControllerID"])
+    {
+        return settingsViewController;
+    } else if([identifier isEqualToString:@"UITabBarControllerID"])
+    {
+        return tabBarController;
+    }
+    else {
+        return nil;
+    }*/
 }
 
 

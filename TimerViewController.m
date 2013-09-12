@@ -120,5 +120,22 @@
     [self.timerDelegate timerViewControllerDidFinish:timeOut timerString:[self.minutesArray objectAtIndex:row]];
 }
 
+#pragma mark state preservation and restoration
+- (void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    [super encodeRestorableStateWithCoder:coder];
+    
+    [coder encodeObject:self.timerDelegate forKey:@"timerDelegate"];
+    [coder encodeInteger:self.timeOut forKey:@"timeOut"];
+    [coder encodeObject:self.minutesArray forKey:@"minutesArray"];
+}
+
+- (void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    [super decodeRestorableStateWithCoder:coder];
+    
+    self.timerDelegate = [coder decodeObjectForKey:@"timerDelegate"];
+    self.timeOut = [coder decodeIntegerForKey:@"timeOut"];
+    self.minutesArray = [coder decodeObjectForKey:@"minutesArray"];
+
+}
 
 @end

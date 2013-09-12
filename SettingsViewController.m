@@ -50,10 +50,10 @@
     UISwitch* switcher = (UISwitch *)sender;
     if([switcher isOn])
     {
-        //NSLog(@"switch is ON");
+        NSLog(@"switch is ON");
     }
     else{
-        //NSLog(@"switch is OFF");
+        NSLog(@"switch is OFF");
     }
 }
 
@@ -63,7 +63,7 @@
     UISwitch* switcher = (UISwitch *)sender;
     if([switcher isOn])//switch changed to on
     {
-        //NSLog(@"switch is ON");
+        NSLog(@"switch is ON");
         NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];//check if its ok to be on
         if(![store boolForKey:BG_STOREKIT_STATUS]) { //feature has not been purchased
             
@@ -74,7 +74,7 @@
         
     }
     else{
-        //NSLog(@"switch is OFF");
+        NSLog(@"switch is OFF");
     }
 }
 
@@ -88,6 +88,21 @@
 -(BOOL)soundSwitchState
 {
     return [soundSwitch isOn];
+}
+
+#pragma mark state preservation and restoration
+- (void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    [super encodeRestorableStateWithCoder:coder];
+    
+    [coder encodeBool:[self.bgSwitch isOn] forKey:@"bgSwitch"];
+    [coder encodeBool:[self.soundSwitch isOn]forKey:@"soundSwitch"];
+}
+
+- (void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    [super decodeRestorableStateWithCoder:coder];
+    
+    [self.bgSwitch setOn:[coder decodeBoolForKey:@"bgSwitch"]];
+    [self.soundSwitch setOn:[coder decodeBoolForKey:@"soundSwitch"]];
 }
 
 @end

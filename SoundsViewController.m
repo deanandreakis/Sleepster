@@ -155,7 +155,7 @@
     //BUG: SOmetimes last single selected item is not deselected so we need to add logic to
     //selectedItem to say if we are in single select mode and we selected an item we need to call deselect
     //on the old item in the array.
-    NSLog(@"SELECTED INDEX PATH NUM OBJECTS IS %d", [selectedIndexPath count]);
+    //NSLog(@"SELECTED INDEX PATH NUM OBJECTS IS %d", [selectedIndexPath count]);
     for (NSObject* object in selectedIndexPath) {//self.collectionView.indexPathsForSelectedItems) {
         NSIndexPath* indexPath = (NSIndexPath*)object;
         [self.tableView selectRowAtIndexPath:indexPath animated:FALSE scrollPosition:UITableViewScrollPositionNone];
@@ -221,12 +221,12 @@
     if(isSingleSelectToDeselect && ([selectedIndexPath count] == 1)) {
         [self.tableView.delegate tableView:tableView didDeselectRowAtIndexPath:[selectedIndexPath objectAtIndex:0]];
         isSingleSelectToDeselect = NO;
-        NSLog(@"TRIGGER!!!!!!!!!!!!");
+        //NSLog(@"TRIGGER!!!!!!!!!!!!");
     }
     
     if(![selectedIndexPath containsObject:indexPath]) {
         [self.delegate songSelected:[songArray objectAtIndex:indexPath.row]];//tell the delegate we selected a song
-        NSLog(@"selected index %d", indexPath.row);
+        //NSLog(@"selected index %d", indexPath.row);
         
         UITableViewCell *cell =[tableView cellForRowAtIndexPath:indexPath];
         NSString *pathToSelectedImage = [[NSBundle mainBundle] pathForResource:@"check_mark_green" ofType:@"png"];
@@ -241,7 +241,7 @@
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.delegate songDeSelected:[songArray objectAtIndex:indexPath.row]];//tell the delegate we deselected a song
-    NSLog(@"deselected index %d", indexPath.row);
+    //NSLog(@"deselected index %d", indexPath.row);
     
     UITableViewCell *cell =[tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryView = nil;

@@ -108,7 +108,13 @@
 	// e.g. self.myOutlet = nil;
 }
 
+#pragma mark state preservation and restoration
+- (void)encodeRestorableStateWithCoder:(NSCoder *)coder {
+    [super encodeRestorableStateWithCoder:coder];
+}
 
-
+- (void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    [super decodeRestorableStateWithCoder:coder];
+}
 
 @end

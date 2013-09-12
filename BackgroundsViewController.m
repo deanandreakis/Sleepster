@@ -97,7 +97,7 @@
     //BUG: SOmetimes last single selected item is not deselected so we need to add logic to
     //selectedItem to say if we are in single select mode and we selected an item we need to call deselect
     //on the old item in the array.
-    NSLog(@"SELECTED INDEX PATH NUM OBJECTS IS %d", [selectedIndexPath count]);
+    //NSLog(@"SELECTED INDEX PATH NUM OBJECTS IS %d", [selectedIndexPath count]);
     for (NSObject* object in selectedIndexPath) {//self.collectionView.indexPathsForSelectedItems) {
         NSIndexPath* indexPath = (NSIndexPath*)object;
         [self.collectionView selectItemAtIndexPath:indexPath animated:FALSE scrollPosition:UICollectionViewScrollPositionNone];
@@ -217,7 +217,7 @@
     if(isSingleSelectToDeselect && ([selectedIndexPath count] == 1)) {
         [self.collectionView.delegate collectionView:collectionView didDeselectItemAtIndexPath:[selectedIndexPath objectAtIndex:0]];
         isSingleSelectToDeselect = NO;
-        NSLog(@"TRIGGER!!!!!!!!!!!!");
+        //NSLog(@"TRIGGER!!!!!!!!!!!!");
     }
     
     if(![selectedIndexPath containsObject:indexPath])
@@ -236,7 +236,7 @@
         [cell.contentView addSubview:selectedImageView];
         [selectedIndexPath addObject:indexPath];
         //[collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-        NSLog(@"SELECTED index %d", indexPath.item);
+        //NSLog(@"SELECTED index %d", indexPath.item);
     }
     //NSLog(@"SELECTED index %d", indexPath.item);
 }
@@ -257,7 +257,7 @@
     //[collectionView deselectItemAtIndexPath:indexPath animated:NO];
     [selectedIndexPath removeObject:indexPath];
     
-    NSLog(@"DESELECTED index %d", indexPath.item);
+    //NSLog(@"DESELECTED index %d", indexPath.item);
 }
 
 #pragma mark - Fetched results controller
@@ -301,7 +301,7 @@
          
 	     abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
 	     */
-	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+	    //NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 	    //abort();
 	}
     
