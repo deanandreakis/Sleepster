@@ -96,7 +96,7 @@
 {
     NSInteger row;
     row = [self.pickerView selectedRowInComponent:0];
-    NSLog(@"Picker Selected Row: %d", row);
+    //NSLog(@"Picker Selected Row: %d", row);
     switch (row) {
         case kFifteenMinSegmentIndex:
 			timeOut = 900 - fadeoutTime;//seconds
@@ -123,19 +123,18 @@
 #pragma mark state preservation and restoration
 - (void)encodeRestorableStateWithCoder:(NSCoder *)coder {
     [super encodeRestorableStateWithCoder:coder];
-    
-    [coder encodeObject:self.timerDelegate forKey:@"timerDelegate"];
-    [coder encodeInteger:self.timeOut forKey:@"timeOut"];
-    [coder encodeObject:self.minutesArray forKey:@"minutesArray"];
+    //NSLog(@"TIMER VC ENCODE");
+    NSInteger row = [self.pickerView selectedRowInComponent:0];
+    [coder encodeInteger:row forKey:@"tvc_row"];
 }
 
 - (void)decodeRestorableStateWithCoder:(NSCoder *)coder {
     [super decodeRestorableStateWithCoder:coder];
-    
-    self.timerDelegate = [coder decodeObjectForKey:@"timerDelegate"];
-    self.timeOut = [coder decodeIntegerForKey:@"timeOut"];
-    self.minutesArray = [coder decodeObjectForKey:@"minutesArray"];
-
+    //NSLog(@"TIMER VC DECODE");
+    NSInteger row = [coder decodeIntegerForKey:@"tvc_row"];
+    [pickerView selectRow:row inComponent:0 animated:NO];
+    [self pickerView:pickerView didSelectRow:row inComponent:0];
+    [self doneSelected:nil];
 }
 
 @end

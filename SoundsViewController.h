@@ -13,7 +13,7 @@
 - (void)songDeSelected:(AVAudioPlayer*)song;
 @end
 
-@interface SoundsViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SoundsViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, UIDataSourceModelAssociation>
 
 @property(assign) id<SoundsViewControllerDelegate> delegate;
 

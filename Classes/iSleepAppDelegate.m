@@ -62,7 +62,7 @@
     soundsViewController = [[SoundsViewController alloc] initWithNibName:@"SoundsViewController" bundle:nil];
     soundsViewController.tabBarItem.title = @"Sounds";
     soundsViewController.tabBarItem.image = [UIImage imageNamed:@"Speaker-1.png"];
-    //soundsViewController.restorationIdentifier = RESTORATION_ID_SOUNDS_VC;
+    soundsViewController.restorationIdentifier = RESTORATION_ID_SOUNDS_VC;
     
     backgroundsViewController = [[BackgroundsViewController alloc] initWithCollectionViewLayout:backgroundLayout];
     backgroundsViewController.tabBarItem.title = @"Backgrounds";
@@ -77,6 +77,7 @@
     
     [soundsViewController setDelegate:mainViewController];
     [backgroundsViewController setDelegate:mainViewController];
+    [settingsViewController setSettingsDelegate:mainViewController];
     
     tabBarController = [[UITabBarController alloc] init];
     tabBarController.restorationIdentifier = RESTORATION_ID_TAB_BAR_C;

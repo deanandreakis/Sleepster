@@ -43,7 +43,6 @@
 
 @synthesize timeOut, bgImageURL, bgarray, bgTimer, bgTimerCounter;
 @synthesize natureVolume, natureBrightness;
-@synthesize musicTimerTypes;
 @synthesize playerState;
 @synthesize interruptedOnPlayback;
 @synthesize timerFired;
@@ -53,6 +52,7 @@
 
 #pragma mark Constructor
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    //NSLog(@"INIT");
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         theColor = [UIColor whiteColor];
         isSoundInit = FALSE;
@@ -68,7 +68,7 @@
 
 
 - (void)viewDidLoad {
-    
+    //NSLog(@"viewDidLoad");
 	self.bgImageView.backgroundColor = theColor;
     self.view.backgroundColor = [UIColor whiteColor];
 	
@@ -98,11 +98,20 @@
     controller = [[TimerViewController alloc] initWithNibName:@"TimerViewController" bundle:nil];
 	controller.timerDelegate = self;
     controller.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    //controller.restorationIdentifier = RESTORATION_ID_TIMER_VC;
+    controller.restorationIdentifier = RESTORATION_ID_TIMER_VC;
     
     bgarray = [[NSMutableArray alloc] initWithCapacity:5];
     theSongArray = [[NSMutableArray alloc] initWithCapacity:5];
     
+	[super viewDidLoad];
+}
+
+- (void)viewDidUnload {
+}
+
+//moved all this stuff here because it executes after the state restoration decode
+- (void)viewDidAppear:(BOOL)animated {
+    //NSLog(@"viewDidAppear");
     if (!isBgInit) {
         //go pull the bg object out of database and put in bgarray
         NSError *error;
@@ -137,24 +146,6 @@
         isSoundOrig = TRUE;
     }
     
-	[super viewDidLoad];
-}
-
-- (void)viewDidUnload {
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    //cover the case where someone has selected mutiple bg's and then tuned off the option to
-    //support mult bg's/rotate bg's.
-    if(![[iSleepAppDelegate appDelegate].settingsViewController bgSwitchState])//TODO: are all objects here initd at statup???
-    {
-        if([bgarray count] > 1)
-        {
-            [bgarray removeAllObjects];
-        }
-        //TODO put code here to add permanent bg object
-    }
     bgTimerCounter = 0;
     [self.bgImageView setImage:nil];//displays the bg image
     self.bgImageURL = nil;
@@ -163,11 +154,16 @@
         [self bgTimerFired:nil];
         //start a timer and rotate thru Background objects
         bgTimer = [NSTimer scheduledTimerWithTimeInterval:3
-                                                 target: self
-                                               selector: @selector(bgTimerFired:)
-                                               userInfo: nil
-                                                repeats: YES];
+                                                   target: self
+                                                 selector: @selector(bgTimerFired:)
+                                                 userInfo: nil
+                                                  repeats: YES];
     }
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    //NSLog(@"viewWillAppear");
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -179,21 +175,32 @@
 - (void)encodeRestorableStateWithCoder:(NSCoder *)coder {
     [super encodeRestorableStateWithCoder:coder];
     
-    //[coder encodeObject:self.musicTimerTypes forKey:@"musicTimerTypes"];//NSArray *musicTimerTypes;
-    //[coder encodeInteger:self.timeOut forKey:@"timeOut"];//NSInteger timeOut;
-	[coder encodeFloat:self.natureVolume forKey:@"natureVolume"];//float natureVolume;
-	//[coder encodeObject:timer forKey:@"timer"];//NSTimer* timer;
-	//[coder encodeBool:self.playerState forKey:@"playerState"];//BOOL playerState;
-	//[coder encodeBool:self.interruptedOnPlayback forKey:@"interruptedOnPlayback"];//BOOL interruptedOnPlayback;
-	//[coder encodeBool:self.timerFired forKey:@"timerFired"];//BOOL timerFired;
-    //[coder encodeObject:self.theSongArray forKey:@"theSongArray"];//NSMutableArray* theSongArray;
-    //[coder encodeObject:self.theColor forKey:@"theColor"];//UIColor* theColor;
+    [coder encodeInteger:self.timeOut forKey:@"timeOut"];//NSInteger timeOut;
+	[coder encodeObject:self.timerLabel.text forKey:@"timerLabel"];
+    
+    [coder encodeFloat:self.natureVolume forKey:@"natureVolume"];//float natureVolume;
+    
+    //for a containing VC we just need to call encode on it to trigger
+    //its encode/decode calls, so we dont need to decode it here
+    [coder encodeObject:controller forKey:@"TimerViewController"];
+	
+    NSMutableArray* songURLArray = [[NSMutableArray alloc] initWithCapacity:5];
+    for (AVAudioPlayer* song in theSongArray) {
+        NSURL* songURL = song.url;
+        [songURLArray addObject:songURL];
+    }
+    [coder encodeObject:songURLArray forKey:@"songURLArray"];
+    
+    [coder encodeObject:self.theColor forKey:@"theColor"];//UIColor* theColor;
     [coder encodeFloat:self.natureBrightness forKey:@"natureBrightness"];//float natureBrightness;
-    //[coder encodeObject:self.bgImageView forKey:@"bgImageView"];//IBOutlet UIImageView* bgImageView;
-    //[coder encodeObject:self.bgImageURL forKey:@"bgImageURL"];//NSURL* bgImageURL;
-    //[coder encodeObject:self.bgarray forKey:@"bgArray"];//NSMutableArray* bgarray;
-    //[coder encodeObject:self.bgTimer forKey:@"bgTimer"];//NSTimer* bgTimer;
-    //[coder encodeInt:self.bgTimerCounter forKey:@"bgTimerCounter"];//int bgTimerCounter;
+    
+    NSMutableArray* bgURLArray = [[NSMutableArray alloc] initWithCapacity:5];
+    for (Background* bg in self.bgarray) {
+        NSURL *moURI = [[bg objectID] URIRepresentation];
+        [bgURLArray addObject:moURI];
+    }
+    [coder encodeObject:bgURLArray forKey:@"bgURLArray"];
+    
     [coder encodeBool:self.isBgInit forKey:@"isBgInit"];//BOOL isBgInit;
     [coder encodeBool:self.isSoundInit forKey:@"isSoundInit"];//BOOL isSoundInit;
     [coder encodeBool:self.isBgOrig forKey:@"isBgOrig"];//BOOL isBgOrig;
@@ -201,25 +208,48 @@
 }
 
 - (void)decodeRestorableStateWithCoder:(NSCoder *)coder {
+    //NSLog(@"DECODE");
     [super decodeRestorableStateWithCoder:coder];
     
-    //self.musicTimerTypes = [coder decodeObjectForKey:@"musicTimerTypes"];
-    //self.timeOut = [coder decodeIntegerForKey:@"timeOut"];//NSInteger timeOut;
-	self.natureVolume = [coder decodeFloatForKey:@"natureVolume"];//float natureVolume;
+    self.timeOut = [coder decodeIntegerForKey:@"timeOut"];//NSInteger timeOut;
+	self.timerLabel.text = [coder decodeObjectForKey:@"timerLabel"];
+    if([self.timerLabel.text isEqualToString:NSLocalizedString(@"OFF",nil)])
+    {
+        self.minutesLabel.hidden = YES;
+    }
+    else
+    {
+        self.minutesLabel.hidden = NO;
+    }
+    
+    self.natureVolume = [coder decodeFloatForKey:@"natureVolume"];//float natureVolume;
     [self.volumeSlider setValue:self.natureVolume animated:NO];
-	//timer = [coder decodeObjectForKey:@"timer"];//NSTimer* timer;
-	//self.playerState =  [coder decodeBoolForKey:@"playerState"];//BOOL playerState;
-	//self.interruptedOnPlayback = [coder decodeBoolForKey:@"interruptedOnPlayback"];//BOOL interruptedOnPlayback;
-	//self.timerFired = [coder decodeBoolForKey:@"timerFired"];//BOOL timerFired;
-    //self.theSongArray = [coder decodeObjectForKey:@"theSongArray"];//NSMutableArray* theSongArray;
-    //self.theColor =  [coder decodeObjectForKey:@"theColor"];//UIColor* theColor;
+	
+    NSMutableArray* songURLArray = [[NSMutableArray alloc] initWithCapacity:5];
+    songURLArray = [coder decodeObjectForKey:@"songURLArray"];
+    [self.theSongArray removeAllObjects];
+    for (NSURL* url in songURLArray) {
+        AVAudioPlayer* song = [[AVAudioPlayer alloc]initWithContentsOfURL:url error:NULL];
+        [song setNumberOfLoops:-1];
+		[song prepareToPlay];
+        [self.theSongArray addObject:song];
+        [song setDelegate:self];
+    }
+    
+    self.theColor =  [coder decodeObjectForKey:@"theColor"];//UIColor* theColor;
     self.natureBrightness = [coder decodeFloatForKey:@"natureBrightness"];//float natureBrightness;
     [self.brightnessSlider setValue:self.natureBrightness animated:NO];
-    //self.bgImageView = [coder decodeObjectForKey:@"bgImageView"];//IBOutlet UIImageView* bgImageView;
-    //self.bgImageURL = [coder decodeObjectForKey:@"bgImageURL"];//NSURL* bgImageURL;
-    //self.bgarray = [coder decodeObjectForKey:@"bgArray"];//NSMutableArray* bgarray;
-    //self.bgTimer = [coder decodeObjectForKey:@"bgTimer"];//NSTimer* bgTimer;
-    //self.bgTimerCounter = [coder decodeIntForKey:@"bgTimerCounter"];//int bgTimerCounter;
+    [[UIScreen mainScreen] setBrightness:natureBrightness];
+    
+    NSMutableArray* bgURLArray = [[NSMutableArray alloc] initWithCapacity:5];
+    bgURLArray = [coder decodeObjectForKey:@"bgURLArray"];
+    [self.bgarray removeAllObjects];
+    NSManagedObjectContext *context = [[DatabaseManager sharedDatabaseManager] managedObjectContext];
+    for (NSURL* url in bgURLArray) {
+        NSManagedObjectID* objectId = [context.persistentStoreCoordinator managedObjectIDForURIRepresentation:url];
+        [self.bgarray addObject:[context objectWithID:objectId]];
+    }
+    
     self.isBgInit = [coder decodeBoolForKey:@"isBgInit"];//BOOL isBgInit;
     self.isSoundInit = [coder decodeBoolForKey:@"isSoundInit"];//BOOL isSoundInit;
     self.isBgOrig = [coder decodeBoolForKey:@"isBgOrig"];//BOOL isBgOrig;
@@ -387,7 +417,6 @@
     for (AVAudioPlayer* song in theSongArray) {
         [song stopWithFadeDuration:fadeoutTime];
     }
-    //[theSong stopWithFadeDuration:fadeoutTime];
 	playerState = NO;
 }
 
@@ -549,6 +578,44 @@
     {
         self.minutesLabel.hidden = NO;
     }
+}
+
+#pragma mark SettingsViewControllerDelegate
+
+- (void)settingsViewControllerBgSwitchedOff {
+    [bgarray removeAllObjects];
+    //go pull the bg object out of database and put in bgarray
+    NSError *error;
+    NSManagedObjectContext *context = [[DatabaseManager sharedDatabaseManager] managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Background"
+                                              inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"isLocalImage" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor1, nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    [bgarray addObject:fetchedObjects[0]];
+    
+    isBgInit = TRUE;
+    isBgOrig = TRUE;
+}
+- (void)settingsViewControllerSoundSwitchedOff {
+    [theSongArray removeAllObjects];
+    
+    //put sound object in sound array
+    NSString *pathToMusicFile3 = [[NSBundle mainBundle] pathForResource:@"stream" ofType:@"mp3"];
+    AVAudioPlayer* song3 = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL fileURLWithPath:pathToMusicFile3] error:NULL];
+    [song3 setNumberOfLoops:-1];
+    [song3 prepareToPlay];
+    [theSongArray addObject:song3];
+    [song3 setDelegate:self];
+    isSoundInit = TRUE;
+    isSoundOrig = TRUE;
 }
 
 #pragma mark - Utility Functions

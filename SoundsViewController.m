@@ -257,4 +257,45 @@
     return 50;
 }
 
+#pragma mark UIDataSourceModelAssociation
+- (NSString *)modelIdentifierForElementAtIndexPath:(NSIndexPath *)indexPath inView:(UIView *)view
+{
+    NSLog(@"SOUNDS ENCODE");
+    NSString *identifier = nil;
+    if (indexPath && view)
+    {
+        AVAudioPlayer* song = [songArray objectAtIndex:indexPath.row];
+        NSURL* url = song.url;
+        identifier = url.path;
+    }
+    return identifier;
+}
+
+- (NSIndexPath *)indexPathForElementWithModelIdentifier:(NSString *)identifier inView:(UIView *)view
+{
+    NSLog(@"SOUNDS DECODE");
+    NSIndexPath *indexPath = nil;
+    if (identifier && view)
+    {
+        NSInteger row = -1;
+        for (AVAudioPlayer* song in songArray) {
+            if([song.url.path isEqualToString:identifier])
+            {
+                row = [songArray indexOfObject:song];
+            }
+        }
+        if (row != -1)
+        {
+            indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+        }
+    }
+    
+    // Force a reload when table view is embedded in nav controller
+    // or scroll position is not restored. Uncomment following line
+    // to workaround bug.
+    [self.tableView reloadData];
+    
+    return indexPath;
+}
+
 @end

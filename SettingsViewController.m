@@ -50,10 +50,11 @@
     UISwitch* switcher = (UISwitch *)sender;
     if([switcher isOn])
     {
-        NSLog(@"switch is ON");
+        //NSLog(@"switch is ON");
     }
     else{
-        NSLog(@"switch is OFF");
+        //NSLog(@"switch is OFF");
+        [self.settingsDelegate settingsViewControllerSoundSwitchedOff];
     }
 }
 
@@ -63,7 +64,7 @@
     UISwitch* switcher = (UISwitch *)sender;
     if([switcher isOn])//switch changed to on
     {
-        NSLog(@"switch is ON");
+        //NSLog(@"switch is ON");
         NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];//check if its ok to be on
         if(![store boolForKey:BG_STOREKIT_STATUS]) { //feature has not been purchased
             
@@ -74,7 +75,8 @@
         
     }
     else{
-        NSLog(@"switch is OFF");
+        //NSLog(@"switch is OFF");
+        [self.settingsDelegate settingsViewControllerBgSwitchedOff];
     }
 }
 

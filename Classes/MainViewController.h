@@ -13,6 +13,7 @@
 #import "SoundsViewController.h"
 #import "BackgroundsViewController.h"
 #import "TimerViewController.h"
+#import "SettingsViewController.h"
 
 #define kMusicTimer 0
 
@@ -20,9 +21,8 @@
 @interface MainViewController : UIViewController 
     <BacklightViewControllerDelegate,
 AVAudioPlayerDelegate, SoundsViewControllerDelegate, BackgroundsViewControllerDelegate, UIAlertViewDelegate,
-UIActionSheetDelegate, TimerViewControllerDelegate>
+UIActionSheetDelegate, TimerViewControllerDelegate, SettingsViewControllerDelegate>
 {
-	NSArray *musicTimerTypes;	
 	NSInteger timeOut;
 	float natureVolume;
 	NSTimer* timer;
@@ -33,7 +33,6 @@ UIActionSheetDelegate, TimerViewControllerDelegate>
 
 @property (assign, nonatomic)NSInteger timeOut;
 @property (assign, nonatomic)float natureVolume;
-@property (nonatomic, strong)NSArray *musicTimerTypes;
 @property (assign, nonatomic)BOOL playerState;
 @property (readwrite)BOOL interruptedOnPlayback;
 @property (readwrite)BOOL timerFired;
