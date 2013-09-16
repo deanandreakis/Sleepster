@@ -118,9 +118,12 @@
                                     col2_label10,nil];
     
     selectedIndexPath = [[NSMutableArray alloc] initWithCapacity:5];
+    
 }
 
-- (void)viewWillAppear:(BOOL)animated
+//use viewDidAppear as it executes after state restoration decode cycles thus the call to
+//[iSleepAppDelegate appDelegate].settingsViewController soundSwitchState] is valid.
+- (void)viewDidAppear:(BOOL)animated
 {
     if([[iSleepAppDelegate appDelegate].settingsViewController soundSwitchState])//TODO: are all objects here initd at statup???
     {
@@ -227,6 +230,7 @@
     if(![selectedIndexPath containsObject:indexPath]) {
         [self.delegate songSelected:[songArray objectAtIndex:indexPath.row]];//tell the delegate we selected a song
         //NSLog(@"selected index %d", indexPath.row);
+        [selectedIndexPath addObject:indexPath];
         
         UITableViewCell *cell =[tableView cellForRowAtIndexPath:indexPath];
         NSString *pathToSelectedImage = [[NSBundle mainBundle] pathForResource:@"check_mark_green" ofType:@"png"];
@@ -235,7 +239,6 @@
         selectedImageView.frame = CGRectMake(0, 0, 20, 20);
         selectedImageView.tag = SELECTED_IMAGE_TAG;
         cell.accessoryView = selectedImageView;
-        [selectedIndexPath addObject:indexPath];
     }
 }
 
@@ -260,7 +263,7 @@
 #pragma mark UIDataSourceModelAssociation
 - (NSString *)modelIdentifierForElementAtIndexPath:(NSIndexPath *)indexPath inView:(UIView *)view
 {
-    NSLog(@"SOUNDS ENCODE");
+    //NSLog(@"SOUNDS ENCODE");
     NSString *identifier = nil;
     if (indexPath && view)
     {
@@ -268,12 +271,14 @@
         NSURL* url = song.url;
         identifier = url.path;
     }
+    //NSLog(@"ENCODE IDENTIFIER %@", identifier);
     return identifier;
 }
 
 - (NSIndexPath *)indexPathForElementWithModelIdentifier:(NSString *)identifier inView:(UIView *)view
 {
-    NSLog(@"SOUNDS DECODE");
+    //NSLog(@"SOUNDS DECODE");
+    //NSLog(@"DECODE IDENTIFIER %@", identifier);
     NSIndexPath *indexPath = nil;
     if (identifier && view)
     {
@@ -294,6 +299,8 @@
     // or scroll position is not restored. Uncomment following line
     // to workaround bug.
     [self.tableView reloadData];
+    
+    [self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:indexPath];
     
     return indexPath;
 }

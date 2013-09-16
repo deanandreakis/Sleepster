@@ -47,12 +47,12 @@
                                                   Background *background = [Background postWithDictionary:picDictionary];
                                                   [results addObject:background];
                                               }
-                                              NSLog(@"FLICKR RESULT NUMBER:%d",[results count]);
+                                              //NSLog(@"FLICKR RESULT NUMBER:%d",[results count]);
                                               if (block)
                                                   block(results);
                                           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                              NSLog(@"HTTP Status %d", operation.response.statusCode);
-                                              NSLog(@"ERROR: %@", error);
+                                              //NSLog(@"HTTP Status %d", operation.response.statusCode);
+                                              //NSLog(@"ERROR: %@", error);
                                               
                                               if (block)
                                                   block(nil);

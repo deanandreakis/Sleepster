@@ -184,12 +184,12 @@
     //its encode/decode calls, so we dont need to decode it here
     [coder encodeObject:controller forKey:@"TimerViewController"];
 	
-    NSMutableArray* songURLArray = [[NSMutableArray alloc] initWithCapacity:5];
+    /*NSMutableArray* songURLArray = [[NSMutableArray alloc] initWithCapacity:5];
     for (AVAudioPlayer* song in theSongArray) {
         NSURL* songURL = song.url;
         [songURLArray addObject:songURL];
     }
-    [coder encodeObject:songURLArray forKey:@"songURLArray"];
+    [coder encodeObject:songURLArray forKey:@"songURLArray"];*/
     
     [coder encodeObject:self.theColor forKey:@"theColor"];//UIColor* theColor;
     [coder encodeFloat:self.natureBrightness forKey:@"natureBrightness"];//float natureBrightness;
@@ -222,10 +222,11 @@
         self.minutesLabel.hidden = NO;
     }
     
-    self.natureVolume = [coder decodeFloatForKey:@"natureVolume"];//float natureVolume;
+    self.natureVolume = [coder decodeFloatForKey:@"natureVolume"];
     [self.volumeSlider setValue:self.natureVolume animated:NO];
 	
-    NSMutableArray* songURLArray = [[NSMutableArray alloc] initWithCapacity:5];
+    //don't save since the SoundsViewController will refill the array on restore
+    /*NSMutableArray* songURLArray = [[NSMutableArray alloc] initWithCapacity:5];
     songURLArray = [coder decodeObjectForKey:@"songURLArray"];
     [self.theSongArray removeAllObjects];
     for (NSURL* url in songURLArray) {
@@ -234,7 +235,7 @@
 		[song prepareToPlay];
         [self.theSongArray addObject:song];
         [song setDelegate:self];
-    }
+    }*/
     
     self.theColor =  [coder decodeObjectForKey:@"theColor"];//UIColor* theColor;
     self.natureBrightness = [coder decodeFloatForKey:@"natureBrightness"];//float natureBrightness;
