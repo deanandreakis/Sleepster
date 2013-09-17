@@ -67,7 +67,7 @@
     backgroundsViewController = [[BackgroundsViewController alloc] initWithCollectionViewLayout:backgroundLayout];
     backgroundsViewController.tabBarItem.title = @"Backgrounds";
     backgroundsViewController.tabBarItem.image = [UIImage imageNamed:@"Picture-Landscape.png"];
-    //backgroundsViewController.restorationIdentifier = RESTORATION_ID_BG_VC;
+    backgroundsViewController.restorationIdentifier = RESTORATION_ID_BG_VC;
     
     backgroundLayout.itemSize = CGSizeMake(FLICKR_THUMBNAIL_SIZE, FLICKR_THUMBNAIL_SIZE);
     backgroundLayout.minimumInteritemSpacing = 2;

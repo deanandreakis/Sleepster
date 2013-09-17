@@ -14,7 +14,7 @@
 - (void)backgroundDeSelected:(Background*)background;
 @end
 
-@interface BackgroundsViewController : UICollectionViewController <NSFetchedResultsControllerDelegate,UICollectionViewDataSource, UICollectionViewDelegate>
+@interface BackgroundsViewController : UICollectionViewController <UIDataSourceModelAssociation, NSFetchedResultsControllerDelegate,UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property(assign) id<BackgroundsViewControllerDelegate> delegate;
 

@@ -194,12 +194,12 @@
     [coder encodeObject:self.theColor forKey:@"theColor"];//UIColor* theColor;
     [coder encodeFloat:self.natureBrightness forKey:@"natureBrightness"];//float natureBrightness;
     
-    NSMutableArray* bgURLArray = [[NSMutableArray alloc] initWithCapacity:5];
+    /*NSMutableArray* bgURLArray = [[NSMutableArray alloc] initWithCapacity:5];
     for (Background* bg in self.bgarray) {
         NSURL *moURI = [[bg objectID] URIRepresentation];
         [bgURLArray addObject:moURI];
     }
-    [coder encodeObject:bgURLArray forKey:@"bgURLArray"];
+    [coder encodeObject:bgURLArray forKey:@"bgURLArray"];*/
     
     [coder encodeBool:self.isBgInit forKey:@"isBgInit"];//BOOL isBgInit;
     [coder encodeBool:self.isSoundInit forKey:@"isSoundInit"];//BOOL isSoundInit;
@@ -242,14 +242,14 @@
     [self.brightnessSlider setValue:self.natureBrightness animated:NO];
     [[UIScreen mainScreen] setBrightness:natureBrightness];
     
-    NSMutableArray* bgURLArray = [[NSMutableArray alloc] initWithCapacity:5];
+    /*NSMutableArray* bgURLArray = [[NSMutableArray alloc] initWithCapacity:5];
     bgURLArray = [coder decodeObjectForKey:@"bgURLArray"];
     [self.bgarray removeAllObjects];
     NSManagedObjectContext *context = [[DatabaseManager sharedDatabaseManager] managedObjectContext];
     for (NSURL* url in bgURLArray) {
         NSManagedObjectID* objectId = [context.persistentStoreCoordinator managedObjectIDForURIRepresentation:url];
         [self.bgarray addObject:[context objectWithID:objectId]];
-    }
+    }*/
     
     self.isBgInit = [coder decodeBoolForKey:@"isBgInit"];//BOOL isBgInit;
     self.isSoundInit = [coder decodeBoolForKey:@"isSoundInit"];//BOOL isSoundInit;
