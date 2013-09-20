@@ -72,6 +72,9 @@
 		C19DB55B17935250001820A7 /* twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55A17935250001820A7 /* twitter@2x.png */; };
 		C19DB55D1793531A001820A7 /* facebook-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55C1793531A001820A7 /* facebook-logo.png */; };
 		C19DB55F1793534F001820A7 /* facebook-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55E1793534F001820A7 /* facebook-logo@2x.png */; };
+		C1BB0B3D17E9389A00D20D27 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1BB0B3C17E9389A00D20D27 /* StoreKit.framework */; };
+		C1BB0B4117E93BE200D20D27 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BB0B4017E93BE200D20D27 /* IAPHelper.m */; };
+		C1BB0B4417E93EE200D20D27 /* SleepsterIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BB0B4317E93EE200D20D27 /* SleepsterIAPHelper.m */; };
 		C1C55ED31775DF5300CF1591 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1006CC316E59B4100372838 /* Crashlytics.framework */; };
 		C1C6080517982E0C0099590F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C6080417982E0C0099590F /* CoreData.framework */; };
 		C1C6080917982F650099590F /* SleepsterModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C1C6080717982F650099590F /* SleepsterModel.xcdatamodeld */; };
@@ -173,6 +176,11 @@
 		C19DB55A17935250001820A7 /* twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter@2x.png"; sourceTree = "<group>"; };
 		C19DB55C1793531A001820A7 /* facebook-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-logo.png"; sourceTree = "<group>"; };
 		C19DB55E1793534F001820A7 /* facebook-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-logo@2x.png"; sourceTree = "<group>"; };
+		C1BB0B3C17E9389A00D20D27 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		C1BB0B3F17E93BE200D20D27 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		C1BB0B4017E93BE200D20D27 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
+		C1BB0B4217E93EE200D20D27 /* SleepsterIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SleepsterIAPHelper.h; sourceTree = "<group>"; };
+		C1BB0B4317E93EE200D20D27 /* SleepsterIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SleepsterIAPHelper.m; sourceTree = "<group>"; };
 		C1C6080417982E0C0099590F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C1C6080817982F650099590F /* SleepsterModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SleepsterModel.xcdatamodel; sourceTree = "<group>"; };
 		C1C6080E179849140099590F /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
@@ -203,6 +211,7 @@
 				C1C6081D1798639A0099590F /* MobileCoreServices.framework in Frameworks */,
 				C1C6081B1798638E0099590F /* SystemConfiguration.framework in Frameworks */,
 				C1C6080517982E0C0099590F /* CoreData.framework in Frameworks */,
+				C1BB0B3D17E9389A00D20D27 /* StoreKit.framework in Frameworks */,
 				C1C55ED31775DF5300CF1591 /* Crashlytics.framework in Frameworks */,
 				C14E0EFC1675772400811389 /* Social.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
@@ -251,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				C1244DD217B085E200622B3D /* SleepMate.entitlements */,
+				C1BB0B3E17E93BAB00D20D27 /* IAP */,
 				C1C60816179861F00099590F /* API */,
 				C1C6080617982F2A0099590F /* Model */,
 				C1D7B40716719F8B0004D62E /* Controllers */,
@@ -334,6 +344,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C1BB0B3C17E9389A00D20D27 /* StoreKit.framework */,
 				C13D6CC217C45D1B00EFC786 /* libFlurry_4.2.3.a */,
 				C1C6081C1798639A0099590F /* MobileCoreServices.framework */,
 				C1C6081A1798638E0099590F /* SystemConfiguration.framework */,
@@ -347,6 +358,17 @@
 				8A62217691834AE09BD858BB /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C1BB0B3E17E93BAB00D20D27 /* IAP */ = {
+			isa = PBXGroup;
+			children = (
+				C1BB0B3F17E93BE200D20D27 /* IAPHelper.h */,
+				C1BB0B4017E93BE200D20D27 /* IAPHelper.m */,
+				C1BB0B4217E93EE200D20D27 /* SleepsterIAPHelper.h */,
+				C1BB0B4317E93EE200D20D27 /* SleepsterIAPHelper.m */,
+			);
+			name = IAP;
 			sourceTree = "<group>";
 		};
 		C1C6080617982F2A0099590F /* Model */ = {
@@ -441,8 +463,11 @@
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = 6XBQPB83GR;
 						SystemCapabilities = {
-							com.apple.iCloud = {
+							com.apple.InAppPurchase = {
 								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 0;
 							};
 						};
 					};
@@ -584,7 +609,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1BB0B4117E93BE200D20D27 /* IAPHelper.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				C1BB0B4417E93EE200D20D27 /* SleepsterIAPHelper.m in Sources */,
 				C1C608191798620B0099590F /* FlickrAPIClient.m in Sources */,
 				1D3623260D0F684500981E51 /* iSleepAppDelegate.m in Sources */,
 				C109245817D5520700AAB6AE /* Sound.m in Sources */,
@@ -626,7 +653,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = SleepMate.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
@@ -654,7 +680,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = SleepMate.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -684,7 +709,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = SleepMate.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;

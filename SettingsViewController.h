@@ -13,7 +13,7 @@
 - (void)settingsViewControllerSoundSwitchedOff;
 @end
 
-@interface SettingsViewController : UIViewController
+@interface SettingsViewController : UIViewController <UIAlertViewDelegate>
 
 -(BOOL)bgSwitchState;
 -(BOOL)soundSwitchState;

@@ -35,4 +35,7 @@
 #define RESTORATION_ID_BACKLIGHT_VC @"BacklightViewControllerID"
 #define RESTORATION_ID_TIMER_VC @"TimerViewControllerID"
 
+#define STOREKIT_PRODUCT_ID_BACKGROUNDS @"multiplebg"
+#define STOREKIT_PRODUCT_ID_SOUNDS @"multiplesounds"
+
 #endif

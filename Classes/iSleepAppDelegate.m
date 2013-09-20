@@ -16,6 +16,7 @@
 #import "DatabaseManager.h"
 #import "Constants.h"
 #import "Flurry.h"
+#import "SleepsterIAPHelper.h"
 
 @implementation iSleepAppDelegate
 
@@ -29,8 +30,10 @@
     
     [Flurry startSession:FLURRY_KEY];
     
-    NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
-    [store synchronize];
+    [SleepsterIAPHelper sharedInstance];
+    
+    //NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
+    //[store synchronize];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
