@@ -13,6 +13,11 @@
 
 #define ALERTVIEW_BG_BUY 0
 #define ALERTVIEW_BG_IAP_DISABLED 1
+#define ALERTVIEW_BG_IAP_PRODUCT_NOT_AVAILABLE 2
+
+#define ALERTVIEW_SOUND_BUY 3
+#define ALERTVIEW_SOUND_IAP_DISABLED 4
+#define ALERTVIEW_SOUND_IAP_PRODUCT_NOT_AVAILABLE 5
 
 @interface SettingsViewController () {
     NSArray *_products;
@@ -23,12 +28,14 @@
 
 @property (strong, nonatomic) IBOutlet UISwitch *bgSwitch;
 @property (strong, nonatomic) IBOutlet UISwitch *soundSwitch;
+@property (strong, nonatomic) UIActivityIndicatorView* activityIndicatorView;
+@property (strong, nonatomic) UIAlertView* pleaseWaitAlertView;
 
 @end
 
 @implementation SettingsViewController
 
-@synthesize bgSwitch, soundSwitch;
+@synthesize bgSwitch, soundSwitch, activityIndicatorView, pleaseWaitAlertView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,7 +49,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    pleaseWaitAlertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Please Wait..." delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+    [self.view addSubview:pleaseWaitAlertView];
+    [pleaseWaitAlertView addSubview:activityIndicatorView];
+    activityIndicatorView.color = [UIColor blueColor];
+    activityIndicatorView.center = CGPointMake(self.view.center.x, self.view.center.y + 35);
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     _priceFormatter = [[NSNumberFormatter alloc] init];
@@ -54,6 +68,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transactionFailed:) name:IAPHelperTransactionFailedNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -72,15 +88,44 @@
     
     NSString * productIdentifier = notification.object;
     
-    //TODO: remove alert on the screen or stop spinner, put switch in on state
+    [activityIndicatorView stopAnimating];
+    [pleaseWaitAlertView dismissWithClickedButtonIndex:0 animated:YES];
     
-    [_products enumerateObjectsUsingBlock:^(SKProduct * product, NSUInteger idx, BOOL *stop) {
-        if ([product.productIdentifier isEqualToString:productIdentifier]) {
-            //[self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:idx inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-            *stop = YES;
-        }
-    }];
+    if([productIdentifier isEqualToString:STOREKIT_PRODUCT_ID_BACKGROUNDS]) {
+        [bgSwitch setOn:YES animated:YES];//turn the switch on
+    }
+    else if([productIdentifier isEqualToString:STOREKIT_PRODUCT_ID_SOUNDS]) {
+        [soundSwitch setOn:YES animated:YES];//turn the switch on
+    }
     
+}
+
+- (void)transactionFailed:(NSNotification *)notification {
+    NSString * productIdentifier = notification.object;
+    
+    [activityIndicatorView stopAnimating];
+    [pleaseWaitAlertView dismissWithClickedButtonIndex:0 animated:YES];
+    
+    if([productIdentifier isEqualToString:STOREKIT_PRODUCT_ID_BACKGROUNDS]) {
+        [bgSwitch setOn:NO animated:YES];//turn the switch off
+    }
+    else if([productIdentifier isEqualToString:STOREKIT_PRODUCT_ID_SOUNDS]) {
+        [soundSwitch setOn:NO animated:YES];//turn the switch off
+    }
+    
+    UIAlertView *tmp = [[UIAlertView alloc]
+                        
+                        initWithTitle:@"Transaction Failed"
+                        
+                        message:@"The payment transaction failed. Please try again later."
+                        
+                        delegate:nil
+                        
+                        cancelButtonTitle:nil
+                        
+                        otherButtonTitles:@"Ok", nil];
+    
+    [tmp show];
 }
 
 - (void)getProducts {
@@ -95,13 +140,13 @@
                 if([product.productIdentifier isEqualToString:STOREKIT_PRODUCT_ID_BACKGROUNDS]) {
                     _bgProduct = product;
                 }
-                if([product.productIdentifier isEqualToString:STOREKIT_PRODUCT_ID_SOUNDS]) {
+                else if([product.productIdentifier isEqualToString:STOREKIT_PRODUCT_ID_SOUNDS]) {
                     _soundProduct = product;
                 }
             }
-            NSLog(@"IAP Response: %@", _products);
+            //NSLog(@"IAP Response: %@", _products);
         } else {
-            //TODO: did not get products back!
+            //leave the _bgProduct and _soundProduct nil
         }
     }];
 }
@@ -110,11 +155,68 @@
 
 -(IBAction)soundMixSwitch:(id)sender
 {
-    //TODO: storekit logic
     UISwitch* switcher = (UISwitch *)sender;
-    if([switcher isOn])
+    if([switcher isOn])//switch changed to on
     {
-        //NSLog(@"switch is ON");
+        if(_soundProduct != nil) {
+            if (![[SleepsterIAPHelper sharedInstance] productPurchased:_soundProduct.productIdentifier]) { //have not purchased product
+                if ([SKPaymentQueue canMakePayments]) { //make sure they are allowed to perform IAP per parental controls settings
+                    
+                    [_priceFormatter setLocale:_soundProduct.priceLocale];
+                    
+                    NSMutableString* myString = [[NSMutableString alloc] initWithCapacity:25];
+                    [myString appendString:_soundProduct.localizedTitle];
+                    [myString appendString:@": "];
+                    [myString appendString:_soundProduct.localizedDescription];
+                    [myString appendString:@"\n"];
+                    [myString appendString:@"Price: "];
+                    [myString appendString:[_priceFormatter stringFromNumber:_soundProduct.price]];
+                    
+                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Confirm Purchase of the Multiple Sounds Feature"
+                                                                        message:myString
+                                                                       delegate:self
+                                                              cancelButtonTitle:@"Cancel"
+                                                              otherButtonTitles:@"Buy", nil];
+                    alertView.tag = ALERTVIEW_SOUND_BUY;
+                    [alertView show];
+                    
+                } else {
+                    
+                    UIAlertView *tmp = [[UIAlertView alloc]
+                                        
+                                        initWithTitle:@"Prohibited"
+                                        
+                                        message:@"This feature is available via In-App Purchase. Parental Control is enabled, cannot make a purchase!"
+                                        
+                                        delegate:self
+                                        
+                                        cancelButtonTitle:nil
+                                        
+                                        otherButtonTitles:@"Ok", nil];
+                    
+                    tmp.tag = ALERTVIEW_SOUND_IAP_DISABLED;
+                    
+                    [tmp show];
+                }
+            }
+        } else {
+            //the products are nil so the original product fetch in getProducts() failed
+            UIAlertView *tmp = [[UIAlertView alloc]
+                                
+                                initWithTitle:@"Product Not Available"
+                                
+                                message:@"This product is not currently available. Please try again later."
+                                
+                                delegate:self
+                                
+                                cancelButtonTitle:nil
+                                
+                                otherButtonTitles:@"Ok", nil];
+            
+            tmp.tag = ALERTVIEW_SOUND_IAP_PRODUCT_NOT_AVAILABLE;
+            
+            [tmp show];
+        }
     }
     else{
         //NSLog(@"switch is OFF");
@@ -127,48 +229,65 @@
     UISwitch* switcher = (UISwitch *)sender;
     if([switcher isOn])//switch changed to on
     {
-        if (![[SleepsterIAPHelper sharedInstance] productPurchased:_bgProduct.productIdentifier]) { //have not purchased product
-             if ([SKPaymentQueue canMakePayments]) { //make sure they are allowed to perform IAP per parental controls settings
-        
-                 [_priceFormatter setLocale:_bgProduct.priceLocale];
-                 
-                 NSMutableString* myString = [[NSMutableString alloc] initWithCapacity:25];
-                 [myString appendString:_bgProduct.localizedTitle];
-                 [myString appendString:@": "];
-                 [myString appendString:_bgProduct.localizedDescription];
-                 [myString appendString:@"\n"];
-                 [myString appendString:@"Price: "];
-                 [myString appendString:[_priceFormatter stringFromNumber:_bgProduct.price]];
-        
-                 UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Purchase the Rotate Backgrounds Feature?"
-                                                                     message:myString
-                                                                    delegate:self
-                                                           cancelButtonTitle:@"Cancel"
-                                                           otherButtonTitles:@"Buy", nil];
-                 alertView.tag = ALERTVIEW_BG_BUY;
-                 [alertView show];
-                 
-             } else {
-                 //[switcher setOn:NO animated:YES];//turn the switch off...do this in the alertview delegate
-                 
-                 UIAlertView *tmp = [[UIAlertView alloc]
-                                     
-                                     initWithTitle:@"Prohibited"
-                                     
-                                     message:@"This feature is available via In-App Purchase. Parental Control is enabled, cannot make a purchase!"
-                                     
-                                     delegate:self
-                                     
-                                     cancelButtonTitle:nil
-                                     
-                                     otherButtonTitles:@"Ok", nil];
-                 
-                 tmp.tag = ALERTVIEW_BG_IAP_DISABLED;
-                 
-                 [tmp show];
-             }
+        if(_bgProduct != nil) {
+            if (![[SleepsterIAPHelper sharedInstance] productPurchased:_bgProduct.productIdentifier]) { //have not purchased product
+                 if ([SKPaymentQueue canMakePayments]) { //make sure they are allowed to perform IAP per parental controls settings
+            
+                     [_priceFormatter setLocale:_bgProduct.priceLocale];
+                     
+                     NSMutableString* myString = [[NSMutableString alloc] initWithCapacity:25];
+                     [myString appendString:_bgProduct.localizedTitle];
+                     [myString appendString:@": "];
+                     [myString appendString:_bgProduct.localizedDescription];
+                     [myString appendString:@"\n"];
+                     [myString appendString:@"Price: "];
+                     [myString appendString:[_priceFormatter stringFromNumber:_bgProduct.price]];
+            
+                     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Confirm Purchase of the Rotate Backgrounds Feature"
+                                                                         message:myString
+                                                                        delegate:self
+                                                               cancelButtonTitle:@"Cancel"
+                                                               otherButtonTitles:@"Buy", nil];
+                     alertView.tag = ALERTVIEW_BG_BUY;
+                     [alertView show];
+                     
+                 } else {
+                     
+                     UIAlertView *tmp = [[UIAlertView alloc]
+                                         
+                                         initWithTitle:@"Prohibited"
+                                         
+                                         message:@"This feature is available via In-App Purchase. Parental Control is enabled, cannot make a purchase!"
+                                         
+                                         delegate:self
+                                         
+                                         cancelButtonTitle:nil
+                                         
+                                         otherButtonTitles:@"Ok", nil];
+                     
+                     tmp.tag = ALERTVIEW_BG_IAP_DISABLED;
+                     
+                     [tmp show];
+                 }
+            }
+        } else {
+            //the products are nil so the original product fetch in getProducts() failed
+            UIAlertView *tmp = [[UIAlertView alloc]
+                                
+                                initWithTitle:@"Product Not Available"
+                                
+                                message:@"This product is not currently available. Please try again later."
+                                
+                                delegate:self
+                                
+                                cancelButtonTitle:nil
+                                
+                                otherButtonTitles:@"Ok", nil];
+            
+            tmp.tag = ALERTVIEW_BG_IAP_PRODUCT_NOT_AVAILABLE;
+            
+            [tmp show];
         }
-
     }
     else{
         //NSLog(@"switch is OFF");
@@ -181,13 +300,34 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (alertView.tag) {
         case ALERTVIEW_BG_BUY:
-            if(buttonIndex == 0) {
-                
-            } else if(buttonIndex == 1) {
-                [[SleepsterIAPHelper sharedInstance] buyProduct:_bgProduct];//TODO: some spinner here???
+            if(buttonIndex == 0) {//CANCEL
+                [bgSwitch setOn:NO animated:YES];//turn the switch off
+            } else if(buttonIndex == 1) { //BUY
+                [[SleepsterIAPHelper sharedInstance] buyProduct:_bgProduct];
+                [pleaseWaitAlertView show];
+                [activityIndicatorView startAnimating];
             }
             break;
         case ALERTVIEW_BG_IAP_DISABLED:
+            [bgSwitch setOn:NO animated:YES];//turn the switch off
+            break;
+        case ALERTVIEW_BG_IAP_PRODUCT_NOT_AVAILABLE:
+            [bgSwitch setOn:NO animated:YES];//turn the switch off
+            break;
+        case ALERTVIEW_SOUND_BUY:
+            if(buttonIndex == 0) {//CANCEL
+                [soundSwitch setOn:NO animated:YES];//turn the switch off
+            } else if(buttonIndex == 1) { //BUY
+                [[SleepsterIAPHelper sharedInstance] buyProduct:_soundProduct];
+                [pleaseWaitAlertView show];
+                [activityIndicatorView startAnimating];
+            }
+            break;
+        case ALERTVIEW_SOUND_IAP_DISABLED:
+            [soundSwitch setOn:NO animated:YES];//turn the switch off
+            break;
+        case ALERTVIEW_SOUND_IAP_PRODUCT_NOT_AVAILABLE:
+            [soundSwitch setOn:NO animated:YES];//turn the switch off
             break;
         default:
             break;
@@ -199,6 +339,8 @@
 
 -(IBAction)restoreSelected:(id)sender {
     [[SleepsterIAPHelper sharedInstance] restoreCompletedTransactions];
+    [pleaseWaitAlertView show];
+    [activityIndicatorView startAnimating];
 }
 
 #pragma mark switch states
