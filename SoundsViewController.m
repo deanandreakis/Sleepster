@@ -133,6 +133,8 @@
     
     selectedIndexPath = [[NSMutableArray alloc] initWithCapacity:5];
     
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    
 }
 
 //use viewDidAppear as it executes after state restoration decode cycles thus the call to

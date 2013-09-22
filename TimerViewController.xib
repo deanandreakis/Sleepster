@@ -13,7 +13,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <pickerView contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="UIPickerViewID" translatesAutoresizingMaskIntoConstraints="NO" id="nG2-PX-gNU">
@@ -35,7 +35,7 @@
                     <rect key="frame" x="0.0" y="16" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <items>
-                        <navigationItem title="Sound TImer" id="QH7-Mb-yD6">
+                        <navigationItem title="Sound Timer" id="QH7-Mb-yD6">
                             <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="6mD-1n-cpl">
                                 <connections>
                                     <action selector="doneSelected:" destination="-1" id="v3C-Y3-kpZ"/>
@@ -47,7 +47,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
 </document>

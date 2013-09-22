@@ -7,16 +7,19 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
             <connections>
                 <outlet property="bgImageView" destination="b0w-dw-MxW" id="3dQ-jh-TXp"/>
+                <outlet property="brightnessImageView" destination="RZs-SS-zYO" id="F3D-Lu-RE0"/>
                 <outlet property="brightnessSlider" destination="k7f-1b-XVd" id="0K4-Kw-uhr"/>
                 <outlet property="minutesLabel" destination="JT5-0t-Syx" id="mwY-Vi-e3z"/>
+                <outlet property="timerButton" destination="dUY-Ij-E4b" id="aah-G6-UFZ"/>
                 <outlet property="timerLabel" destination="LMr-h4-7sS" id="lxk-D9-p4T"/>
                 <outlet property="view" destination="34" id="35"/>
+                <outlet property="volumeImageView" destination="Q4t-Mw-pNu" id="qzR-aE-ZL4"/>
                 <outlet property="volumeSlider" destination="veB-YZ-gOS" id="ewd-U6-4Id"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="34">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="b0w-dw-MxW">
@@ -54,7 +57,7 @@
                     </connections>
                 </button>
                 <slider opaque="NO" contentMode="scaleToFill" restorationIdentifier="volume_slider_id" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="1" maxValue="100" id="veB-YZ-gOS" userLabel="Volume Horizontal Slider">
-                    <rect key="frame" x="69" y="353" width="182" height="29"/>
+                    <rect key="frame" x="69" y="353" width="182" height="34"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <accessibility key="accessibilityConfiguration" hint="Adjust Volume" label="Volume"/>
                     <connections>
@@ -69,7 +72,7 @@
                     </accessibility>
                 </imageView>
                 <slider opaque="NO" contentMode="scaleToFill" restorationIdentifier="brightness_slider_id" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="k7f-1b-XVd" userLabel="Brightness Horizontal Slider">
-                    <rect key="frame" x="69" y="390" width="182" height="29"/>
+                    <rect key="frame" x="69" y="390" width="182" height="34"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <accessibility key="accessibilityConfiguration" hint="Adjust Brightness" label="Brightness"/>
                     <connections>

@@ -74,7 +74,12 @@
     
     backgroundLayout.itemSize = CGSizeMake(FLICKR_THUMBNAIL_SIZE, FLICKR_THUMBNAIL_SIZE);
     backgroundLayout.minimumInteritemSpacing = 2;
-    backgroundLayout.minimumLineSpacing = 20;
+    if ([[UIScreen mainScreen] bounds].size.height == 568){
+        //add your 4-inch specific code here
+        backgroundLayout.minimumLineSpacing = 30;
+    } else {
+        backgroundLayout.minimumLineSpacing = 20;
+    }
     backgroundLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     backgroundLayout.sectionInset = UIEdgeInsetsMake(20, 20, 60, 20);
     

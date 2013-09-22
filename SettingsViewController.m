@@ -30,12 +30,13 @@
 @property (strong, nonatomic) IBOutlet UISwitch *soundSwitch;
 @property (strong, nonatomic) UIActivityIndicatorView* activityIndicatorView;
 @property (strong, nonatomic) UIAlertView* pleaseWaitAlertView;
-
+@property (strong, nonatomic) IBOutlet UIButton* restoreButton;
+@property (strong, nonatomic) IBOutlet UILabel* restoreLabel;
 @end
 
 @implementation SettingsViewController
 
-@synthesize bgSwitch, soundSwitch, activityIndicatorView, pleaseWaitAlertView;
+@synthesize bgSwitch, soundSwitch, activityIndicatorView, pleaseWaitAlertView, restoreButton,restoreLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -62,6 +63,15 @@
     _priceFormatter = [[NSNumberFormatter alloc] init];
     [_priceFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
     [_priceFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    
+    if ([[UIScreen mainScreen] bounds].size.height == 568){
+        //add your 4-inch specific code here
+        restoreButton.frame = CGRectMake(118, 427, 84, 30);
+        restoreLabel.frame = CGRectMake(40, 457, 255, 38);
+    } else {
+        restoreButton.frame = CGRectMake(118, 339, 84, 30);
+        restoreLabel.frame = CGRectMake(40, 369, 255, 38);
+    }
     
     [self getProducts];
 }

@@ -81,6 +81,7 @@
 		C1BB0B5417EF334400D20D27 /* grove5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1BB0B5017EF334400D20D27 /* grove5.jpg */; };
 		C1BB0B5617EF405700D20D27 /* crickets.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C1BB0B5517EF405700D20D27 /* crickets.mp3 */; };
 		C1BB0B5817EF406200D20D27 /* frogs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C1BB0B5717EF406200D20D27 /* frogs.mp3 */; };
+		C1BB0B5A17EF8B0300D20D27 /* new_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1BB0B5917EF8B0300D20D27 /* new_star@2x.png */; };
 		C1C55ED31775DF5300CF1591 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1006CC316E59B4100372838 /* Crashlytics.framework */; };
 		C1C6080517982E0C0099590F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C6080417982E0C0099590F /* CoreData.framework */; };
 		C1C6080917982F650099590F /* SleepsterModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C1C6080717982F650099590F /* SleepsterModel.xcdatamodeld */; };
@@ -193,6 +194,7 @@
 		C1BB0B5017EF334400D20D27 /* grove5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grove5.jpg; sourceTree = "<group>"; };
 		C1BB0B5517EF405700D20D27 /* crickets.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = crickets.mp3; sourceTree = "<group>"; };
 		C1BB0B5717EF406200D20D27 /* frogs.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = frogs.mp3; sourceTree = "<group>"; };
+		C1BB0B5917EF8B0300D20D27 /* new_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new_star@2x.png"; sourceTree = "<group>"; };
 		C1C6080417982E0C0099590F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C1C6080817982F650099590F /* SleepsterModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SleepsterModel.xcdatamodel; sourceTree = "<group>"; };
 		C1C6080E179849140099590F /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 			children = (
 				C109245917D961A200AAB6AE /* igrove_1.jpg */,
 				C1BB0B4D17EF334400D20D27 /* grove2.jpg */,
+				C1BB0B5917EF8B0300D20D27 /* new_star@2x.png */,
 				C1BB0B4E17EF334400D20D27 /* grove3.jpg */,
 				C1BB0B4F17EF334400D20D27 /* grove4.jpg */,
 				C1BB0B5017EF334400D20D27 /* grove5.jpg */,
@@ -517,6 +520,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C19DB54F178E58E8001820A7 /* TimerViewController.xib in Resources */,
+				C1BB0B5A17EF8B0300D20D27 /* new_star@2x.png in Resources */,
 				280E754D0DD40C5E005A515E /* FlipsideView.xib in Resources */,
 				280E754E0DD40C5E005A515E /* MainView.xib in Resources */,
 				05692F7A11C1EBF600A119A4 /* BacklightView.xib in Resources */,

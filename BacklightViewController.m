@@ -14,18 +14,22 @@
 
 @property(assign, nonatomic) int bgTimerCounter;
 @property (strong, nonatomic) NSTimer* bgTimer;
-
+@property (strong, nonatomic) IBOutlet UIButton* btn;
 @end
 
 @implementation BacklightViewController
 
-@synthesize bgDelegate;
+@synthesize bgDelegate, btn;
 @synthesize backgroundColor, brightness, bgImageView, bgImageURL, bgTimerCounter, bgTimer;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.bgImageView.backgroundColor = backgroundColor;
     [self.bgImageView setImage:nil];
+    
+    self.bgImageView.frame = [UIScreen mainScreen].bounds;
+    self.btn.frame = [UIScreen mainScreen].bounds;;
+    
     [[UIScreen mainScreen] setBrightness:brightness];
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];

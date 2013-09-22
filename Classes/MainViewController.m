@@ -26,6 +26,7 @@
 @property (strong, nonatomic) TimerViewController* controller;
 @property (strong, nonatomic) IBOutlet UILabel* timerLabel;
 @property (strong, nonatomic) IBOutlet UILabel* minutesLabel;
+@property (strong, nonatomic) IBOutlet UIButton* timerButton;
 @property (strong, nonatomic) IBOutlet UIImageView* bgImageView;
 @property (strong,nonatomic) NSURL* bgImageURL;
 @property (strong, nonatomic) NSMutableArray* bgarray;
@@ -37,15 +38,17 @@
 @property (assign, nonatomic) BOOL isSoundOrig;
 @property (strong, nonatomic) IBOutlet UISlider* volumeSlider;
 @property (strong, nonatomic) IBOutlet UISlider* brightnessSlider;
+@property (strong, nonatomic) IBOutlet UIImageView* volumeImageView;
+@property (strong, nonatomic) IBOutlet UIImageView* brightnessImageView;
 @end
 
 @implementation MainViewController
 
-@synthesize timeOut, bgImageURL, bgarray, bgTimer, bgTimerCounter;
+@synthesize timeOut, bgImageURL, bgarray, bgTimer, bgTimerCounter,volumeImageView, brightnessImageView;
 @synthesize natureVolume, natureBrightness;
 @synthesize playerState;
 @synthesize interruptedOnPlayback;
-@synthesize timerFired;
+@synthesize timerFired, timerButton;
 @synthesize menuBtn;
 @synthesize theSongArray, isBgInit, isSoundInit, isBgOrig, isSoundOrig;
 @synthesize theColor, controller, timerLabel, minutesLabel, bgImageView, volumeSlider, brightnessSlider;
@@ -102,6 +105,29 @@
     
     bgarray = [[NSMutableArray alloc] initWithCapacity:5];
     theSongArray = [[NSMutableArray alloc] initWithCapacity:5];
+    
+    
+    if ([[UIScreen mainScreen] bounds].size.height == 568){
+        //add your 4-inch specific code here
+        volumeSlider.frame = CGRectMake(69, 441, 182, 34);
+        volumeImageView.frame = CGRectMake(259, 445, 20, 20);
+        brightnessSlider.frame = CGRectMake(69, 478, 182, 34);
+        brightnessImageView.frame = CGRectMake(259, 482, 20, 20);
+        
+        minutesLabel.frame = CGRectMake(166, 369, 63, 21);
+        timerLabel.frame = CGRectMake(145, 369, 47, 21);
+        timerButton.frame = CGRectMake(138, 330, 44, 44);
+
+    } else {
+        volumeSlider.frame = CGRectMake(69, 353, 182, 34);
+        volumeImageView.frame = CGRectMake(259, 357, 20, 20);
+        brightnessSlider.frame = CGRectMake(69, 390, 182, 34);
+        brightnessImageView.frame = CGRectMake(259, 394, 20, 20);
+        
+        minutesLabel.frame = CGRectMake(166, 325, 63, 21);
+        timerLabel.frame = CGRectMake(145, 325, 47, 21);
+        timerButton.frame = CGRectMake(138, 286, 44, 44);
+    }
     
 	[super viewDidLoad];
 }
