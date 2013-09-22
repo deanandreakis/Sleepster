@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import <Social/Social.h>
 
+
 #define reviewString @"itms-apps://itunes.com/apps/Sleepster"
 
 //@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=417667154"
@@ -45,7 +46,25 @@
 -(IBAction)rateButton:(id)sender
 {
     //NSString * theUrl = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=417667154&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software";
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:reviewString]];
+    //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:reviewString]];
+    
+    // Initialize Product View Controller
+    SKStoreProductViewController *storeProductViewController = [[SKStoreProductViewController alloc] init];
+    // Configure View Controller
+    [storeProductViewController setDelegate:self];
+    [storeProductViewController loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier : @"417667154"} completionBlock:^(BOOL result, NSError *error) {
+        if (error) {
+            //NSLog(@"Error %@ with User Info %@.", error, [error userInfo]);
+        } else {
+            // Present Store Product View Controller
+            [self presentViewController:storeProductViewController animated:YES completion:nil];
+        }
+    }];
+}
+
+#pragma mark SKStoreProductViewControllerDelegate
+- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark Social Network Methods
