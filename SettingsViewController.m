@@ -115,15 +115,15 @@
     
     UIAlertView *tmp = [[UIAlertView alloc]
                         
-                        initWithTitle:@"Transaction Failed"
+                        initWithTitle:NSLocalizedString(@"Transaction Failed",nil)
                         
-                        message:@"The payment transaction failed. Please try again later."
+                        message:NSLocalizedString(@"The payment transaction failed. Please try again later.",nil)
                         
                         delegate:nil
                         
                         cancelButtonTitle:nil
                         
-                        otherButtonTitles:@"Ok", nil];
+                        otherButtonTitles:NSLocalizedString(@"Ok",nil), nil];
     
     [tmp show];
 }
@@ -169,14 +169,14 @@
                     [myString appendString:@": "];
                     [myString appendString:_soundProduct.localizedDescription];
                     [myString appendString:@"\n"];
-                    [myString appendString:@"Price: "];
+                    [myString appendString:NSLocalizedString(@"Price: ",nil)];
                     [myString appendString:[_priceFormatter stringFromNumber:_soundProduct.price]];
                     
-                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Confirm Purchase of the Multiple Sounds Feature"
+                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Confirm Purchase of the Multiple Sounds Feature",nil)
                                                                         message:myString
                                                                        delegate:self
-                                                              cancelButtonTitle:@"Cancel"
-                                                              otherButtonTitles:@"Buy", nil];
+                                                              cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
+                                                              otherButtonTitles:NSLocalizedString(@"Buy",nil), nil];
                     alertView.tag = ALERTVIEW_SOUND_BUY;
                     [alertView show];
                     
@@ -184,15 +184,15 @@
                     
                     UIAlertView *tmp = [[UIAlertView alloc]
                                         
-                                        initWithTitle:@"Prohibited"
+                                        initWithTitle:NSLocalizedString(@"Prohibited",nil)
                                         
-                                        message:@"This feature is available via In-App Purchase. Parental Control is enabled, cannot make a purchase!"
+                                        message:NSLocalizedString(@"This feature is available via In-App Purchase. Parental Control is enabled, cannot make a purchase!",nil)
                                         
                                         delegate:self
                                         
                                         cancelButtonTitle:nil
                                         
-                                        otherButtonTitles:@"Ok", nil];
+                                        otherButtonTitles:NSLocalizedString(@"Ok",nil), nil];
                     
                     tmp.tag = ALERTVIEW_SOUND_IAP_DISABLED;
                     
@@ -203,15 +203,15 @@
             //the products are nil so the original product fetch in getProducts() failed
             UIAlertView *tmp = [[UIAlertView alloc]
                                 
-                                initWithTitle:@"Product Not Available"
+                                initWithTitle:NSLocalizedString(@"Product Not Available",nil)
                                 
-                                message:@"This product is not currently available. Please try again later."
+                                message:NSLocalizedString(@"This product is not currently available. Please try again later.",nil)
                                 
                                 delegate:self
                                 
                                 cancelButtonTitle:nil
                                 
-                                otherButtonTitles:@"Ok", nil];
+                                otherButtonTitles:NSLocalizedString(@"Ok",nil), nil];
             
             tmp.tag = ALERTVIEW_SOUND_IAP_PRODUCT_NOT_AVAILABLE;
             
@@ -240,14 +240,14 @@
                      [myString appendString:@": "];
                      [myString appendString:_bgProduct.localizedDescription];
                      [myString appendString:@"\n"];
-                     [myString appendString:@"Price: "];
+                     [myString appendString:NSLocalizedString(@"Price: ",nil)];
                      [myString appendString:[_priceFormatter stringFromNumber:_bgProduct.price]];
             
-                     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Confirm Purchase of the Rotate Backgrounds Feature"
+                     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Confirm Purchase of the Rotate Backgrounds Feature",nil)
                                                                          message:myString
                                                                         delegate:self
-                                                               cancelButtonTitle:@"Cancel"
-                                                               otherButtonTitles:@"Buy", nil];
+                                                               cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
+                                                               otherButtonTitles:NSLocalizedString(@"Buy",nil), nil];
                      alertView.tag = ALERTVIEW_BG_BUY;
                      [alertView show];
                      
@@ -255,15 +255,15 @@
                      
                      UIAlertView *tmp = [[UIAlertView alloc]
                                          
-                                         initWithTitle:@"Prohibited"
+                                         initWithTitle:NSLocalizedString(@"Prohibited",nil)
                                          
-                                         message:@"This feature is available via In-App Purchase. Parental Control is enabled, cannot make a purchase!"
+                                         message:NSLocalizedString(@"This feature is available via In-App Purchase. Parental Control is enabled, cannot make a purchase!",nil)
                                          
                                          delegate:self
                                          
                                          cancelButtonTitle:nil
                                          
-                                         otherButtonTitles:@"Ok", nil];
+                                         otherButtonTitles:NSLocalizedString(@"Ok",nil), nil];
                      
                      tmp.tag = ALERTVIEW_BG_IAP_DISABLED;
                      
@@ -274,15 +274,15 @@
             //the products are nil so the original product fetch in getProducts() failed
             UIAlertView *tmp = [[UIAlertView alloc]
                                 
-                                initWithTitle:@"Product Not Available"
+                                initWithTitle:NSLocalizedString(@"Product Not Available",nil)
                                 
-                                message:@"This product is not currently available. Please try again later."
+                                message:NSLocalizedString(@"This product is not currently available. Please try again later.",nil)
                                 
                                 delegate:self
                                 
                                 cancelButtonTitle:nil
                                 
-                                otherButtonTitles:@"Ok", nil];
+                                otherButtonTitles:NSLocalizedString(@"Ok",nil), nil];
             
             tmp.tag = ALERTVIEW_BG_IAP_PRODUCT_NOT_AVAILABLE;
             

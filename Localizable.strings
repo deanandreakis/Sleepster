@@ -29,4 +29,28 @@ at least one Facebook account setup";
 
 "batteryproblem" = "Please Plug In and Charge Your Battery in order to continue";
 
+"Transaction Failed" = "Transaction Failed";
+
+"The payment transaction failed. Please try again later." = "The payment transaction failed. Please try again later.";
+
+"Ok" = "Ok";
+
+"Confirm Purchase of the Multiple Sounds Feature" = "Confirm Purchase of the Multiple Sounds Feature";
+
+"Price: " = "Price: ";
+
+"Cancel" = "Cancel";
+
+"Buy" = "Buy";
+
+"Prohibited" = "Prohibited";
+
+"This feature is available via In-App Purchase. Parental Control is enabled, cannot make a purchase!" = "This feature is available via In-App Purchase. Parental Control is enabled, cannot make a purchase!";
+
+"Product Not Available" = "Product Not Available";
+
+"This product is not currently available. Please try again later." = "This product is not currently available. Please try again later.";
+
+"Confirm Purchase of the Rotate Backgrounds Feature" = "Confirm Purchase of the Rotate Backgrounds Feature";
+
 

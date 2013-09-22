@@ -41,7 +41,7 @@
     [[FlickrAPIClient sharedAPIClient] getPath:@"?method=flickr.photos.search"
                                        parameters:params
                                           success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                              NSLog(@"Response: %@", responseObject);
+                                              //NSLog(@"Response: %@", responseObject);
                                               NSMutableArray *results = [NSMutableArray array];
                                               for (id picDictionary in responseObject[@"photos"][@"photo"]) {
                                                   Background *background = [Background postWithDictionary:picDictionary];
