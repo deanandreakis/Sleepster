@@ -188,9 +188,57 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DatabaseManager);
         bgImage1.isLocalImage = @YES;
         bgImage1.isSelected = @NO;
         
+        Background *bgImage2;
+        bgImage2 = [NSEntityDescription insertNewObjectForEntityForName:@"Background"
+                                                 inManagedObjectContext:context];
+        bgImage2.bTitle = @"z_Independence Grove_1";
+        bgImage2.bThumbnailUrl = @"grove2";//name of resource file in jpg format
+        bgImage2.bFullSizeUrl = @"grove2";
+        bgImage2.bColor = nil;
+        bgImage2.isFavorite = @YES;
+        bgImage2.isImage = @YES;
+        bgImage2.isLocalImage = @YES;
+        bgImage2.isSelected = @NO;
+        
+        Background *bgImage3;
+        bgImage3 = [NSEntityDescription insertNewObjectForEntityForName:@"Background"
+                                                 inManagedObjectContext:context];
+        bgImage3.bTitle = @"z_Independence Grove_2";
+        bgImage3.bThumbnailUrl = @"grove3";//name of resource file in jpg format
+        bgImage3.bFullSizeUrl = @"grove3";
+        bgImage3.bColor = nil;
+        bgImage3.isFavorite = @YES;
+        bgImage3.isImage = @YES;
+        bgImage3.isLocalImage = @YES;
+        bgImage3.isSelected = @NO;
+        
+        Background *bgImage4;
+        bgImage4 = [NSEntityDescription insertNewObjectForEntityForName:@"Background"
+                                                 inManagedObjectContext:context];
+        bgImage4.bTitle = @"z_Independence Grove_3";
+        bgImage4.bThumbnailUrl = @"grove4";//name of resource file in jpg format
+        bgImage4.bFullSizeUrl = @"grove4";
+        bgImage4.bColor = nil;
+        bgImage4.isFavorite = @YES;
+        bgImage4.isImage = @YES;
+        bgImage4.isLocalImage = @YES;
+        bgImage4.isSelected = @NO;
+        
+        Background *bgImage5;
+        bgImage5 = [NSEntityDescription insertNewObjectForEntityForName:@"Background"
+                                                 inManagedObjectContext:context];
+        bgImage5.bTitle = @"z_Independence Grove_4";
+        bgImage5.bThumbnailUrl = @"grove5";//name of resource file in jpg format
+        bgImage5.bFullSizeUrl = @"grove5";
+        bgImage5.bColor = nil;
+        bgImage5.isFavorite = @YES;
+        bgImage5.isImage = @YES;
+        bgImage5.isLocalImage = @YES;
+        bgImage5.isSelected = @NO;
+        
         NSError *error;
         if (![context save:&error]) {
-            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            //NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
         }
         [context unlock];
     }

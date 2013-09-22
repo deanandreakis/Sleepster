@@ -75,6 +75,12 @@
 		C1BB0B3D17E9389A00D20D27 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1BB0B3C17E9389A00D20D27 /* StoreKit.framework */; };
 		C1BB0B4117E93BE200D20D27 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BB0B4017E93BE200D20D27 /* IAPHelper.m */; };
 		C1BB0B4417E93EE200D20D27 /* SleepsterIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BB0B4317E93EE200D20D27 /* SleepsterIAPHelper.m */; };
+		C1BB0B5117EF334400D20D27 /* grove2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1BB0B4D17EF334400D20D27 /* grove2.jpg */; };
+		C1BB0B5217EF334400D20D27 /* grove3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1BB0B4E17EF334400D20D27 /* grove3.jpg */; };
+		C1BB0B5317EF334400D20D27 /* grove4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1BB0B4F17EF334400D20D27 /* grove4.jpg */; };
+		C1BB0B5417EF334400D20D27 /* grove5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1BB0B5017EF334400D20D27 /* grove5.jpg */; };
+		C1BB0B5617EF405700D20D27 /* crickets.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C1BB0B5517EF405700D20D27 /* crickets.mp3 */; };
+		C1BB0B5817EF406200D20D27 /* frogs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C1BB0B5717EF406200D20D27 /* frogs.mp3 */; };
 		C1C55ED31775DF5300CF1591 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1006CC316E59B4100372838 /* Crashlytics.framework */; };
 		C1C6080517982E0C0099590F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C6080417982E0C0099590F /* CoreData.framework */; };
 		C1C6080917982F650099590F /* SleepsterModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C1C6080717982F650099590F /* SleepsterModel.xcdatamodeld */; };
@@ -181,6 +187,12 @@
 		C1BB0B4017E93BE200D20D27 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		C1BB0B4217E93EE200D20D27 /* SleepsterIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SleepsterIAPHelper.h; sourceTree = "<group>"; };
 		C1BB0B4317E93EE200D20D27 /* SleepsterIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SleepsterIAPHelper.m; sourceTree = "<group>"; };
+		C1BB0B4D17EF334400D20D27 /* grove2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grove2.jpg; sourceTree = "<group>"; };
+		C1BB0B4E17EF334400D20D27 /* grove3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grove3.jpg; sourceTree = "<group>"; };
+		C1BB0B4F17EF334400D20D27 /* grove4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grove4.jpg; sourceTree = "<group>"; };
+		C1BB0B5017EF334400D20D27 /* grove5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grove5.jpg; sourceTree = "<group>"; };
+		C1BB0B5517EF405700D20D27 /* crickets.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = crickets.mp3; sourceTree = "<group>"; };
+		C1BB0B5717EF406200D20D27 /* frogs.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = frogs.mp3; sourceTree = "<group>"; };
 		C1C6080417982E0C0099590F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C1C6080817982F650099590F /* SleepsterModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SleepsterModel.xcdatamodel; sourceTree = "<group>"; };
 		C1C6080E179849140099590F /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
@@ -289,6 +301,10 @@
 			isa = PBXGroup;
 			children = (
 				C109245917D961A200AAB6AE /* igrove_1.jpg */,
+				C1BB0B4D17EF334400D20D27 /* grove2.jpg */,
+				C1BB0B4E17EF334400D20D27 /* grove3.jpg */,
+				C1BB0B4F17EF334400D20D27 /* grove4.jpg */,
+				C1BB0B5017EF334400D20D27 /* grove5.jpg */,
 				C109245417D0447C00AAB6AE /* thumbnail-default.png */,
 				C1CD259B17B4741C0099F66D /* check_mark_green@2x.png */,
 				C1CD259917B474070099F66D /* check_mark_green.png */,
@@ -306,6 +322,8 @@
 				C19DB55E1793534F001820A7 /* facebook-logo@2x.png */,
 				C13D53B3177F741300CF2E78 /* Brightness@2x.png */,
 				C1403BC61728BE4000B75633 /* Settings@2x.png */,
+				C1BB0B5517EF405700D20D27 /* crickets.mp3 */,
+				C1BB0B5717EF406200D20D27 /* frogs.mp3 */,
 				C1403BC41728BE2500B75633 /* Settings.png */,
 				C19DB55817935138001820A7 /* twitter.png */,
 				C13D53B6178074DC00CF2E78 /* Default@2x.png */,
@@ -516,7 +534,9 @@
 				C1CD259A17B474070099F66D /* check_mark_green.png in Resources */,
 				C109245517D0447C00AAB6AE /* thumbnail-default.png in Resources */,
 				052C9A7F12F4ACEB00400088 /* waterfall.mp3 in Resources */,
+				C1BB0B5217EF334400D20D27 /* grove3.jpg in Resources */,
 				052C9A8012F4ACEB00400088 /* waves.mp3 in Resources */,
+				C1BB0B5417EF334400D20D27 /* grove5.jpg in Resources */,
 				C1CD259C17B4741C0099F66D /* check_mark_green@2x.png in Resources */,
 				C1CD259617B321600099F66D /* circle@2x.png in Resources */,
 				C13D53B7178074DC00CF2E78 /* Default@2x.png in Resources */,
@@ -525,6 +545,7 @@
 				05E2B91E13197465005B3F97 /* heavy-rain.mp3 in Resources */,
 				05E2B92213197477005B3F97 /* lake-waves.mp3 in Resources */,
 				05AAF2FA1377084B00AD2167 /* kmoon.png in Resources */,
+				C1BB0B5817EF406200D20D27 /* frogs.mp3 in Resources */,
 				05AAF2FC1377085E00AD2167 /* kmoon@2x.png in Resources */,
 				05329D7E13D35FEE00F199CA /* ThunderStorm.mp3 in Resources */,
 				C1D7B40C1671A0860004D62E /* SettingsViewController.xib in Resources */,
@@ -536,10 +557,12 @@
 				C1403BB51728B69500B75633 /* home-2.png in Resources */,
 				C1403BB71728B6B400B75633 /* home-2@2x.png in Resources */,
 				C1403BB91728BB7C00B75633 /* Picture-Landscape.png in Resources */,
+				C1BB0B5117EF334400D20D27 /* grove2.jpg in Resources */,
 				C1403BBB1728BB9800B75633 /* Picture-Landscape@2x.png in Resources */,
 				C1403BBD1728BCEB00B75633 /* Speaker-1.png in Resources */,
 				C109245A17D961A200AAB6AE /* igrove_1.jpg in Resources */,
 				C13D53B5177F741300CF2E78 /* Brightness@2x.png in Resources */,
+				C1BB0B5317EF334400D20D27 /* grove4.jpg in Resources */,
 				C1403BBF1728BD0200B75633 /* Speaker-1@2x.png in Resources */,
 				C1403BC11728BDF800B75633 /* Info@2x.png in Resources */,
 				C13D53B91782748D00CF2E78 /* Localizable.strings in Resources */,
@@ -548,6 +571,7 @@
 				C19DB55B17935250001820A7 /* twitter@2x.png in Resources */,
 				C1403BC31728BE0900B75633 /* Info.png in Resources */,
 				C13D53A9177D274300CF2E78 /* Default-568h@2x.png in Resources */,
+				C1BB0B5617EF405700D20D27 /* crickets.mp3 in Resources */,
 				C1403BC51728BE2500B75633 /* Settings.png in Resources */,
 				C1403BC71728BE4000B75633 /* Settings@2x.png in Resources */,
 				C13D53B4177F741300CF2E78 /* Brightness.png in Resources */,

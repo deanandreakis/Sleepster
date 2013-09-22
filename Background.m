@@ -74,7 +74,7 @@
     background.bFullSizeUrl = [Background createFullSizeUrl:dictionary];
     NSError *error;
     if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        //NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
     [context unlock];
     return background;

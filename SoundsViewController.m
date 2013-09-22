@@ -40,6 +40,8 @@
 	NSString *pathToMusicFile7 = [[NSBundle mainBundle] pathForResource:@"heavy-rain" ofType:@"mp3"];
 	NSString *pathToMusicFile8 = [[NSBundle mainBundle] pathForResource:@"lake-waves" ofType:@"mp3"];
     NSString *pathToMusicFile9 = [[NSBundle mainBundle] pathForResource:@"ThunderStorm" ofType:@"mp3"];
+    NSString *pathToMusicFile10 = [[NSBundle mainBundle] pathForResource:@"crickets" ofType:@"mp3"];
+    NSString *pathToMusicFile11 = [[NSBundle mainBundle] pathForResource:@"frogs" ofType:@"mp3"];
 	
 	AVAudioPlayer* song0 = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL fileURLWithPath:pathToMusicFile0] error:NULL];
 	AVAudioPlayer* song1 = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL fileURLWithPath:pathToMusicFile1] error:NULL];
@@ -51,13 +53,15 @@
 	AVAudioPlayer* song7 = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL fileURLWithPath:pathToMusicFile7] error:NULL];
 	AVAudioPlayer* song8 = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL fileURLWithPath:pathToMusicFile8] error:NULL];
     AVAudioPlayer* song9 = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL fileURLWithPath:pathToMusicFile9] error:NULL];
+    AVAudioPlayer* song10 = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL fileURLWithPath:pathToMusicFile10] error:NULL];
+    AVAudioPlayer* song11 = [[AVAudioPlayer alloc]initWithContentsOfURL:[NSURL fileURLWithPath:pathToMusicFile11] error:NULL];
 	
 	songArray = [[NSArray alloc] initWithObjects:song0,song1,song2,song3,song4,
-						  song5,song6,song7,song8,song9,nil];
+						  song5,song6,song7,song8,song9,song10,song11,nil];
 	
 	
 	
-	for (int x = 0; x < 10; x++) {
+	for (int x = 0; x < 12; x++) {
 		[[songArray objectAtIndex:x] setNumberOfLoops:-1];
 		[[songArray objectAtIndex:x] prepareToPlay];
 	}
@@ -112,10 +116,20 @@
 	col2_label10.text = @"Thunder";
 	col2_label10.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
 	col2_label10.backgroundColor = [UIColor clearColor];
+    
+    UILabel *col2_label11 = [[UILabel alloc] initWithFrame:CGRectMake(0,0,90,20)];
+	col2_label11.text = @"Crickets";
+	col2_label11.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+	col2_label11.backgroundColor = [UIColor clearColor];
+    
+    UILabel *col2_label12 = [[UILabel alloc] initWithFrame:CGRectMake(0,0,90,20)];
+	col2_label12.text = @"Frogs";
+	col2_label12.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+	col2_label12.backgroundColor = [UIColor clearColor];
 	
 	musicSelectionArray = [[NSArray alloc] initWithObjects:col2_label1,col2_label2,
                                     col2_label3,col2_label4,col2_label5,col2_label6,col2_label7,col2_label8,col2_label9,
-                                    col2_label10,nil];
+                                    col2_label10,col2_label11,col2_label12,nil];
     
     selectedIndexPath = [[NSMutableArray alloc] initWithCapacity:5];
     
