@@ -117,6 +117,8 @@
         minutesLabel.frame = CGRectMake(166, 369, 63, 21);
         timerLabel.frame = CGRectMake(145, 369, 47, 21);
         timerButton.frame = CGRectMake(138, 330, 44, 44);
+        
+        bgImageView.frame = CGRectMake(10, 20, 300, 300);
 
     } else {
         volumeSlider.frame = CGRectMake(69, 353, 182, 34);
@@ -127,6 +129,8 @@
         minutesLabel.frame = CGRectMake(166, 325, 63, 21);
         timerLabel.frame = CGRectMake(145, 325, 47, 21);
         timerButton.frame = CGRectMake(138, 286, 44, 44);
+        
+        bgImageView.frame = CGRectMake(25, 20, 270, 270);
     }
     
 	[super viewDidLoad];
