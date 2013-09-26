@@ -123,7 +123,7 @@
         [soundSwitch setOn:NO animated:YES];//turn the switch off
     }
     
-    UIAlertView *tmp = [[UIAlertView alloc]
+    /*UIAlertView *tmp = [[UIAlertView alloc]
                         
                         initWithTitle:NSLocalizedString(@"Transaction Failed",nil)
                         
@@ -135,7 +135,7 @@
                         
                         otherButtonTitles:NSLocalizedString(@"Ok",nil), nil];
     
-    [tmp show];
+    [tmp show];*/
 }
 
 - (void)getProducts {
@@ -349,8 +349,8 @@
 
 -(IBAction)restoreSelected:(id)sender {
     [[SleepsterIAPHelper sharedInstance] restoreCompletedTransactions];
-    [pleaseWaitAlertView show];
-    [activityIndicatorView startAnimating];
+    //[pleaseWaitAlertView show];
+    //[activityIndicatorView startAnimating];
 }
 
 #pragma mark switch states

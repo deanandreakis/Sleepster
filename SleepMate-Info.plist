@@ -22,6 +22,9 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
+				<string>app_icon_58x58</string>
+				<string>app_icon_80x80</string>
+				<string>app_icon_120x120</string>
 				<string>kmoon</string>
 				<string>kmoon.png</string>
 				<string>kmoon@2x.png</string>
