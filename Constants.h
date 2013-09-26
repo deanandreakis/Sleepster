@@ -24,7 +24,7 @@
 #define CRASHLYTICS_KEY @"2eaad7ad1fecfce6c414905676a8175bb2a1c253"
 
 #define MIN_NUM_BG_OBJECTS 50
-#define NUM_PERMANENT_BG_OBJECTS 21
+#define NUM_PERMANENT_BG_OBJECTS 20
 
 #define RESTORATION_ID_MAIN_VC @"MainViewControllerID"
 #define RESTORATION_ID_INFO_VC @"InformationViewControllerID"
