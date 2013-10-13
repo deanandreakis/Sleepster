@@ -6,68 +6,23 @@
 	<dict>
 		<key>Pods-AFNetworking.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2D0679207DA5471DAE641348</key>
+		<key>C11BDCB2D7564029983127CC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>441DD8250346471D8B570525</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>503A521A20554859A78EC81D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7D2D6BE68B814F0EAC9A26BE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>AA74705285054BFD98306F4D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B5B684F48679487BBB8ED40F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B9109BA85E9D445A9ECEC52A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BDA4D572F0044C6B825A0163</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CFB83091F7664A4CB28588D0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F114B60E6508402D81362789</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F3CC863D43C244709A9CF2A2</key>
+		<key>DF99F978300B4770AB95986D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

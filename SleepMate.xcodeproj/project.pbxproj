@@ -45,7 +45,6 @@
 		C13D53B5177F741300CF2E78 /* Brightness@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C13D53B3177F741300CF2E78 /* Brightness@2x.png */; };
 		C13D53B7178074DC00CF2E78 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C13D53B6178074DC00CF2E78 /* Default@2x.png */; };
 		C13D53B91782748D00CF2E78 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C13D53B81782748D00CF2E78 /* Localizable.strings */; };
-		C13D6CC317C45D1B00EFC786 /* libFlurry_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C13D6CC217C45D1B00EFC786 /* libFlurry_4.2.3.a */; };
 		C1403BB51728B69500B75633 /* home-2.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BB41728B69500B75633 /* home-2.png */; };
 		C1403BB71728B6B400B75633 /* home-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BB61728B6B400B75633 /* home-2@2x.png */; };
 		C1403BB91728BB7C00B75633 /* Picture-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BB81728BB7C00B75633 /* Picture-Landscape.png */; };
@@ -61,6 +60,7 @@
 		C14E0EF91675746A00811389 /* BackgroundsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C14E0EF71675746A00811389 /* BackgroundsViewController.m */; };
 		C14E0EFA1675746A00811389 /* BackgroundsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C14E0EF81675746A00811389 /* BackgroundsViewController.xib */; };
 		C14E0EFC1675772400811389 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C14E0EFB1675772400811389 /* Social.framework */; };
+		C1659CE11809FC4B0062D8B3 /* libFlurry_4.2.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1659CE01809FC4B0062D8B3 /* libFlurry_4.2.4.a */; };
 		C19DB54E178E58E8001820A7 /* TimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C19DB54C178E58E8001820A7 /* TimerViewController.m */; };
 		C19DB54F178E58E8001820A7 /* TimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C19DB54D178E58E8001820A7 /* TimerViewController.xib */; };
 		C19DB55117922923001820A7 /* Timer.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55017922923001820A7 /* Timer.png */; };
@@ -155,7 +155,6 @@
 		C13D53B6178074DC00CF2E78 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C13D53B81782748D00CF2E78 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		C13D6CC117C45CFA00EFC786 /* Flurry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
-		C13D6CC217C45D1B00EFC786 /* libFlurry_4.2.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.2.3.a; sourceTree = "<group>"; };
 		C1403BB41728B69500B75633 /* home-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-2.png"; sourceTree = "<group>"; };
 		C1403BB61728B6B400B75633 /* home-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-2@2x.png"; sourceTree = "<group>"; };
 		C1403BB81728BB7C00B75633 /* Picture-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Picture-Landscape.png"; sourceTree = "<group>"; };
@@ -173,6 +172,7 @@
 		C14E0EF71675746A00811389 /* BackgroundsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundsViewController.m; sourceTree = "<group>"; };
 		C14E0EF81675746A00811389 /* BackgroundsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BackgroundsViewController.xib; sourceTree = "<group>"; };
 		C14E0EFB1675772400811389 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		C1659CE01809FC4B0062D8B3 /* libFlurry_4.2.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.2.4.a; sourceTree = "<group>"; };
 		C19DB54B178E58E8001820A7 /* TimerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerViewController.h; sourceTree = "<group>"; };
 		C19DB54C178E58E8001820A7 /* TimerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerViewController.m; sourceTree = "<group>"; };
 		C19DB54D178E58E8001820A7 /* TimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerViewController.xib; sourceTree = "<group>"; };
@@ -226,6 +226,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1659CE11809FC4B0062D8B3 /* libFlurry_4.2.4.a in Frameworks */,
 				C1C6081D1798639A0099590F /* MobileCoreServices.framework in Frameworks */,
 				C1C6081B1798638E0099590F /* SystemConfiguration.framework in Frameworks */,
 				C1C6080517982E0C0099590F /* CoreData.framework in Frameworks */,
@@ -234,7 +235,6 @@
 				C14E0EFC1675772400811389 /* Social.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
-				C13D6CC317C45D1B00EFC786 /* libFlurry_4.2.3.a in Frameworks */,
 				288765590DF743DE002DB57D /* CoreGraphics.framework in Frameworks */,
 				05E1D073128EF5FA00922B40 /* AVFoundation.framework in Frameworks */,
 				3BE26FC5BF3743EE86055DBB /* libPods.a in Frameworks */,
@@ -371,8 +371,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C1659CE01809FC4B0062D8B3 /* libFlurry_4.2.4.a */,
 				C1BB0B3C17E9389A00D20D27 /* StoreKit.framework */,
-				C13D6CC217C45D1B00EFC786 /* libFlurry_4.2.3.a */,
 				C1C6081C1798639A0099590F /* MobileCoreServices.framework */,
 				C1C6081A1798638E0099590F /* SystemConfiguration.framework */,
 				C1C6080417982E0C0099590F /* CoreData.framework */,

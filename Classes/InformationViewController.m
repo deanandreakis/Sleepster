@@ -9,11 +9,9 @@
 #import "InformationViewController.h"
 #import "Constants.h"
 #import <Social/Social.h>
+#import "Flurry.h"
 
-
-#define reviewString @"itms-apps://itunes.com/apps/Sleepster"
-
-//@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=417667154"
+#define reviewString @"itms-apps://itunes.apple.com/app/id417667154"
 
 @interface InformationViewController ()
 
@@ -45,21 +43,22 @@
 //TODO: Broken in Beta 3...test again later
 -(IBAction)rateButton:(id)sender
 {
+    [Flurry logEvent:@"Rate App Button Selected"];
     //NSString * theUrl = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=417667154&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software";
-    //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:reviewString]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:reviewString]];
     
     // Initialize Product View Controller
-    SKStoreProductViewController *storeProductViewController = [[SKStoreProductViewController alloc] init];
+    //SKStoreProductViewController *storeProductViewController = [[SKStoreProductViewController alloc] init];
     // Configure View Controller
-    [storeProductViewController setDelegate:self];
-    [storeProductViewController loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier : @"417667154"} completionBlock:^(BOOL result, NSError *error) {
-        if (error) {
+    //[storeProductViewController setDelegate:self];
+    //[storeProductViewController loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier : @"417667154"} completionBlock:^(BOOL result, NSError *error) {
+      //  if (error) {
             //NSLog(@"Error %@ with User Info %@.", error, [error userInfo]);
-        } else {
+       // } else {
             // Present Store Product View Controller
-            [self presentViewController:storeProductViewController animated:YES completion:nil];
-        }
-    }];
+         //   [self presentViewController:storeProductViewController animated:YES completion:nil];
+      //  }
+    //}];
 }
 
 #pragma mark SKStoreProductViewControllerDelegate
@@ -71,6 +70,7 @@
 
 - (IBAction) tweeterButton:(id)sender
 {
+    [Flurry logEvent:@"Twitter"];
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
     {
         SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
@@ -91,6 +91,7 @@
 
 - (IBAction) facebookButton:(id)sender
 {
+    [Flurry logEvent:@"Facebook"];
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
     {
         SLComposeViewController *fbSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];

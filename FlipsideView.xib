@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
@@ -15,8 +15,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="kmoon.png" translatesAutoresizingMaskIntoConstraints="NO" id="52">
-                    <rect key="frame" x="132" y="266" width="57" height="57"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="app_icon_58x58.png" translatesAutoresizingMaskIntoConstraints="NO" id="52">
+                    <rect key="frame" x="131" y="266" width="58" height="58"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <accessibility key="accessibilityConfiguration" hint="Sleepster logo." label="sleepster logo">
                         <bool key="isElement" value="YES"/>
@@ -25,7 +25,7 @@
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" minimumFontSize="10" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="55">
                     <rect key="frame" x="0.0" y="27" width="320" height="231"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <string key="text">Sleepster v2.0
+                    <string key="text">Sleepster v2.1
 
 Nature Sounds + Sleep Timer 
 + Nightlight + Nature Backgrounds
@@ -119,8 +119,8 @@ All Rights Reserved  Nature Backgrounds Courtesy of Flickr Favorite Nature P
         </view>
     </objects>
     <resources>
+        <image name="app_icon_58x58.png" width="58" height="58"/>
         <image name="facebook-logo.png" width="56" height="56"/>
-        <image name="kmoon.png" width="57" height="57"/>
         <image name="new_star.png" width="28" height="28"/>
         <image name="twitter.png" width="56" height="56"/>
     </resources>

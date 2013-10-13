@@ -32,9 +32,6 @@
     
     [SleepsterIAPHelper sharedInstance];
     
-    //NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
-    //[store synchronize];
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     //initialize CoreData
@@ -120,8 +117,10 @@
     /*
      Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
      */
-    NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
-    [store synchronize];
+    if([[DatabaseManager sharedDatabaseManager] isDBNotExist])
+    {
+        [[DatabaseManager sharedDatabaseManager] prePopulate];
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
