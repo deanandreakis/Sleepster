@@ -61,6 +61,11 @@
 		C14E0EFA1675746A00811389 /* BackgroundsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C14E0EF81675746A00811389 /* BackgroundsViewController.xib */; };
 		C14E0EFC1675772400811389 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C14E0EFB1675772400811389 /* Social.framework */; };
 		C1659CE11809FC4B0062D8B3 /* libFlurry_4.2.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1659CE01809FC4B0062D8B3 /* libFlurry_4.2.4.a */; };
+		C1659CE8180B75B00062D8B3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1659CE7180B75B00062D8B3 /* XCTest.framework */; };
+		C1659CE9180B75B00062D8B3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		C1659CEA180B75B00062D8B3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		C1659CF0180B75B00062D8B3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1659CEE180B75B00062D8B3 /* InfoPlist.strings */; };
+		C1659CF2180B75B00062D8B3 /* SleepMate_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1659CF1180B75B00062D8B3 /* SleepMate_Tests.m */; };
 		C19DB54E178E58E8001820A7 /* TimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C19DB54C178E58E8001820A7 /* TimerViewController.m */; };
 		C19DB54F178E58E8001820A7 /* TimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C19DB54D178E58E8001820A7 /* TimerViewController.xib */; };
 		C19DB55117922923001820A7 /* Timer.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55017922923001820A7 /* Timer.png */; };
@@ -101,6 +106,16 @@
 		C1E5F65B175C1CA10000BF16 /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E5F65A175C1CA10000BF16 /* Play.png */; };
 		C1E5F65D175C1CBD0000BF16 /* Play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E5F65C175C1CBD0000BF16 /* Play@2x.png */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C1659CF4180B75B10062D8B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
+			remoteInfo = SleepMate;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		052C9A7612F4ACEA00400088 /* campfire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = campfire.mp3; sourceTree = "<group>"; };
@@ -173,6 +188,12 @@
 		C14E0EF81675746A00811389 /* BackgroundsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BackgroundsViewController.xib; sourceTree = "<group>"; };
 		C14E0EFB1675772400811389 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		C1659CE01809FC4B0062D8B3 /* libFlurry_4.2.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.2.4.a; sourceTree = "<group>"; };
+		C1659CE6180B75B00062D8B3 /* SleepMate Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SleepMate Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1659CE7180B75B00062D8B3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		C1659CED180B75B00062D8B3 /* SleepMate Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SleepMate Tests-Info.plist"; sourceTree = "<group>"; };
+		C1659CEF180B75B00062D8B3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C1659CF1180B75B00062D8B3 /* SleepMate_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SleepMate_Tests.m; sourceTree = "<group>"; };
+		C1659CF3180B75B10062D8B3 /* SleepMate Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SleepMate Tests-Prefix.pch"; sourceTree = "<group>"; };
 		C19DB54B178E58E8001820A7 /* TimerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerViewController.h; sourceTree = "<group>"; };
 		C19DB54C178E58E8001820A7 /* TimerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerViewController.m; sourceTree = "<group>"; };
 		C19DB54D178E58E8001820A7 /* TimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerViewController.xib; sourceTree = "<group>"; };
@@ -241,6 +262,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C1659CE3180B75B00062D8B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1659CE8180B75B00062D8B3 /* XCTest.framework in Frameworks */,
+				C1659CEA180B75B00062D8B3 /* UIKit.framework in Frameworks */,
+				C1659CE9180B75B00062D8B3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -258,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				05D51C5A14DA3653001E7E9D /* SleepMate.app */,
+				C1659CE6180B75B00062D8B3 /* SleepMate Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -287,6 +319,7 @@
 				080E96DDFE201D6D7F000001 /* Application Delegate */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				C1659CEB180B75B00062D8B3 /* SleepMate Tests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				215E431C004344B1A70254A6 /* Pods.xcconfig */,
@@ -383,8 +416,28 @@
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765580DF743DE002DB57D /* CoreGraphics.framework */,
 				8A62217691834AE09BD858BB /* libPods.a */,
+				C1659CE7180B75B00062D8B3 /* XCTest.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C1659CEB180B75B00062D8B3 /* SleepMate Tests */ = {
+			isa = PBXGroup;
+			children = (
+				C1659CF1180B75B00062D8B3 /* SleepMate_Tests.m */,
+				C1659CEC180B75B00062D8B3 /* Supporting Files */,
+			);
+			path = "SleepMate Tests";
+			sourceTree = "<group>";
+		};
+		C1659CEC180B75B00062D8B3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C1659CED180B75B00062D8B3 /* SleepMate Tests-Info.plist */,
+				C1659CEE180B75B00062D8B3 /* InfoPlist.strings */,
+				C1659CF3180B75B10062D8B3 /* SleepMate Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		C1BB0B3E17E93BAB00D20D27 /* IAP */ = {
@@ -479,6 +532,24 @@
 			productReference = 05D51C5A14DA3653001E7E9D /* SleepMate.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C1659CE5180B75B00062D8B3 /* SleepMate Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1659CF6180B75B10062D8B3 /* Build configuration list for PBXNativeTarget "SleepMate Tests" */;
+			buildPhases = (
+				C1659CE2180B75B00062D8B3 /* Sources */,
+				C1659CE3180B75B00062D8B3 /* Frameworks */,
+				C1659CE4180B75B00062D8B3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C1659CF5180B75B10062D8B3 /* PBXTargetDependency */,
+			);
+			name = "SleepMate Tests";
+			productName = "SleepMate Tests";
+			productReference = C1659CE6180B75B00062D8B3 /* SleepMate Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -498,6 +569,9 @@
 							};
 						};
 					};
+					C1659CE5180B75B00062D8B3 = {
+						TestTargetID = 1D6058900D05DD3D006BFB54;
+					};
 				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "SleepMate" */;
@@ -516,6 +590,7 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* SleepMate */,
+				C1659CE5180B75B00062D8B3 /* SleepMate Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -592,6 +667,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C1659CE4180B75B00062D8B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1659CF0180B75B00062D8B3 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -665,7 +748,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C1659CE2180B75B00062D8B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1659CF2180B75B00062D8B3 /* SleepMate_Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C1659CF5180B75B10062D8B3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1D6058900D05DD3D006BFB54 /* SleepMate */;
+			targetProxy = C1659CF4180B75B10062D8B3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C1659CEE180B75B00062D8B3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C1659CEF180B75B00062D8B3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		055D856712F6651500A8EF6B /* Distribution */ = {
@@ -791,6 +901,134 @@
 			};
 			name = Release;
 		};
+		C1659CF7180B75B10062D8B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SleepMate.app/SleepMate";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SleepMate Tests/SleepMate Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "SleepMate Tests/SleepMate Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		C1659CF8180B75B10062D8B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SleepMate.app/SleepMate";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SleepMate Tests/SleepMate Tests-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "SleepMate Tests/SleepMate Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		C1659CF9180B75B10062D8B3 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SleepMate.app/SleepMate";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SleepMate Tests/SleepMate Tests-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "SleepMate Tests/SleepMate Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Distribution;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -813,6 +1051,15 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		C1659CF6180B75B10062D8B3 /* Build configuration list for PBXNativeTarget "SleepMate Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1659CF7180B75B10062D8B3 /* Debug */,
+				C1659CF8180B75B10062D8B3 /* Release */,
+				C1659CF9180B75B10062D8B3 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 

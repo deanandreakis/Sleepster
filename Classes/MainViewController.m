@@ -164,6 +164,7 @@
             if([bg.isImage isEqual:@YES]){
                 if([bg.isLocalImage isEqual:@YES]){
                     [bgarray addObject:bg];
+                    [[iSleepAppDelegate appDelegate].backgroundsViewController setSelected:bg];
                     break;
                 }
             }
@@ -182,6 +183,7 @@
 		[song3 prepareToPlay];
         [theSongArray addObject:song3];
         [song3 setDelegate:self];
+        [[iSleepAppDelegate appDelegate].soundsViewController setSelected:3];
         isSoundInit = TRUE;
         isSoundOrig = TRUE;
     }
@@ -635,12 +637,22 @@
     
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"isLocalImage" ascending:NO];
-    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor1, nil];
+    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"isImage" ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor1, sortDescriptor2,nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    [bgarray addObject:fetchedObjects[0]];
+    //NSLog(@"NUM OBJECTS: %d",[fetchedObjects count]);
+    for (Background* bg in fetchedObjects) {
+        if([bg.isImage isEqual:@YES]){
+            if([bg.isLocalImage isEqual:@YES]){
+                [bgarray addObject:bg];
+                break;
+            }
+        }
+    }
+    //[bgarray addObject:fetchedObjects[0]];
     
     isBgInit = TRUE;
     isBgOrig = TRUE;

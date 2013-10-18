@@ -17,4 +17,5 @@
 
 @property(assign) id<SoundsViewControllerDelegate> delegate;
 
+-(void)setSelected:(NSInteger)row;
 @end

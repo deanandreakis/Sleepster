@@ -29,6 +29,7 @@
 {
     NSMutableArray *_objectChanges;
     NSMutableArray *_sectionChanges;
+    int counter;
 }
 
 @synthesize menuBtn, selectedIndexPath, isSingleSelectToDeselect;
@@ -54,6 +55,7 @@
     
     _objectChanges = [NSMutableArray array];
     _sectionChanges = [NSMutableArray array];
+    counter = 0;
     
     selectedIndexPath = [[NSMutableArray alloc] initWithCapacity:5];
 }
@@ -298,6 +300,23 @@
     return indexPath;
 }
 
+#pragma mark setSelected
+-(void)setSelected:(Background*)bg
+{
+    NSIndexPath *indexPath = nil;
+    for (Background* bgTemp in [self.fetchedResultsController fetchedObjects]) {
+        if([bgTemp.bFullSizeUrl isEqualToString:bg.bFullSizeUrl])
+        {
+            indexPath = [self.fetchedResultsController indexPathForObject:bgTemp];
+            break;
+        }
+    }
+    if(indexPath != nil)
+    {
+        [self.collectionView.delegate collectionView:self.collectionView didSelectItemAtIndexPath:indexPath];
+    }
+}
+
 #pragma mark - Fetched results controller
 
 - (NSFetchedResultsController *)fetchedResultsController
@@ -348,9 +367,36 @@
     return __fetchedResultsController;
 }
 
+#pragma mark NSFetchedResultsControllerDelegate
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{
+    switch(type)
+    {
+        case NSFetchedResultsChangeInsert:
+            //NSLog(@"INSERT");//this is all that shows up when flickr bg's added; there all inserted before the permanent bg's
+            /*just go thru the selectedIndexPath array and increment the indexPath.row each time we come here*/
+            counter = counter+1;
+            break;
+        case NSFetchedResultsChangeDelete:
+            //NSLog(@"DELETE");
+            break;
+        case NSFetchedResultsChangeUpdate:
+            //NSLog(@"UPDATE");
+            break;
+        case NSFetchedResultsChangeMove:
+            //NSLog(@"MOVE");
+            break;
+    }
+}
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
+    for (NSIndexPath* path in selectedIndexPath) {
+        NSIndexPath* newIndexPath =  [NSIndexPath indexPathForItem:path.item+counter inSection:0];
+        [selectedIndexPath replaceObjectAtIndex:[selectedIndexPath indexOfObject:path] withObject:newIndexPath];
+        [self.collectionView.delegate collectionView:self.collectionView didSelectItemAtIndexPath:newIndexPath];
+    }
+    counter = 0;
     [self.collectionView reloadData];
 }
 

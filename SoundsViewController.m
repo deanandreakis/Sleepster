@@ -321,4 +321,11 @@
     return indexPath;
 }
 
+-(void)setSelected:(NSInteger)row
+{
+    NSIndexPath *indexPath = nil;
+    indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+    [self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+}
+
 @end

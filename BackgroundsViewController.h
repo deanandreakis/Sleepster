@@ -18,4 +18,5 @@
 
 @property(assign) id<BackgroundsViewControllerDelegate> delegate;
 
+-(void)setSelected:(Background*)bg;
 @end
