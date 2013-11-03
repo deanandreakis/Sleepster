@@ -316,7 +316,9 @@
     // to workaround bug.
     [self.tableView reloadData];
     
-    [self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+    if(indexPath != nil) { //fixes crashlytics issue #2 for version 2.0
+        [self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+    }
     
     return indexPath;
 }

@@ -295,7 +295,9 @@
         indexPath = [self.fetchedResultsController indexPathForObject:bg];
     }
     
-    [self.collectionView.delegate collectionView:self.collectionView didSelectItemAtIndexPath:indexPath];
+    if(indexPath != nil) { //fixes crashlytics issue #2 for version 2.0
+        [self.collectionView.delegate collectionView:self.collectionView didSelectItemAtIndexPath:indexPath];
+    }
     
     return indexPath;
 }

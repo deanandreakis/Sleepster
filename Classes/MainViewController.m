@@ -109,10 +109,10 @@
     
     if ([[UIScreen mainScreen] bounds].size.height == 568){
         //add your 4-inch specific code here
-        volumeSlider.frame = CGRectMake(69, 441, 182, 34);
-        volumeImageView.frame = CGRectMake(259, 445, 20, 20);
-        brightnessSlider.frame = CGRectMake(69, 478, 182, 34);
-        brightnessImageView.frame = CGRectMake(259, 482, 20, 20);
+        volumeSlider.frame = CGRectMake(18, 406, 260, 34);
+        volumeImageView.frame = CGRectMake(284, 410, 20, 20);
+        brightnessSlider.frame = CGRectMake(18, 463, 260, 34);
+        brightnessImageView.frame = CGRectMake(284, 467, 20, 20);
         
         minutesLabel.frame = CGRectMake(166, 369, 63, 21);
         timerLabel.frame = CGRectMake(145, 369, 47, 21);
@@ -121,10 +121,10 @@
         bgImageView.frame = CGRectMake(10, 20, 300, 300);
 
     } else {
-        volumeSlider.frame = CGRectMake(69, 353, 182, 34);
-        volumeImageView.frame = CGRectMake(259, 357, 20, 20);
-        brightnessSlider.frame = CGRectMake(69, 390, 182, 34);
-        brightnessImageView.frame = CGRectMake(259, 394, 20, 20);
+        volumeSlider.frame = CGRectMake(18, 353, 260, 34);
+        volumeImageView.frame = CGRectMake(284, 357, 20, 20);
+        brightnessSlider.frame = CGRectMake(18, 390, 260, 34);
+        brightnessImageView.frame = CGRectMake(284, 394, 20, 20);
         
         minutesLabel.frame = CGRectMake(166, 325, 63, 21);
         timerLabel.frame = CGRectMake(145, 325, 47, 21);
