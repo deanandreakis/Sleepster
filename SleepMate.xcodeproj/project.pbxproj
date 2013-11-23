@@ -1060,6 +1060,7 @@
 				C1659CF9180B75B10062D8B3 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
