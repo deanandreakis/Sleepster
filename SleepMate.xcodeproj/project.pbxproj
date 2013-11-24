@@ -37,13 +37,13 @@
 		C109245517D0447C00AAB6AE /* thumbnail-default.png in Resources */ = {isa = PBXBuildFile; fileRef = C109245417D0447C00AAB6AE /* thumbnail-default.png */; };
 		C109245817D5520700AAB6AE /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = C109245717D5520700AAB6AE /* Sound.m */; };
 		C109245A17D961A200AAB6AE /* igrove_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C109245917D961A200AAB6AE /* igrove_1.jpg */; };
+		C113175518414FE400A2732D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C113175418414FE400A2732D /* Default-568h@2x.png */; };
+		C1131757184152EB00A2732D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1131756184152EB00A2732D /* Default@2x.png */; };
 		C138149116FF47B000293B48 /* menuButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C138149016FF47B000293B48 /* menuButton@2x.png */; };
-		C13D53A9177D274300CF2E78 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C13D53A8177D274300CF2E78 /* Default-568h@2x.png */; };
 		C13D53B0177F67D700CF2E78 /* Speaker-2.png in Resources */ = {isa = PBXBuildFile; fileRef = C13D53AE177F67D700CF2E78 /* Speaker-2.png */; };
 		C13D53B1177F67D700CF2E78 /* Speaker-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C13D53AF177F67D700CF2E78 /* Speaker-2@2x.png */; };
 		C13D53B4177F741300CF2E78 /* Brightness.png in Resources */ = {isa = PBXBuildFile; fileRef = C13D53B2177F741300CF2E78 /* Brightness.png */; };
 		C13D53B5177F741300CF2E78 /* Brightness@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C13D53B3177F741300CF2E78 /* Brightness@2x.png */; };
-		C13D53B7178074DC00CF2E78 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C13D53B6178074DC00CF2E78 /* Default@2x.png */; };
 		C13D53B91782748D00CF2E78 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C13D53B81782748D00CF2E78 /* Localizable.strings */; };
 		C1403BB51728B69500B75633 /* home-2.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BB41728B69500B75633 /* home-2.png */; };
 		C1403BB71728B6B400B75633 /* home-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BB61728B6B400B75633 /* home-2@2x.png */; };
@@ -159,15 +159,15 @@
 		C109245617D5520700AAB6AE /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
 		C109245717D5520700AAB6AE /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sound.m; sourceTree = "<group>"; };
 		C109245917D961A200AAB6AE /* igrove_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = igrove_1.jpg; sourceTree = "<group>"; };
+		C113175418414FE400A2732D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		C1131756184152EB00A2732D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C1244DD217B085E200622B3D /* SleepMate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SleepMate.entitlements; sourceTree = "<group>"; };
 		C138149016FF47B000293B48 /* menuButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuButton@2x.png"; sourceTree = "<group>"; };
 		C138164A17486C2C00F89C66 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		C13D53A8177D274300CF2E78 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C13D53AE177F67D700CF2E78 /* Speaker-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Speaker-2.png"; sourceTree = "<group>"; };
 		C13D53AF177F67D700CF2E78 /* Speaker-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Speaker-2@2x.png"; sourceTree = "<group>"; };
 		C13D53B2177F741300CF2E78 /* Brightness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brightness.png; sourceTree = "<group>"; };
 		C13D53B3177F741300CF2E78 /* Brightness@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Brightness@2x.png"; sourceTree = "<group>"; };
-		C13D53B6178074DC00CF2E78 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C13D53B81782748D00CF2E78 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		C13D6CC117C45CFA00EFC786 /* Flurry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		C1403BB41728B69500B75633 /* home-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-2.png"; sourceTree = "<group>"; };
@@ -339,6 +339,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C1131756184152EB00A2732D /* Default@2x.png */,
+				C113175418414FE400A2732D /* Default-568h@2x.png */,
 				C1BB0B5F17F31A7C00D20D27 /* app_icon_58x58.png */,
 				C1BB0B5D17F319E000D20D27 /* app_icon_80x80.png */,
 				C1BB0B5B17F3192E00D20D27 /* app_icon_120x120.png */,
@@ -359,7 +361,6 @@
 				C19DB55617924ACD001820A7 /* Fav-1.png */,
 				C19DB55017922923001820A7 /* Timer.png */,
 				C1E5F65C175C1CBD0000BF16 /* Play@2x.png */,
-				C13D53A8177D274300CF2E78 /* Default-568h@2x.png */,
 				C19DB55C1793531A001820A7 /* facebook-logo.png */,
 				C13D53B2177F741300CF2E78 /* Brightness.png */,
 				C19DB55E1793534F001820A7 /* facebook-logo@2x.png */,
@@ -369,7 +370,6 @@
 				C1BB0B5717EF406200D20D27 /* frogs.mp3 */,
 				C1403BC41728BE2500B75633 /* Settings.png */,
 				C19DB55817935138001820A7 /* twitter.png */,
-				C13D53B6178074DC00CF2E78 /* Default@2x.png */,
 				C19DB55A17935250001820A7 /* twitter@2x.png */,
 				C13D53AE177F67D700CF2E78 /* Speaker-2.png */,
 				C19DB55217922947001820A7 /* Timer@2x.png */,
@@ -624,7 +624,6 @@
 				C1BB0B5417EF334400D20D27 /* grove5.jpg in Resources */,
 				C1CD259C17B4741C0099F66D /* check_mark_green@2x.png in Resources */,
 				C1CD259617B321600099F66D /* circle@2x.png in Resources */,
-				C13D53B7178074DC00CF2E78 /* Default@2x.png in Resources */,
 				C13D53B0177F67D700CF2E78 /* Speaker-2.png in Resources */,
 				052C9A8112F4ACEB00400088 /* wind.mp3 in Resources */,
 				05E2B91E13197465005B3F97 /* heavy-rain.mp3 in Resources */,
@@ -645,9 +644,11 @@
 				C1403BB91728BB7C00B75633 /* Picture-Landscape.png in Resources */,
 				C1BB0B5117EF334400D20D27 /* grove2.jpg in Resources */,
 				C1403BBB1728BB9800B75633 /* Picture-Landscape@2x.png in Resources */,
+				C113175518414FE400A2732D /* Default-568h@2x.png in Resources */,
 				C1403BBD1728BCEB00B75633 /* Speaker-1.png in Resources */,
 				C109245A17D961A200AAB6AE /* igrove_1.jpg in Resources */,
 				C13D53B5177F741300CF2E78 /* Brightness@2x.png in Resources */,
+				C1131757184152EB00A2732D /* Default@2x.png in Resources */,
 				C1BB0B5317EF334400D20D27 /* grove4.jpg in Resources */,
 				C1403BBF1728BD0200B75633 /* Speaker-1@2x.png in Resources */,
 				C1403BC11728BDF800B75633 /* Info@2x.png in Resources */,
@@ -656,7 +657,6 @@
 				C13D53B1177F67D700CF2E78 /* Speaker-2@2x.png in Resources */,
 				C19DB55B17935250001820A7 /* twitter@2x.png in Resources */,
 				C1403BC31728BE0900B75633 /* Info.png in Resources */,
-				C13D53A9177D274300CF2E78 /* Default-568h@2x.png in Resources */,
 				C1BB0B5617EF405700D20D27 /* crickets.mp3 in Resources */,
 				C1403BC51728BE2500B75633 /* Settings.png in Resources */,
 				C1403BC71728BE4000B75633 /* Settings@2x.png in Resources */,
@@ -781,14 +781,14 @@
 		055D856712F6651500A8EF6B /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Dean Andreakis";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dean Andreakis";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "6658D631-7D76-4434-8600-6009895C24E2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6658D631-7D76-4434-8600-6009895C24E2";
 				SDKROOT = iphoneos;
 			};
 			name = Distribution;
@@ -799,8 +799,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Dean Andreakis";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dean Andreakis";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -815,8 +815,8 @@
 					"/Users/dean_macmini/Documents/iPhone\\ Apps/iSleep",
 				);
 				PRODUCT_NAME = SleepMate;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "6658D631-7D76-4434-8600-6009895C24E2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6658D631-7D76-4434-8600-6009895C24E2";
 			};
 			name = Distribution;
 		};
@@ -826,8 +826,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Dean Andreakis";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dean Andreakis";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -844,7 +844,7 @@
 					"/Users/dean_macmini/Documents/iPhone\\ Apps/iSleep",
 				);
 				PRODUCT_NAME = SleepMate;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "6658D631-7D76-4434-8600-6009895C24E2";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -855,8 +855,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Dean Andreakis";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dean Andreakis";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -871,20 +871,22 @@
 					"/Users/dean_macmini/Documents/iPhone\\ Apps/iSleep",
 				);
 				PRODUCT_NAME = SleepMate;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "6658D631-7D76-4434-8600-6009895C24E2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6658D631-7D76-4434-8600-6009895C24E2";
 			};
 			name = Release;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Dean Andreakis";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dean Andreakis";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "6658D631-7D76-4434-8600-6009895C24E2";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -892,11 +894,13 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Dean Andreakis";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dean Andreakis";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PROVISIONING_PROFILE = "6658D631-7D76-4434-8600-6009895C24E2";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
