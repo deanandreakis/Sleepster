@@ -17,6 +17,7 @@
 #import "Constants.h"
 #import "Flurry.h"
 #import "SleepsterIAPHelper.h"
+#import "Appirater.h"
 
 @implementation iSleepAppDelegate
 
@@ -26,7 +27,14 @@
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-	[Crashlytics startWithAPIKey:CRASHLYTICS_KEY];
+	[Appirater setAppId:@"417667154"];
+    [Appirater setDaysUntilPrompt:1];
+    [Appirater setUsesUntilPrompt:5];
+    [Appirater setSignificantEventsUntilPrompt:-1];
+    [Appirater setTimeBeforeReminding:3];
+    //[Appirater setDebug:YES];
+    
+    [Crashlytics startWithAPIKey:CRASHLYTICS_KEY];
     
     [Flurry startSession:FLURRY_KEY];
     
@@ -92,6 +100,8 @@
     [self.window setRootViewController:tabBarController];
     [self.window makeKeyAndVisible];
     
+    [Appirater appLaunched:YES];
+    
     return YES;
 }
 
@@ -121,6 +131,8 @@
     {
         [[DatabaseManager sharedDatabaseManager] prePopulate];
     }
+    
+    [Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

@@ -60,7 +60,6 @@
 		C14E0EF91675746A00811389 /* BackgroundsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C14E0EF71675746A00811389 /* BackgroundsViewController.m */; };
 		C14E0EFA1675746A00811389 /* BackgroundsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C14E0EF81675746A00811389 /* BackgroundsViewController.xib */; };
 		C14E0EFC1675772400811389 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C14E0EFB1675772400811389 /* Social.framework */; };
-		C1659CE11809FC4B0062D8B3 /* libFlurry_4.2.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1659CE01809FC4B0062D8B3 /* libFlurry_4.2.4.a */; };
 		C1659CE8180B75B00062D8B3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1659CE7180B75B00062D8B3 /* XCTest.framework */; };
 		C1659CE9180B75B00062D8B3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		C1659CEA180B75B00062D8B3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -76,6 +75,7 @@
 		C19DB55B17935250001820A7 /* twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55A17935250001820A7 /* twitter@2x.png */; };
 		C19DB55D1793531A001820A7 /* facebook-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55C1793531A001820A7 /* facebook-logo.png */; };
 		C19DB55F1793534F001820A7 /* facebook-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55E1793534F001820A7 /* facebook-logo@2x.png */; };
+		C1B16C0819171C5100FA8887 /* libFlurry_5.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1B16C0719171C5100FA8887 /* libFlurry_5.0.0.a */; };
 		C1BB0B3D17E9389A00D20D27 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1BB0B3C17E9389A00D20D27 /* StoreKit.framework */; };
 		C1BB0B4117E93BE200D20D27 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BB0B4017E93BE200D20D27 /* IAPHelper.m */; };
 		C1BB0B4417E93EE200D20D27 /* SleepsterIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BB0B4317E93EE200D20D27 /* SleepsterIAPHelper.m */; };
@@ -205,6 +205,7 @@
 		C19DB55A17935250001820A7 /* twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter@2x.png"; sourceTree = "<group>"; };
 		C19DB55C1793531A001820A7 /* facebook-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-logo.png"; sourceTree = "<group>"; };
 		C19DB55E1793534F001820A7 /* facebook-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-logo@2x.png"; sourceTree = "<group>"; };
+		C1B16C0719171C5100FA8887 /* libFlurry_5.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_5.0.0.a; path = "../../../Downloads/Flurry iPhone SDK viPhone 5/Flurry-iOS-5.0.0/Flurry/libFlurry_5.0.0.a"; sourceTree = "<group>"; };
 		C1BB0B3C17E9389A00D20D27 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		C1BB0B3F17E93BE200D20D27 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
 		C1BB0B4017E93BE200D20D27 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
@@ -247,7 +248,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1659CE11809FC4B0062D8B3 /* libFlurry_4.2.4.a in Frameworks */,
+				C1B16C0819171C5100FA8887 /* libFlurry_5.0.0.a in Frameworks */,
 				C1C6081D1798639A0099590F /* MobileCoreServices.framework in Frameworks */,
 				C1C6081B1798638E0099590F /* SystemConfiguration.framework in Frameworks */,
 				C1C6080517982E0C0099590F /* CoreData.framework in Frameworks */,
@@ -404,6 +405,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C1B16C0719171C5100FA8887 /* libFlurry_5.0.0.a */,
 				C1659CE01809FC4B0062D8B3 /* libFlurry_4.2.4.a */,
 				C1BB0B3C17E9389A00D20D27 /* StoreKit.framework */,
 				C1C6081C1798639A0099590F /* MobileCoreServices.framework */,
@@ -781,14 +783,14 @@
 		055D856712F6651500A8EF6B /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Dean Andreakis";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dean Andreakis";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Dean Andreakis (6XBQPB83GR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dean Andreakis (6XBQPB83GR)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PROVISIONING_PROFILE = "6658D631-7D76-4434-8600-6009895C24E2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6658D631-7D76-4434-8600-6009895C24E2";
+				PROVISIONING_PROFILE = "205E30BA-5ECB-4497-97CF-B1C699C502D9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "205E30BA-5ECB-4497-97CF-B1C699C502D9";
 				SDKROOT = iphoneos;
 			};
 			name = Distribution;
@@ -799,8 +801,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Dean Andreakis";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dean Andreakis";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Dean Andreakis (6XBQPB83GR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dean Andreakis (6XBQPB83GR)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -812,11 +814,17 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/dean_macmini/Documents/iPhone\\ Apps/iSleep",
+					/Users/dean_macmini/Documents/iPhone,
+					Apps/iSleep,
+					/Users/dean_macmini/Downloads/Flurry,
+					iPhone,
+					SDK,
+					viPhone,
+					"5/Flurry-iOS-5.0.0/Flurry",
 				);
 				PRODUCT_NAME = SleepMate;
-				PROVISIONING_PROFILE = "6658D631-7D76-4434-8600-6009895C24E2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6658D631-7D76-4434-8600-6009895C24E2";
+				PROVISIONING_PROFILE = "205E30BA-5ECB-4497-97CF-B1C699C502D9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "205E30BA-5ECB-4497-97CF-B1C699C502D9";
 			};
 			name = Distribution;
 		};
@@ -826,8 +834,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Dean Andreakis";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dean Andreakis";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Dean Andreakis (6XBQPB83GR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dean Andreakis (6XBQPB83GR)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -841,10 +849,16 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/dean_macmini/Documents/iPhone\\ Apps/iSleep",
+					/Users/dean_macmini/Documents/iPhone,
+					Apps/iSleep,
+					/Users/dean_macmini/Downloads/Flurry,
+					iPhone,
+					SDK,
+					viPhone,
+					"5/Flurry-iOS-5.0.0/Flurry",
 				);
 				PRODUCT_NAME = SleepMate;
-				PROVISIONING_PROFILE = "6658D631-7D76-4434-8600-6009895C24E2";
+				PROVISIONING_PROFILE = "205E30BA-5ECB-4497-97CF-B1C699C502D9";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -855,8 +869,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Dean Andreakis";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dean Andreakis";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Dean Andreakis (6XBQPB83GR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dean Andreakis (6XBQPB83GR)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -868,25 +882,31 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/dean_macmini/Documents/iPhone\\ Apps/iSleep",
+					/Users/dean_macmini/Documents/iPhone,
+					Apps/iSleep,
+					/Users/dean_macmini/Downloads/Flurry,
+					iPhone,
+					SDK,
+					viPhone,
+					"5/Flurry-iOS-5.0.0/Flurry",
 				);
 				PRODUCT_NAME = SleepMate;
-				PROVISIONING_PROFILE = "6658D631-7D76-4434-8600-6009895C24E2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6658D631-7D76-4434-8600-6009895C24E2";
+				PROVISIONING_PROFILE = "205E30BA-5ECB-4497-97CF-B1C699C502D9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "205E30BA-5ECB-4497-97CF-B1C699C502D9";
 			};
 			name = Release;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Dean Andreakis";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dean Andreakis";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Dean Andreakis (6XBQPB83GR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dean Andreakis (6XBQPB83GR)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "6658D631-7D76-4434-8600-6009895C24E2";
+				PROVISIONING_PROFILE = "205E30BA-5ECB-4497-97CF-B1C699C502D9";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -894,13 +914,13 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Dean Andreakis";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dean Andreakis";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Dean Andreakis (6XBQPB83GR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Dean Andreakis (6XBQPB83GR)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PROVISIONING_PROFILE = "6658D631-7D76-4434-8600-6009895C24E2";
+				PROVISIONING_PROFILE = "205E30BA-5ECB-4497-97CF-B1C699C502D9";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
