@@ -9,7 +9,7 @@
 #import "FlickrAPIClient.h"
 
 
-#define kFlickrBaseUrl @"http://api.flickr.com/services/rest/"
+#define kFlickrBaseUrl @"https://api.flickr.com/services/rest/"
 
 @implementation FlickrAPIClient
 
@@ -28,6 +28,7 @@
     if (self) {
         [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
         [self setDefaultHeader:@"Accept" value:@"application/json"];
+        self.allowsInvalidSSLCertificate = YES; //this defaults to no
     }
     
     return self;

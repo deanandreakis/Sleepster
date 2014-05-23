@@ -75,7 +75,6 @@
 		C19DB55B17935250001820A7 /* twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55A17935250001820A7 /* twitter@2x.png */; };
 		C19DB55D1793531A001820A7 /* facebook-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55C1793531A001820A7 /* facebook-logo.png */; };
 		C19DB55F1793534F001820A7 /* facebook-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55E1793534F001820A7 /* facebook-logo@2x.png */; };
-		C1B16C0819171C5100FA8887 /* libFlurry_5.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1B16C0719171C5100FA8887 /* libFlurry_5.0.0.a */; };
 		C1BB0B3D17E9389A00D20D27 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1BB0B3C17E9389A00D20D27 /* StoreKit.framework */; };
 		C1BB0B4117E93BE200D20D27 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BB0B4017E93BE200D20D27 /* IAPHelper.m */; };
 		C1BB0B4417E93EE200D20D27 /* SleepsterIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BB0B4317E93EE200D20D27 /* SleepsterIAPHelper.m */; };
@@ -105,6 +104,7 @@
 		C1D7B40C1671A0860004D62E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D7B40A1671A0860004D62E /* SettingsViewController.xib */; };
 		C1E5F65B175C1CA10000BF16 /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E5F65A175C1CA10000BF16 /* Play.png */; };
 		C1E5F65D175C1CBD0000BF16 /* Play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E5F65C175C1CBD0000BF16 /* Play@2x.png */; };
+		C1EC28F5192FFF110033D6FB /* libFlurry_5.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1B16C0719171C5100FA8887 /* libFlurry_5.0.0.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,7 +187,6 @@
 		C14E0EF71675746A00811389 /* BackgroundsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundsViewController.m; sourceTree = "<group>"; };
 		C14E0EF81675746A00811389 /* BackgroundsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BackgroundsViewController.xib; sourceTree = "<group>"; };
 		C14E0EFB1675772400811389 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		C1659CE01809FC4B0062D8B3 /* libFlurry_4.2.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.2.4.a; sourceTree = "<group>"; };
 		C1659CE6180B75B00062D8B3 /* SleepMate Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SleepMate Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1659CE7180B75B00062D8B3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C1659CED180B75B00062D8B3 /* SleepMate Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SleepMate Tests-Info.plist"; sourceTree = "<group>"; };
@@ -248,7 +247,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1B16C0819171C5100FA8887 /* libFlurry_5.0.0.a in Frameworks */,
+				C1EC28F5192FFF110033D6FB /* libFlurry_5.0.0.a in Frameworks */,
 				C1C6081D1798639A0099590F /* MobileCoreServices.framework in Frameworks */,
 				C1C6081B1798638E0099590F /* SystemConfiguration.framework in Frameworks */,
 				C1C6080517982E0C0099590F /* CoreData.framework in Frameworks */,
@@ -406,7 +405,6 @@
 			isa = PBXGroup;
 			children = (
 				C1B16C0719171C5100FA8887 /* libFlurry_5.0.0.a */,
-				C1659CE01809FC4B0062D8B3 /* libFlurry_4.2.4.a */,
 				C1BB0B3C17E9389A00D20D27 /* StoreKit.framework */,
 				C1C6081C1798639A0099590F /* MobileCoreServices.framework */,
 				C1C6081A1798638E0099590F /* SystemConfiguration.framework */,
@@ -821,6 +819,11 @@
 					SDK,
 					viPhone,
 					"5/Flurry-iOS-5.0.0/Flurry",
+					/Users/dean_macmini/Downloads/Flurry,
+					iPhone,
+					SDK,
+					viPhone,
+					"5/Flurry-iOS-5.0.0/Flurry",
 				);
 				PRODUCT_NAME = SleepMate;
 				PROVISIONING_PROFILE = "205E30BA-5ECB-4497-97CF-B1C699C502D9";
@@ -856,6 +859,11 @@
 					SDK,
 					viPhone,
 					"5/Flurry-iOS-5.0.0/Flurry",
+					/Users/dean_macmini/Downloads/Flurry,
+					iPhone,
+					SDK,
+					viPhone,
+					"5/Flurry-iOS-5.0.0/Flurry",
 				);
 				PRODUCT_NAME = SleepMate;
 				PROVISIONING_PROFILE = "205E30BA-5ECB-4497-97CF-B1C699C502D9";
@@ -884,6 +892,11 @@
 					"$(inherited)",
 					/Users/dean_macmini/Documents/iPhone,
 					Apps/iSleep,
+					/Users/dean_macmini/Downloads/Flurry,
+					iPhone,
+					SDK,
+					viPhone,
+					"5/Flurry-iOS-5.0.0/Flurry",
 					/Users/dean_macmini/Downloads/Flurry,
 					iPhone,
 					SDK,
