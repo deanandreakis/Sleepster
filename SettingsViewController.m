@@ -10,7 +10,7 @@
 #import "Constants.h"
 #import "SleepsterIAPHelper.h"
 #import <StoreKit/StoreKit.h>
-#import "Flurry.h"
+//#import "Flurry.h"
 
 #define ALERTVIEW_BG_BUY 0
 #define ALERTVIEW_BG_IAP_DISABLED 1
@@ -82,7 +82,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transactionFailed:) name:IAPHelperTransactionFailedNotification object:nil];
     
-    [Flurry logEvent:@"Entered Settings Screen"];
+    //[Flurry logEvent:@"Entered Settings Screen"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -168,7 +168,7 @@
 
 -(IBAction)soundMixSwitch:(id)sender
 {
-    [Flurry logEvent:@"Sound Mix Switch Selected"];
+    //[Flurry logEvent:@"Sound Mix Switch Selected"];
     UISwitch* switcher = (UISwitch *)sender;
     if([switcher isOn])//switch changed to on
     {
@@ -240,7 +240,7 @@
 
 -(IBAction)backgroundMixSwitch:(id)sender
 {
-    [Flurry logEvent:@"Background Mix Switch Selected"];
+    //[Flurry logEvent:@"Background Mix Switch Selected"];
     UISwitch* switcher = (UISwitch *)sender;
     if([switcher isOn])//switch changed to on
     {

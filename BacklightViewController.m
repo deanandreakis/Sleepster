@@ -8,7 +8,7 @@
 
 #import "BacklightViewController.h"
 #import "UIImageView+AFNetworking.h"
-#import <Crashlytics/Crashlytics.h>
+//#import <Crashlytics/Crashlytics.h>
 
 @interface BacklightViewController ()
 
@@ -24,6 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //self.view.backgroundColor = [UIColor blackColor];
     self.bgImageView.backgroundColor = backgroundColor;
     [self.bgImageView setImage:nil];
     

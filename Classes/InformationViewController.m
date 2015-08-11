@@ -9,7 +9,7 @@
 #import "InformationViewController.h"
 #import "Constants.h"
 #import <Social/Social.h>
-#import "Flurry.h"
+//#import "Flurry.h"
 
 #define reviewString @"itms-apps://itunes.apple.com/app/id417667154"
 
@@ -43,7 +43,7 @@
 //TODO: Broken in Beta 3...test again later
 -(IBAction)rateButton:(id)sender
 {
-    [Flurry logEvent:@"Rate App Button Selected"];
+    //[Flurry logEvent:@"Rate App Button Selected"];
     //NSString * theUrl = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=417667154&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software";
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:reviewString]];
     
@@ -70,7 +70,7 @@
 
 - (IBAction) tweeterButton:(id)sender
 {
-    [Flurry logEvent:@"Twitter"];
+    //[Flurry logEvent:@"Twitter"];
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
     {
         SLComposeViewController *tweetSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
@@ -91,7 +91,7 @@
 
 - (IBAction) facebookButton:(id)sender
 {
-    [Flurry logEvent:@"Facebook"];
+    //[Flurry logEvent:@"Facebook"];
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
     {
         SLComposeViewController *fbSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];

@@ -276,14 +276,14 @@
         NSURL *moURI = [[bg objectID] URIRepresentation];
         identifier = [moURI absoluteString];
     }
-    //NSLog(@"ENCODE IDENTIFIER %@", identifier);
+    NSLog(@"BG ENCODE IDENTIFIER %@", identifier);
     return identifier;
 }
 
 - (NSIndexPath *)indexPathForElementWithModelIdentifier:(NSString *)identifier inView:(UIView *)view
 {
     //NSLog(@"BG DECODE");
-    //NSLog(@"DECODE IDENTIFIER %@", identifier);
+    NSLog(@"BG DECODE IDENTIFIER %@", identifier);
     NSIndexPath *indexPath = nil;
     if (identifier && view)
     {

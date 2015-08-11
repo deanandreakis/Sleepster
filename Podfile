@@ -1,3 +1,4 @@
 platform :ios, "7.0"
 pod 'AFNetworking', '~>1.3'
-pod 'Appirater'
+pod 'Crashlytics'
+pod 'Fabric'

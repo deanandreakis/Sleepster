@@ -57,7 +57,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     //NSLog(@"INIT");
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        theColor = [UIColor whiteColor];
+        theColor = [UIColor blackColor];
         isSoundInit = FALSE;
         isBgInit = FALSE;
         isSoundOrig = FALSE;
@@ -80,7 +80,7 @@
 	
 	/*Setup audio*/
 	//Registers this class as the delegate of the audio session.
-    [[AVAudioSession sharedInstance] setDelegate: self];
+    //[[AVAudioSession sharedInstance] setDelegate: self];
 	
 	[[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: nil];
 	
@@ -576,7 +576,7 @@
         }
         
         self.bgImageURL = imageUrl;
-        self.bgImageView.backgroundColor = [UIColor whiteColor];
+        self.bgImageView.backgroundColor = [UIColor blackColor];
     }
 }
 

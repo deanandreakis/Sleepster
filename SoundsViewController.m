@@ -63,7 +63,7 @@
 	
 	for (int x = 0; x < 12; x++) {
 		[[songArray objectAtIndex:x] setNumberOfLoops:-1];
-		[[songArray objectAtIndex:x] prepareToPlay];
+		[(AVAudioPlayer*)[songArray objectAtIndex:x] prepareToPlay];
 	}
     
 	UILabel *col2_label1 = [[UILabel alloc] initWithFrame:CGRectMake(0,0,90,20)];
@@ -134,6 +134,10 @@
     selectedIndexPath = [[NSMutableArray alloc] initWithCapacity:5];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    
+    self.tableView.restorationIdentifier = @"soundsTableViewID";
+    
+    self.tableView.dataSource = self;
     
 }
 
@@ -285,23 +289,26 @@
     {
         AVAudioPlayer* song = [songArray objectAtIndex:indexPath.row];
         NSURL* url = song.url;
-        identifier = url.path;
+        identifier = url.lastPathComponent;
     }
-    //NSLog(@"ENCODE IDENTIFIER %@", identifier);
+    //NSLog(@"SOUND ENCODE IDENTIFIER %@", identifier);
     return identifier;
 }
 
 - (NSIndexPath *)indexPathForElementWithModelIdentifier:(NSString *)identifier inView:(UIView *)view
 {
     //NSLog(@"SOUNDS DECODE");
-    //NSLog(@"DECODE IDENTIFIER %@", identifier);
+    //NSLog(@"SOUND DECODE IDENTIFIER %@", identifier);
     NSIndexPath *indexPath = nil;
     if (identifier && view)
     {
+        //NSLog(@"HERE 1");
         NSInteger row = -1;
         for (AVAudioPlayer* song in songArray) {
-            if([song.url.path isEqualToString:identifier])
+            //NSLog(@"HERE 2: %@", song.url.path);
+            if([song.url.lastPathComponent isEqualToString:identifier])
             {
+                //NSLog(@"HERE 3");
                 row = [songArray indexOfObject:song];
             }
         }
