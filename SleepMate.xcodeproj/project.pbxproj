@@ -55,6 +55,7 @@
 		C1403BC31728BE0900B75633 /* Info.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BC21728BE0900B75633 /* Info.png */; };
 		C1403BC51728BE2500B75633 /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BC41728BE2500B75633 /* Settings.png */; };
 		C1403BC71728BE4000B75633 /* Settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BC61728BE4000B75633 /* Settings@2x.png */; };
+		C144444D1C67D7DF00842946 /* playbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C144444C1C67D7DF00842946 /* playbutton@2x.png */; };
 		C14E0EF4167573F100811389 /* SoundsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C14E0EF2167573F100811389 /* SoundsViewController.m */; };
 		C14E0EF5167573F100811389 /* SoundsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C14E0EF3167573F100811389 /* SoundsViewController.xib */; };
 		C14E0EF91675746A00811389 /* BackgroundsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C14E0EF71675746A00811389 /* BackgroundsViewController.m */; };
@@ -179,6 +180,7 @@
 		C1403BC21728BE0900B75633 /* Info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Info.png; sourceTree = "<group>"; };
 		C1403BC41728BE2500B75633 /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings.png; sourceTree = "<group>"; };
 		C1403BC61728BE4000B75633 /* Settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings@2x.png"; sourceTree = "<group>"; };
+		C144444C1C67D7DF00842946 /* playbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "playbutton@2x.png"; sourceTree = "<group>"; };
 		C14E0EF1167573F100811389 /* SoundsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundsViewController.h; sourceTree = "<group>"; };
 		C14E0EF2167573F100811389 /* SoundsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundsViewController.m; sourceTree = "<group>"; };
 		C14E0EF3167573F100811389 /* SoundsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SoundsViewController.xib; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 				C1E5F65C175C1CBD0000BF16 /* Play@2x.png */,
 				C19DB55C1793531A001820A7 /* facebook-logo.png */,
 				C13D53B2177F741300CF2E78 /* Brightness.png */,
+				C144444C1C67D7DF00842946 /* playbutton@2x.png */,
 				C19DB55E1793534F001820A7 /* facebook-logo@2x.png */,
 				C13D53B3177F741300CF2E78 /* Brightness@2x.png */,
 				C1403BC61728BE4000B75633 /* Settings@2x.png */,
@@ -525,6 +528,7 @@
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 				5A17BCB255024968B35829FF /* Copy Pods Resources */,
+				EECD295CCA75E20484DF5F1B /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -632,6 +636,7 @@
 				05E2B91E13197465005B3F97 /* heavy-rain.mp3 in Resources */,
 				05E2B92213197477005B3F97 /* lake-waves.mp3 in Resources */,
 				05AAF2FA1377084B00AD2167 /* kmoon.png in Resources */,
+				C144444D1C67D7DF00842946 /* playbutton@2x.png in Resources */,
 				C1BB0B5C17F3192E00D20D27 /* app_icon_120x120.png in Resources */,
 				C1BB0B5817EF406200D20D27 /* frogs.mp3 in Resources */,
 				05AAF2FC1377085E00AD2167 /* kmoon@2x.png in Resources */,
@@ -711,6 +716,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		EECD295CCA75E20484DF5F1B /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -771,14 +791,14 @@
 		055D856712F6651500A8EF6B /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dean Andreakis (97QXDB3QP7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dean Andreakis (97QXDB3QP7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PROVISIONING_PROFILE = "1f8a23d3-b2b3-43ec-accb-8d4adb84d666";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1f8a23d3-b2b3-43ec-accb-8d4adb84d666";
+				PROVISIONING_PROFILE = "37de51d0-7855-4042-ad81-07b6fe31f93a";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "37de51d0-7855-4042-ad81-07b6fe31f93a";
 				SDKROOT = iphoneos;
 			};
 			name = Distribution;
@@ -789,8 +809,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dean Andreakis (97QXDB3QP7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dean Andreakis (97QXDB3QP7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -802,8 +822,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = SleepMate;
-				PROVISIONING_PROFILE = "1f8a23d3-b2b3-43ec-accb-8d4adb84d666";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1f8a23d3-b2b3-43ec-accb-8d4adb84d666";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "37de51d0-7855-4042-ad81-07b6fe31f93a";
 			};
 			name = Distribution;
 		};
@@ -813,8 +833,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dean Andreakis (97QXDB3QP7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dean Andreakis (97QXDB3QP7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -828,7 +848,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = SleepMate;
-				PROVISIONING_PROFILE = "1f8a23d3-b2b3-43ec-accb-8d4adb84d666";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -839,8 +859,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dean Andreakis (97QXDB3QP7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dean Andreakis (97QXDB3QP7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -852,22 +872,22 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = SleepMate;
-				PROVISIONING_PROFILE = "1f8a23d3-b2b3-43ec-accb-8d4adb84d666";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1f8a23d3-b2b3-43ec-accb-8d4adb84d666";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "37de51d0-7855-4042-ad81-07b6fe31f93a";
 			};
 			name = Release;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dean Andreakis (97QXDB3QP7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dean Andreakis (97QXDB3QP7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "1f8a23d3-b2b3-43ec-accb-8d4adb84d666";
+				PROVISIONING_PROFILE = "37de51d0-7855-4042-ad81-07b6fe31f93a";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -875,13 +895,13 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dean Andreakis (97QXDB3QP7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dean Andreakis (97QXDB3QP7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PROVISIONING_PROFILE = "1f8a23d3-b2b3-43ec-accb-8d4adb84d666";
+				PROVISIONING_PROFILE = "37de51d0-7855-4042-ad81-07b6fe31f93a";
 				SDKROOT = iphoneos;
 			};
 			name = Release;

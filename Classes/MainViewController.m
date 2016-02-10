@@ -57,7 +57,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     //NSLog(@"INIT");
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        theColor = [UIColor blackColor];
+        theColor = [UIColor whiteColor];
         isSoundInit = FALSE;
         isBgInit = FALSE;
         isSoundOrig = FALSE;
@@ -96,7 +96,9 @@
     self.minutesLabel.hidden = YES;
     
 	natureVolume = 50.0;
-    natureBrightness = 0.5;
+    natureBrightness = [[UIScreen mainScreen] brightness];//0.5;
+    
+    //self.brightnessSlider.value = 50.0;
     
     controller = [[TimerViewController alloc] initWithNibName:@"TimerViewController" bundle:nil];
 	controller.timerDelegate = self;
@@ -405,6 +407,13 @@
 	
 	BacklightViewController *blcontroller = [[BacklightViewController alloc] initWithNibName:@"BacklightView" bundle:nil];
 	blcontroller.bgDelegate = self;
+    
+    /*if(bgarray.count == 0)
+    {
+        blcontroller.backgroundColor = theColor;
+    } else {
+        blcontroller.backgroundColor = [UIColor whiteColor];
+    }*/
     blcontroller.backgroundColor = theColor;
     blcontroller.brightness = natureBrightness;
     //blcontroller.restorationIdentifier = RESTORATION_ID_BACKLIGHT_VC;
@@ -427,7 +436,7 @@
 	
     /*Play the background music selected*/
 	for (AVAudioPlayer* song in theSongArray) {
-        [song setVolume:(natureVolume / 100)];
+        [song setVolume:(natureVolume / 100.0)];
         [song play];
     }
     
@@ -576,7 +585,7 @@
         }
         
         self.bgImageURL = imageUrl;
-        self.bgImageView.backgroundColor = [UIColor blackColor];
+        self.bgImageView.backgroundColor = [UIColor whiteColor];
     }
 }
 
@@ -586,8 +595,8 @@
 - (IBAction)volumeSliderChanged:(id)sender
 {
 	UISlider *slider = (UISlider *)sender;
-	int volume = (int)(slider.value + 0.5f);
-	natureVolume = (float)volume;
+	//int volume = (int)(slider.value + 0.5f);
+    natureVolume = slider.value * 100.0;//(float)volume;
 }
 
 #pragma mark Brightness Slider

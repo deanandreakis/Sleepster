@@ -12,7 +12,7 @@
 #import "SettingsViewController.h"
 #import "SoundsViewController.h"
 #import "BackgroundsViewController.h"
-#import <Crashlytics/Crashlytics.h>
+//#import <Crashlytics/Crashlytics.h>
 #import "DatabaseManager.h"
 #import "Constants.h"
 #import "SleepsterIAPHelper.h"
@@ -25,7 +25,7 @@
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [Crashlytics startWithAPIKey:CRASHLYTICS_KEY];
+    //[Crashlytics startWithAPIKey:CRASHLYTICS_KEY];
     
     [SleepsterIAPHelper sharedInstance];
     
