@@ -24,14 +24,14 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playbutton.png" translatesAutoresizingMaskIntoConstraints="NO" id="qyR-rP-FaH" userLabel="Play Image View">
-                    <rect key="frame" x="230" y="342" width="140" height="100"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playbutton.png" translatesAutoresizingMaskIntoConstraints="NO" id="qyR-rP-FaH" userLabel="Play Image View">
+                    <rect key="frame" x="250" y="342" width="100" height="100"/>
                     <accessibility key="accessibilityConfiguration" hint="The Play Button Image" label="Play">
                         <bool key="isElement" value="YES"/>
                     </accessibility>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="8RT-Hu-x0x"/>
-                        <constraint firstAttribute="width" constant="140" id="uGP-Vo-J9T"/>
+                        <constraint firstAttribute="width" constant="100" id="uGP-Vo-J9T"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Speaker-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q4t-Mw-pNu">
@@ -163,6 +163,6 @@
         <image name="Brightness.png" width="20" height="20"/>
         <image name="Speaker-2.png" width="21" height="21"/>
         <image name="Timer.png" width="20" height="24"/>
-        <image name="playbutton.png" width="223" height="178"/>
+        <image name="playbutton.png" width="157" height="157"/>
     </resources>
 </document>
