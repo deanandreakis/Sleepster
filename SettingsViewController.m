@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "SleepsterIAPHelper.h"
 #import <StoreKit/StoreKit.h>
+#import "TimerViewController.h"
 //#import "Flurry.h"
 
 #define ALERTVIEW_BG_BUY 0
@@ -33,11 +34,14 @@
 @property (strong, nonatomic) UIAlertView* pleaseWaitAlertView;
 @property (strong, nonatomic) IBOutlet UIButton* restoreButton;
 @property (strong, nonatomic) IBOutlet UILabel* restoreLabel;
+@property (strong, nonatomic) TimerViewController* timerController;
+@property (strong, nonatomic) IBOutlet UILabel* timerLabel;
+@property (strong, nonatomic) IBOutlet UILabel* minutesLabel;
 @end
 
 @implementation SettingsViewController
 
-@synthesize bgSwitch, soundSwitch, activityIndicatorView, pleaseWaitAlertView, restoreButton,restoreLabel;
+@synthesize timerController, bgSwitch, soundSwitch, activityIndicatorView, pleaseWaitAlertView, restoreButton,restoreLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -74,6 +78,15 @@
         restoreLabel.frame = CGRectMake(40, 369, 255, 38);
     }
     
+    timerController = [[TimerViewController alloc] initWithNibName:@"TimerViewController" bundle:nil];
+    timerController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    timerController.restorationIdentifier = RESTORATION_ID_TIMER_VC;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveTimerNotification2:)
+                                                 name:@"TIMER_NOTIFICATION"
+                                               object:nil];
+    
     [self getProducts];
 }
 
@@ -86,13 +99,25 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    //[[NSNotificationCenter defaultCenter] removeObserver:self];//THE PROBLEM!!!!
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:IAPHelperProductPurchasedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:IAPHelperTransactionFailedNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) dealloc
+{
+    // If you don't remove yourself as an observer, the Notification Center
+    // will continue to try and send notification objects to the deallocated
+    // object.
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name: @"TIMER_NOTIFICATION"
+                                                  object:nil];
 }
 
 #pragma mark IAP
@@ -370,12 +395,49 @@
     return [soundSwitch isOn];
 }
 
+#pragma mark TimerViewControllerDelegate
+
+- (void) receiveTimerNotification2:(NSNotification *) notification
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    //NSNumber* value = (NSNumber*)[notification.userInfo objectForKey:@"timeout"];
+    //NSInteger timeValue = [value integerValue];
+    
+    NSString* string = (NSString*)[notification.userInfo objectForKey:@"timerstring"];
+    
+    //self.timeOut = timeValue;
+    
+    self.timerLabel.text = string;
+     if([string isEqualToString:NSLocalizedString(@"OFF",nil)])
+     {
+     self.minutesLabel.hidden = YES;
+     }
+     else
+     {
+     self.minutesLabel.hidden = NO;
+     }
+}
+
+- (IBAction)timerButtonSelected:(id)sender
+{
+    [self presentViewController:timerController animated:YES completion:nil];
+}
+
+
 #pragma mark state preservation and restoration
 - (void)encodeRestorableStateWithCoder:(NSCoder *)coder {
     [super encodeRestorableStateWithCoder:coder];
     
     [coder encodeBool:[self.bgSwitch isOn] forKey:@"bgSwitch"];
     [coder encodeBool:[self.soundSwitch isOn]forKey:@"soundSwitch"];
+    
+    //for a containing VC we just need to call encode on it to trigger
+    //its encode/decode calls, so we dont need to decode it here
+    [coder encodeObject:timerController forKey:@"TimerViewController"];
+    
+    [coder encodeObject:self.timerLabel.text forKey:@"timerLabel"];
+
 }
 
 - (void)decodeRestorableStateWithCoder:(NSCoder *)coder {
@@ -383,6 +445,16 @@
     
     [self.bgSwitch setOn:[coder decodeBoolForKey:@"bgSwitch"]];
     [self.soundSwitch setOn:[coder decodeBoolForKey:@"soundSwitch"]];
+    
+    self.timerLabel.text = [coder decodeObjectForKey:@"timerLabel"];
+    if([self.timerLabel.text isEqualToString:NSLocalizedString(@"OFF",nil)])
+     {
+     self.minutesLabel.hidden = YES;
+     }
+     else
+     {
+     self.minutesLabel.hidden = NO;
+     }
 }
 
 @end

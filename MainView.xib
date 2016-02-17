@@ -11,9 +11,6 @@
                 <outlet property="bgImageView" destination="b0w-dw-MxW" id="3dQ-jh-TXp"/>
                 <outlet property="brightnessImageView" destination="RZs-SS-zYO" id="F3D-Lu-RE0"/>
                 <outlet property="brightnessSlider" destination="hdN-XU-7MK" id="oMY-lW-oKw"/>
-                <outlet property="minutesLabel" destination="JT5-0t-Syx" id="mwY-Vi-e3z"/>
-                <outlet property="timerButton" destination="dUY-Ij-E4b" id="aah-G6-UFZ"/>
-                <outlet property="timerLabel" destination="LMr-h4-7sS" id="lxk-D9-p4T"/>
                 <outlet property="view" destination="34" id="35"/>
                 <outlet property="volumeImageView" destination="Q4t-Mw-pNu" id="qzR-aE-ZL4"/>
                 <outlet property="volumeSlider" destination="UAJ-Yh-ftg" id="zWQ-xg-vl4"/>
@@ -25,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playbutton.png" translatesAutoresizingMaskIntoConstraints="NO" id="qyR-rP-FaH" userLabel="Play Image View">
-                    <rect key="frame" x="250" y="342" width="100" height="100"/>
+                    <rect key="frame" x="250" y="347" width="100" height="100"/>
                     <accessibility key="accessibilityConfiguration" hint="The Play Button Image" label="Play">
                         <bool key="isElement" value="YES"/>
                     </accessibility>
@@ -35,7 +32,7 @@
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Speaker-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q4t-Mw-pNu">
-                    <rect key="frame" x="430" y="502" width="20" height="20"/>
+                    <rect key="frame" x="430" y="507" width="20" height="20"/>
                     <accessibility key="accessibilityConfiguration" hint="Volume Image" label="Volume">
                         <bool key="isElement" value="YES"/>
                     </accessibility>
@@ -45,7 +42,7 @@
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Brightness.png" translatesAutoresizingMaskIntoConstraints="NO" id="RZs-SS-zYO">
-                    <rect key="frame" x="430" y="459" width="20" height="20"/>
+                    <rect key="frame" x="430" y="464" width="20" height="20"/>
                     <accessibility key="accessibilityConfiguration" hint="Brightness Image" label="Brightness">
                         <bool key="isElement" value="YES"/>
                     </accessibility>
@@ -54,43 +51,6 @@
                         <constraint firstAttribute="width" constant="20" id="yvm-3W-o1R"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMr-h4-7sS">
-                    <rect key="frame" x="21" y="543" width="35" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="35" id="RK3-in-kOk"/>
-                        <constraint firstAttribute="height" constant="21" id="ia5-aa-r4j"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUY-Ij-E4b">
-                    <rect key="frame" x="17" y="504" width="44" height="44"/>
-                    <accessibility key="accessibilityConfiguration" hint="Sets sound timer timeout." label="set timeout"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="44" id="R1c-uY-Biy"/>
-                        <constraint firstAttribute="height" constant="44" id="YRa-nL-ItT"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                    <state key="normal" image="Timer.png">
-                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <state key="highlighted">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="timerButtonSelected:" destination="-1" eventType="touchUpInside" id="JBj-Q6-Xrn"/>
-                    </connections>
-                </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="minutes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JT5-0t-Syx">
-                    <rect key="frame" x="11" y="565" width="63" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="21" id="MCa-Ha-78e"/>
-                        <constraint firstAttribute="width" constant="63" id="vn2-8S-MMJ"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="270" placeholderIntrinsicHeight="270" translatesAutoresizingMaskIntoConstraints="NO" id="b0w-dw-MxW">
                     <rect key="frame" x="-9" y="28" width="618" height="314"/>
                     <accessibility key="accessibilityConfiguration" hint="Background image." label="background image">
@@ -98,7 +58,7 @@
                     </accessibility>
                 </imageView>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="UAJ-Yh-ftg">
-                    <rect key="frame" x="183" y="497" width="234" height="31"/>
+                    <rect key="frame" x="183" y="502" width="234" height="31"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="230" id="UO8-hi-9jm"/>
                         <constraint firstAttribute="height" constant="30" id="f97-0q-TwL"/>
@@ -108,7 +68,7 @@
                     </connections>
                 </slider>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="hdN-XU-7MK">
-                    <rect key="frame" x="183" y="452" width="234" height="31"/>
+                    <rect key="frame" x="183" y="457" width="234" height="31"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="NJ6-ZD-qHV"/>
                         <constraint firstAttribute="width" constant="230" id="s7Z-cL-zch"/>
@@ -118,11 +78,11 @@
                     </connections>
                 </slider>
                 <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="47" userLabel="Play Button">
-                    <rect key="frame" x="230" y="342" width="140" height="100"/>
+                    <rect key="frame" x="250" y="347" width="100" height="100"/>
                     <accessibility key="accessibilityConfiguration" hint="The Play Button" label="Play"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="CBK-No-lGb"/>
-                        <constraint firstAttribute="width" constant="140" id="q2t-mm-dhZ"/>
+                        <constraint firstAttribute="width" constant="100" id="q2t-mm-dhZ"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                     <state key="normal">
@@ -142,16 +102,16 @@
                 <constraint firstItem="Q4t-Mw-pNu" firstAttribute="leading" secondItem="UAJ-Yh-ftg" secondAttribute="trailing" constant="15" id="0KY-ad-e70"/>
                 <constraint firstAttribute="bottomMargin" secondItem="b0w-dw-MxW" secondAttribute="bottom" constant="250" id="4gf-vA-tvy"/>
                 <constraint firstAttribute="trailingMargin" secondItem="b0w-dw-MxW" secondAttribute="trailing" constant="-17" id="CpE-Bs-HC1"/>
-                <constraint firstItem="qyR-rP-FaH" firstAttribute="top" secondItem="b0w-dw-MxW" secondAttribute="bottom" id="JKQ-Mk-1bc"/>
+                <constraint firstItem="qyR-rP-FaH" firstAttribute="top" secondItem="b0w-dw-MxW" secondAttribute="bottom" constant="5" id="JKQ-Mk-1bc"/>
                 <constraint firstItem="qyR-rP-FaH" firstAttribute="centerX" secondItem="34" secondAttribute="centerX" id="PS8-Hc-nnj"/>
                 <constraint firstItem="b0w-dw-MxW" firstAttribute="leading" secondItem="34" secondAttribute="leadingMargin" constant="-17" id="Q0C-rE-Ew7"/>
                 <constraint firstItem="hdN-XU-7MK" firstAttribute="top" secondItem="47" secondAttribute="bottom" constant="10" id="RNC-0R-6wK"/>
-                <constraint firstItem="RZs-SS-zYO" firstAttribute="top" secondItem="b0w-dw-MxW" secondAttribute="bottom" constant="117" id="Rgo-TB-hah"/>
+                <constraint firstItem="RZs-SS-zYO" firstAttribute="top" secondItem="b0w-dw-MxW" secondAttribute="bottom" constant="122" id="Rgo-TB-hah"/>
                 <constraint firstItem="hdN-XU-7MK" firstAttribute="centerX" secondItem="34" secondAttribute="centerX" id="UFQ-uz-PmA"/>
                 <constraint firstItem="Q4t-Mw-pNu" firstAttribute="top" secondItem="RZs-SS-zYO" secondAttribute="bottom" constant="23" id="WZC-hB-wzy"/>
                 <constraint firstItem="RZs-SS-zYO" firstAttribute="leading" secondItem="hdN-XU-7MK" secondAttribute="trailing" constant="15" id="fu0-JJ-Oab"/>
                 <constraint firstItem="UAJ-Yh-ftg" firstAttribute="centerX" secondItem="34" secondAttribute="centerX" id="hXh-Uy-3qJ"/>
-                <constraint firstItem="47" firstAttribute="top" secondItem="b0w-dw-MxW" secondAttribute="bottom" id="jnM-Vf-ImZ"/>
+                <constraint firstItem="47" firstAttribute="top" secondItem="b0w-dw-MxW" secondAttribute="bottom" constant="5" id="jnM-Vf-ImZ"/>
                 <constraint firstItem="47" firstAttribute="centerX" secondItem="34" secondAttribute="centerX" id="m3E-OS-tM0"/>
                 <constraint firstItem="UAJ-Yh-ftg" firstAttribute="top" secondItem="hdN-XU-7MK" secondAttribute="bottom" constant="15" id="u9r-rF-mwf"/>
                 <constraint firstItem="b0w-dw-MxW" firstAttribute="top" secondItem="34" secondAttribute="topMargin" constant="20" id="xQZ-x8-R1e"/>
@@ -162,7 +122,6 @@
     <resources>
         <image name="Brightness.png" width="20" height="20"/>
         <image name="Speaker-2.png" width="21" height="21"/>
-        <image name="Timer.png" width="20" height="24"/>
         <image name="playbutton.png" width="157" height="157"/>
     </resources>
 </document>

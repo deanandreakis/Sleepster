@@ -23,10 +23,11 @@
 @property(strong, nonatomic) NSMutableArray* theSongArray;
 @property(strong, nonatomic) UIColor* theColor;
 @property (assign, nonatomic) float natureBrightness;
-@property (strong, nonatomic) TimerViewController* controller;
-@property (strong, nonatomic) IBOutlet UILabel* timerLabel;
-@property (strong, nonatomic) IBOutlet UILabel* minutesLabel;
-@property (strong, nonatomic) IBOutlet UIButton* timerButton;
+//@property (strong, nonatomic) TimerViewController* controller;
+//@property (strong, nonatomic) IBOutlet UILabel* timerLabel;
+//@property (strong, nonatomic) IBOutlet UILabel* minutesLabel;
+//@property (strong, nonatomic) IBOutlet UIButton* timerButton;
+
 @property (strong, nonatomic) IBOutlet UIImageView* bgImageView;
 @property (strong,nonatomic) NSURL* bgImageURL;
 @property (strong, nonatomic) NSMutableArray* bgarray;
@@ -48,10 +49,10 @@
 @synthesize natureVolume, natureBrightness;
 @synthesize playerState;
 @synthesize interruptedOnPlayback;
-@synthesize timerFired, timerButton;
+@synthesize timerFired;
 @synthesize menuBtn;
 @synthesize theSongArray, isBgInit, isSoundInit, isBgOrig, isSoundOrig;
-@synthesize theColor, controller, timerLabel, minutesLabel, bgImageView, volumeSlider, brightnessSlider;
+@synthesize theColor, bgImageView, volumeSlider, brightnessSlider;
 
 #pragma mark Constructor
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -92,18 +93,17 @@
 	interruptedOnPlayback = NO;
 	
     timeOut = kOffSegmentIndex;
-    timerLabel.text = @"OFF";
-    self.minutesLabel.hidden = YES;
+    //timerLabel.text = @"OFF";
+    //self.minutesLabel.hidden = YES;
     
 	natureVolume = 50.0;
     natureBrightness = [[UIScreen mainScreen] brightness];//0.5;
     
     //self.brightnessSlider.value = 50.0;
     
-    controller = [[TimerViewController alloc] initWithNibName:@"TimerViewController" bundle:nil];
-	controller.timerDelegate = self;
-    controller.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    controller.restorationIdentifier = RESTORATION_ID_TIMER_VC;
+    //controller = [[TimerViewController alloc] initWithNibName:@"TimerViewController" bundle:nil];
+	//controller.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    //controller.restorationIdentifier = RESTORATION_ID_TIMER_VC;
     
     bgarray = [[NSMutableArray alloc] initWithCapacity:5];
     theSongArray = [[NSMutableArray alloc] initWithCapacity:5];
@@ -116,9 +116,9 @@
         brightnessSlider.frame = CGRectMake(18, 463, 260, 34);
         brightnessImageView.frame = CGRectMake(284, 467, 20, 20);
         
-        minutesLabel.frame = CGRectMake(166, 369, 63, 21);
-        timerLabel.frame = CGRectMake(145, 369, 47, 21);
-        timerButton.frame = CGRectMake(138, 330, 44, 44);
+        //minutesLabel.frame = CGRectMake(166, 369, 63, 21);
+        //timerLabel.frame = CGRectMake(145, 369, 47, 21);
+        //timerButton.frame = CGRectMake(138, 330, 44, 44);
         
         bgImageView.frame = CGRectMake(10, 20, 300, 300);
 
@@ -128,12 +128,18 @@
         brightnessSlider.frame = CGRectMake(18, 390, 260, 34);
         brightnessImageView.frame = CGRectMake(284, 394, 20, 20);
         
-        minutesLabel.frame = CGRectMake(166, 325, 63, 21);
-        timerLabel.frame = CGRectMake(145, 325, 47, 21);
-        timerButton.frame = CGRectMake(138, 286, 44, 44);
+        //minutesLabel.frame = CGRectMake(166, 325, 63, 21);
+        //timerLabel.frame = CGRectMake(145, 325, 47, 21);
+        //timerButton.frame = CGRectMake(138, 286, 44, 44);
         
         bgImageView.frame = CGRectMake(25, 20, 270, 270);
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveTimerNotification:)
+                                                 name:@"TIMER_NOTIFICATION"
+                                               object:nil];
+     
     
 	[super viewDidLoad];
 }
@@ -220,13 +226,13 @@
     [super encodeRestorableStateWithCoder:coder];
     
     [coder encodeInteger:self.timeOut forKey:@"timeOut"];//NSInteger timeOut;
-	[coder encodeObject:self.timerLabel.text forKey:@"timerLabel"];
+	//[coder encodeObject:self.timerLabel.text forKey:@"timerLabel"];
     
     [coder encodeFloat:self.natureVolume forKey:@"natureVolume"];//float natureVolume;
     
     //for a containing VC we just need to call encode on it to trigger
     //its encode/decode calls, so we dont need to decode it here
-    [coder encodeObject:controller forKey:@"TimerViewController"];
+    //[coder encodeObject:controller forKey:@"TimerViewController"];
 	
     /*NSMutableArray* songURLArray = [[NSMutableArray alloc] initWithCapacity:5];
     for (AVAudioPlayer* song in theSongArray) {
@@ -256,18 +262,18 @@
     [super decodeRestorableStateWithCoder:coder];
     
     self.timeOut = [coder decodeIntegerForKey:@"timeOut"];//NSInteger timeOut;
-	self.timerLabel.text = [coder decodeObjectForKey:@"timerLabel"];
-    if([self.timerLabel.text isEqualToString:NSLocalizedString(@"OFF",nil)])
+	//self.timerLabel.text = [coder decodeObjectForKey:@"timerLabel"];
+    /*if([self.timerLabel.text isEqualToString:NSLocalizedString(@"OFF",nil)])
     {
         self.minutesLabel.hidden = YES;
     }
     else
     {
         self.minutesLabel.hidden = NO;
-    }
+    }*/
     
     self.natureVolume = [coder decodeFloatForKey:@"natureVolume"];
-    [self.volumeSlider setValue:self.natureVolume animated:NO];
+    [self.volumeSlider setValue:self.natureVolume/100.0 animated:NO];
 	
     //don't save since the SoundsViewController will refill the array on restore
     /*NSMutableArray* songURLArray = [[NSMutableArray alloc] initWithCapacity:5];
@@ -304,6 +310,14 @@
 #pragma mark basic methods
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void) dealloc
+{
+    // If you don't remove yourself as an observer, the Notification Center
+    // will continue to try and send notification objects to the deallocated
+    // object.
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)areSongsPlaying
@@ -608,20 +622,21 @@
     [[UIScreen mainScreen] setBrightness:natureBrightness];
 }
 
-#pragma mark Timer Button
-
-- (IBAction)timerButtonSelected:(id)sender
-{
-    [self presentViewController:controller animated:YES completion:nil];
-}
 
 #pragma mark TimerViewControllerDelegate
 
-- (void)timerViewControllerDidFinish:(NSInteger)timeValue timerString:(NSString*)string
+- (void) receiveTimerNotification:(NSNotification *) notification
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    
+    NSNumber* value = (NSNumber*)[notification.userInfo objectForKey:@"timeout"];
+    NSInteger timeValue = [value integerValue];
+    
+    //NSString* string = (NSString*)[notification.userInfo objectForKey:@"timerstring"];
+    
     self.timeOut = timeValue;
-    self.timerLabel.text = string;
+    
+    /*self.timerLabel.text = string;
     if([string isEqualToString:NSLocalizedString(@"OFF",nil)])
     {
         self.minutesLabel.hidden = YES;
@@ -629,7 +644,7 @@
     else
     {
         self.minutesLabel.hidden = NO;
-    }
+    }*/
 }
 
 #pragma mark SettingsViewControllerDelegate

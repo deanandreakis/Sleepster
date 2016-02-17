@@ -8,9 +8,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController">
             <connections>
                 <outlet property="bgSwitch" destination="hfT-5V-EUL" id="7eF-2j-naf"/>
+                <outlet property="minutesLabel" destination="NE2-6d-koW" id="IDL-7d-J64"/>
                 <outlet property="restoreButton" destination="K6n-Ei-nkx" id="Paz-6K-Gtr"/>
                 <outlet property="restoreLabel" destination="VoP-CN-W4g" id="jVQ-aV-PZP"/>
                 <outlet property="soundSwitch" destination="Aci-3x-Z6c" id="H1h-Aw-hny"/>
+                <outlet property="timerLabel" destination="Ujy-wn-mkT" id="FcH-mj-UzG"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -160,6 +162,25 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCh-SC-tah" userLabel="Sleep Timer View">
                     <rect key="frame" x="0.0" y="373" width="600" height="45"/>
                     <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NE2-6d-koW" userLabel="minutes Label">
+                            <rect key="frame" x="555" y="12" width="30" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="ayb-L1-vVM"/>
+                                <constraint firstAttribute="height" constant="21" id="wwb-I6-MYR"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ujy-wn-mkT" userLabel="timer Label">
+                            <rect key="frame" x="528" y="12" width="42" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="uRJ-8F-Mk1"/>
+                                <constraint firstAttribute="width" constant="42" id="zRP-iA-zDP"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bSc-zZ-Mh9" userLabel="Sleep Timer Button">
                             <rect key="frame" x="30" y="7" width="92" height="30"/>
                             <constraints>
@@ -167,13 +188,20 @@
                                 <constraint firstAttribute="height" constant="30" id="Q1m-5A-6K8"/>
                             </constraints>
                             <state key="normal" title="Sound Timer"/>
+                            <connections>
+                                <action selector="timerButtonSelected:" destination="-1" eventType="touchUpInside" id="mdu-RJ-ccJ"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
+                        <constraint firstItem="Ujy-wn-mkT" firstAttribute="centerY" secondItem="OCh-SC-tah" secondAttribute="centerY" id="FHm-9i-oQR"/>
                         <constraint firstItem="bSc-zZ-Mh9" firstAttribute="leading" secondItem="OCh-SC-tah" secondAttribute="leading" constant="30" id="UBE-Ih-q3Q"/>
+                        <constraint firstAttribute="trailing" secondItem="Ujy-wn-mkT" secondAttribute="trailing" constant="30" id="YBy-3t-2Bh"/>
+                        <constraint firstAttribute="trailing" secondItem="NE2-6d-koW" secondAttribute="trailing" constant="15" id="foE-5z-Oqj"/>
                         <constraint firstAttribute="height" constant="45" id="h5G-4T-6dH"/>
                         <constraint firstItem="bSc-zZ-Mh9" firstAttribute="centerY" secondItem="OCh-SC-tah" secondAttribute="centerY" id="lOu-lK-v0S"/>
+                        <constraint firstItem="NE2-6d-koW" firstAttribute="centerY" secondItem="OCh-SC-tah" secondAttribute="centerY" id="rmY-cR-fjo"/>
                     </constraints>
                 </view>
             </subviews>

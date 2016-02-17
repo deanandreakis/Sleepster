@@ -19,7 +19,7 @@
 
 @implementation TimerViewController
 
-@synthesize pickerView, timeOut, timerDelegate, minutesArray, minutesLabel;
+@synthesize pickerView, timeOut, minutesArray, minutesLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -117,9 +117,14 @@
 			timeOut = kOffSegmentIndex;
 			break;
     }
-    [self.timerDelegate timerViewControllerDidFinish:timeOut timerString:[self.minutesArray objectAtIndex:row]];
+    //since we have 2 objects that need to know this information lets use NSNotifications instead of the delegate pattern
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:timeOut], @"timeout",
+                          [self.minutesArray objectAtIndex:row], @"timerstring",nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"TIMER_NOTIFICATION" object:nil userInfo:dict];
+        });
 }
-
+     
 #pragma mark state preservation and restoration
 - (void)encodeRestorableStateWithCoder:(NSCoder *)coder {
     [super encodeRestorableStateWithCoder:coder];

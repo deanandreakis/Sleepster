@@ -21,7 +21,7 @@
 @interface MainViewController : UIViewController 
     <BacklightViewControllerDelegate,
 AVAudioPlayerDelegate, SoundsViewControllerDelegate, BackgroundsViewControllerDelegate, UIAlertViewDelegate,
-UIActionSheetDelegate, TimerViewControllerDelegate, SettingsViewControllerDelegate>
+UIActionSheetDelegate, SettingsViewControllerDelegate>
 {
 	NSInteger timeOut;
 	float natureVolume;
