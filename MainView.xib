@@ -22,17 +22,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playbutton.png" translatesAutoresizingMaskIntoConstraints="NO" id="qyR-rP-FaH" userLabel="Play Image View">
-                    <rect key="frame" x="250" y="347" width="100" height="100"/>
+                    <rect key="frame" x="260" y="347" width="80" height="80"/>
                     <accessibility key="accessibilityConfiguration" hint="The Play Button Image" label="Play">
                         <bool key="isElement" value="YES"/>
                     </accessibility>
                     <constraints>
-                        <constraint firstAttribute="height" constant="100" id="8RT-Hu-x0x"/>
-                        <constraint firstAttribute="width" constant="100" id="uGP-Vo-J9T"/>
+                        <constraint firstAttribute="height" constant="80" id="8RT-Hu-x0x"/>
+                        <constraint firstAttribute="width" constant="80" id="uGP-Vo-J9T"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Speaker-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q4t-Mw-pNu">
-                    <rect key="frame" x="430" y="507" width="20" height="20"/>
+                    <rect key="frame" x="430" y="487" width="20" height="20"/>
                     <accessibility key="accessibilityConfiguration" hint="Volume Image" label="Volume">
                         <bool key="isElement" value="YES"/>
                     </accessibility>
@@ -42,7 +42,7 @@
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Brightness.png" translatesAutoresizingMaskIntoConstraints="NO" id="RZs-SS-zYO">
-                    <rect key="frame" x="430" y="464" width="20" height="20"/>
+                    <rect key="frame" x="430" y="444" width="20" height="20"/>
                     <accessibility key="accessibilityConfiguration" hint="Brightness Image" label="Brightness">
                         <bool key="isElement" value="YES"/>
                     </accessibility>
@@ -58,7 +58,7 @@
                     </accessibility>
                 </imageView>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="UAJ-Yh-ftg">
-                    <rect key="frame" x="183" y="502" width="234" height="31"/>
+                    <rect key="frame" x="183" y="482" width="234" height="31"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="230" id="UO8-hi-9jm"/>
                         <constraint firstAttribute="height" constant="30" id="f97-0q-TwL"/>
@@ -68,7 +68,7 @@
                     </connections>
                 </slider>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="hdN-XU-7MK">
-                    <rect key="frame" x="183" y="457" width="234" height="31"/>
+                    <rect key="frame" x="183" y="437" width="234" height="31"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="NJ6-ZD-qHV"/>
                         <constraint firstAttribute="width" constant="230" id="s7Z-cL-zch"/>
@@ -78,11 +78,11 @@
                     </connections>
                 </slider>
                 <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="47" userLabel="Play Button">
-                    <rect key="frame" x="250" y="347" width="100" height="100"/>
+                    <rect key="frame" x="260" y="347" width="80" height="80"/>
                     <accessibility key="accessibilityConfiguration" hint="The Play Button" label="Play"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="100" id="CBK-No-lGb"/>
-                        <constraint firstAttribute="width" constant="100" id="q2t-mm-dhZ"/>
+                        <constraint firstAttribute="height" constant="80" id="CBK-No-lGb"/>
+                        <constraint firstAttribute="width" constant="80" id="q2t-mm-dhZ"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                     <state key="normal">
@@ -106,7 +106,7 @@
                 <constraint firstItem="qyR-rP-FaH" firstAttribute="centerX" secondItem="34" secondAttribute="centerX" id="PS8-Hc-nnj"/>
                 <constraint firstItem="b0w-dw-MxW" firstAttribute="leading" secondItem="34" secondAttribute="leadingMargin" constant="-17" id="Q0C-rE-Ew7"/>
                 <constraint firstItem="hdN-XU-7MK" firstAttribute="top" secondItem="47" secondAttribute="bottom" constant="10" id="RNC-0R-6wK"/>
-                <constraint firstItem="RZs-SS-zYO" firstAttribute="top" secondItem="b0w-dw-MxW" secondAttribute="bottom" constant="122" id="Rgo-TB-hah"/>
+                <constraint firstItem="RZs-SS-zYO" firstAttribute="top" secondItem="b0w-dw-MxW" secondAttribute="bottom" constant="102" id="Rgo-TB-hah"/>
                 <constraint firstItem="hdN-XU-7MK" firstAttribute="centerX" secondItem="34" secondAttribute="centerX" id="UFQ-uz-PmA"/>
                 <constraint firstItem="Q4t-Mw-pNu" firstAttribute="top" secondItem="RZs-SS-zYO" secondAttribute="bottom" constant="23" id="WZC-hB-wzy"/>
                 <constraint firstItem="RZs-SS-zYO" firstAttribute="leading" secondItem="hdN-XU-7MK" secondAttribute="trailing" constant="15" id="fu0-JJ-Oab"/>

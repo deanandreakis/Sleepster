@@ -78,6 +78,9 @@
         restoreLabel.frame = CGRectMake(40, 369, 255, 38);
     }
     
+    self.timerLabel.text = @"OFF";
+    self.minutesLabel.hidden = YES;
+    
     timerController = [[TimerViewController alloc] initWithNibName:@"TimerViewController" bundle:nil];
     timerController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     timerController.restorationIdentifier = RESTORATION_ID_TIMER_VC;
