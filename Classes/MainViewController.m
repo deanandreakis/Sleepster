@@ -422,31 +422,9 @@
 	BacklightViewController *blcontroller = [[BacklightViewController alloc] initWithNibName:@"BacklightView" bundle:nil];
 	blcontroller.bgDelegate = self;
     
-    /*if(bgarray.count == 0)
-    {
-        blcontroller.backgroundColor = theColor;
-    } else {
-        blcontroller.backgroundColor = [UIColor whiteColor];
-    }*/
     blcontroller.backgroundColor = theColor;
     blcontroller.brightness = natureBrightness;
-    //blcontroller.restorationIdentifier = RESTORATION_ID_BACKLIGHT_VC;
-    NSMutableArray* tempArray = [[NSMutableArray alloc] initWithCapacity:5];
-    for (Background* bg in bgarray) {
-        
-        NSURL *url = nil;
-        if([bg.isLocalImage isEqual:@NO]){
-            url = [NSURL URLWithString:bg.bFullSizeUrl];
-        } else {
-            url = [[NSBundle mainBundle]
-                        URLForResource:bg.bFullSizeUrl withExtension:@"jpg"];
-        }
-        
-        if(url != nil) {
-            [tempArray addObject:url];
-        }
-    }
-    blcontroller.bgImageURL = tempArray;
+    blcontroller.bgImageURL = bgarray;
 	
     /*Play the background music selected*/
 	for (AVAudioPlayer* song in theSongArray) {
