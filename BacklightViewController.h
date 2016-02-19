@@ -17,6 +17,7 @@
 @property (nonatomic) float brightness;
 @property (strong, nonatomic) IBOutlet UIImageView* bgImageView;
 @property (strong, nonatomic) NSArray* bgImageURL;
+@property (nonatomic) BOOL isPresented;
 - (IBAction)done:(id)sender;
 
 @end

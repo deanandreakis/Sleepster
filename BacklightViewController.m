@@ -21,11 +21,12 @@
 @implementation BacklightViewController
 
 @synthesize bgDelegate, btn;
-@synthesize backgroundColor, brightness, bgImageView, bgImageURL, bgTimerCounter, bgTimer;
+@synthesize backgroundColor, brightness, bgImageView, bgImageURL, bgTimerCounter, bgTimer, isPresented;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     //self.view.backgroundColor = [UIColor blackColor];
+    isPresented = true;
     self.bgImageView.backgroundColor = backgroundColor;
     [self.bgImageView setImage:nil];
     
@@ -100,6 +101,7 @@
 
 
 - (IBAction)done:(id)sender {
+    isPresented = false;
     [bgTimer invalidate];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];

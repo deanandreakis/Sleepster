@@ -170,6 +170,18 @@
     }*/
 }
 
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    if ([self.window.rootViewController.presentedViewController isKindOfClass: [BacklightViewController class]])
+    {
+        BacklightViewController *secondController = (BacklightViewController *) self.window.rootViewController.presentedViewController;
+        
+        if (secondController.isPresented)
+            return UIInterfaceOrientationMaskAll;
+        else return UIInterfaceOrientationMaskPortrait;
+    }
+    else return UIInterfaceOrientationMaskPortrait;
+}
 
 + (iSleepAppDelegate *)appDelegate
 {
