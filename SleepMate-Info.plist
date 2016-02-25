@@ -46,7 +46,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2.4</string>
+	<string>100</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -87,5 +87,21 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+    <key>UIApplicationShortcutItems</key>
+    <array>
+        <dict>
+            <key>UIApplicationShortcutItemIconType</key>
+            <string>UIApplicationShortcutIconTypePlay</string>
+            <key>UIApplicationShortcutItemTitle</key>
+            <string>Sleep NOW!</string>
+            <key>UIApplicationShortcutItemType</key>
+            <string>com.deanware.sleepster.newmessage</string>
+            <key>UIApplicationShortcutItemUserInfo</key>
+            <dict>
+                <key>key1</key>
+                <string>value1</string>
+            </dict>
+        </dict>
+    </array>
 </dict>
 </plist>

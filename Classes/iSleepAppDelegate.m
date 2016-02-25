@@ -183,6 +183,15 @@
     else return UIInterfaceOrientationMaskPortrait;
 }
 
+- (void)application:(UIApplication *)application
+performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem
+  completionHandler:(void (^)(BOOL succeeded))completionHandler
+{
+    if ([shortcutItem.type isEqualToString:@"com.deanware.sleepster.newmessage"]) {
+        [mainViewController startSleeping];
+    }
+}
+
 + (iSleepAppDelegate *)appDelegate
 {
     return (iSleepAppDelegate *)[[UIApplication sharedApplication] delegate];

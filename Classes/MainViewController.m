@@ -419,6 +419,11 @@
 	}
     timerFired = NO;
 	
+    if(bgarray.count == 0 && theSongArray.count == 0)
+    {
+        [self viewDidAppear:nil];
+    }
+    
 	BacklightViewController *blcontroller = [[BacklightViewController alloc] initWithNibName:@"BacklightView" bundle:nil];
 	blcontroller.bgDelegate = self;
     
