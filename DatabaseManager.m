@@ -62,7 +62,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DatabaseManager);
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil)
     {
-        __managedObjectContext = [[NSManagedObjectContext alloc] init];
+        __managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
         [__managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
     return __managedObjectContext;
@@ -161,7 +161,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DatabaseManager);
                       @"clearColor",nil];
         
         NSManagedObjectContext *context = [self managedObjectContext];
-        [context lock];
+        [context performBlockAndWait:^{
         Background *bg[[colorArray count]];
         for (int index = 0; index < [colorArray count]; index++) {
             bg[index] = [NSEntityDescription insertNewObjectForEntityForName:@"Background"
@@ -240,7 +240,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DatabaseManager);
         if (![context save:&error]) {
             //NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
         }
-        [context unlock];
+        }];
     }
     
     [Background fetchPics:^(NSArray *backgrounds) {

@@ -566,7 +566,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0720;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = 6XBQPB83GR;
@@ -825,6 +825,7 @@
 				INFOPLIST_FILE = "SleepMate-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.deanware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = SleepMate;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "37de51d0-7855-4042-ad81-07b6fe31f93a";
@@ -851,6 +852,7 @@
 				INFOPLIST_FILE = "SleepMate-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.deanware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = SleepMate;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -875,6 +877,7 @@
 				INFOPLIST_FILE = "SleepMate-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.deanware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = SleepMate;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "37de51d0-7855-4042-ad81-07b6fe31f93a";
@@ -886,6 +889,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -949,6 +953,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "SleepMate Tests/SleepMate Tests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.deanware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -988,6 +993,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "SleepMate Tests/SleepMate Tests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.deanware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALIDATE_PRODUCT = YES;
@@ -1028,6 +1034,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "SleepMate Tests/SleepMate Tests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.deanware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALIDATE_PRODUCT = YES;

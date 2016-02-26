@@ -61,9 +61,10 @@
 
 + (id)postWithDictionary:(NSDictionary *)dictionary {
     NSManagedObjectContext *context = [[DatabaseManager sharedDatabaseManager] managedObjectContext];
-    [context lock];
     Background *background = [NSEntityDescription insertNewObjectForEntityForName:@"Background"
-                                            inManagedObjectContext:context];
+                                                           inManagedObjectContext:context];
+    [context performBlockAndWait:^{
+    
     background.bTitle = dictionary[@"title"];
     background.isImage = @YES;
     background.isLocalImage = @NO;
@@ -76,7 +77,7 @@
     if (![context save:&error]) {
         //NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
-    [context unlock];
+    }];
     return background;
 }
 

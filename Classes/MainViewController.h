@@ -20,7 +20,7 @@
 
 @interface MainViewController : UIViewController 
     <BacklightViewControllerDelegate,
-AVAudioPlayerDelegate, SoundsViewControllerDelegate, BackgroundsViewControllerDelegate, UIAlertViewDelegate,
+AVAudioPlayerDelegate, SoundsViewControllerDelegate, BackgroundsViewControllerDelegate,
 UIActionSheetDelegate, SettingsViewControllerDelegate>
 {
 	NSInteger timeOut;

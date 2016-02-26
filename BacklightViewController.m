@@ -34,13 +34,23 @@
     self.btn.frame = [UIScreen mainScreen].bounds;;
     
     [[UIScreen mainScreen] setBrightness:brightness];
+    
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+    //self.modalPresentationCapturesStatusBarAppearance = YES;
+    //[self prefersStatusBarHidden];
+    //[self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(batteryLevelDidChange:)
                                                  name:UIDeviceBatteryLevelDidChangeNotification
                                                object:nil];
 }
+
+/*- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}*/
 
 -(void)viewWillAppear:(BOOL)animated
 {

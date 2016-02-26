@@ -378,27 +378,43 @@
 	if ([UIDevice currentDevice].batteryState == UIDeviceBatteryStateUnplugged &&
         [UIDevice currentDevice].batteryLevel >= 0.2f)
     {
-		UIAlertView *alertView = [[UIAlertView alloc]
-                                  initWithTitle:NSLocalizedString(@"Plug In",nil)
-                                  message:NSLocalizedString(@"Please Plug In to Avoid Draining the Battery",nil)
-                                  delegate:self
-                                  cancelButtonTitle:NSLocalizedString(@"Continue",nil)
-                                  otherButtonTitles:nil];
-		alertView.tag = UNPLUGGEDGREATER20;
-        [alertView show];
-	}
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:NSLocalizedString(@"Plug In",nil)
+                                              message:NSLocalizedString(@"Please Plug In to Avoid Draining the Battery",nil)
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction
+                                       actionWithTitle:NSLocalizedString(@"Continue",nil)
+                                       style:UIAlertActionStyleCancel
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           [self reallyStartSleeping];
+                                       }];
+        
+        [alertController addAction:cancelAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
     else if ([UIDevice currentDevice].batteryState == UIDeviceBatteryStateUnplugged &&
        [UIDevice currentDevice].batteryLevel < 0.2f)
     {
-		UIAlertView *alertView = [[UIAlertView alloc]
-                                  initWithTitle:NSLocalizedString(@"Plug In",nil)
-                                  message:NSLocalizedString(@"batteryproblem",nil)
-                                  delegate:self
-                                  cancelButtonTitle:NSLocalizedString(@"Continue",nil)
-                                  otherButtonTitles:nil];
-		alertView.tag = UNPLUGGEDLESS20;
-        [alertView show];
-	}
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:NSLocalizedString(@"Plug In",nil)
+                                              message:NSLocalizedString(@"batteryproblem",nil)
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction
+                                       actionWithTitle:NSLocalizedString(@"Continue",nil)
+                                       style:UIAlertActionStyleCancel
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           //user plugs in while the alert is dispalyed
+                                           if ([UIDevice currentDevice].batteryState != UIDeviceBatteryStateUnplugged)//plugged in
+                                           {
+                                               [self reallyStartSleeping];
+                                           }
+                                       }];
+        
+        [alertController addAction:cancelAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
     else //device is plugged in/charging
     {
         [self reallyStartSleeping];
@@ -440,23 +456,6 @@
     playerState = YES;
 	blcontroller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 	[self presentViewController:blcontroller animated:YES completion:nil];
-}
-
-#pragma mark UIAlertView delegate method
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if(alertView.tag == UNPLUGGEDGREATER20)
-    {
-        [self reallyStartSleeping];
-    }
-    else if(alertView.tag == UNPLUGGEDLESS20)
-    {
-        //user plugs in while the alert is dispalyed
-        if ([UIDevice currentDevice].batteryState != UIDeviceBatteryStateUnplugged)//plugged in
-        {
-            [self reallyStartSleeping];
-        }
-    }
 }
 
 #pragma mark NSTimer Fired

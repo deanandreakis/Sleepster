@@ -17,7 +17,6 @@
 #define ALERTVIEW_BG_IAP_DISABLED 1
 #define ALERTVIEW_BG_IAP_PRODUCT_NOT_AVAILABLE 2
 
-#define ALERTVIEW_SOUND_BUY 3
 #define ALERTVIEW_SOUND_IAP_DISABLED 4
 #define ALERTVIEW_SOUND_IAP_PRODUCT_NOT_AVAILABLE 5
 
@@ -214,13 +213,31 @@
                     [myString appendString:NSLocalizedString(@"Price: ",nil)];
                     [myString appendString:[_priceFormatter stringFromNumber:_soundProduct.price]];
                     
-                    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Confirm Purchase of the Multiple Sounds Feature",nil)
-                                                                        message:myString
-                                                                       delegate:self
-                                                              cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
-                                                              otherButtonTitles:NSLocalizedString(@"Buy",nil), nil];
-                    alertView.tag = ALERTVIEW_SOUND_BUY;
-                    [alertView show];
+                    UIAlertController *alertController = [UIAlertController
+                                                          alertControllerWithTitle:NSLocalizedString(@"Confirm Purchase of the Multiple Sounds Feature",nil)
+                                                          message:myString
+                                                          preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *cancelAction = [UIAlertAction
+                                                   actionWithTitle:NSLocalizedString(@"Cancel",nil)
+                                                   style:UIAlertActionStyleCancel
+                                                   handler:^(UIAlertAction *action)
+                                                   {
+                                                       [soundSwitch setOn:NO animated:YES];//turn the switch off
+                                                   }];
+                    
+                    UIAlertAction *buyAction = [UIAlertAction
+                                                   actionWithTitle:NSLocalizedString(@"Buy",nil)
+                                                   style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction *action)
+                                                   {
+                                                       [[SleepsterIAPHelper sharedInstance] buyProduct:_soundProduct];
+                                                       [pleaseWaitAlertView show];
+                                                       [activityIndicatorView startAnimating];
+                                                   }];
+                    
+                    [alertController addAction:cancelAction];
+                    [alertController addAction:buyAction];
+                    [self presentViewController:alertController animated:YES completion:nil];
                     
                 } else {
                     
@@ -356,15 +373,6 @@
             break;
         case ALERTVIEW_BG_IAP_PRODUCT_NOT_AVAILABLE:
             [bgSwitch setOn:NO animated:YES];//turn the switch off
-            break;
-        case ALERTVIEW_SOUND_BUY:
-            if(buttonIndex == 0) {//CANCEL
-                [soundSwitch setOn:NO animated:YES];//turn the switch off
-            } else if(buttonIndex == 1) { //BUY
-                [[SleepsterIAPHelper sharedInstance] buyProduct:_soundProduct];
-                [pleaseWaitAlertView show];
-                [activityIndicatorView startAnimating];
-            }
             break;
         case ALERTVIEW_SOUND_IAP_DISABLED:
             [soundSwitch setOn:NO animated:YES];//turn the switch off
