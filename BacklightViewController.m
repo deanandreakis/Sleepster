@@ -34,12 +34,7 @@
     self.btn.frame = [UIScreen mainScreen].bounds;;
     
     [[UIScreen mainScreen] setBrightness:brightness];
-    
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
-    //self.modalPresentationCapturesStatusBarAppearance = YES;
-    //[self prefersStatusBarHidden];
-    //[self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
-    
+
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(batteryLevelDidChange:)
@@ -47,10 +42,10 @@
                                                object:nil];
 }
 
-/*- (BOOL)prefersStatusBarHidden
+- (BOOL)prefersStatusBarHidden
 {
     return YES;
-}*/
+}
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -113,7 +108,7 @@
 - (IBAction)done:(id)sender {
     isPresented = false;
     [bgTimer invalidate];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     [self.bgDelegate backlightViewControllerDidFinish:self];
 }
