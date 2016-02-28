@@ -67,6 +67,8 @@
 		C1659CEA180B75B00062D8B3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		C1659CF0180B75B00062D8B3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1659CEE180B75B00062D8B3 /* InfoPlist.strings */; };
 		C1659CF2180B75B00062D8B3 /* SleepMate_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1659CF1180B75B00062D8B3 /* SleepMate_Tests.m */; };
+		C169CB4C1C839EE0009E8BDF /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C169CB4B1C839EE0009E8BDF /* MessageUI.framework */; };
+		C169CB4E1C83A47C009E8BDF /* at.png in Resources */ = {isa = PBXBuildFile; fileRef = C169CB4D1C83A47C009E8BDF /* at.png */; };
 		C19DB54E178E58E8001820A7 /* TimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C19DB54C178E58E8001820A7 /* TimerViewController.m */; };
 		C19DB54F178E58E8001820A7 /* TimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C19DB54D178E58E8001820A7 /* TimerViewController.xib */; };
 		C19DB55117922923001820A7 /* Timer.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55017922923001820A7 /* Timer.png */; };
@@ -196,6 +198,8 @@
 		C1659CEF180B75B00062D8B3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C1659CF1180B75B00062D8B3 /* SleepMate_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SleepMate_Tests.m; sourceTree = "<group>"; };
 		C1659CF3180B75B10062D8B3 /* SleepMate Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SleepMate Tests-Prefix.pch"; sourceTree = "<group>"; };
+		C169CB4B1C839EE0009E8BDF /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		C169CB4D1C83A47C009E8BDF /* at.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = at.png; sourceTree = "<group>"; };
 		C19DB54B178E58E8001820A7 /* TimerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerViewController.h; sourceTree = "<group>"; };
 		C19DB54C178E58E8001820A7 /* TimerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerViewController.m; sourceTree = "<group>"; };
 		C19DB54D178E58E8001820A7 /* TimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerViewController.xib; sourceTree = "<group>"; };
@@ -249,6 +253,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C169CB4C1C839EE0009E8BDF /* MessageUI.framework in Frameworks */,
 				C1C6081D1798639A0099590F /* MobileCoreServices.framework in Frameworks */,
 				C1C6081B1798638E0099590F /* SystemConfiguration.framework in Frameworks */,
 				C1C6080517982E0C0099590F /* CoreData.framework in Frameworks */,
@@ -339,6 +344,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C169CB4D1C83A47C009E8BDF /* at.png */,
 				C1131756184152EB00A2732D /* Default@2x.png */,
 				C113175418414FE400A2732D /* Default-568h@2x.png */,
 				C1BB0B5F17F31A7C00D20D27 /* app_icon_58x58.png */,
@@ -406,6 +412,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C169CB4B1C839EE0009E8BDF /* MessageUI.framework */,
 				C1BB0B3C17E9389A00D20D27 /* StoreKit.framework */,
 				C1C6081C1798639A0099590F /* MobileCoreServices.framework */,
 				C1C6081A1798638E0099590F /* SystemConfiguration.framework */,
@@ -636,6 +643,7 @@
 				C1CD259617B321600099F66D /* circle@2x.png in Resources */,
 				C13D53B0177F67D700CF2E78 /* Speaker-2.png in Resources */,
 				052C9A8112F4ACEB00400088 /* wind.mp3 in Resources */,
+				C169CB4E1C83A47C009E8BDF /* at.png in Resources */,
 				05E2B91E13197465005B3F97 /* heavy-rain.mp3 in Resources */,
 				05E2B92213197477005B3F97 /* lake-waves.mp3 in Resources */,
 				05AAF2FA1377084B00AD2167 /* kmoon.png in Resources */,

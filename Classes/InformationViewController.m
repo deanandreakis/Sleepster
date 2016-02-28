@@ -9,7 +9,6 @@
 #import "InformationViewController.h"
 #import "Constants.h"
 #import <Social/Social.h>
-//#import "Flurry.h"
 
 #define reviewString @"itms-apps://itunes.apple.com/app/id417667154"
 
@@ -34,7 +33,6 @@
 }
 
 #pragma mark rate button
-//TODO: Broken in Beta 3...test again later
 -(IBAction)rateButton:(id)sender
 {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:reviewString]];
@@ -49,6 +47,21 @@
 - (void)decodeRestorableStateWithCoder:(NSCoder *)coder {
     [super decodeRestorableStateWithCoder:coder];
     
+}
+
+-(IBAction)emailButtonSelected:(id)sender {
+    MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+    mailViewController.mailComposeDelegate = self;
+    [mailViewController setSubject:@"Sleepster Support"];
+    [mailViewController setToRecipients:[NSArray arrayWithObjects:@"dean@deanware.co",nil]];
+    [self presentViewController:mailViewController animated:YES completion:nil];
+}
+
+#pragma mark MFMailComposeViewControllerDelegate
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
