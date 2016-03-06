@@ -38,6 +38,16 @@
                ReferencedContainer = "container:SleepMate.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C1D9236A1C8690E900F5F5A5"
+               BuildableName = "SleepMateUITests.xctest"
+               BlueprintName = "SleepMateUITests"
+               ReferencedContainer = "container:SleepMate.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

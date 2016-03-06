@@ -1,0 +1,4 @@
+-Added 3D Quick Action Support
+-Added portrait support in sleep mode
+-Various UI improvements
+-Bug fixes and performance enhancements
