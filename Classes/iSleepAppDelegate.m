@@ -53,28 +53,15 @@
     settingsViewController.tabBarItem.image = [UIImage imageNamed:@"Settings.png"];
     settingsViewController.restorationIdentifier = RESTORATION_ID_SETTINGS_VC;
     
-    UICollectionViewFlowLayout *backgroundLayout = [[UICollectionViewFlowLayout alloc] init];
-    
     soundsViewController = [[SoundsViewController alloc] initWithNibName:@"SoundsViewController" bundle:nil];
     soundsViewController.tabBarItem.title = @"Sounds";
     soundsViewController.tabBarItem.image = [UIImage imageNamed:@"Speaker-1.png"];
     soundsViewController.restorationIdentifier = RESTORATION_ID_SOUNDS_VC;
     
-    backgroundsViewController = [[BackgroundsViewController alloc] initWithCollectionViewLayout:backgroundLayout];
+    backgroundsViewController = [[BackgroundsViewController alloc] init];
     backgroundsViewController.tabBarItem.title = @"Backgrounds";
     backgroundsViewController.tabBarItem.image = [UIImage imageNamed:@"Picture-Landscape.png"];
     backgroundsViewController.restorationIdentifier = RESTORATION_ID_BG_VC;
-    
-    backgroundLayout.itemSize = CGSizeMake(FLICKR_THUMBNAIL_SIZE, FLICKR_THUMBNAIL_SIZE);
-    backgroundLayout.minimumInteritemSpacing = 2;
-    if ([[UIScreen mainScreen] bounds].size.height == 568){
-        //add your 4-inch specific code here
-        backgroundLayout.minimumLineSpacing = 30;
-    } else {
-        backgroundLayout.minimumLineSpacing = 20;
-    }
-    backgroundLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    backgroundLayout.sectionInset = UIEdgeInsetsMake(20, 20, 60, 20);
     
     [soundsViewController setDelegate:mainViewController];
     [backgroundsViewController setDelegate:mainViewController];

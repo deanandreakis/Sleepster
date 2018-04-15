@@ -33,7 +33,8 @@
 		288765590DF743DE002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765580DF743DE002DB57D /* CoreGraphics.framework */; };
 		289233AE0DB2D0DB0083E9F9 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */; };
 		289233B00DB2D0DB0083E9F9 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233AD0DB2D0DB0083E9F9 /* InformationViewController.m */; };
-		3BE26FC5BF3743EE86055DBB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A62217691834AE09BD858BB /* libPods.a */; };
+		42697D93E60C2B341FD377C0 /* libPods-SleepMateUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC45D3FAB282AC02CA8F8F6C /* libPods-SleepMateUITests.a */; };
+		9C87C4C640E714EE2ECC22A8 /* libPods-SleepMate Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFEBEBAFE18B8BA97BA689AB /* libPods-SleepMate Tests.a */; };
 		C109245517D0447C00AAB6AE /* thumbnail-default.png in Resources */ = {isa = PBXBuildFile; fileRef = C109245417D0447C00AAB6AE /* thumbnail-default.png */; };
 		C109245817D5520700AAB6AE /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = C109245717D5520700AAB6AE /* Sound.m */; };
 		C109245A17D961A200AAB6AE /* igrove_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C109245917D961A200AAB6AE /* igrove_1.jpg */; };
@@ -109,6 +110,7 @@
 		C1D923781C86943D00F5F5A5 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D923771C86943D00F5F5A5 /* SnapshotHelper.swift */; };
 		C1E5F65B175C1CA10000BF16 /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E5F65A175C1CA10000BF16 /* Play.png */; };
 		C1E5F65D175C1CBD0000BF16 /* Play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E5F65C175C1CBD0000BF16 /* Play@2x.png */; };
+		EBB0FD2E7154DD8199D35B26 /* libPods-SleepMate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B90CA70E9A4B449D633596CA /* libPods-SleepMate.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +131,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03E5ED33AE0F42AA7540AD1A /* Pods-SleepMateUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMateUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMateUITests/Pods-SleepMateUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		052C9A7612F4ACEA00400088 /* campfire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = campfire.mp3; sourceTree = "<group>"; };
 		052C9A7712F4ACEB00400088 /* forest.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = forest.mp3; sourceTree = "<group>"; };
 		052C9A7812F4ACEB00400088 /* stream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = stream.mp3; sourceTree = "<group>"; };
@@ -149,7 +152,6 @@
 		05E1D072128EF5FA00922B40 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		05E2B91D13197465005B3F97 /* heavy-rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "heavy-rain.mp3"; sourceTree = "<group>"; };
 		05E2B92113197477005B3F97 /* lake-waves.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "lake-waves.mp3"; sourceTree = "<group>"; };
-		101F23F04ECCE8289C89E681 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* iSleepAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSleepAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* iSleepAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iSleepAppDelegate.m; sourceTree = "<group>"; };
@@ -163,10 +165,16 @@
 		289233AD0DB2D0DB0083E9F9 /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InformationViewController.m; path = Classes/InformationViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* SleepMate_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SleepMate_Prefix.pch; sourceTree = "<group>"; };
-		5A93D37B00770A965D942A1C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		8A62217691834AE09BD858BB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F16DFA4C9ABAD00487A7C14 /* Pods-SleepMate.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMate.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMate/Pods-SleepMate.distribution.xcconfig"; sourceTree = "<group>"; };
+		55096084B74BC362C8D7695C /* Pods-SleepMate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMate/Pods-SleepMate.debug.xcconfig"; sourceTree = "<group>"; };
+		5D024A3EE0E4319DB7D58B2F /* Pods-SleepMate Tests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMate Tests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMate Tests/Pods-SleepMate Tests.distribution.xcconfig"; sourceTree = "<group>"; };
+		6722F04C518D07A9CE4E04F0 /* Pods-SleepMate Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMate Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMate Tests/Pods-SleepMate Tests.release.xcconfig"; sourceTree = "<group>"; };
+		6A1031317627378E6C3AB43B /* Pods-SleepMateUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMateUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMateUITests/Pods-SleepMateUITests.release.xcconfig"; sourceTree = "<group>"; };
+		84B85D2233386DCF8008A80B /* Pods-SleepMateUITests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMateUITests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMateUITests/Pods-SleepMateUITests.distribution.xcconfig"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* SleepMate-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SleepMate-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		B7C6C5FDCBE04E8C6C9AFFD6 /* Pods.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.distribution.xcconfig; path = "Pods/Target Support Files/Pods/Pods.distribution.xcconfig"; sourceTree = "<group>"; };
+		94C5B64B55EB5EBB7DF09961 /* Pods-SleepMate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMate.release.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMate/Pods-SleepMate.release.xcconfig"; sourceTree = "<group>"; };
+		B90CA70E9A4B449D633596CA /* libPods-SleepMate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SleepMate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFEBEBAFE18B8BA97BA689AB /* libPods-SleepMate Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SleepMate Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C109245417D0447C00AAB6AE /* thumbnail-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail-default.png"; sourceTree = "<group>"; };
 		C109245617D5520700AAB6AE /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
 		C109245717D5520700AAB6AE /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sound.m; sourceTree = "<group>"; };
@@ -260,6 +268,8 @@
 		C1D923771C86943D00F5F5A5 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		C1E5F65A175C1CA10000BF16 /* Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Play.png; sourceTree = "<group>"; };
 		C1E5F65C175C1CBD0000BF16 /* Play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Play@2x.png"; sourceTree = "<group>"; };
+		DC45D3FAB282AC02CA8F8F6C /* libPods-SleepMateUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SleepMateUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7F8CD30593CB0FD5761F14D /* Pods-SleepMate Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMate Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMate Tests/Pods-SleepMate Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,7 +287,7 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765590DF743DE002DB57D /* CoreGraphics.framework in Frameworks */,
 				05E1D073128EF5FA00922B40 /* AVFoundation.framework in Frameworks */,
-				3BE26FC5BF3743EE86055DBB /* libPods.a in Frameworks */,
+				EBB0FD2E7154DD8199D35B26 /* libPods-SleepMate.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +298,7 @@
 				C1659CE8180B75B00062D8B3 /* XCTest.framework in Frameworks */,
 				C1659CEA180B75B00062D8B3 /* UIKit.framework in Frameworks */,
 				C1659CE9180B75B00062D8B3 /* Foundation.framework in Frameworks */,
+				9C87C4C640E714EE2ECC22A8 /* libPods-SleepMate Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +306,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42697D93E60C2B341FD377C0 /* libPods-SleepMateUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,7 +362,7 @@
 				C1D9236C1C8690E900F5F5A5 /* SleepMateUITests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				D59DED72D2388B87DCBA2EC8 /* Pods */,
+				3643D408C98ECD5C261F8751 /* Pods */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -445,10 +457,28 @@
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765580DF743DE002DB57D /* CoreGraphics.framework */,
-				8A62217691834AE09BD858BB /* libPods.a */,
 				C1659CE7180B75B00062D8B3 /* XCTest.framework */,
+				B90CA70E9A4B449D633596CA /* libPods-SleepMate.a */,
+				BFEBEBAFE18B8BA97BA689AB /* libPods-SleepMate Tests.a */,
+				DC45D3FAB282AC02CA8F8F6C /* libPods-SleepMateUITests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3643D408C98ECD5C261F8751 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				55096084B74BC362C8D7695C /* Pods-SleepMate.debug.xcconfig */,
+				94C5B64B55EB5EBB7DF09961 /* Pods-SleepMate.release.xcconfig */,
+				4F16DFA4C9ABAD00487A7C14 /* Pods-SleepMate.distribution.xcconfig */,
+				E7F8CD30593CB0FD5761F14D /* Pods-SleepMate Tests.debug.xcconfig */,
+				6722F04C518D07A9CE4E04F0 /* Pods-SleepMate Tests.release.xcconfig */,
+				5D024A3EE0E4319DB7D58B2F /* Pods-SleepMate Tests.distribution.xcconfig */,
+				03E5ED33AE0F42AA7540AD1A /* Pods-SleepMateUITests.debug.xcconfig */,
+				6A1031317627378E6C3AB43B /* Pods-SleepMateUITests.release.xcconfig */,
+				84B85D2233386DCF8008A80B /* Pods-SleepMateUITests.distribution.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		C1659CEB180B75B00062D8B3 /* SleepMate Tests */ = {
@@ -550,16 +580,6 @@
 			path = SleepMateUITests;
 			sourceTree = "<group>";
 		};
-		D59DED72D2388B87DCBA2EC8 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				101F23F04ECCE8289C89E681 /* Pods.debug.xcconfig */,
-				5A93D37B00770A965D942A1C /* Pods.release.xcconfig */,
-				B7C6C5FDCBE04E8C6C9AFFD6 /* Pods.distribution.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -567,12 +587,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "SleepMate" */;
 			buildPhases = (
-				9886B3527ED34D82A735302C /* Check Pods Manifest.lock */,
+				211482E9D569E18C6DC0EB5C /* [CP] Check Pods Manifest.lock */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
-				5A17BCB255024968B35829FF /* Copy Pods Resources */,
-				EECD295CCA75E20484DF5F1B /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -587,6 +605,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C1659CF6180B75B10062D8B3 /* Build configuration list for PBXNativeTarget "SleepMate Tests" */;
 			buildPhases = (
+				3C6B40BA237FD188AA8EB0AB /* [CP] Check Pods Manifest.lock */,
 				C1659CE2180B75B00062D8B3 /* Sources */,
 				C1659CE3180B75B00062D8B3 /* Frameworks */,
 				C1659CE4180B75B00062D8B3 /* Resources */,
@@ -605,6 +624,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C1D923751C8690EA00F5F5A5 /* Build configuration list for PBXNativeTarget "SleepMateUITests" */;
 			buildPhases = (
+				DB642E848D19FFFFE3B782B7 /* [CP] Check Pods Manifest.lock */,
 				C1D923671C8690E900F5F5A5 /* Sources */,
 				C1D923681C8690E900F5F5A5 /* Frameworks */,
 				C1D923691C8690E900F5F5A5 /* Resources */,
@@ -625,10 +645,11 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0930;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = 6XBQPB83GR;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 1;
@@ -661,6 +682,7 @@
 				en,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -764,49 +786,58 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5A17BCB255024968B35829FF /* Copy Pods Resources */ = {
+		211482E9D569E18C6DC0EB5C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SleepMate-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9886B3527ED34D82A735302C /* Check Pods Manifest.lock */ = {
+		3C6B40BA237FD188AA8EB0AB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SleepMate Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EECD295CCA75E20484DF5F1B /* Embed Pods Frameworks */ = {
+		DB642E848D19FFFFE3B782B7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SleepMateUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -883,13 +914,37 @@
 		055D856712F6651500A8EF6B /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PROVISIONING_PROFILE = "02229ac7-8278-4266-9713-20240f4fdd1a";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "02229ac7-8278-4266-9713-20240f4fdd1a";
 				SDKROOT = iphoneos;
@@ -898,13 +953,15 @@
 		};
 		055D856812F6651500A8EF6B /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B7C6C5FDCBE04E8C6C9AFFD6 /* Pods.distribution.xcconfig */;
+			baseConfigurationReference = 4F16DFA4C9ABAD00487A7C14 /* Pods-SleepMate.distribution.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -912,24 +969,27 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SleepMate_Prefix.pch;
 				INFOPLIST_FILE = "SleepMate-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.deanware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = SleepMate;
-				PROVISIONING_PROFILE = "02229ac7-8278-4266-9713-20240f4fdd1a";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "02229ac7-8278-4266-9713-20240f4fdd1a";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Distribution;
 		};
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 101F23F04ECCE8289C89E681 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 55096084B74BC362C8D7695C /* Pods-SleepMate.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -939,24 +999,27 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SleepMate_Prefix.pch;
 				INFOPLIST_FILE = "SleepMate-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.deanware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = SleepMate;
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5A93D37B00770A965D942A1C /* Pods.release.xcconfig */;
+			baseConfigurationReference = 94C5B64B55EB5EBB7DF09961 /* Pods-SleepMate.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -964,26 +1027,51 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SleepMate_Prefix.pch;
 				INFOPLIST_FILE = "SleepMate-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.deanware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = SleepMate;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "37de51d0-7855-4042-ad81-07b6fe31f93a";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "37de51d0-7855-4042-ad81-07b6fe31f93a";
 				SDKROOT = iphoneos;
@@ -993,20 +1081,46 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PROVISIONING_PROFILE = "37de51d0-7855-4042-ad81-07b6fe31f93a";
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
 		};
 		C1659CF7180B75B10062D8B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7F8CD30593CB0FD5761F14D /* Pods-SleepMate Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SleepMate.app/SleepMate";
@@ -1056,6 +1170,7 @@
 		};
 		C1659CF8180B75B10062D8B3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6722F04C518D07A9CE4E04F0 /* Pods-SleepMate Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SleepMate.app/SleepMate";
@@ -1100,6 +1215,7 @@
 		};
 		C1659CF9180B75B10062D8B3 /* Distribution */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D024A3EE0E4319DB7D58B2F /* Pods-SleepMate Tests.distribution.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SleepMate.app/SleepMate";
@@ -1144,6 +1260,7 @@
 		};
 		C1D923721C8690EA00F5F5A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03E5ED33AE0F42AA7540AD1A /* Pods-SleepMateUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1192,6 +1309,7 @@
 		};
 		C1D923731C8690EA00F5F5A5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A1031317627378E6C3AB43B /* Pods-SleepMateUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1235,6 +1353,7 @@
 		};
 		C1D923741C8690EA00F5F5A5 /* Distribution */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84B85D2233386DCF8008A80B /* Pods-SleepMateUITests.distribution.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1317,6 +1436,7 @@
 				C1D923741C8690EA00F5F5A5 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

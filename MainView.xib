@@ -1,9 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
@@ -18,10 +22,10 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="34">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playbutton.png" translatesAutoresizingMaskIntoConstraints="NO" id="qyR-rP-FaH" userLabel="Play Image View">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="playbutton.png" translatesAutoresizingMaskIntoConstraints="NO" id="qyR-rP-FaH" userLabel="Play Image View">
                     <rect key="frame" x="260" y="347" width="80" height="80"/>
                     <accessibility key="accessibilityConfiguration" hint="The Play Button Image" label="Play">
                         <bool key="isElement" value="YES"/>
@@ -31,7 +35,7 @@
                         <constraint firstAttribute="width" constant="80" id="uGP-Vo-J9T"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Speaker-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q4t-Mw-pNu">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Speaker-2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q4t-Mw-pNu">
                     <rect key="frame" x="430" y="487" width="20" height="20"/>
                     <accessibility key="accessibilityConfiguration" hint="Volume Image" label="Volume">
                         <bool key="isElement" value="YES"/>
@@ -41,7 +45,7 @@
                         <constraint firstAttribute="width" constant="20" id="vKz-aS-oj3"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Brightness.png" translatesAutoresizingMaskIntoConstraints="NO" id="RZs-SS-zYO">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Brightness.png" translatesAutoresizingMaskIntoConstraints="NO" id="RZs-SS-zYO">
                     <rect key="frame" x="430" y="444" width="20" height="20"/>
                     <accessibility key="accessibilityConfiguration" hint="Brightness Image" label="Brightness">
                         <bool key="isElement" value="YES"/>
@@ -51,13 +55,13 @@
                         <constraint firstAttribute="width" constant="20" id="yvm-3W-o1R"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="270" placeholderIntrinsicHeight="270" translatesAutoresizingMaskIntoConstraints="NO" id="b0w-dw-MxW">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" placeholderIntrinsicWidth="270" placeholderIntrinsicHeight="270" translatesAutoresizingMaskIntoConstraints="NO" id="b0w-dw-MxW">
                     <rect key="frame" x="-9" y="28" width="618" height="314"/>
                     <accessibility key="accessibilityConfiguration" hint="Background image." label="background image">
                         <bool key="isElement" value="YES"/>
                     </accessibility>
                 </imageView>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="UAJ-Yh-ftg">
+                <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="UAJ-Yh-ftg">
                     <rect key="frame" x="183" y="482" width="234" height="31"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="230" id="UO8-hi-9jm"/>
@@ -67,7 +71,7 @@
                         <action selector="volumeSliderChanged:" destination="-1" eventType="valueChanged" id="sBr-Tc-2OQ"/>
                     </connections>
                 </slider>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="hdN-XU-7MK">
+                <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="hdN-XU-7MK">
                     <rect key="frame" x="183" y="437" width="234" height="31"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="NJ6-ZD-qHV"/>
@@ -77,7 +81,7 @@
                         <action selector="brightnessSliderChanged:" destination="-1" eventType="valueChanged" id="dg5-pE-lbe"/>
                     </connections>
                 </slider>
-                <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="47" userLabel="Play Button">
+                <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="47" userLabel="Play Button">
                     <rect key="frame" x="260" y="347" width="80" height="80"/>
                     <accessibility key="accessibilityConfiguration" hint="The Play Button" label="Play"/>
                     <constraints>
@@ -86,18 +90,18 @@
                     </constraints>
                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                     <state key="normal">
-                        <color key="titleColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <state key="highlighted">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="startSleeping" destination="-1" eventType="touchUpInside" id="48"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Q4t-Mw-pNu" firstAttribute="leading" secondItem="UAJ-Yh-ftg" secondAttribute="trailing" constant="15" id="0KY-ad-e70"/>
                 <constraint firstAttribute="bottomMargin" secondItem="b0w-dw-MxW" secondAttribute="bottom" constant="250" id="4gf-vA-tvy"/>
@@ -121,7 +125,7 @@
     </objects>
     <resources>
         <image name="Brightness.png" width="20" height="20"/>
-        <image name="Speaker-2.png" width="21" height="21"/>
+        <image name="Speaker-2.png" width="20" height="20"/>
         <image name="playbutton.png" width="157" height="157"/>
     </resources>
 </document>

@@ -35,7 +35,7 @@
 #pragma mark rate button
 -(IBAction)rateButton:(id)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:reviewString]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:reviewString] options:@{} completionHandler:nil];
 }
 
 #pragma mark state preservation and restoration

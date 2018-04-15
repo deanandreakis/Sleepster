@@ -158,13 +158,13 @@
     
     [[SleepsterIAPHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
         if (success) {
-            _products = products;
-            for (SKProduct* product in _products) {
+            self->_products = products;
+            for (SKProduct* product in self->_products) {
                 if([product.productIdentifier isEqualToString:STOREKIT_PRODUCT_ID_BACKGROUNDS]) {
-                    _bgProduct = product;
+                    self->_bgProduct = product;
                 }
                 else if([product.productIdentifier isEqualToString:STOREKIT_PRODUCT_ID_SOUNDS]) {
-                    _soundProduct = product;
+                    self->_soundProduct = product;
                 }
             }
             //NSLog(@"IAP Response: %@", _products);
@@ -205,7 +205,7 @@
                                                    style:UIAlertActionStyleCancel
                                                    handler:^(UIAlertAction *action)
                                                    {
-                                                       [soundSwitch setOn:NO animated:YES];//turn the switch off
+                                                   [self->soundSwitch setOn:NO animated:YES];//turn the switch off
                                                    }];
                     
                     UIAlertAction *buyAction = [UIAlertAction
@@ -213,9 +213,9 @@
                                                    style:UIAlertActionStyleDefault
                                                    handler:^(UIAlertAction *action)
                                                    {
-                                                       [[SleepsterIAPHelper sharedInstance] buyProduct:_soundProduct];
-                                                       [self presentViewController:pleaseWaitAlertController animated:NO completion:nil];
-                                                       [activityIndicatorView startAnimating];
+                                                   [[SleepsterIAPHelper sharedInstance] buyProduct:self->_soundProduct];
+                                                   [self presentViewController:self->pleaseWaitAlertController animated:NO completion:nil];
+                                                   [self->activityIndicatorView startAnimating];
                                                    }];
                     
                     [alertController addAction:cancelAction];
@@ -232,7 +232,7 @@
                                                 style:UIAlertActionStyleDefault
                                                 handler:^(UIAlertAction *action)
                                                 {
-                                                    [soundSwitch setOn:NO animated:YES];//turn the switch off
+                                                [self->soundSwitch setOn:NO animated:YES];//turn the switch off
                                                 }];
                     
                     [alertController addAction:okAction];
@@ -250,7 +250,7 @@
                                        style:UIAlertActionStyleDefault
                                        handler:^(UIAlertAction *action)
                                        {
-                                           [soundSwitch setOn:NO animated:YES];//turn the switch off
+                                       [self->soundSwitch setOn:NO animated:YES];//turn the switch off
                                        }];
             
             [alertController addAction:okAction];
@@ -292,7 +292,7 @@
                                                     style:UIAlertActionStyleCancel
                                                     handler:^(UIAlertAction *action)
                                                     {
-                                                        [bgSwitch setOn:NO animated:YES];//turn the switch off
+                                                    [self->bgSwitch setOn:NO animated:YES];//turn the switch off
                                                     }];
                      
                      UIAlertAction *buyAction = [UIAlertAction
@@ -300,9 +300,9 @@
                                                  style:UIAlertActionStyleDefault
                                                  handler:^(UIAlertAction *action)
                                                  {
-                                                     [[SleepsterIAPHelper sharedInstance] buyProduct:_bgProduct];
-                                                     [self presentViewController:pleaseWaitAlertController animated:NO completion:nil];
-                                                     [activityIndicatorView startAnimating];
+                                                 [[SleepsterIAPHelper sharedInstance] buyProduct:self->_bgProduct];
+                                                 [self presentViewController:self->pleaseWaitAlertController animated:NO completion:nil];
+                                                 [self->activityIndicatorView startAnimating];
                                                  }];
                      
                      [alertController addAction:cancelAction];
@@ -319,7 +319,7 @@
                                                 style:UIAlertActionStyleDefault
                                                 handler:^(UIAlertAction *action)
                                                 {
-                                                    [bgSwitch setOn:NO animated:YES];//turn the switch off
+                                                [self->bgSwitch setOn:NO animated:YES];//turn the switch off
                                                 }];
                      
                      [alertController addAction:okAction];
@@ -337,7 +337,7 @@
                                        style:UIAlertActionStyleDefault
                                        handler:^(UIAlertAction *action)
                                        {
-                                           [bgSwitch setOn:NO animated:YES];//turn the switch off
+                                       [self->bgSwitch setOn:NO animated:YES];//turn the switch off
                                        }];
             
             [alertController addAction:okAction];

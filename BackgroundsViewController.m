@@ -20,7 +20,6 @@
 @property (strong, nonatomic) UIButton *menuBtn;
 @property (nonatomic, strong) NSArray *backgrounds;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
-//@property (strong, nonatomic) UIImageView* selectedImageView;
 @property (strong, nonatomic) NSMutableArray* selectedIndexPath;
 @property (nonatomic, assign) BOOL isSingleSelectToDeselect;
 @end

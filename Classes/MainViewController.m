@@ -144,9 +144,6 @@
 	[super viewDidLoad];
 }
 
-- (void)viewDidUnload {
-}
-
 //moved all this stuff here because it executes after the state restoration decode
 - (void)viewDidAppear:(BOOL)animated {
     //NSLog(@"viewDidAppear");

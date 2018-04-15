@@ -8,7 +8,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 
-typedef void (^AVAudioPlayerFadeCompleteBlock)();
+typedef void (^AVAudioPlayerFadeCompleteBlock)(void);
 
 
 @interface AVAudioPlayer (PGFade)
