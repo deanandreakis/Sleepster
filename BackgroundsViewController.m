@@ -29,6 +29,7 @@
     NSMutableArray *_objectChanges;
     NSMutableArray *_sectionChanges;
     int counter;
+    UIGestureRecognizer *tapper;
 }
 
 @synthesize menuBtn, selectedIndexPath, isSingleSelectToDeselect;
@@ -57,6 +58,11 @@
     counter = 0;
     
     selectedIndexPath = [[NSMutableArray alloc] initWithCapacity:5];
+    
+    tapper = [[UITapGestureRecognizer alloc]
+              initWithTarget:self action:@selector(handleSingleTap:)];
+    tapper.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapper];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -113,6 +119,23 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UISearchBarDelegate
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+    //NSLog(searchBar.text.description);
+    [[DatabaseManager sharedDatabaseManager] deleteAllEntities:@"Background"];
+    [Background fetchPics:^(NSArray *backgrounds) {} withSearchTags:searchBar.text];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+}
+
+- (void)handleSingleTap:(UITapGestureRecognizer *) sender
+{
+    [self.view endEditing:YES];
 }
 
 #pragma mark - Utility Functions
@@ -392,11 +415,11 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    for (NSIndexPath* path in selectedIndexPath) {
-        NSIndexPath* newIndexPath =  [NSIndexPath indexPathForItem:path.item+counter inSection:0];
-        [selectedIndexPath replaceObjectAtIndex:[selectedIndexPath indexOfObject:path] withObject:newIndexPath];
-        [self.collectionView.delegate collectionView:self.collectionView didSelectItemAtIndexPath:newIndexPath];
-    }
+//    for (NSIndexPath* path in selectedIndexPath) {
+//        NSIndexPath* newIndexPath =  [NSIndexPath indexPathForItem:path.item+counter inSection:0];
+//        [selectedIndexPath replaceObjectAtIndex:[selectedIndexPath indexOfObject:path] withObject:newIndexPath];
+//        [self.collectionView.delegate collectionView:self.collectionView didSelectItemAtIndexPath:newIndexPath];
+//    }
     counter = 0;
     [self.collectionView reloadData];
 }

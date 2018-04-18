@@ -27,11 +27,11 @@
 
 //http://www.flickr.com/services/api/flickr.photos.search.html
 
-+ (void)fetchPics:(PicsBlock)block {
++ (void)fetchPics:(PicsBlock)block withSearchTags:(NSString *)searchTags{
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             FLICKR_API_KEY, @"api_key",
-                            @"ocean,waves,rain,wind,waterfall,stream,forest,fire", @"tags",
+                            searchTags, @"tags",
                             @"1", @"privacy_filter",
                             @"11011571@N00", @"group_id",
                             @"json", @"format",

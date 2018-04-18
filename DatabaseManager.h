@@ -20,5 +20,6 @@
 - (BOOL)isDBNotExist;
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+- (void)deleteAllEntities:(NSString *)nameEntity;
 
 @end

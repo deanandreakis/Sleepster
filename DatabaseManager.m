@@ -35,13 +35,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DatabaseManager);
     {
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error])
         {
-            /*
-             Replace this implementation with code to handle the error appropriately.
-             
-             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-             */
-            //NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            //abort();
         } 
     }
 }
@@ -100,32 +93,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DatabaseManager);
     __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
     {
-        //[[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-         
-         Typical reasons for an error here include:
-         * The persistent store is not accessible;
-         * The schema for the persistent store is incompatible with current managed object model.
-         Check the error message to determine what the actual problem was.
-         
-         
-         If the persistent store is not accessible, there is typically something wrong with the file path. Often, a file URL is pointing into the application's resources directory instead of a writeable directory.
-         
-         If you encounter schema incompatibility errors during development, you can reduce their frequency by:
-         * Simply deleting the existing store:
-         [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil]
-         
-         * Performing automatic lightweight migration by passing the following dictionary as the options parameter: 
-         [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
-         
-         Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
-         
-         */
-        //NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        //abort();
     }    
     
     return __persistentStoreCoordinator;
@@ -147,6 +114,28 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DatabaseManager);
     [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
 }
 
+- (void)deleteAllEntities:(NSString *)nameEntity
+{
+    NSManagedObjectContext *theContext = [self managedObjectContext];
+//    NSPersistentStoreCoordinator *myPersistentStoreCoordinator = [self persistentStoreCoordinator];
+//    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:nameEntity];
+//    NSBatchDeleteRequest *delete = [[NSBatchDeleteRequest alloc] initWithFetchRequest:request];
+//    NSError *deleteError = nil;
+//    [myPersistentStoreCoordinator executeRequest:delete withContext:theContext error:&deleteError];
+//
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:nameEntity];
+    [fetchRequest setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+    
+    NSError *error;
+    NSArray *fetchedObjects = [theContext executeFetchRequest:fetchRequest error:&error];
+    for (NSManagedObject *object in fetchedObjects)
+        {
+        [theContext deleteObject:object];
+        }
+    
+    error = nil;
+    [theContext save:&error];
+}
 
 - (void)prePopulate
 {
@@ -243,45 +232,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DatabaseManager);
         }];
     }
     
-    [Background fetchPics:^(NSArray *backgrounds) {
-    }];
+    [Background fetchPics:^(NSArray *backgrounds) {} withSearchTags:@"ocean,waves,rain,wind,waterfall,stream,forest,fire"];
 }
-
-/*
-- (void) printAllTrips
-{
-    // Test listing all Trips
-    NSError *error;
-    NSManagedObjectContext *context = [self managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Trip" 
-                                              inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    for (Trip *trip in fetchedObjects) {
-        NSLog(@"Trip Name: %@", trip.name);
-        for(Home *home in trip.home) {
-            NSLog(@"Home List: %@", home.itemDescription);
-        }
-        for(Packing *pack in trip.packing) {
-            NSLog(@"Packing List: %@", pack.itemDescription);
-        }
-        for(Leaving *leaving in trip.leaving) {
-            NSLog(@"Leaving List: %@", leaving.itemDescription);
-        }
-        for(Itinerary *itinerary in trip.itinerary) {
-            NSLog(@"Itinerary List: %@", itinerary.itemDescription);
-        }
-        for(Returning *returning in trip.returning) {
-            NSLog(@"Returning List: %@", returning.itemDescription);
-        }
-    }
-}*/
 
 
  - (BOOL) isDBNotExist
  {
-     // Test listing all Trips
      NSError *error;
      NSManagedObjectContext *context = [self managedObjectContext];
      NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -297,14 +253,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DatabaseManager);
          } else {
              isPermObjectsExist = NO;
          }
-         //iterate thru db and remove all objects
-         /*for (NSManagedObject *object in fetchedObjects) {
-             [context deleteObject:object];
-         }
-         NSError *error;
-         if (![context save:&error]) {
-             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-         }*/
          return TRUE;
      }
      else

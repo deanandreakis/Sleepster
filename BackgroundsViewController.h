@@ -12,9 +12,10 @@
 @protocol BackgroundsViewControllerDelegate <NSObject>
 - (void)backgroundSelected:(Background*)background;
 - (void)backgroundDeSelected:(Background*)background;
+    //TODO: add method to tell delegate to remove all backgrounds from its internal array. Use it when we search
 @end
 
-@interface BackgroundsViewController : UIViewController <UIDataSourceModelAssociation, NSFetchedResultsControllerDelegate,UICollectionViewDataSource, UICollectionViewDelegate>
+@interface BackgroundsViewController : UIViewController <UIDataSourceModelAssociation, NSFetchedResultsControllerDelegate,UICollectionViewDataSource, UICollectionViewDelegate,UISearchBarDelegate>
 
 @property(assign) id<BackgroundsViewControllerDelegate> delegate;
 @property (strong, nonatomic) IBOutlet UICollectionView* collectionView;

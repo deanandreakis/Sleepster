@@ -22,6 +22,6 @@ typedef void (^PicsBlock)(NSArray *pics);
 @property (nonatomic, retain) NSNumber * isLocalImage;
 @property (nonatomic, retain) NSString * bColor;
 
-+ (void)fetchPics:(PicsBlock)block;
++ (void)fetchPics:(PicsBlock)block withSearchTags:(NSString *)searchTags;
 
 @end
