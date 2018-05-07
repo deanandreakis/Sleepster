@@ -126,7 +126,10 @@
     [searchBar resignFirstResponder];
     //NSLog(searchBar.text.description);
     [[DatabaseManager sharedDatabaseManager] deleteAllEntities:@"Background"];
+    [_delegate removeAllBackgrounds];
     [Background fetchPics:^(NSArray *backgrounds) {} withSearchTags:searchBar.text];
+        //TODO: 1. After searching, the selected pic index needs to be reset to item 0,0 and sent to our delegate so its actually selected
+    // 2. the built-in pics needs to be appended to the search result pics just like when we first download pics on app install
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {

@@ -550,6 +550,11 @@
     [bgarray removeObject:background];
 }
 
+- (void)removeAllBackgrounds
+{
+    [bgarray  removeAllObjects];
+}
+
 #pragma mark background setter
 - (void)displayBackground:(Background *)background
 {
