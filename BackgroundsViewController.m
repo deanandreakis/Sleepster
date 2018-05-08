@@ -128,8 +128,24 @@
     [[DatabaseManager sharedDatabaseManager] deleteAllEntities:@"Background"];
     [_delegate removeAllBackgrounds];
     [Background fetchPics:^(NSArray *backgrounds) {} withSearchTags:searchBar.text];
-        //TODO: 1. After searching, the selected pic index needs to be reset to item 0,0 and sent to our delegate so its actually selected
+    
+    //1. After searching, the selected pic index needs to be reset to item 0,0 and sent to our delegate so its actually selected
+    for (NSObject* object in selectedIndexPath) { //self.collectionView.indexPathsForSelectedItems) {
+        NSIndexPath* indexPath = (NSIndexPath*)object;
+        [self.collectionView deselectItemAtIndexPath:indexPath animated:FALSE];
+        
+        UICollectionViewCell *cell =[self.collectionView cellForItemAtIndexPath:indexPath];
+        for(UIView *subview in [cell.contentView subviews]) {
+            if(subview.tag == SELECTED_IMAGE_TAG)
+                {
+                [subview removeFromSuperview];
+                }
+        }
+    }
+    [selectedIndexPath removeAllObjects];
+    
     // 2. the built-in pics needs to be appended to the search result pics just like when we first download pics on app install
+    // see the prePopulate method in the databaseManager class
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
