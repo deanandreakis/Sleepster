@@ -34,6 +34,7 @@
 		289233AE0DB2D0DB0083E9F9 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */; };
 		289233B00DB2D0DB0083E9F9 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233AD0DB2D0DB0083E9F9 /* InformationViewController.m */; };
 		42697D93E60C2B341FD377C0 /* libPods-SleepMateUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC45D3FAB282AC02CA8F8F6C /* libPods-SleepMateUITests.a */; };
+		5E4672AE20A28FCA0073EC03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E4672AD20A28FCA0073EC03 /* LaunchScreen.storyboard */; };
 		9C87C4C640E714EE2ECC22A8 /* libPods-SleepMate Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFEBEBAFE18B8BA97BA689AB /* libPods-SleepMate Tests.a */; };
 		C109245517D0447C00AAB6AE /* thumbnail-default.png in Resources */ = {isa = PBXBuildFile; fileRef = C109245417D0447C00AAB6AE /* thumbnail-default.png */; };
 		C109245817D5520700AAB6AE /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = C109245717D5520700AAB6AE /* Sound.m */; };
@@ -168,6 +169,7 @@
 		4F16DFA4C9ABAD00487A7C14 /* Pods-SleepMate.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMate.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMate/Pods-SleepMate.distribution.xcconfig"; sourceTree = "<group>"; };
 		55096084B74BC362C8D7695C /* Pods-SleepMate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMate/Pods-SleepMate.debug.xcconfig"; sourceTree = "<group>"; };
 		5D024A3EE0E4319DB7D58B2F /* Pods-SleepMate Tests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMate Tests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMate Tests/Pods-SleepMate Tests.distribution.xcconfig"; sourceTree = "<group>"; };
+		5E4672AD20A28FCA0073EC03 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6722F04C518D07A9CE4E04F0 /* Pods-SleepMate Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMate Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMate Tests/Pods-SleepMate Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6A1031317627378E6C3AB43B /* Pods-SleepMateUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMateUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMateUITests/Pods-SleepMateUITests.release.xcconfig"; sourceTree = "<group>"; };
 		84B85D2233386DCF8008A80B /* Pods-SleepMateUITests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMateUITests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMateUITests/Pods-SleepMateUITests.distribution.xcconfig"; sourceTree = "<group>"; };
@@ -544,6 +546,7 @@
 				280E754B0DD40C5E005A515E /* MainView.xib */,
 				280E754A0DD40C5E005A515E /* FlipsideView.xib */,
 				05692F7911C1EBF600A119A4 /* BacklightView.xib */,
+				5E4672AD20A28FCA0073EC03 /* LaunchScreen.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -739,6 +742,7 @@
 				C14E0EF5167573F100811389 /* SoundsViewController.xib in Resources */,
 				C14E0EFA1675746A00811389 /* BackgroundsViewController.xib in Resources */,
 				C19DB55517924ABD001820A7 /* Fav-1@2x.png in Resources */,
+				5E4672AE20A28FCA0073EC03 /* LaunchScreen.storyboard in Resources */,
 				C138149116FF47B000293B48 /* menuButton@2x.png in Resources */,
 				C1403BB51728B69500B75633 /* home-2.png in Resources */,
 				C1403BB71728B6B400B75633 /* home-2@2x.png in Resources */,
@@ -944,7 +948,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				PROVISIONING_PROFILE = "02229ac7-8278-4266-9713-20240f4fdd1a";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "02229ac7-8278-4266-9713-20240f4fdd1a";
 				SDKROOT = iphoneos;
@@ -969,7 +973,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SleepMate_Prefix.pch;
 				INFOPLIST_FILE = "SleepMate-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.deanware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = SleepMate;
@@ -999,7 +1003,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SleepMate_Prefix.pch;
 				INFOPLIST_FILE = "SleepMate-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.deanware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = SleepMate;
@@ -1027,7 +1031,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SleepMate_Prefix.pch;
 				INFOPLIST_FILE = "SleepMate-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.deanware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = SleepMate;
@@ -1071,7 +1075,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "37de51d0-7855-4042-ad81-07b6fe31f93a";
 				SDKROOT = iphoneos;
@@ -1111,7 +1115,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				PROVISIONING_PROFILE = "37de51d0-7855-4042-ad81-07b6fe31f93a";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

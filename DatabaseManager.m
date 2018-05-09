@@ -117,14 +117,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DatabaseManager);
 - (void)deleteAllEntities:(NSString *)nameEntity
 {
     NSManagedObjectContext *theContext = [self managedObjectContext];
-//    NSPersistentStoreCoordinator *myPersistentStoreCoordinator = [self persistentStoreCoordinator];
-//    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:nameEntity];
-//    NSBatchDeleteRequest *delete = [[NSBatchDeleteRequest alloc] initWithFetchRequest:request];
-//    NSError *deleteError = nil;
-//    [myPersistentStoreCoordinator executeRequest:delete withContext:theContext error:&deleteError];
-//
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:nameEntity];
-    [fetchRequest setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+    NSPredicate *filter = [NSPredicate predicateWithFormat:@"isFavorite != %@", @YES];
+    [fetchRequest setPredicate:filter];
     
     NSError *error;
     NSArray *fetchedObjects = [theContext executeFetchRequest:fetchRequest error:&error];

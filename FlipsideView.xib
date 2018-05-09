@@ -101,23 +101,6 @@ All Rights Reserved</string>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="at.png" translatesAutoresizingMaskIntoConstraints="NO" id="U32-kR-VpN" userLabel="At Image View">
-                    <rect key="frame" x="165.5" y="416" width="44" height="44"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="KIO-oW-hOO"/>
-                        <constraint firstAttribute="width" constant="44" id="LmQ-BL-SxW"/>
-                    </constraints>
-                </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAb-9g-6pV" userLabel="At Button">
-                    <rect key="frame" x="165.5" y="416" width="44" height="44"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="44" id="8Er-S8-H1x"/>
-                        <constraint firstAttribute="height" constant="44" id="DQX-LJ-YGN"/>
-                    </constraints>
-                    <connections>
-                        <action selector="emailButtonSelected:" destination="-1" eventType="touchUpInside" id="NxO-Zv-1sd"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -125,17 +108,13 @@ All Rights Reserved</string>
                 <constraint firstItem="qAe-FF-NH8" firstAttribute="top" secondItem="jIV-Bt-fJM" secondAttribute="bottom" constant="-2" id="1MU-7E-sej"/>
                 <constraint firstItem="55" firstAttribute="centerX" secondItem="40" secondAttribute="centerX" id="4ba-yh-vAA"/>
                 <constraint firstItem="FfJ-gR-0S3" firstAttribute="centerX" secondItem="40" secondAttribute="centerX" id="6b6-sU-GqI"/>
-                <constraint firstItem="U32-kR-VpN" firstAttribute="top" secondItem="LzW-ZN-XPJ" secondAttribute="bottom" constant="35" id="6g7-Go-zAl"/>
-                <constraint firstItem="BAb-9g-6pV" firstAttribute="centerX" secondItem="40" secondAttribute="centerX" id="6tq-CU-uoB"/>
                 <constraint firstItem="jIV-Bt-fJM" firstAttribute="centerX" secondItem="40" secondAttribute="centerX" id="FUy-pB-8mL"/>
                 <constraint firstItem="jIV-Bt-fJM" firstAttribute="top" secondItem="kaj-Lw-O25" secondAttribute="bottom" constant="3" id="O13-7i-xX6"/>
                 <constraint firstItem="kaj-Lw-O25" firstAttribute="top" secondItem="55" secondAttribute="bottom" constant="8" id="SiT-bd-bSh"/>
                 <constraint firstItem="55" firstAttribute="top" secondItem="40" secondAttribute="top" constant="27" id="bnA-1o-4AL"/>
                 <constraint firstItem="VoU-aO-vxf" firstAttribute="centerX" secondItem="40" secondAttribute="centerX" id="e4F-pD-d3i"/>
-                <constraint firstItem="BAb-9g-6pV" firstAttribute="top" secondItem="LzW-ZN-XPJ" secondAttribute="bottom" constant="35" id="fpp-D5-OQL"/>
                 <constraint firstItem="FfJ-gR-0S3" firstAttribute="top" secondItem="qAe-FF-NH8" secondAttribute="bottom" constant="25" id="gi9-f4-EoK"/>
                 <constraint firstItem="LzW-ZN-XPJ" firstAttribute="top" secondItem="FfJ-gR-0S3" secondAttribute="bottom" constant="15" id="hbN-eW-WVb"/>
-                <constraint firstItem="U32-kR-VpN" firstAttribute="centerX" secondItem="40" secondAttribute="centerX" id="hvL-Cm-Pm0"/>
                 <constraint firstItem="VoU-aO-vxf" firstAttribute="top" secondItem="qAe-FF-NH8" secondAttribute="bottom" constant="25" id="rPy-oi-A4S"/>
                 <constraint firstItem="qAe-FF-NH8" firstAttribute="centerX" secondItem="40" secondAttribute="centerX" constant="0.5" id="snW-TD-leJ"/>
                 <constraint firstItem="kaj-Lw-O25" firstAttribute="centerX" secondItem="40" secondAttribute="centerX" id="x1V-SZ-Gj0"/>
@@ -151,7 +130,6 @@ All Rights Reserved</string>
         </view>
     </objects>
     <resources>
-        <image name="at.png" width="500" height="500"/>
         <image name="heart.png" width="988" height="882"/>
     </resources>
 </document>

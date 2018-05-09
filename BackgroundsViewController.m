@@ -39,7 +39,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -67,14 +66,13 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    if([[iSleepAppDelegate appDelegate].settingsViewController bgSwitchState])//TODO: are all objects here initd at statup???
+    if([[iSleepAppDelegate appDelegate].settingsViewController bgSwitchState])
     {
         //allows multiple selection
         self.collectionView.allowsMultipleSelection = YES;
     }
     else
     {
-        //if([self.collectionView.indexPathsForSelectedItems count] > 1)//more then one item selected
         if([selectedIndexPath count] > 1)//more then one item selected
         {
             for (NSObject* object in selectedIndexPath) { //self.collectionView.indexPathsForSelectedItems) {
@@ -100,14 +98,13 @@
         self.collectionView.allowsMultipleSelection = NO;
     }
     
-    //BUG: If we dont allow multiple selection then I think the indexPathsForSelectedItems array
+    //BUG: If we don't allow multiple selection then I think the indexPathsForSelectedItems array
     //is not useful and does not contain the single selected item
     
-    //BUG: SOmetimes last single selected item is not deselected so we need to add logic to
+    //BUG: Sometimes last single selected item is not deselected so we need to add logic to
     //selectedItem to say if we are in single select mode and we selected an item we need to call deselect
     //on the old item in the array.
-    //NSLog(@"SELECTED INDEX PATH NUM OBJECTS IS %d", [selectedIndexPath count]);
-    for (NSObject* object in selectedIndexPath) {//self.collectionView.indexPathsForSelectedItems) {
+    for (NSObject* object in selectedIndexPath) {
         NSIndexPath* indexPath = (NSIndexPath*)object;
         [self.collectionView selectItemAtIndexPath:indexPath animated:FALSE scrollPosition:UICollectionViewScrollPositionNone];
         UICollectionViewCell *cell =[self.collectionView cellForItemAtIndexPath:indexPath];
@@ -124,13 +121,10 @@
 #pragma mark - UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
-    //NSLog(searchBar.text.description);
     [[DatabaseManager sharedDatabaseManager] deleteAllEntities:@"Background"];
     [_delegate removeAllBackgrounds];
     [Background fetchPics:^(NSArray *backgrounds) {} withSearchTags:searchBar.text];
-    
-    //1. After searching, the selected pic index needs to be reset to item 0,0 and sent to our delegate so its actually selected
-    for (NSObject* object in selectedIndexPath) { //self.collectionView.indexPathsForSelectedItems) {
+    for (NSObject* object in selectedIndexPath) {
         NSIndexPath* indexPath = (NSIndexPath*)object;
         [self.collectionView deselectItemAtIndexPath:indexPath animated:FALSE];
         
@@ -143,9 +137,6 @@
         }
     }
     [selectedIndexPath removeAllObjects];
-    
-    // 2. the built-in pics needs to be appended to the search result pics just like when we first download pics on app install
-    // see the prePopulate method in the databaseManager class
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
@@ -226,8 +217,6 @@
         }
     }
     
-    
-    //if([self.collectionView.indexPathsForSelectedItems containsObject:indexPath])
     if([selectedIndexPath containsObject:indexPath])
     {
         NSString *pathToSelectedImage = [[NSBundle mainBundle] pathForResource:@"check_mark_green" ofType:@"png"];
@@ -249,9 +238,6 @@
         [cell setSelected:FALSE];
     }
     
-    //NSLog(@"CELL FOR ROW index %d", indexPath.item);
-    //NSLog(@"NUM IN ARRAY %d", [self.collectionView.indexPathsForSelectedItems count]);
-    
     return cell;
 }
 
@@ -262,11 +248,9 @@
     if(isSingleSelectToDeselect && ([selectedIndexPath count] == 1)) {
         [self.collectionView.delegate collectionView:collectionView didDeselectItemAtIndexPath:[selectedIndexPath objectAtIndex:0]];
         isSingleSelectToDeselect = NO;
-        //NSLog(@"TRIGGER!!!!!!!!!!!!");
     }
     
     if(![selectedIndexPath containsObject:indexPath])
-    //if(![self.collectionView.indexPathsForSelectedItems containsObject:indexPath])
     {
         NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
         Background *bg = (Background*)managedObject;
@@ -280,10 +264,7 @@
         selectedImageView.frame = CGRectMake(0, 0, 20, 20);
         selectedImageView.tag = SELECTED_IMAGE_TAG;
         [cell.contentView addSubview:selectedImageView];
-        //[collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-        //NSLog(@"SELECTED index %d", indexPath.item);
     }
-    //NSLog(@"SELECTED index %d", indexPath.item);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -298,17 +279,12 @@
             [subview removeFromSuperview];
         }
     }
-    
-    //[collectionView deselectItemAtIndexPath:indexPath animated:NO];
     [selectedIndexPath removeObject:indexPath];
-    
-    //NSLog(@"DESELECTED index %d", indexPath.item);
 }
 
 #pragma mark UIDataSourceModelAssociation
 - (NSString *)modelIdentifierForElementAtIndexPath:(NSIndexPath *)indexPath inView:(UIView *)view
 {
-    //NSLog(@"BG ENCODE");
     NSString *identifier = nil;
     if (indexPath && view)
     {
@@ -323,8 +299,6 @@
 
 - (NSIndexPath *)indexPathForElementWithModelIdentifier:(NSString *)identifier inView:(UIView *)view
 {
-    //NSLog(@"BG DECODE");
-    NSLog(@"BG DECODE IDENTIFIER %@", identifier);
     NSIndexPath *indexPath = nil;
     if (identifier && view)
     {
@@ -396,16 +370,7 @@
     
 	NSError *error = nil;
 	if (![self.fetchedResultsController performFetch:&error]) {
-	    /*
-	     Replace this implementation with code to handle the error appropriately.
-         
-	     abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-	     */
-	    //NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-	    //abort();
 	}
-    
-    //NSLog(@"FetchedResultsConmtroller Number returned:%d",[self.fetchedResultsController.fetchedObjects count]);
     
     return __fetchedResultsController;
 }
@@ -416,29 +381,19 @@
     switch(type)
     {
         case NSFetchedResultsChangeInsert:
-            //NSLog(@"INSERT");//this is all that shows up when flickr bg's added; there all inserted before the permanent bg's
-            /*just go thru the selectedIndexPath array and increment the indexPath.row each time we come here*/
             counter = counter+1;
             break;
         case NSFetchedResultsChangeDelete:
-            //NSLog(@"DELETE");
             break;
         case NSFetchedResultsChangeUpdate:
-            //NSLog(@"UPDATE");
             break;
         case NSFetchedResultsChangeMove:
-            //NSLog(@"MOVE");
             break;
     }
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-//    for (NSIndexPath* path in selectedIndexPath) {
-//        NSIndexPath* newIndexPath =  [NSIndexPath indexPathForItem:path.item+counter inSection:0];
-//        [selectedIndexPath replaceObjectAtIndex:[selectedIndexPath indexOfObject:path] withObject:newIndexPath];
-//        [self.collectionView.delegate collectionView:self.collectionView didSelectItemAtIndexPath:newIndexPath];
-//    }
     counter = 0;
     [self.collectionView reloadData];
 }
