@@ -1,20 +1,16 @@
 PODS:
   - AFNetworking (1.3.4)
-  - SimulatorStatusMagic (1.7)
 
 DEPENDENCIES:
   - AFNetworking (~> 1.3)
-  - SimulatorStatusMagic
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AFNetworking
-    - SimulatorStatusMagic
 
 SPEC CHECKSUMS:
   AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
-  SimulatorStatusMagic: 46c90a12f73abeda6d7c16876e1e0998b6ca5f4f
 
-PODFILE CHECKSUM: a539ce85f8e4bb2c9d43ebb0fe06e0f81a0453d8
+PODFILE CHECKSUM: 49ae82261fc1112eced513b10163534e0ce35164
 
 COCOAPODS: 1.5.0

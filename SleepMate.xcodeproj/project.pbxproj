@@ -33,8 +33,8 @@
 		288765590DF743DE002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765580DF743DE002DB57D /* CoreGraphics.framework */; };
 		289233AE0DB2D0DB0083E9F9 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */; };
 		289233B00DB2D0DB0083E9F9 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233AD0DB2D0DB0083E9F9 /* InformationViewController.m */; };
-		42697D93E60C2B341FD377C0 /* libPods-SleepMateUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC45D3FAB282AC02CA8F8F6C /* libPods-SleepMateUITests.a */; };
 		5E4672AE20A28FCA0073EC03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E4672AD20A28FCA0073EC03 /* LaunchScreen.storyboard */; };
+		5E80572F20AD1BEE000EECEC /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E80572E20AD1BEE000EECEC /* Media.xcassets */; };
 		9C87C4C640E714EE2ECC22A8 /* libPods-SleepMate Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFEBEBAFE18B8BA97BA689AB /* libPods-SleepMate Tests.a */; };
 		C109245517D0447C00AAB6AE /* thumbnail-default.png in Resources */ = {isa = PBXBuildFile; fileRef = C109245417D0447C00AAB6AE /* thumbnail-default.png */; };
 		C109245817D5520700AAB6AE /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = C109245717D5520700AAB6AE /* Sound.m */; };
@@ -107,8 +107,6 @@
 		C1CD259C17B4741C0099F66D /* check_mark_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1CD259B17B4741C0099F66D /* check_mark_green@2x.png */; };
 		C1D7B40B1671A0860004D62E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D7B4091671A0860004D62E /* SettingsViewController.m */; };
 		C1D7B40C1671A0860004D62E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D7B40A1671A0860004D62E /* SettingsViewController.xib */; };
-		C1D9236E1C8690E900F5F5A5 /* SleepMateUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9236D1C8690E900F5F5A5 /* SleepMateUITests.m */; };
-		C1D923781C86943D00F5F5A5 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D923771C86943D00F5F5A5 /* SnapshotHelper.swift */; };
 		C1E5F65B175C1CA10000BF16 /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E5F65A175C1CA10000BF16 /* Play.png */; };
 		C1E5F65D175C1CBD0000BF16 /* Play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E5F65C175C1CBD0000BF16 /* Play@2x.png */; };
 		EBB0FD2E7154DD8199D35B26 /* libPods-SleepMate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B90CA70E9A4B449D633596CA /* libPods-SleepMate.a */; };
@@ -116,13 +114,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		C1659CF4180B75B10062D8B3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
-			remoteInfo = SleepMate;
-		};
-		C1D923701C8690E900F5F5A5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
@@ -170,6 +161,7 @@
 		55096084B74BC362C8D7695C /* Pods-SleepMate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMate/Pods-SleepMate.debug.xcconfig"; sourceTree = "<group>"; };
 		5D024A3EE0E4319DB7D58B2F /* Pods-SleepMate Tests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMate Tests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMate Tests/Pods-SleepMate Tests.distribution.xcconfig"; sourceTree = "<group>"; };
 		5E4672AD20A28FCA0073EC03 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5E80572E20AD1BEE000EECEC /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		6722F04C518D07A9CE4E04F0 /* Pods-SleepMate Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMate Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMate Tests/Pods-SleepMate Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6A1031317627378E6C3AB43B /* Pods-SleepMateUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMateUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMateUITests/Pods-SleepMateUITests.release.xcconfig"; sourceTree = "<group>"; };
 		84B85D2233386DCF8008A80B /* Pods-SleepMateUITests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMateUITests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMateUITests/Pods-SleepMateUITests.distribution.xcconfig"; sourceTree = "<group>"; };
@@ -263,11 +255,6 @@
 		C1D7B4081671A0860004D62E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		C1D7B4091671A0860004D62E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		C1D7B40A1671A0860004D62E /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
-		C1D9236B1C8690E900F5F5A5 /* SleepMateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SleepMateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1D9236D1C8690E900F5F5A5 /* SleepMateUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SleepMateUITests.m; sourceTree = "<group>"; };
-		C1D9236F1C8690E900F5F5A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C1D923761C86943D00F5F5A5 /* SleepMateUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SleepMateUITests-Bridging-Header.h"; sourceTree = "<group>"; };
-		C1D923771C86943D00F5F5A5 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		C1E5F65A175C1CA10000BF16 /* Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Play.png; sourceTree = "<group>"; };
 		C1E5F65C175C1CBD0000BF16 /* Play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Play@2x.png"; sourceTree = "<group>"; };
 		DC45D3FAB282AC02CA8F8F6C /* libPods-SleepMateUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SleepMateUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -304,14 +291,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C1D923681C8690E900F5F5A5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				42697D93E60C2B341FD377C0 /* libPods-SleepMateUITests.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -330,7 +309,6 @@
 			children = (
 				05D51C5A14DA3653001E7E9D /* SleepMate.app */,
 				C1659CE6180B75B00062D8B3 /* SleepMate Tests.xctest */,
-				C1D9236B1C8690E900F5F5A5 /* SleepMateUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -350,6 +328,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				5E80572E20AD1BEE000EECEC /* Media.xcassets */,
 				C1244DD217B085E200622B3D /* SleepMate.entitlements */,
 				C1BB0B3E17E93BAB00D20D27 /* IAP */,
 				C1C60816179861F00099590F /* API */,
@@ -361,7 +340,6 @@
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				C1659CEB180B75B00062D8B3 /* SleepMate Tests */,
-				C1D9236C1C8690E900F5F5A5 /* SleepMateUITests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				3643D408C98ECD5C261F8751 /* Pods */,
@@ -572,17 +550,6 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
-		C1D9236C1C8690E900F5F5A5 /* SleepMateUITests */ = {
-			isa = PBXGroup;
-			children = (
-				C1D923771C86943D00F5F5A5 /* SnapshotHelper.swift */,
-				C1D9236D1C8690E900F5F5A5 /* SleepMateUITests.m */,
-				C1D9236F1C8690E900F5F5A5 /* Info.plist */,
-				C1D923761C86943D00F5F5A5 /* SleepMateUITests-Bridging-Header.h */,
-			);
-			path = SleepMateUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -623,25 +590,6 @@
 			productReference = C1659CE6180B75B00062D8B3 /* SleepMate Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		C1D9236A1C8690E900F5F5A5 /* SleepMateUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C1D923751C8690EA00F5F5A5 /* Build configuration list for PBXNativeTarget "SleepMateUITests" */;
-			buildPhases = (
-				DB642E848D19FFFFE3B782B7 /* [CP] Check Pods Manifest.lock */,
-				C1D923671C8690E900F5F5A5 /* Sources */,
-				C1D923681C8690E900F5F5A5 /* Frameworks */,
-				C1D923691C8690E900F5F5A5 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C1D923711C8690E900F5F5A5 /* PBXTargetDependency */,
-			);
-			name = SleepMateUITests;
-			productName = SleepMateUITests;
-			productReference = C1D9236B1C8690E900F5F5A5 /* SleepMateUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -666,11 +614,6 @@
 						DevelopmentTeam = 6XBQPB83GR;
 						TestTargetID = 1D6058900D05DD3D006BFB54;
 					};
-					C1D9236A1C8690E900F5F5A5 = {
-						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 6XBQPB83GR;
-						TestTargetID = 1D6058900D05DD3D006BFB54;
-					};
 				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "SleepMate" */;
@@ -691,7 +634,6 @@
 			targets = (
 				1D6058900D05DD3D006BFB54 /* SleepMate */,
 				C1659CE5180B75B00062D8B3 /* SleepMate Tests */,
-				C1D9236A1C8690E900F5F5A5 /* SleepMateUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -735,6 +677,7 @@
 				C1BB0B5C17F3192E00D20D27 /* app_icon_120x120.png in Resources */,
 				C1BB0B5817EF406200D20D27 /* frogs.mp3 in Resources */,
 				05AAF2FC1377085E00AD2167 /* kmoon@2x.png in Resources */,
+				5E80572F20AD1BEE000EECEC /* Media.xcassets in Resources */,
 				05329D7E13D35FEE00F199CA /* ThunderStorm.mp3 in Resources */,
 				C12D23B21C756ABD00B9FFEB /* heart.png in Resources */,
 				C1D7B40C1671A0860004D62E /* SettingsViewController.xib in Resources */,
@@ -780,13 +723,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C1D923691C8690E900F5F5A5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -820,24 +756,6 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-SleepMate Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DB642E848D19FFFFE3B782B7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SleepMateUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -879,15 +797,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C1D923671C8690E900F5F5A5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C1D9236E1C8690E900F5F5A5 /* SleepMateUITests.m in Sources */,
-				C1D923781C86943D00F5F5A5 /* SnapshotHelper.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -895,11 +804,6 @@
 			isa = PBXTargetDependency;
 			target = 1D6058900D05DD3D006BFB54 /* SleepMate */;
 			targetProxy = C1659CF4180B75B10062D8B3 /* PBXContainerItemProxy */;
-		};
-		C1D923711C8690E900F5F5A5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1D6058900D05DD3D006BFB54 /* SleepMate */;
-			targetProxy = C1D923701C8690E900F5F5A5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -960,6 +864,8 @@
 			baseConfigurationReference = 4F16DFA4C9ABAD00487A7C14 /* Pods-SleepMate.distribution.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -978,7 +884,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.deanware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = SleepMate;
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "02229ac7-8278-4266-9713-20240f4fdd1a";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Distribution;
@@ -988,6 +894,8 @@
 			baseConfigurationReference = 55096084B74BC362C8D7695C /* Pods-SleepMate.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1018,6 +926,8 @@
 			baseConfigurationReference = 94C5B64B55EB5EBB7DF09961 /* Pods-SleepMate.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1036,7 +946,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.deanware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = SleepMate;
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "37de51d0-7855-4042-ad81-07b6fe31f93a";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
@@ -1262,143 +1172,6 @@
 			};
 			name = Distribution;
 		};
-		C1D923721C8690EA00F5F5A5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03E5ED33AE0F42AA7540AD1A /* Pods-SleepMateUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = SleepMateUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.deanware.SleepMateUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "SleepMateUITests/SleepMateUITests-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TEST_TARGET_NAME = SleepMate;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		C1D923731C8690EA00F5F5A5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A1031317627378E6C3AB43B /* Pods-SleepMateUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = SleepMateUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.deanware.SleepMateUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "SleepMateUITests/SleepMateUITests-Bridging-Header.h";
-				TEST_TARGET_NAME = SleepMate;
-				USES_XCTRUNNER = YES;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		C1D923741C8690EA00F5F5A5 /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 84B85D2233386DCF8008A80B /* Pods-SleepMateUITests.distribution.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = SleepMateUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.deanware.SleepMateUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "SleepMateUITests/SleepMateUITests-Bridging-Header.h";
-				TEST_TARGET_NAME = SleepMate;
-				USES_XCTRUNNER = YES;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Distribution;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1428,16 +1201,6 @@
 				C1659CF7180B75B10062D8B3 /* Debug */,
 				C1659CF8180B75B10062D8B3 /* Release */,
 				C1659CF9180B75B10062D8B3 /* Distribution */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C1D923751C8690EA00F5F5A5 /* Build configuration list for PBXNativeTarget "SleepMateUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C1D923721C8690EA00F5F5A5 /* Debug */,
-				C1D923731C8690EA00F5F5A5 /* Release */,
-				C1D923741C8690EA00F5F5A5 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
