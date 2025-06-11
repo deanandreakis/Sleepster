@@ -6,9 +6,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AFNetworking.h"
+// Legacy AFNetworking implementation - replaced by Swift FlickrService
+// #import "AFNetworking.h"
 
-@interface FlickrAPIClient : AFHTTPClient
+// Legacy class - replaced by Swift FlickrService in ViewModels
+@interface FlickrAPIClient : NSObject // AFHTTPClient
 
 + (id)sharedAPIClient;
 

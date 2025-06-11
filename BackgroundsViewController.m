@@ -10,7 +10,7 @@
 #import "Constants.h"
 #import "Background.h"
 #import "DatabaseManager.h"
-#import "UIImageView+AFNetworking.h"
+// #import "UIImageView+AFNetworking.h" // Legacy AFNetworking - replaced by SwiftUI
 #import "iSleepAppDelegate.h"
 #import "SettingsViewController.h"
 
@@ -197,8 +197,9 @@
         if([bg.isLocalImage isEqual:@NO]){
             imageUrl = [NSURL URLWithString:bg.bThumbnailUrl];
             UIImage *placeholder = [UIImage imageNamed:@"thumbnail-default.png"];
-            [imageView setImageWithURL:imageUrl
-                      placeholderImage:placeholder];
+            // Legacy AFNetworking method - replaced by SwiftUI AsyncImage
+            // [imageView setImageWithURL:imageUrl placeholderImage:placeholder];
+            imageView.image = placeholder; // Show placeholder only
         } else {
             NSString *pathToImage = [[NSBundle mainBundle] pathForResource:bg.bThumbnailUrl ofType:@"jpg"];
             UIImage* imageG = [[UIImage alloc] initWithContentsOfFile:pathToImage];

@@ -7,7 +7,7 @@
 //
 
 #import "BacklightViewController.h"
-#import "UIImageView+AFNetworking.h"
+// #import "UIImageView+AFNetworking.h" // Legacy AFNetworking - replaced by SwiftUI
 #import "Background.h"
 //#import <Crashlytics/Crashlytics.h>
 
@@ -90,8 +90,9 @@
         if([background.isLocalImage isEqual:@NO]){
             imageUrl = [NSURL URLWithString:background.bFullSizeUrl];
             UIImage *placeholder = [UIImage imageNamed:@"thumbnail-default.png"];
-            [self.bgImageView setImageWithURL:imageUrl
-                             placeholderImage:placeholder];
+            // Legacy AFNetworking method - replaced by SwiftUI AsyncImage
+            // [self.bgImageView setImageWithURL:imageUrl placeholderImage:placeholder];
+            self.bgImageView.image = placeholder; // Show placeholder only
         } else {
             imageUrl = [[NSBundle mainBundle]
                         URLForResource:background.bFullSizeUrl withExtension:@"jpg"];

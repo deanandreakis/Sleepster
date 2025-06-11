@@ -28,7 +28,17 @@
 //http://www.flickr.com/services/api/flickr.photos.search.html
 
 + (void)fetchPics:(PicsBlock)block withSearchTags:(NSString *)searchTags{
+    // Legacy AFNetworking implementation - replaced by SwiftUI FlickrService
+    // All Flickr functionality now handled by modern SwiftUI BackgroundsViewModel
+    NSLog(@"Legacy fetchPics called - returning empty results. Use SwiftUI BackgroundsView instead.");
     
+    // Return empty results to prevent crashes
+    if (block) {
+        block(@[]);
+    }
+    
+    /*
+    // Legacy AFNetworking code - commented out
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             FLICKR_API_KEY, @"api_key",
                             searchTags, @"tags",
@@ -41,22 +51,11 @@
     [[FlickrAPIClient sharedAPIClient] getPath:@"?method=flickr.photos.search"
                                        parameters:params
                                           success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                              NSLog(@"Response: %@", responseObject);
-                                              NSMutableArray *results = [NSMutableArray array];
-                                              for (id picDictionary in responseObject[@"photos"][@"photo"]) {
-                                                  Background *background = [Background postWithDictionary:picDictionary];
-                                                  [results addObject:background];
-                                              }
-                                              //NSLog(@"FLICKR RESULT NUMBER:%d",[results count]);
-                                              if (block)
-                                                  block(results);
+                                              // ... legacy implementation
                                           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                              NSLog(@"HTTP Status %ld", (long)operation.response.statusCode);
-                                              NSLog(@"ERROR: %@", error);
-                                              
-                                              if (block)
-                                                  block(nil);
+                                              // ... legacy implementation
                                           }];
+    */
 }
 
 + (id)postWithDictionary:(NSDictionary *)dictionary {

@@ -14,15 +14,12 @@
 @implementation FlickrAPIClient
 
 + (id)sharedAPIClient {
-    static FlickrAPIClient *__client = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSURL *baseURL = [NSURL URLWithString:kFlickrBaseUrl];
-        __client = [[FlickrAPIClient alloc] initWithBaseURL:baseURL];
-    });
-    return __client;
+    // Legacy implementation - now replaced by Swift FlickrService
+    return nil;
 }
 
+/*
+// Legacy AFNetworking implementation - replaced by Swift FlickrService
 - (id)initWithBaseURL:(NSURL *)url {
     self = [super initWithBaseURL:url];
     if (self) {
@@ -33,6 +30,7 @@
     
     return self;
 }
+*/
 
 @end
 

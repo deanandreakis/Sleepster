@@ -14,7 +14,7 @@ struct SleepsterTabView: View {
     var body: some View {
         TabView(selection: $appState.selectedTab) {
             // Main Sleep Tab
-            MainSleepView()
+            SleepView()
                 .tabItem {
                     Image(systemName: TabItem.main.systemImage)
                     Text(TabItem.main.title)
@@ -30,7 +30,7 @@ struct SleepsterTabView: View {
                 .tag(TabItem.sounds)
             
             // Backgrounds Tab
-            BackgroundsListView()
+            BackgroundsView()
                 .tabItem {
                     Image(systemName: TabItem.backgrounds.systemImage)
                     Text(TabItem.backgrounds.title)
@@ -77,145 +77,7 @@ struct SleepsterTabView: View {
     }
 }
 
-// MARK: - Placeholder Views (Will be implemented in Phase 3)
-struct MainSleepView: View {
-    @EnvironmentObject var serviceContainer: ServiceContainer
-    @EnvironmentObject var appState: AppState
-    
-    var body: some View {
-        NavigationView {
-            VStack {
-                Text("Sleep Interface")
-                    .font(.largeTitle)
-                    .padding()
-                
-                Text("Main sleep controls will be implemented in Phase 3")
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding()
-                
-                Spacer()
-                
-                // Test button for now
-                Button("Start Sleep Mode") {
-                    appState.startSleeping()
-                }
-                .buttonStyle(.borderedProminent)
-                .padding()
-                
-                Spacer()
-            }
-            .navigationTitle("Sleepster")
-            .background(appState.currentBackgroundColor)
-        }
-    }
-}
-
-struct SoundsListView: View {
-    @EnvironmentObject var serviceContainer: ServiceContainer
-    
-    var body: some View {
-        NavigationView {
-            VStack {
-                Text("Sounds")
-                    .font(.largeTitle)
-                    .padding()
-                
-                Text("Nature sounds selection will be implemented in Phase 3")
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding()
-                
-                Spacer()
-            }
-            .navigationTitle("Sounds")
-        }
-    }
-}
-
-struct BackgroundsListView: View {
-    @EnvironmentObject var serviceContainer: ServiceContainer
-    
-    var body: some View {
-        NavigationView {
-            VStack {
-                Text("Backgrounds")
-                    .font(.largeTitle)
-                    .padding()
-                
-                Text("Background selection will be implemented in Phase 3")
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding()
-                
-                Spacer()
-            }
-            .navigationTitle("Backgrounds")
-        }
-    }
-}
-
-struct SettingsView: View {
-    @EnvironmentObject var serviceContainer: ServiceContainer
-    @EnvironmentObject var appState: AppState
-    
-    var body: some View {
-        NavigationView {
-            Form {
-                Section("Appearance") {
-                    Toggle("Dark Mode", isOn: $appState.isDarkModeEnabled)
-                }
-                
-                Section("Audio") {
-                    HStack {
-                        Text("Volume")
-                        Slider(value: $appState.currentVolume, in: 0...1)
-                            .onChange(of: appState.currentVolume) { volume in
-                                appState.updateVolume(volume)
-                            }
-                    }
-                    
-                    Toggle("Mute", isOn: $appState.isMuted)
-                }
-                
-                Section("General") {
-                    Toggle("Haptic Feedback", isOn: $appState.isHapticsEnabled)
-                    Toggle("Disable Auto-Lock", isOn: $appState.isAutoLockDisabled)
-                }
-                
-                Section("About") {
-                    HStack {
-                        Text("Version")
-                        Spacer()
-                        Text("2.5")
-                            .foregroundColor(.secondary)
-                    }
-                }
-            }
-            .navigationTitle("Settings")
-        }
-    }
-}
-
-struct InformationView: View {
-    var body: some View {
-        NavigationView {
-            VStack {
-                Text("Information")
-                    .font(.largeTitle)
-                    .padding()
-                
-                Text("App information and help will be implemented in Phase 3")
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding()
-                
-                Spacer()
-            }
-            .navigationTitle("Information")
-        }
-    }
-}
+// Note: Individual view files are now implemented separately
 
 #Preview {
     SleepsterTabView()
