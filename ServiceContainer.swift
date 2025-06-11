@@ -28,6 +28,40 @@ class ServiceContainer: ObservableObject {
         TimerManager(audioManager: audioManager)
     }()
     
+    // MARK: - Phase 4 Modern Services
+    lazy var networkMonitor: NetworkMonitor = {
+        NetworkMonitor.shared
+    }()
+    
+    lazy var flickrService: FlickrService = {
+        FlickrService.shared
+    }()
+    
+    lazy var imageCache: ImageCache = {
+        ImageCache.shared
+    }()
+    
+    lazy var errorHandler: ErrorHandler = {
+        ErrorHandler.shared
+    }()
+    
+    lazy var audioSessionManager: AudioSessionManager = {
+        AudioSessionManager.shared
+    }()
+    
+    lazy var audioMixingEngine: AudioMixingEngine = {
+        AudioMixingEngine.shared
+    }()
+    
+    lazy var audioEqualizer: AudioEqualizer = {
+        AudioEqualizer.shared
+    }()
+    
+    lazy var audioEffectsProcessor: AudioEffectsProcessor = {
+        AudioEffectsProcessor.shared
+    }()
+    
+    // MARK: - Legacy Services (for backward compatibility)
     lazy var flickrAPIClient: FlickrAPIClient = {
         FlickrAPIClient.shared
     }()
@@ -105,12 +139,21 @@ class ServiceContainer: ObservableObject {
     private func handleAppDidEnterBackground() {
         // Save any pending data
         databaseManager.saveContext()
+        
+        // Handle audio session for background playback
+        audioSessionManager.handleAppDidEnterBackground()
     }
     
     private func handleAppWillTerminate() {
         // Final cleanup
         databaseManager.saveContext()
         audioManager.stopAllSounds()
+        
+        // Cleanup audio resources
+        Task {
+            await audioMixingEngine.stopAllSounds()
+            await audioSessionManager.deactivateSession()
+        }
     }
     
     deinit {
