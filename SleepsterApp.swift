@@ -2,10 +2,12 @@
 //  SleepsterApp.swift
 //  SleepMate
 //
-//  Created by Claude on Phase 2 Migration
+//  Created by Claude on SwiftUI Migration
+//  Complete SwiftUI app with all functionality from legacy app delegate
 //
 
 import SwiftUI
+import UIKit
 
 @main
 struct SleepsterApp: App {
@@ -14,6 +16,9 @@ struct SleepsterApp: App {
     
     // App state management
     @StateObject private var appState = AppState()
+    
+    // App delegate for UIKit integration
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
         WindowGroup {
@@ -26,10 +31,19 @@ struct SleepsterApp: App {
                 .onAppear {
                     setupApp()
                 }
+                .onReceive(NotificationCenter.default.publisher(for: .shortcutItemReceived)) { notification in
+                    if let shortcutType = notification.object as? String {
+                        handleShortcutItem(type: shortcutType)
+                    }
+                }
         }
     }
     
     private func setupApp() {
+        // Pass dependencies to app delegate
+        appDelegate.serviceContainer = serviceContainer
+        appDelegate.appState = appState
+        
         // Initialize database if needed
         Task {
             await serviceContainer.databaseManager.prePopulate()
@@ -37,19 +51,63 @@ struct SleepsterApp: App {
         
         // Setup audio session
         serviceContainer.audioManager.setupAudioSession()
-        
-        // Handle app shortcuts (3D Touch)
-        handleShortcutItems()
     }
     
-    private func handleShortcutItems() {
-        // Handle the "Sleep NOW!" shortcut from Info.plist
-        if let shortcutItem = appState.launchedShortcutItem {
-            if shortcutItem.type == "com.deanware.sleepster.newmessage" {
-                appState.shouldStartSleepingImmediately = true
-            }
+    private func handleShortcutItem(type: String) {
+        if type == "com.deanware.sleepster.newmessage" {
+            appState.shouldStartSleepingImmediately = true
         }
     }
+}
+
+// MARK: - UIApplicationDelegate for SwiftUI
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    var serviceContainer: ServiceContainer?
+    var appState: AppState?
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Initialize StoreKit helper
+        _ = StoreKitManager.shared
+        
+        return true
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        // Save Core Data context
+        serviceContainer?.coreDataStack.save()
+    }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        // Re-populate database if needed
+        Task {
+            await serviceContainer?.databaseManager.prePopulate()
+        }
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        // Save Core Data context before termination
+        serviceContainer?.coreDataStack.save()
+    }
+    
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        NotificationCenter.default.post(
+            name: .shortcutItemReceived, 
+            object: shortcutItem.type
+        )
+        completionHandler(true)
+    }
+    
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        // Default to portrait orientation, allow landscape for specific views if needed
+        return .portrait
+    }
+}
+
+// MARK: - Notification Extensions
+
+extension Notification.Name {
+    static let shortcutItemReceived = Notification.Name("shortcutItemReceived")
 }
 
 // MARK: - Content View (Main Entry Point)

@@ -2,36 +2,17 @@
 //  SleepMate-Bridging-Header.h
 //  SleepMate
 //
-//  Created by Claude on Phase 1 Migration
-//  This bridging header allows Swift and Objective-C code to coexist during migration
+//  Created by Claude on SwiftUI Migration
+//  Minimal bridging header for pure SwiftUI app
 //
 
 #ifndef SleepMate_Bridging_Header_h
 #define SleepMate_Bridging_Header_h
 
-// MARK: - Database Manager (Legacy)
+// MARK: - Legacy Database Manager (still in Objective-C)
 #import "DatabaseManager.h"
 
-// MARK: - View Controllers
-#import "iSleepAppDelegate.h"
-#import "MainViewController.h"
-// InformationViewController.h - Migrated to Swift InformationView
-#import "SettingsViewController.h"
-#import "SoundsViewController.h"
-#import "BackgroundsViewController.h"
-// TimerViewController.h - Migrated to Swift TimerSettingsView
-#import "BacklightViewController.h"
-
-// MARK: - Networking
-// FlickrAPIClient.h - Migrated to Swift FlickrService
-
-// MARK: - Audio
-// AVAudioPlayer+PGFade - Migrated to Swift AudioFading service
-
-// MARK: - In-App Purchases
-// IAPHelper & SleepsterIAPHelper - Migrated to Swift StoreKitManager
-
-// MARK: - Constants
+// MARK: - Constants (legacy header for compatibility)
 #import "Constants.h"
 
 // MARK: - Utility
@@ -42,5 +23,9 @@
 #import <CoreData/CoreData.h>
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import <StoreKit/StoreKit.h>
+
+// NOTE: All view controllers, networking, audio, and IAP components 
+// have been migrated to Swift and no longer need bridging
 
 #endif /* SleepMate_Bridging_Header_h */

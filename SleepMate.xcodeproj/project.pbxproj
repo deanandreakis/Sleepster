@@ -16,7 +16,6 @@
 		05329D7E13D35FEE00F199CA /* ThunderStorm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 05329D7D13D35FEE00F199CA /* ThunderStorm.mp3 */; };
 		053BF41412C5300500B2D546 /* player_play_256.png in Resources */ = {isa = PBXBuildFile; fileRef = 053BF41312C5300500B2D546 /* player_play_256.png */; };
 		053BF45412CD428400B2D546 /* rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 053BF45312CD428400B2D546 /* rain.mp3 */; };
-		05692F7A11C1EBF600A119A4 /* BacklightView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05692F7911C1EBF600A119A4 /* BacklightView.xib */; };
 		05AAF2FA1377084B00AD2167 /* kmoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 05AAF2F91377084B00AD2167 /* kmoon.png */; };
 		05AAF2FC1377085E00AD2167 /* kmoon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05AAF2FB1377085E00AD2167 /* kmoon@2x.png */; };
 		05E1D073128EF5FA00922B40 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E1D072128EF5FA00922B40 /* AVFoundation.framework */; };
@@ -24,10 +23,7 @@
 		05E2B92213197477005B3F97 /* lake-waves.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 05E2B92113197477005B3F97 /* lake-waves.mp3 */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		280E754D0DD40C5E005A515E /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 280E754A0DD40C5E005A515E /* FlipsideView.xib */; };
-		280E754E0DD40C5E005A515E /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 280E754B0DD40C5E005A515E /* MainView.xib */; };
 		288765590DF743DE002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765580DF743DE002DB57D /* CoreGraphics.framework */; };
-		5E4672AE20A28FCA0073EC03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E4672AD20A28FCA0073EC03 /* LaunchScreen.storyboard */; };
 		5E7DA66F2DFA3CAF0012AFB5 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E7DA66E2DFA3CAF0012AFB5 /* HealthKit.framework */; };
 		5E7DA6712DFA3CB80012AFB5 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E7DA6702DFA3CB80012AFB5 /* Intents.framework */; };
 		5E7DA6732DFA3CC00012AFB5 /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E7DA6722DFA3CC00012AFB5 /* IntentsUI.framework */; };
@@ -110,8 +106,6 @@
 		C1403BC51728BE2500B75633 /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BC41728BE2500B75633 /* Settings.png */; };
 		C1403BC71728BE4000B75633 /* Settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1403BC61728BE4000B75633 /* Settings@2x.png */; };
 		C144444D1C67D7DF00842946 /* playbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C144444C1C67D7DF00842946 /* playbutton@2x.png */; };
-		C14E0EF5167573F100811389 /* SoundsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C14E0EF3167573F100811389 /* SoundsViewController.xib */; };
-		C14E0EFA1675746A00811389 /* BackgroundsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C14E0EF81675746A00811389 /* BackgroundsViewController.xib */; };
 		C14E0EFC1675772400811389 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C14E0EFB1675772400811389 /* Social.framework */; };
 		C1659CE8180B75B00062D8B3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1659CE7180B75B00062D8B3 /* XCTest.framework */; };
 		C1659CE9180B75B00062D8B3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -119,7 +113,6 @@
 		C1659CF0180B75B00062D8B3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1659CEE180B75B00062D8B3 /* InfoPlist.strings */; };
 		C169CB4C1C839EE0009E8BDF /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C169CB4B1C839EE0009E8BDF /* MessageUI.framework */; };
 		C169CB4E1C83A47C009E8BDF /* at.png in Resources */ = {isa = PBXBuildFile; fileRef = C169CB4D1C83A47C009E8BDF /* at.png */; };
-		C19DB54F178E58E8001820A7 /* TimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C19DB54D178E58E8001820A7 /* TimerViewController.xib */; };
 		C19DB55117922923001820A7 /* Timer.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55017922923001820A7 /* Timer.png */; };
 		C19DB55317922947001820A7 /* Timer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55217922947001820A7 /* Timer@2x.png */; };
 		C19DB55517924ABD001820A7 /* Fav-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55417924ABD001820A7 /* Fav-1@2x.png */; };
@@ -147,7 +140,6 @@
 		C1CD259817B321690099F66D /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = C1CD259717B321690099F66D /* circle.png */; };
 		C1CD259A17B474070099F66D /* check_mark_green.png in Resources */ = {isa = PBXBuildFile; fileRef = C1CD259917B474070099F66D /* check_mark_green.png */; };
 		C1CD259C17B4741C0099F66D /* check_mark_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1CD259B17B4741C0099F66D /* check_mark_green@2x.png */; };
-		C1D7B40C1671A0860004D62E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D7B40A1671A0860004D62E /* SettingsViewController.xib */; };
 		C1E5F65B175C1CA10000BF16 /* Play.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E5F65A175C1CA10000BF16 /* Play.png */; };
 		C1E5F65D175C1CBD0000BF16 /* Play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E5F65C175C1CBD0000BF16 /* Play@2x.png */; };
 /* End PBXBuildFile section */
@@ -196,7 +188,6 @@
 		053BF45312CD428400B2D546 /* rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rain.mp3; sourceTree = "<group>"; };
 		05692F7111C1E6F800A119A4 /* BacklightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BacklightViewController.h; sourceTree = "<group>"; };
 		05692F7211C1E6F800A119A4 /* BacklightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BacklightViewController.m; sourceTree = "<group>"; };
-		05692F7911C1EBF600A119A4 /* BacklightView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BacklightView.xib; sourceTree = "<group>"; };
 		05AAF2F91377084B00AD2167 /* kmoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kmoon.png; sourceTree = "<group>"; };
 		05AAF2FB1377085E00AD2167 /* kmoon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kmoon@2x.png"; sourceTree = "<group>"; };
 		05B073F2BFF1FF4ED3159CE1 /* Pods_SleepMate_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepMate_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,8 +199,6 @@
 		1D3623240D0F684500981E51 /* iSleepAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSleepAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* iSleepAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iSleepAppDelegate.m; sourceTree = "<group>"; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		280E754A0DD40C5E005A515E /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlipsideView.xib; sourceTree = "<group>"; };
-		280E754B0DD40C5E005A515E /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
 		288765580DF743DE002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		289233A80DB2D0DB0083E9F9 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Classes/MainViewController.h; sourceTree = "<group>"; };
 		289233A90DB2D0DB0083E9F9 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Classes/MainViewController.m; sourceTree = "<group>"; };
@@ -219,7 +208,6 @@
 		4F16DFA4C9ABAD00487A7C14 /* Pods-SleepMate.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMate.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMate/Pods-SleepMate.distribution.xcconfig"; sourceTree = "<group>"; };
 		55096084B74BC362C8D7695C /* Pods-SleepMate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMate/Pods-SleepMate.debug.xcconfig"; sourceTree = "<group>"; };
 		5D024A3EE0E4319DB7D58B2F /* Pods-SleepMate Tests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMate Tests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMate Tests/Pods-SleepMate Tests.distribution.xcconfig"; sourceTree = "<group>"; };
-		5E4672AD20A28FCA0073EC03 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5E7DA66E2DFA3CAF0012AFB5 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		5E7DA6702DFA3CB80012AFB5 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		5E7DA6722DFA3CC00012AFB5 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
@@ -312,10 +300,8 @@
 		C144444C1C67D7DF00842946 /* playbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "playbutton@2x.png"; sourceTree = "<group>"; };
 		C14E0EF1167573F100811389 /* SoundsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundsViewController.h; sourceTree = "<group>"; };
 		C14E0EF2167573F100811389 /* SoundsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundsViewController.m; sourceTree = "<group>"; };
-		C14E0EF3167573F100811389 /* SoundsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SoundsViewController.xib; sourceTree = "<group>"; };
 		C14E0EF61675746A00811389 /* BackgroundsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundsViewController.h; sourceTree = "<group>"; };
 		C14E0EF71675746A00811389 /* BackgroundsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundsViewController.m; sourceTree = "<group>"; };
-		C14E0EF81675746A00811389 /* BackgroundsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BackgroundsViewController.xib; sourceTree = "<group>"; };
 		C14E0EFB1675772400811389 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		C1659CE6180B75B00062D8B3 /* SleepMate Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SleepMate Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1659CE7180B75B00062D8B3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -326,7 +312,6 @@
 		C169CB4D1C83A47C009E8BDF /* at.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = at.png; sourceTree = "<group>"; };
 		C19DB54B178E58E8001820A7 /* TimerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerViewController.h; sourceTree = "<group>"; };
 		C19DB54C178E58E8001820A7 /* TimerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerViewController.m; sourceTree = "<group>"; };
-		C19DB54D178E58E8001820A7 /* TimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerViewController.xib; sourceTree = "<group>"; };
 		C19DB55017922923001820A7 /* Timer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Timer.png; sourceTree = "<group>"; };
 		C19DB55217922947001820A7 /* Timer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Timer@2x.png"; sourceTree = "<group>"; };
 		C19DB55417924ABD001820A7 /* Fav-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Fav-1@2x.png"; sourceTree = "<group>"; };
@@ -359,7 +344,6 @@
 		C1CD259B17B4741C0099F66D /* check_mark_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check_mark_green@2x.png"; sourceTree = "<group>"; };
 		C1D7B4081671A0860004D62E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		C1D7B4091671A0860004D62E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		C1D7B40A1671A0860004D62E /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		C1E5F65A175C1CA10000BF16 /* Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Play.png; sourceTree = "<group>"; };
 		C1E5F65C175C1CBD0000BF16 /* Play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Play@2x.png"; sourceTree = "<group>"; };
 		DC45D3FAB282AC02CA8F8F6C /* libPods-SleepMateUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SleepMateUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -695,14 +679,6 @@
 		C1D7B40516719F080004D62E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C19DB54D178E58E8001820A7 /* TimerViewController.xib */,
-				C14E0EF81675746A00811389 /* BackgroundsViewController.xib */,
-				C14E0EF3167573F100811389 /* SoundsViewController.xib */,
-				C1D7B40A1671A0860004D62E /* SettingsViewController.xib */,
-				280E754B0DD40C5E005A515E /* MainView.xib */,
-				280E754A0DD40C5E005A515E /* FlipsideView.xib */,
-				05692F7911C1EBF600A119A4 /* BacklightView.xib */,
-				5E4672AD20A28FCA0073EC03 /* LaunchScreen.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -851,11 +827,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C19DB54F178E58E8001820A7 /* TimerViewController.xib in Resources */,
 				C1BB0B5A17EF8B0300D20D27 /* new_star@2x.png in Resources */,
-				280E754D0DD40C5E005A515E /* FlipsideView.xib in Resources */,
-				280E754E0DD40C5E005A515E /* MainView.xib in Resources */,
-				05692F7A11C1EBF600A119A4 /* BacklightView.xib in Resources */,
 				053BF41412C5300500B2D546 /* player_play_256.png in Resources */,
 				053BF45412CD428400B2D546 /* rain.mp3 in Resources */,
 				052C9A7C12F4ACEB00400088 /* campfire.mp3 in Resources */,
@@ -888,12 +860,8 @@
 				5E80572F20AD1BEE000EECEC /* Media.xcassets in Resources */,
 				05329D7E13D35FEE00F199CA /* ThunderStorm.mp3 in Resources */,
 				C12D23B21C756ABD00B9FFEB /* heart.png in Resources */,
-				C1D7B40C1671A0860004D62E /* SettingsViewController.xib in Resources */,
 				C19DB55917935138001820A7 /* twitter.png in Resources */,
-				C14E0EF5167573F100811389 /* SoundsViewController.xib in Resources */,
-				C14E0EFA1675746A00811389 /* BackgroundsViewController.xib in Resources */,
 				C19DB55517924ABD001820A7 /* Fav-1@2x.png in Resources */,
-				5E4672AE20A28FCA0073EC03 /* LaunchScreen.storyboard in Resources */,
 				C138149116FF47B000293B48 /* menuButton@2x.png in Resources */,
 				C1403BB51728B69500B75633 /* home-2.png in Resources */,
 				C1403BB71728B6B400B75633 /* home-2@2x.png in Resources */,

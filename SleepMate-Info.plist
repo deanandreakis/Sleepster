@@ -3,38 +3,52 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
+	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>Sleepster</string>
 	<key>CFBundleExecutable</key>
-	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIcons</key>
-	<dict/>
-	<key>CFBundleIcons~ipad</key>
-	<dict/>
+	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>${PRODUCT_NAME}</string>
+	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.5</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
+	<string>3.0</string>
 	<key>CFBundleVersion</key>
-	<string>115</string>
+	<string>300</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	
+	<!-- SwiftUI App Configuration -->
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+		<key>UISceneConfigurations</key>
+		<dict/>
+	</dict>
+	
+	<!-- Launch Configuration -->
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIImageName</key>
+		<string>AppIcon</string>
+		<key>UIColorName</key>
+		<string>LaunchScreenBackground</string>
+	</dict>
+	
+	<!-- Network Security -->
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>UIApplicationExitsOnSuspend</key>
-	<false/>
+	
+	<!-- App Shortcuts (3D Touch) -->
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
@@ -44,96 +58,88 @@
 			<string>Sleep NOW!</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>com.deanware.sleepster.newmessage</string>
-			<key>UIApplicationShortcutItemUserInfo</key>
-			<dict>
-				<key>key1</key>
-				<string>value1</string>
-			</dict>
 		</dict>
 	</array>
+	
+	<!-- Background Capabilities -->
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
+		<string>background-processing</string>
+		<string>background-fetch</string>
 	</array>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>UIPrerenderedIcon</key>
-	<true/>
-	<key>UIStatusBarHidden</key>
-	<true/>
+	
+	<!-- Interface Orientations -->
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
+		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+	
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	
+	<!-- Privacy Descriptions -->
+	<key>NSHealthShareUsageDescription</key>
+	<string>Sleepster needs access to your sleep data to track and improve your sleep patterns.</string>
+	
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Sleepster will save your sleep sessions to the Health app for comprehensive sleep tracking.</string>
+	
+	<key>NSUserTrackingUsageDescription</key>
+	<string>This allows us to provide personalized sleep recommendations and measure app effectiveness.</string>
+	
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Sleepster uses the microphone to detect ambient noise levels for optimal sleep environment analysis.</string>
+	
+	<!-- Siri Integration -->
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>com.deanware.sleepster.startsleep</string>
+		<string>com.deanware.sleepster.stopsleep</string>
+	</array>
+	
+	<!-- App Icons -->
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>AppIcon</string>
+			</array>
+		</dict>
+	</dict>
+	
+	<key>CFBundleIcons~ipad</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>AppIcon</string>
+			</array>
+		</dict>
+	</dict>
+	
+	<!-- Status Bar -->
+	<key>UIStatusBarHidden</key>
+	<false/>
+	
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
-    <!-- Privacy Descriptions -->
-       <key>NSHealthShareUsageDescription</key>
-       <string>Sleepster needs access to your sleep data to track and improve your sleep patterns.</string>
-
-       <key>NSHealthUpdateUsageDescription</key>
-       <string>Sleepster will save your sleep sessions to the Health app for comprehensive sleep
-       tracking.</string>
-
-       <key>NSUserTrackingUsageDescription</key>
-       <string>This allows us to provide personalized sleep recommendations and measure app
-       effectiveness.</string>
-
-       <key>NSMicrophoneUsageDescription</key>
-       <string>Sleepster uses the microphone to detect ambient noise levels for optimal sleep environment
-       analysis.</string>
-
-       <!-- Siri Integration -->
-       <key>NSUserActivityTypes</key>
-       <array>
-           <string>com.deanware.sleepster.startsleep</string>
-           <string>com.deanware.sleepster.stopsleep</string>
-       </array>
-
-       <!-- Widget Support -->
-       <key>NSExtension</key>
-       <dict>
-           <key>NSExtensionAttributes</key>
-           <dict>
-               <key>IntentsSupported</key>
-               <array>
-                   <string>StartSleepIntent</string>
-                   <string>StopSleepIntent</string>
-               </array>
-           </dict>
-       </dict>
-
-       <!-- Background Capabilities -->
-       <key>UIBackgroundModes</key>
-       <array>
-           <string>audio</string>
-           <string>background-processing</string>
-           <string>background-fetch</string>
-       </array>
-
-       <!-- Modern App Requirements -->
-       <key>LSSupportsOpeningDocumentsInPlace</key>
-       <false/>
-
-       <key>UISupportsDocumentBrowser</key>
-       <false/>
-
-       <!-- Update Bundle Version for Swift Migration -->
-       <key>CFBundleShortVersionString</key>
-       <string>3.0</string>
-
-       <key>CFBundleVersion</key>
-       <string>300</string>
-
-       <!-- Widget Configuration -->
-       <key>NSExtensionPointIdentifier</key>
-       <string>com.apple.widgetkit-extension</string>
+	
+	<!-- Document Support -->
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<false/>
+	
+	<key>UISupportsDocumentBrowser</key>
+	<false/>
 </dict>
 </plist>
