@@ -265,7 +265,6 @@
 		8D1107310486CEB800E47090 /* SleepMate-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SleepMate-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		94C5B64B55EB5EBB7DF09961 /* Pods-SleepMate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMate.release.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMate/Pods-SleepMate.release.xcconfig"; sourceTree = "<group>"; };
 		C109245417D0447C00AAB6AE /* thumbnail-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail-default.png"; sourceTree = "<group>"; };
-		C109245617D5520700AAB6AE /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
 		C109245917D961A200AAB6AE /* igrove_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = igrove_1.jpg; sourceTree = "<group>"; };
 		C113175418414FE400A2732D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C1131756184152EB00A2732D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -319,7 +318,6 @@
 		C1BB0B5F17F31A7C00D20D27 /* app_icon_58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_58x58.png; sourceTree = "<group>"; };
 		C1C6080417982E0C0099590F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C1C6080817982F650099590F /* SleepsterModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SleepsterModel.xcdatamodel; sourceTree = "<group>"; };
-		C1C6080E179849140099590F /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
 		C1C6081117984D580099590F /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		C1C6081A1798638E0099590F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C1C6081C1798639A0099590F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -393,14 +391,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Application Delegate */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Application Delegate";
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -478,13 +468,8 @@
 				5E7DA6742DFA3EAC0012AFB5 /* SoundEntity.swift */,
 				5E80572E20AD1BEE000EECEC /* Media.xcassets */,
 				C1244DD217B085E200622B3D /* SleepMate.entitlements */,
-				C1BB0B3E17E93BAB00D20D27 /* IAP */,
-				C1C60816179861F00099590F /* API */,
 				C1C6080617982F2A0099590F /* Model */,
-				C1D7B40716719F8B0004D62E /* Controllers */,
-				C1D7B40516719F080004D62E /* Views */,
 				289233A00DB2D0730083E9F9 /* Utilities */,
-				080E96DDFE201D6D7F000001 /* Application Delegate */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				C1659CEB180B75B00062D8B3 /* SleepMate Tests */,
@@ -632,42 +617,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		C1BB0B3E17E93BAB00D20D27 /* IAP */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = IAP;
-			sourceTree = "<group>";
-		};
 		C1C6080617982F2A0099590F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C1C6080E179849140099590F /* Background.h */,
 				C1C6080717982F650099590F /* SleepsterModel.xcdatamodeld */,
-				C109245617D5520700AAB6AE /* Sound.h */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		C1C60816179861F00099590F /* API */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = API;
-			sourceTree = "<group>";
-		};
-		C1D7B40516719F080004D62E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
-		C1D7B40716719F8B0004D62E /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1127,7 +1082,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.9;
 			};
 			name = Distribution;
 		};
@@ -1162,7 +1117,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = incremental;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.9;
 			};
 			name = Debug;
 		};
@@ -1194,7 +1149,7 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.9;
 			};
 			name = Release;
 		};
@@ -1254,7 +1209,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1308,7 +1263,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1363,7 +1318,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.9;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1496,6 +1451,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.deanware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 5.9;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1541,6 +1497,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.deanware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 5.9;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = xctest;
@@ -1587,6 +1544,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.deanware.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 5.9;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = xctest;
