@@ -15,22 +15,21 @@
 // MARK: - View Controllers
 #import "iSleepAppDelegate.h"
 #import "MainViewController.h"
-#import "InformationViewController.h"
+// InformationViewController.h - Migrated to Swift InformationView
 #import "SettingsViewController.h"
 #import "SoundsViewController.h"
 #import "BackgroundsViewController.h"
-#import "TimerViewController.h"
+// TimerViewController.h - Migrated to Swift TimerSettingsView
 #import "BacklightViewController.h"
 
 // MARK: - Networking
-#import "FlickrAPIClient.h"
+// FlickrAPIClient.h - Migrated to Swift FlickrService
 
 // MARK: - Audio
-#import "AVAudioPlayer+PGFade.h"
+// AVAudioPlayer+PGFade - Migrated to Swift AudioFading service
 
 // MARK: - In-App Purchases
-#import "IAPHelper.h"
-#import "SleepsterIAPHelper.h"
+// IAPHelper & SleepsterIAPHelper - Migrated to Swift StoreKitManager
 
 // MARK: - Constants
 #import "Constants.h"

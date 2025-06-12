@@ -13,6 +13,7 @@
 		052C9A7F12F4ACEB00400088 /* waterfall.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 052C9A7912F4ACEB00400088 /* waterfall.mp3 */; };
 		052C9A8012F4ACEB00400088 /* waves.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 052C9A7A12F4ACEB00400088 /* waves.mp3 */; };
 		052C9A8112F4ACEB00400088 /* wind.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 052C9A7B12F4ACEB00400088 /* wind.mp3 */; };
+		052E288413691D7000AC496D /* AVAudioPlayer+PGFade.m in Sources */ = {isa = PBXBuildFile; fileRef = 052E288313691D7000AC496D /* AVAudioPlayer+PGFade.m */; };
 		05329D7E13D35FEE00F199CA /* ThunderStorm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 05329D7D13D35FEE00F199CA /* ThunderStorm.mp3 */; };
 		053BF41412C5300500B2D546 /* player_play_256.png in Resources */ = {isa = PBXBuildFile; fileRef = 053BF41312C5300500B2D546 /* player_play_256.png */; };
 		053BF45412CD428400B2D546 /* rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 053BF45312CD428400B2D546 /* rain.mp3 */; };
@@ -129,6 +130,8 @@
 		C19DB55D1793531A001820A7 /* facebook-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55C1793531A001820A7 /* facebook-logo.png */; };
 		C19DB55F1793534F001820A7 /* facebook-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C19DB55E1793534F001820A7 /* facebook-logo@2x.png */; };
 		C1BB0B3D17E9389A00D20D27 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1BB0B3C17E9389A00D20D27 /* StoreKit.framework */; };
+		C1BB0B4117E93BE200D20D27 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BB0B4017E93BE200D20D27 /* IAPHelper.m */; };
+		C1BB0B4417E93EE200D20D27 /* SleepsterIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BB0B4317E93EE200D20D27 /* SleepsterIAPHelper.m */; };
 		C1BB0B5117EF334400D20D27 /* grove2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1BB0B4D17EF334400D20D27 /* grove2.jpg */; };
 		C1BB0B5217EF334400D20D27 /* grove3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1BB0B4E17EF334400D20D27 /* grove3.jpg */; };
 		C1BB0B5317EF334400D20D27 /* grove4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C1BB0B4F17EF334400D20D27 /* grove4.jpg */; };
@@ -191,6 +194,8 @@
 		052C9A7912F4ACEB00400088 /* waterfall.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = waterfall.mp3; sourceTree = "<group>"; };
 		052C9A7A12F4ACEB00400088 /* waves.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = waves.mp3; sourceTree = "<group>"; };
 		052C9A7B12F4ACEB00400088 /* wind.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wind.mp3; sourceTree = "<group>"; };
+		052E288213691D5E00AC496D /* AVAudioPlayer+PGFade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVAudioPlayer+PGFade.h"; sourceTree = "<group>"; };
+		052E288313691D7000AC496D /* AVAudioPlayer+PGFade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVAudioPlayer+PGFade.m"; sourceTree = "<group>"; };
 		05329D7D13D35FEE00F199CA /* ThunderStorm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ThunderStorm.mp3; sourceTree = "<group>"; };
 		053BF41312C5300500B2D546 /* player_play_256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_play_256.png; sourceTree = "<group>"; };
 		053BF45312CD428400B2D546 /* rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rain.mp3; sourceTree = "<group>"; };
@@ -336,6 +341,10 @@
 		C19DB55C1793531A001820A7 /* facebook-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-logo.png"; sourceTree = "<group>"; };
 		C19DB55E1793534F001820A7 /* facebook-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-logo@2x.png"; sourceTree = "<group>"; };
 		C1BB0B3C17E9389A00D20D27 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		C1BB0B3F17E93BE200D20D27 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		C1BB0B4017E93BE200D20D27 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
+		C1BB0B4217E93EE200D20D27 /* SleepsterIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SleepsterIAPHelper.h; sourceTree = "<group>"; };
+		C1BB0B4317E93EE200D20D27 /* SleepsterIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SleepsterIAPHelper.m; sourceTree = "<group>"; };
 		C1BB0B4D17EF334400D20D27 /* grove2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grove2.jpg; sourceTree = "<group>"; };
 		C1BB0B4E17EF334400D20D27 /* grove3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grove3.jpg; sourceTree = "<group>"; };
 		C1BB0B4F17EF334400D20D27 /* grove4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grove4.jpg; sourceTree = "<group>"; };
@@ -452,6 +461,8 @@
 				C13D6CC117C45CFA00EFC786 /* Flurry.h */,
 				C1C6081117984D580099590F /* SynthesizeSingleton.h */,
 				C138164A17486C2C00F89C66 /* Constants.h */,
+				052E288313691D7000AC496D /* AVAudioPlayer+PGFade.m */,
+				052E288213691D5E00AC496D /* AVAudioPlayer+PGFade.h */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -670,6 +681,10 @@
 		C1BB0B3E17E93BAB00D20D27 /* IAP */ = {
 			isa = PBXGroup;
 			children = (
+				C1BB0B3F17E93BE200D20D27 /* IAPHelper.h */,
+				C1BB0B4017E93BE200D20D27 /* IAPHelper.m */,
+				C1BB0B4217E93EE200D20D27 /* SleepsterIAPHelper.h */,
+				C1BB0B4317E93EE200D20D27 /* SleepsterIAPHelper.m */,
 			);
 			name = IAP;
 			sourceTree = "<group>";
@@ -1074,7 +1089,10 @@
 				5E7DA67F2DFA3EAC0012AFB5 /* Constants.swift in Sources */,
 				5E7DA6802DFA3EAC0012AFB5 /* SleepsterApp.swift in Sources */,
 				5E7DA6812DFA3EAC0012AFB5 /* FlickrAPIClient.swift in Sources */,
+				C1BB0B4117E93BE200D20D27 /* IAPHelper.m in Sources */,
+				C1BB0B4417E93EE200D20D27 /* SleepsterIAPHelper.m in Sources */,
 				C1C6080917982F650099590F /* SleepsterModel.xcdatamodeld in Sources */,
+				052E288413691D7000AC496D /* AVAudioPlayer+PGFade.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
