@@ -341,7 +341,9 @@ class AudioManager: NSObject, ObservableObject {
     deinit {
         NotificationCenter.default.removeObserver(self)
         fadeTimer?.invalidate()
-        stopAllSounds()
+        Task { @MainActor in
+            stopAllSounds()
+        }
     }
 }
 
@@ -356,9 +358,11 @@ extension AudioManager: AVAudioPlayerDelegate {
         }
     }
     
-    func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
+    nonisolated func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
         print("Audio player decode error: \(error?.localizedDescription ?? "Unknown error")")
-        isPlaying = false
-        currentSoundURL = nil
+        Task { @MainActor in
+            isPlaying = false
+            currentSoundURL = nil
+        }
     }
 }

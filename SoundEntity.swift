@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-@objc(SoundEntity)
+@objc(Sound)
 public class SoundEntity: NSManagedObject, Identifiable {
     
 }

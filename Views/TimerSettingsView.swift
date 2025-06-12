@@ -59,7 +59,6 @@ struct TimerSettingsView: View {
                         HapticFeedback.success()
                         dismiss()
                     }
-                    .fontWeight(.semibold)
                 }
             }
         }
@@ -133,7 +132,6 @@ struct TimerSettingsView: View {
             VStack(spacing: 4) {
                 Text(viewModel.formatDuration(duration))
                     .font(.title3)
-                    .fontWeight(.semibold)
                 
                 Text(viewModel.getDurationDescription(duration))
                     .font(.caption2)
@@ -167,8 +165,7 @@ struct TimerSettingsView: View {
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Set Custom Time")
                             .font(.subheadline)
-                            .fontWeight(.medium)
-                        
+                                        
                         if viewModel.isCustomDurationMode {
                             Text(viewModel.formatDetailedDuration(viewModel.customDuration))
                                 .font(.caption)
@@ -285,8 +282,7 @@ struct TimerSettingsView: View {
         } label: {
             Text(title)
                 .font(.caption)
-                .fontWeight(.medium)
-                .foregroundColor(.blue)
+                    .foregroundColor(.blue)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
                 .background(Color.blue.opacity(0.1), in: RoundedRectangle(cornerRadius: 8))
@@ -345,11 +341,10 @@ struct TimerSettingsView: View {
                         }
                         showingCustomPicker = false
                     }
-                    .fontWeight(.semibold)
                 }
             }
         }
-        .presentationDetents([.medium])
+        // .presentationDetents([.medium]) // iOS 16+ only
     }
     
     // MARK: - Helper Methods

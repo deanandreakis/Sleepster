@@ -12,7 +12,7 @@ import SwiftyJSON
 
 typealias PicsBlock = ([BackgroundEntity]) -> Void
 
-@objc(BackgroundEntity)
+@objc(Background)
 public class BackgroundEntity: NSManagedObject, Identifiable {
     
 }
@@ -98,20 +98,22 @@ extension BackgroundEntity {
             "extras": "url_s,url_m"
         ]
         
-        AF.request(baseURL, parameters: parameters).responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                var backgrounds: [BackgroundEntity] = []
-                
-                if let photos = json["photos"]["photo"].array {
+        // Use modern FlickrService instead of direct Alamofire
+        Task {
+            let result = await FlickrService.shared.searchPhotos(tags: searchTags, perPage: 50)
+            await MainActor.run {
+                switch result {
+                case .success(let response):
+                    let photos = response.photos.photo
+                    var backgrounds: [BackgroundEntity] = []
                     let context = CoreDataStack.shared.viewContext
                     
                     for photo in photos {
-                        let background = BackgroundEntity(context: context)
-                        background.bTitle = photo["title"].stringValue
-                        background.bThumbnailUrl = photo["url_s"].string
-                        background.bFullSizeUrl = photo["url_m"].string
+                        guard let entity = NSEntityDescription.entity(forEntityName: "Background", in: context) else { continue }
+                        let background = BackgroundEntity(entity: entity, insertInto: context)
+                        background.bTitle = photo.title
+                        background.bThumbnailUrl = photo.url_s
+                        background.bFullSizeUrl = photo.url_m ?? photo.url_s
                         background.isImage = true
                         background.isLocalImage = false
                         background.isFavorite = false
@@ -121,15 +123,10 @@ extension BackgroundEntity {
                     }
                     
                     CoreDataStack.shared.save()
-                }
-                
-                DispatchQueue.main.async {
                     completion(backgrounds)
-                }
-                
-            case .failure(let error):
-                print("Flickr API error: \(error)")
-                DispatchQueue.main.async {
+                    
+                case .failure(let error):
+                    print("Flickr API error: \(error)")
                     completion([])
                 }
             }

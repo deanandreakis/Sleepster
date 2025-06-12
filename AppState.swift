@@ -52,7 +52,7 @@ class AppState: ObservableObject {
     var launchedShortcutItem: UIApplicationShortcutItem?
     
     // MARK: - Navigation State
-    @Published var navigationPath = NavigationPath()
+    @Published var navigationPath: [String] = [] // iOS 15.0 compatible navigation
     
     // MARK: - Settings State
     @Published var isDarkModeEnabled = false {

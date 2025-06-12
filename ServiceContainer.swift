@@ -10,6 +10,7 @@ import SwiftUI
 
 @MainActor
 class ServiceContainer: ObservableObject {
+    static let shared = ServiceContainer()
     
     // MARK: - Core Services
     lazy var coreDataStack: CoreDataStack = {

@@ -159,7 +159,7 @@ class InformationViewModel: ObservableObject {
         let machineMirror = Mirror(reflecting: systemInfo.machine)
         let identifier = machineMirror.children.reduce("") { identifier, element in
             guard let value = element.value as? Int8, value != 0 else { return identifier }
-            return identifier + String(UnicodeScalar(UInt8(value))!)
+            return identifier + String(UnicodeScalar(UInt8(value)) ?? UnicodeScalar(0))
         }
         return identifier
     }
@@ -175,6 +175,7 @@ class InformationViewModel: ObservableObject {
 }
 
 // MARK: - Supporting Types
+
 struct Feature {
     let title: String
     let description: String

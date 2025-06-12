@@ -51,6 +51,10 @@
 			</dict>
 		</dict>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIPrerenderedIcon</key>
@@ -59,9 +63,77 @@
 	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+    <!-- Privacy Descriptions -->
+       <key>NSHealthShareUsageDescription</key>
+       <string>Sleepster needs access to your sleep data to track and improve your sleep patterns.</string>
+
+       <key>NSHealthUpdateUsageDescription</key>
+       <string>Sleepster will save your sleep sessions to the Health app for comprehensive sleep
+       tracking.</string>
+
+       <key>NSUserTrackingUsageDescription</key>
+       <string>This allows us to provide personalized sleep recommendations and measure app
+       effectiveness.</string>
+
+       <key>NSMicrophoneUsageDescription</key>
+       <string>Sleepster uses the microphone to detect ambient noise levels for optimal sleep environment
+       analysis.</string>
+
+       <!-- Siri Integration -->
+       <key>NSUserActivityTypes</key>
+       <array>
+           <string>com.deanware.sleepster.startsleep</string>
+           <string>com.deanware.sleepster.stopsleep</string>
+       </array>
+
+       <!-- Widget Support -->
+       <key>NSExtension</key>
+       <dict>
+           <key>NSExtensionAttributes</key>
+           <dict>
+               <key>IntentsSupported</key>
+               <array>
+                   <string>StartSleepIntent</string>
+                   <string>StopSleepIntent</string>
+               </array>
+           </dict>
+       </dict>
+
+       <!-- Background Capabilities -->
+       <key>UIBackgroundModes</key>
+       <array>
+           <string>audio</string>
+           <string>background-processing</string>
+           <string>background-fetch</string>
+       </array>
+
+       <!-- Modern App Requirements -->
+       <key>LSSupportsOpeningDocumentsInPlace</key>
+       <false/>
+
+       <key>UISupportsDocumentBrowser</key>
+       <false/>
+
+       <!-- Update Bundle Version for Swift Migration -->
+       <key>CFBundleShortVersionString</key>
+       <string>3.0</string>
+
+       <key>CFBundleVersion</key>
+       <string>300</string>
+
+       <!-- Widget Configuration -->
+       <key>NSExtensionPointIdentifier</key>
+       <string>com.apple.widgetkit-extension</string>
 </dict>
 </plist>

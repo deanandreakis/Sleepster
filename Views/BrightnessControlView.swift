@@ -23,8 +23,7 @@ struct BrightnessControlView: View {
                     
                     Text("Screen Brightness")
                         .font(.title2)
-                        .fontWeight(.semibold)
-                    
+                        
                     Text("Adjust brightness for comfortable sleep")
                         .font(.body)
                         .foregroundColor(.secondary)
@@ -50,14 +49,13 @@ struct BrightnessControlView: View {
                     Button("Done") {
                         dismiss()
                     }
-                    .fontWeight(.semibold)
                 }
             }
         }
         .onAppear {
             brightness = UIScreen.main.brightness
         }
-        .presentationDetents([.medium, .large])
+        // .presentationDetents([.medium, .large]) // iOS 16+ only
     }
     
     // MARK: - Subviews
@@ -124,8 +122,7 @@ struct BrightnessControlView: View {
                 
                 Text(title)
                     .font(.caption)
-                    .fontWeight(.medium)
-                
+                        
                 Text("\(Int(brightness * 100))%")
                     .font(.caption2)
                     .foregroundColor(.secondary)

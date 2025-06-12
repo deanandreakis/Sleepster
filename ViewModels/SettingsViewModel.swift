@@ -166,7 +166,7 @@ class SettingsViewModel: ObservableObject {
     }
     
     func exportSettings() -> String {
-        let settings = [
+        let settings: [String: Any] = [
             "isDarkModeEnabled": isDarkModeEnabled,
             "isHapticsEnabled": isHapticsEnabled,
             "isAutoLockDisabled": isAutoLockDisabled,

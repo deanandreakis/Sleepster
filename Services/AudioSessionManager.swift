@@ -237,8 +237,9 @@ class AudioSessionManager: NSObject, ObservableObject {
                 interruptionReason = .other
             case .appWasSuspended:
                 interruptionReason = .other
-            case .builtInMicMutedBySystem:
-                interruptionReason = .other
+            // builtInMicMutedBySystem is only available in iOS 17.2+
+            // case .builtInMicMutedBySystem:
+            //     interruptionReason = .other
             @unknown default:
                 interruptionReason = .other
             }

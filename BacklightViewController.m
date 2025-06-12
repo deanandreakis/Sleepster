@@ -8,7 +8,7 @@
 
 #import "BacklightViewController.h"
 // #import "UIImageView+AFNetworking.h" // Legacy AFNetworking - replaced by SwiftUI
-#import "Background.h"
+// #import "Background.h" // Migrated to Swift BackgroundEntity
 //#import <Crashlytics/Crashlytics.h>
 
 @interface BacklightViewController ()

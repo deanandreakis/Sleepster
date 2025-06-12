@@ -135,7 +135,7 @@ struct PaywallView: View {
             // Hero Image
             Image(systemName: presentationContext.heroImage)
                 .font(.system(size: 60))
-                .foregroundStyle(.blue.gradient)
+                .foregroundColor(.blue)
                 .frame(width: 100, height: 100)
                 .background(
                     Circle()
@@ -438,11 +438,6 @@ struct ProductCardView: View {
     }
 }
 
-struct Feature {
-    let title: String
-    let description: String
-    let icon: String
-}
 
 // MARK: - Preview
 

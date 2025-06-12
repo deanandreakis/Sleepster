@@ -61,7 +61,7 @@ struct InformationView: View {
         VStack(spacing: 16) {
             // App icon placeholder
             RoundedRectangle(cornerRadius: 20)
-                .fill(.blue.gradient)
+                .fill(.blue)
                 .frame(width: 80, height: 80)
                 .overlay {
                     Image(systemName: "moon.stars.fill")
@@ -398,7 +398,7 @@ struct InformationView: View {
                 }
             }
         }
-        .presentationDetents([.medium, .large])
+        // .presentationDetents([.medium, .large]) // iOS 16+ only
     }
     
     // MARK: - Helper Methods

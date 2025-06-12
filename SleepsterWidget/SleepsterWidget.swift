@@ -1,593 +1,245 @@
 //
 //  SleepsterWidget.swift
-//  SleepMate
+//  SleepsterWidget
 //
-//  Created by Claude on Phase 5 Migration
+//  Created by Dean Andreakis on 6/11/25.
 //
 
 import WidgetKit
 import SwiftUI
 
-// MARK: - Widget Entry
-
-struct SleepsterEntry: TimelineEntry {
-    let date: Date
-    let isPlaying: Bool
-    let currentSound: String?
-    let sleepSessionActive: Bool
-    let lastSleepDuration: TimeInterval?
-    let nextBedtime: Date?
-}
-
-// MARK: - Widget Provider
-
+// MARK: - Timeline Provider for iOS 15.0 compatibility
 struct SleepsterProvider: TimelineProvider {
     func placeholder(in context: Context) -> SleepsterEntry {
         SleepsterEntry(
             date: Date(),
-            isPlaying: false,
-            currentSound: "Ocean Waves",
-            sleepSessionActive: false,
-            lastSleepDuration: 8.5 * 3600,
-            nextBedtime: Calendar.current.date(byAdding: .hour, value: 2, to: Date())
+            isTimerActive: false,
+            remainingTime: 0,
+            activeSoundsCount: 0
         )
     }
-    
-    func getSnapshot(in context: Context, completion: @escaping (SleepsterEntry) -> Void) {
-        let entry = createEntry()
+
+    func getSnapshot(in context: Context, completion: @escaping (SleepsterEntry) -> ()) {
+        let entry = SleepsterEntry(
+            date: Date(),
+            isTimerActive: false,
+            remainingTime: 0,
+            activeSoundsCount: 2
+        )
         completion(entry)
     }
-    
-    func getTimeline(in context: Context, completion: @escaping (Timeline<SleepsterEntry>) -> Void) {
-        let currentEntry = createEntry()
-        
-        // Update every 15 minutes
-        let nextUpdateDate = Calendar.current.date(byAdding: .minute, value: 15, to: Date())!
-        let timeline = Timeline(entries: [currentEntry], policy: .after(nextUpdateDate))
-        
+
+    func getTimeline(in context: Context, completion: @escaping (Timeline<SleepsterEntry>) -> ()) {
+        var entries: [SleepsterEntry] = []
+
+        // Generate timeline entries
+        let currentDate = Date()
+        for minuteOffset in 0..<60 {
+            let entryDate = Calendar.current.date(byAdding: .minute, value: minuteOffset, to: currentDate)!
+            let entry = SleepsterEntry(
+                date: entryDate,
+                isTimerActive: minuteOffset < 30, // Simulate timer running for 30 minutes
+                remainingTime: TimeInterval(max(0, 30 - minuteOffset) * 60), // Remaining seconds
+                activeSoundsCount: 2
+            )
+            entries.append(entry)
+        }
+
+        let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
-    
-    private func createEntry() -> SleepsterEntry {
-        // Get current app state from UserDefaults (shared between app and widget)
-        let userDefaults = UserDefaults(suiteName: "group.com.deanware.sleepmate")
-        
-        let isPlaying = userDefaults?.bool(forKey: "isAudioPlaying") ?? false
-        let currentSound = userDefaults?.string(forKey: "currentSound")
-        let sleepSessionActive = userDefaults?.bool(forKey: "sleepSessionActive") ?? false
-        let lastSleepDuration = userDefaults?.double(forKey: "lastSleepDuration")
-        
-        // Calculate next bedtime (assuming 10 PM default)
-        let calendar = Calendar.current
-        var nextBedtime = calendar.dateInterval(of: .day, for: Date())?.end
-        nextBedtime = calendar.date(byAdding: .hour, value: -2, to: nextBedtime ?? Date())
-        
-        return SleepsterEntry(
-            date: Date(),
-            isPlaying: isPlaying,
-            currentSound: currentSound,
-            sleepSessionActive: sleepSessionActive,
-            lastSleepDuration: lastSleepDuration == 0 ? nil : lastSleepDuration,
-            nextBedtime: nextBedtime
-        )
-    }
 }
 
-// MARK: - Widget Views
-
-struct SleepsterSmallWidgetView: View {
-    let entry: SleepsterEntry
-    
-    var body: some View {
-        VStack(spacing: 8) {
-            // App Icon
-            Image(systemName: "moon.stars.fill")
-                .font(.title)
-                .foregroundStyle(.blue.gradient)
-            
-            // Status
-            if entry.sleepSessionActive {
-                Text("Sleep Tracking")
-                    .font(.caption)
-                    .fontWeight(.medium)
-                    .foregroundColor(.green)
-                
-                Text("Active")
-                    .font(.caption2)
-                    .foregroundColor(.secondary)
-            } else if entry.isPlaying {
-                Text("Playing")
-                    .font(.caption)
-                    .fontWeight(.medium)
-                    .foregroundColor(.blue)
-                
-                if let sound = entry.currentSound {
-                    Text(sound)
-                        .font(.caption2)
-                        .foregroundColor(.secondary)
-                        .lineLimit(1)
-                }
-            } else {
-                Text("Sleepster")
-                    .font(.caption)
-                    .fontWeight(.medium)
-                
-                Text("Ready")
-                    .font(.caption2)
-                    .foregroundColor(.secondary)
-            }
-        }
-        .containerBackground(.fill.tertiary, for: .widget)
-    }
+// MARK: - Timeline Entry
+struct SleepsterEntry: TimelineEntry {
+    let date: Date
+    let isTimerActive: Bool
+    let remainingTime: TimeInterval // in seconds
+    let activeSoundsCount: Int
 }
 
-struct SleepsterMediumWidgetView: View {
-    let entry: SleepsterEntry
-    
-    var body: some View {
-        HStack(spacing: 12) {
-            // Left side - Status
-            VStack(alignment: .leading, spacing: 8) {
-                HStack {
-                    Image(systemName: "moon.stars.fill")
-                        .foregroundStyle(.blue.gradient)
-                    
-                    Text("Sleepster")
-                        .font(.headline)
-                        .fontWeight(.semibold)
-                }
-                
-                if entry.sleepSessionActive {
-                    Label("Sleep tracking active", systemImage: "bed.double.fill")
-                        .font(.caption)
-                        .foregroundColor(.green)
-                } else if entry.isPlaying {
-                    Label("Audio playing", systemImage: "speaker.wave.2.fill")
-                        .font(.caption)
-                        .foregroundColor(.blue)
-                    
-                    if let sound = entry.currentSound {
-                        Text(sound)
-                            .font(.caption2)
-                            .foregroundColor(.secondary)
-                    }
-                } else {
-                    Label("Ready for sleep", systemImage: "moon.circle.fill")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-                
-                Spacer()
-            }
-            
-            Spacer()
-            
-            // Right side - Quick Actions
-            VStack(spacing: 8) {
-                // Sleep Now button
-                Button(intent: StartSleepIntent()) {
-                    VStack(spacing: 4) {
-                        Image(systemName: "bed.double")
-                            .font(.title2)
-                        Text("Sleep")
-                            .font(.caption2)
-                    }
-                    .foregroundColor(.white)
-                    .frame(width: 60, height: 50)
-                    .background(.blue.gradient, in: RoundedRectangle(cornerRadius: 8))
-                }
-                .buttonStyle(.plain)
-                
-                // Stop button (if playing)
-                if entry.isPlaying || entry.sleepSessionActive {
-                    Button(intent: StopAudioIntent()) {
-                        VStack(spacing: 4) {
-                            Image(systemName: "stop.fill")
-                                .font(.title2)
-                            Text("Stop")
-                                .font(.caption2)
-                        }
-                        .foregroundColor(.white)
-                        .frame(width: 60, height: 50)
-                        .background(.red.gradient, in: RoundedRectangle(cornerRadius: 8))
-                    }
-                    .buttonStyle(.plain)
-                }
-            }
-        }
-        .padding()
-        .containerBackground(.fill.tertiary, for: .widget)
-    }
-}
-
-struct SleepsterLargeWidgetView: View {
-    let entry: SleepsterEntry
-    
-    var body: some View {
-        VStack(spacing: 16) {
-            // Header
-            HStack {
-                Image(systemName: "moon.stars.fill")
-                    .font(.title)
-                    .foregroundStyle(.blue.gradient)
-                
-                Text("Sleepster")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                
-                Spacer()
-                
-                if entry.sleepSessionActive {
-                    Label("Tracking", systemImage: "record.circle.fill")
-                        .font(.caption)
-                        .foregroundColor(.green)
-                }
-            }
-            
-            // Sleep Statistics
-            if let lastSleep = entry.lastSleepDuration {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Last Sleep Session")
-                        .font(.headline)
-                        .foregroundColor(.primary)
-                    
-                    HStack {
-                        Image(systemName: "clock.fill")
-                            .foregroundColor(.blue)
-                        
-                        Text(formatDuration(lastSleep))
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                        
-                        Spacer()
-                        
-                        Text(sleepQuality(for: lastSleep))
-                            .font(.caption)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 4)
-                            .background(.green.opacity(0.2), in: Capsule())
-                            .foregroundColor(.green)
-                    }
-                }
-                .padding()
-                .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 12))
-            }
-            
-            // Quick Actions
-            HStack(spacing: 12) {
-                Button(intent: StartSleepIntent()) {
-                    VStack(spacing: 8) {
-                        Image(systemName: "bed.double")
-                            .font(.title2)
-                        Text("Sleep Now")
-                            .font(.caption)
-                            .fontWeight(.medium)
-                    }
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity, minHeight: 60)
-                    .background(.blue.gradient, in: RoundedRectangle(cornerRadius: 12))
-                }
-                .buttonStyle(.plain)
-                
-                Button(intent: PlaySoundsIntent()) {
-                    VStack(spacing: 8) {
-                        Image(systemName: "speaker.wave.2")
-                            .font(.title2)
-                        Text("Sounds")
-                            .font(.caption)
-                            .fontWeight(.medium)
-                    }
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity, minHeight: 60)
-                    .background(.green.gradient, in: RoundedRectangle(cornerRadius: 12))
-                }
-                .buttonStyle(.plain)
-                
-                if entry.isPlaying || entry.sleepSessionActive {
-                    Button(intent: StopAudioIntent()) {
-                        VStack(spacing: 8) {
-                            Image(systemName: "stop.fill")
-                                .font(.title2)
-                            Text("Stop")
-                                .font(.caption)
-                                .fontWeight(.medium)
-                        }
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity, minHeight: 60)
-                        .background(.red.gradient, in: RoundedRectangle(cornerRadius: 12))
-                    }
-                    .buttonStyle(.plain)
-                }
-            }
-            
-            Spacer()
-        }
-        .padding()
-        .containerBackground(.fill.tertiary, for: .widget)
-    }
-    
-    private func formatDuration(_ duration: TimeInterval) -> String {
-        let hours = Int(duration) / 3600
-        let minutes = (Int(duration) % 3600) / 60
-        return "\(hours)h \(minutes)m"
-    }
-    
-    private func sleepQuality(for duration: TimeInterval) -> String {
-        let hours = duration / 3600
-        
-        switch hours {
-        case 8...:
-            return "Excellent"
-        case 7..<8:
-            return "Good"
-        case 6..<7:
-            return "Fair"
-        default:
-            return "Poor"
-        }
-    }
-}
-
-// MARK: - Widget Configuration
-
-struct SleepsterWidget: Widget {
-    let kind: String = "SleepsterWidget"
-    
-    var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: SleepsterProvider()) { entry in
-            SleepsterWidgetView(entry: entry)
-        }
-        .configurationDisplayName("Sleepster")
-        .description("Quick access to sleep sounds and tracking")
-        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
-    }
-}
-
+// MARK: - Widget View
 struct SleepsterWidgetView: View {
-    let entry: SleepsterEntry
+    var entry: SleepsterProvider.Entry
     @Environment(\.widgetFamily) var family
     
     var body: some View {
         switch family {
         case .systemSmall:
-            SleepsterSmallWidgetView(entry: entry)
+            SmallWidgetView(entry: entry)
         case .systemMedium:
-            SleepsterMediumWidgetView(entry: entry)
-        case .systemLarge:
-            SleepsterLargeWidgetView(entry: entry)
+            MediumWidgetView(entry: entry)
         default:
-            SleepsterSmallWidgetView(entry: entry)
+            SmallWidgetView(entry: entry)
         }
     }
 }
 
-// MARK: - Widget Bundle
-
-@main
-struct SleepsterWidgetBundle: WidgetBundle {
-    var body: some Widget {
-        SleepsterWidget()
-        SleepStatisticsWidget()
-    }
-}
-
-// MARK: - Sleep Statistics Widget
-
-struct SleepStatisticsWidget: Widget {
-    let kind: String = "SleepStatisticsWidget"
-    
-    var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: SleepStatisticsProvider()) { entry in
-            SleepStatisticsWidgetView(entry: entry)
-        }
-        .configurationDisplayName("Sleep Statistics")
-        .description("View your sleep patterns and insights")
-        .supportedFamilies([.systemMedium, .systemLarge])
-    }
-}
-
-struct SleepStatisticsEntry: TimelineEntry {
-    let date: Date
-    let weeklyAverage: TimeInterval
-    let sleepEfficiency: Double
-    let consistency: Double
-    let trend: SleepTrend
-}
-
-enum SleepTrend {
-    case improving, stable, declining
-    
-    var icon: String {
-        switch self {
-        case .improving: return "arrow.up.circle.fill"
-        case .stable: return "minus.circle.fill"
-        case .declining: return "arrow.down.circle.fill"
-        }
-    }
-    
-    var color: Color {
-        switch self {
-        case .improving: return .green
-        case .stable: return .blue
-        case .declining: return .orange
-        }
-    }
-}
-
-struct SleepStatisticsProvider: TimelineProvider {
-    func placeholder(in context: Context) -> SleepStatisticsEntry {
-        SleepStatisticsEntry(
-            date: Date(),
-            weeklyAverage: 8 * 3600,
-            sleepEfficiency: 85.0,
-            consistency: 78.0,
-            trend: .improving
-        )
-    }
-    
-    func getSnapshot(in context: Context, completion: @escaping (SleepStatisticsEntry) -> Void) {
-        let entry = createEntry()
-        completion(entry)
-    }
-    
-    func getTimeline(in context: Context, completion: @escaping (Timeline<SleepStatisticsEntry>) -> Void) {
-        let currentEntry = createEntry()
-        
-        // Update once per hour
-        let nextUpdateDate = Calendar.current.date(byAdding: .hour, value: 1, to: Date())!
-        let timeline = Timeline(entries: [currentEntry], policy: .after(nextUpdateDate))
-        
-        completion(timeline)
-    }
-    
-    private func createEntry() -> SleepStatisticsEntry {
-        let userDefaults = UserDefaults(suiteName: "group.com.deanware.sleepmate")
-        
-        let weeklyAverage = userDefaults?.double(forKey: "weeklyAverageSleep") ?? 8 * 3600
-        let sleepEfficiency = userDefaults?.double(forKey: "sleepEfficiency") ?? 85.0
-        let consistency = userDefaults?.double(forKey: "sleepConsistency") ?? 78.0
-        let trendValue = userDefaults?.integer(forKey: "sleepTrend") ?? 0
-        
-        let trend: SleepTrend
-        switch trendValue {
-        case 1: trend = .improving
-        case -1: trend = .declining
-        default: trend = .stable
-        }
-        
-        return SleepStatisticsEntry(
-            date: Date(),
-            weeklyAverage: weeklyAverage,
-            sleepEfficiency: sleepEfficiency,
-            consistency: consistency,
-            trend: trend
-        )
-    }
-}
-
-struct SleepStatisticsWidgetView: View {
-    let entry: SleepStatisticsEntry
-    @Environment(\.widgetFamily) var family
+// MARK: - Small Widget View
+struct SmallWidgetView: View {
+    let entry: SleepsterEntry
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            // Header
+        VStack(spacing: 8) {
+            // App Icon and Name
             HStack {
-                Image(systemName: "chart.line.uptrend.xyaxis")
-                    .foregroundStyle(.blue.gradient)
-                
-                Text("Sleep Statistics")
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                
+                Image(systemName: "moon.fill")
+                    .foregroundColor(.blue)
+                    .font(.title2)
+                Text("Sleepster")
+                    .font(.caption)
+                    .fontWeight(.medium)
                 Spacer()
-                
-                Image(systemName: entry.trend.icon)
-                    .foregroundColor(entry.trend.color)
             }
             
-            // Statistics Grid
-            if family == .systemLarge {
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 12) {
-                    StatCard(
-                        title: "Weekly Average",
-                        value: formatDuration(entry.weeklyAverage),
-                        icon: "clock.fill",
-                        color: .blue
-                    )
-                    
-                    StatCard(
-                        title: "Sleep Efficiency",
-                        value: "\(Int(entry.sleepEfficiency))%",
-                        icon: "gauge.high",
-                        color: .green
-                    )
-                    
-                    StatCard(
-                        title: "Consistency",
-                        value: "\(Int(entry.consistency))%",
-                        icon: "calendar",
-                        color: .orange
-                    )
-                    
-                    StatCard(
-                        title: "Trend",
-                        value: entry.trend == .improving ? "↗️" : entry.trend == .declining ? "↘️" : "→",
-                        icon: "arrow.triangle.2.circlepath",
-                        color: entry.trend.color
-                    )
+            // Timer Status
+            if entry.isTimerActive {
+                VStack(spacing: 4) {
+                    Text("Timer Active")
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
+                    Text(formatTime(entry.remainingTime))
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundColor(.green)
                 }
             } else {
-                HStack(spacing: 12) {
-                    StatCard(
-                        title: "Weekly Avg",
-                        value: formatDuration(entry.weeklyAverage),
-                        icon: "clock.fill",
-                        color: .blue
-                    )
-                    
-                    StatCard(
-                        title: "Efficiency",
-                        value: "\(Int(entry.sleepEfficiency))%",
-                        icon: "gauge.high",
-                        color: .green
-                    )
+                VStack(spacing: 4) {
+                    Text("Ready to Sleep")
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
+                    Image(systemName: "play.circle.fill")
+                        .font(.title)
+                        .foregroundColor(.blue)
+                }
+            }
+            
+            // Active Sounds
+            if entry.activeSoundsCount > 0 {
+                HStack {
+                    Image(systemName: "speaker.wave.2.fill")
+                        .foregroundColor(.orange)
+                        .font(.caption)
+                    Text("\(entry.activeSoundsCount) sounds")
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
+                }
+            }
+        }
+        .padding()
+        .background(Color.black.opacity(0.1))
+    }
+}
+
+// MARK: - Medium Widget View
+struct MediumWidgetView: View {
+    let entry: SleepsterEntry
+    
+    var body: some View {
+        HStack {
+            // Left side - Status
+            VStack(alignment: .leading, spacing: 8) {
+                HStack {
+                    Image(systemName: "moon.fill")
+                        .foregroundColor(.blue)
+                        .font(.title2)
+                    Text("Sleepster")
+                        .font(.headline)
+                        .fontWeight(.medium)
+                }
+                
+                if entry.isTimerActive {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Sleep Timer")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        Text(formatTime(entry.remainingTime))
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(.green)
+                    }
+                } else {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Ready for Sleep")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        Text("Tap to Start")
+                            .font(.subheadline)
+                            .fontWeight(.medium)
+                            .foregroundColor(.blue)
+                    }
                 }
             }
             
             Spacer()
+            
+            // Right side - Quick Actions
+            VStack(spacing: 12) {
+                // Simple visual indicator - tapping widget opens main app
+                VStack(spacing: 4) {
+                    Image(systemName: "play.circle.fill")
+                        .font(.title2)
+                    Text("Start")
+                        .font(.caption2)
+                }
+                .foregroundColor(.blue)
+                
+                if entry.activeSoundsCount > 0 {
+                    VStack(spacing: 2) {
+                        Image(systemName: "speaker.wave.2.fill")
+                            .foregroundColor(.orange)
+                        Text("\(entry.activeSoundsCount)")
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                    }
+                }
+            }
         }
         .padding()
-        .containerBackground(.fill.tertiary, for: .widget)
-    }
-    
-    private func formatDuration(_ duration: TimeInterval) -> String {
-        let hours = Int(duration) / 3600
-        let minutes = (Int(duration) % 3600) / 60
-        return "\(hours)h \(minutes)m"
+        .background(Color.black.opacity(0.05))
     }
 }
 
-struct StatCard: View {
-    let title: String
-    let value: String
-    let icon: String
-    let color: Color
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            HStack {
-                Image(systemName: icon)
-                    .foregroundColor(color)
-                    .font(.caption)
-                
-                Spacer()
-            }
-            
-            Text(value)
-                .font(.headline)
-                .fontWeight(.bold)
-            
-            Text(title)
-                .font(.caption2)
-                .foregroundColor(.secondary)
+// MARK: - Widget Configuration
+struct SleepsterWidget: Widget {
+    let kind: String = "SleepsterWidget"
+
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: SleepsterProvider()) { entry in
+            SleepsterWidgetView(entry: entry)
         }
-        .padding(8)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 8))
+        .configurationDisplayName("Sleepster")
+        .description("Quick access to your sleep timer and sounds")
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
+}
+
+// MARK: - Utility Functions
+private func formatTime(_ timeInterval: TimeInterval) -> String {
+    let minutes = Int(timeInterval) / 60
+    let seconds = Int(timeInterval) % 60
+    return String(format: "%02d:%02d", minutes, seconds)
 }
 
 // MARK: - Preview
-
-#Preview(as: .systemMedium) {
-    SleepsterWidget()
-} timeline: {
-    SleepsterEntry(
-        date: Date(),
-        isPlaying: true,
-        currentSound: "Ocean Waves",
-        sleepSessionActive: false,
-        lastSleepDuration: 8.5 * 3600,
-        nextBedtime: Calendar.current.date(byAdding: .hour, value: 2, to: Date())
-    )
+struct SleepsterWidget_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            SleepsterWidgetView(entry: SleepsterEntry(
+                date: Date(),
+                isTimerActive: true,
+                remainingTime: 1800, // 30 minutes
+                activeSoundsCount: 2
+            ))
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
+            
+            SleepsterWidgetView(entry: SleepsterEntry(
+                date: Date(),
+                isTimerActive: false,
+                remainingTime: 0,
+                activeSoundsCount: 0
+            ))
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
+        }
+    }
 }

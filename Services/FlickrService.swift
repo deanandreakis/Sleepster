@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 /// Modern async/await based Flickr API service
 actor FlickrService {
@@ -216,19 +217,19 @@ struct FlickrPhoto: Codable, Identifiable {
 // MARK: - Convenience Extensions
 
 extension FlickrPhoto {
-    /// Convert to Background entity for Core Data storage
-    func toBackgroundEntity(context: NSManagedObjectContext) -> Background? {
+    /// Convert to BackgroundEntity for Core Data storage
+    func toBackgroundEntity(context: NSManagedObjectContext) -> BackgroundEntity? {
         guard let entity = NSEntityDescription.entity(forEntityName: "Background", in: context) else {
             return nil
         }
         
-        let background = Background(entity: entity, insertInto: context)
+        let background = BackgroundEntity(entity: entity, insertInto: context)
         background.bTitle = title
         background.bThumbnailUrl = url_s ?? ""
         background.bFullSizeUrl = url_l ?? url_m ?? url_s ?? ""
         background.isLocalImage = false
         background.isFavorite = false
-        background.bUniqueId = id
+        background.isSelected = false
         
         return background
     }

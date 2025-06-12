@@ -6,19 +6,20 @@
 //
 
 import SwiftUI
+import UIKit
 import Kingfisher
 
-struct AsyncImageView: View {
+struct AsyncImageView: SwiftUI.View {
     let url: String?
     let placeholder: String?
-    let contentMode: ContentMode
+    let contentMode: SwiftUI.ContentMode
     let width: CGFloat?
     let height: CGFloat?
     
     init(
         url: String?,
         placeholder: String? = nil,
-        contentMode: ContentMode = .fill,
+        contentMode: SwiftUI.ContentMode = .fill,
         width: CGFloat? = nil,
         height: CGFloat? = nil
     ) {
@@ -29,18 +30,23 @@ struct AsyncImageView: View {
         self.height = height
     }
     
-    var body: some View {
+    var body: some SwiftUI.View {
         Group {
             if let urlString = url, let imageURL = URL(string: urlString) {
-                KFImage(imageURL)
-                    .placeholder {
+                AsyncImage(url: imageURL) { phase in
+                    switch phase {
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: contentMode)
+                    case .failure(_):
+                        placeholderView
+                    case .empty:
+                        placeholderView
+                    @unknown default:
                         placeholderView
                     }
-                    .retry(maxCount: 3)
-                    .cacheOriginalImage()
-                    .fade(duration: 0.25)
-                    .resizable()
-                    .aspectRatio(contentMode: contentMode)
+                }
             } else if let placeholder = placeholder {
                 Image(placeholder)
                     .resizable()
@@ -53,7 +59,7 @@ struct AsyncImageView: View {
         .clipped()
     }
     
-    private var placeholderView: some View {
+    private var placeholderView: some SwiftUI.View {
         Rectangle()
             .fill(.regularMaterial)
             .overlay {
@@ -65,12 +71,12 @@ struct AsyncImageView: View {
 }
 
 // MARK: - Background Image View
-struct BackgroundImageView: View {
+struct BackgroundImageView: SwiftUI.View {
     let background: BackgroundEntity
     let isSelected: Bool
     let onTap: () -> Void
     
-    var body: some View {
+    var body: some SwiftUI.View {
         Button(action: onTap) {
             ZStack {
                 if background.isImage {
@@ -117,7 +123,7 @@ struct BackgroundImageView: View {
         .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
     }
     
-    private var backgroundColorView: some View {
+    private var backgroundColorView: some SwiftUI.View {
         Rectangle()
             .fill(getBackgroundColor())
             .overlay {
@@ -129,7 +135,7 @@ struct BackgroundImageView: View {
             }
     }
     
-    private var placeholderView: some View {
+    private var placeholderView: some SwiftUI.View {
         Rectangle()
             .fill(.regularMaterial)
             .overlay {
@@ -138,7 +144,7 @@ struct BackgroundImageView: View {
             }
     }
     
-    private func getBackgroundColor() -> Color {
+    private func getBackgroundColor() -> SwiftUI.Color {
         guard let colorName = background.bColor else { return .black }
         
         switch colorName {
@@ -163,11 +169,11 @@ struct BackgroundImageView: View {
 }
 
 // MARK: - Checkerboard Pattern for Clear Color
-struct CheckerboardView: View {
+struct CheckerboardView: SwiftUI.View {
     let rows = 8
     let columns = 8
     
-    var body: some View {
+    var body: some SwiftUI.View {
         VStack(spacing: 0) {
             ForEach(0..<rows, id: \.self) { row in
                 HStack(spacing: 0) {

@@ -9,7 +9,6 @@
 #import "DatabaseManager.h"
 #import "SynthesizeSingleton.h"
 #import "iSleepAppDelegate.h"
-#import "Background.h"
 #import "Constants.h"
 
 @interface DatabaseManager ()

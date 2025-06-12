@@ -26,12 +26,14 @@ class DatabaseManager: ObservableObject {
         return CoreDataStack.shared
     }
     
+    @MainActor
     var managedObjectContext: NSManagedObjectContext {
         return coreDataStack.viewContext
     }
     
     // MARK: - Database Operations
     
+    @MainActor
     func saveContext() {
         coreDataStack.save()
     }
@@ -50,6 +52,7 @@ class DatabaseManager: ObservableObject {
         }
     }
     
+    @MainActor
     func deleteAllEntities(_ entityName: String) async {
         let context = managedObjectContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
@@ -93,7 +96,8 @@ class DatabaseManager: ObservableObject {
         
         // Add color backgrounds
         for colorName in colorArray {
-            let background = BackgroundEntity(context: context)
+            guard let entity = NSEntityDescription.entity(forEntityName: "Background", in: context) else { continue }
+            let background = BackgroundEntity(entity: entity, insertInto: context)
             background.bTitle = colorName
             background.bThumbnailUrl = nil
             background.bFullSizeUrl = nil
@@ -114,7 +118,8 @@ class DatabaseManager: ObservableObject {
         ]
         
         for (title, imageName) in localImages {
-            let background = BackgroundEntity(context: context)
+            guard let entity = NSEntityDescription.entity(forEntityName: "Background", in: context) else { continue }
+            let background = BackgroundEntity(entity: entity, insertInto: context)
             background.bTitle = title
             background.bThumbnailUrl = imageName
             background.bFullSizeUrl = imageName
@@ -143,7 +148,7 @@ class DatabaseManager: ObservableObject {
     
     @MainActor
     private func populateDefaultSounds() async {
-        let defaultSounds = [
+        let defaultSounds: [(String, String, String?)] = [
             ("Thunder Storm", "ThunderStorm.mp3", nil),
             ("Campfire", "campfire.mp3", nil),
             ("Crickets", "crickets.mp3", nil),
@@ -161,7 +166,8 @@ class DatabaseManager: ObservableObject {
         let context = managedObjectContext
         
         for (title, url1, url2) in defaultSounds {
-            let sound = SoundEntity(context: context)
+            guard let entity = NSEntityDescription.entity(forEntityName: "Sound", in: context) else { continue }
+            let sound = SoundEntity(entity: entity, insertInto: context)
             sound.bTitle = title
             sound.soundUrl1 = url1
             sound.soundUrl2 = url2
@@ -174,6 +180,7 @@ class DatabaseManager: ObservableObject {
     
     // MARK: - Database State Checking
     
+    @MainActor
     func isDBNotExist() -> Bool {
         let context = managedObjectContext
         let fetchRequest = BackgroundEntity.fetchRequest()
@@ -201,6 +208,7 @@ class DatabaseManager: ObservableObject {
     
     // MARK: - Entity Management
     
+    @MainActor
     func fetchAllSounds() -> [SoundEntity] {
         let context = managedObjectContext
         let request = SoundEntity.fetchAllSounds()
@@ -213,6 +221,7 @@ class DatabaseManager: ObservableObject {
         }
     }
     
+    @MainActor
     func fetchAllBackgrounds() -> [BackgroundEntity] {
         let context = managedObjectContext
         let request = BackgroundEntity.fetchAllBackgrounds()
@@ -225,6 +234,7 @@ class DatabaseManager: ObservableObject {
         }
     }
     
+    @MainActor
     func fetchSelectedSound() -> SoundEntity? {
         let context = managedObjectContext
         let request = SoundEntity.fetchSelectedSound()
@@ -237,6 +247,7 @@ class DatabaseManager: ObservableObject {
         }
     }
     
+    @MainActor
     func fetchSelectedBackground() -> BackgroundEntity? {
         let context = managedObjectContext
         let request = BackgroundEntity.fetchSelectedBackground()

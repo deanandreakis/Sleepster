@@ -45,7 +45,15 @@ class ShortcutsManager: ObservableObject {
     /// Load existing shortcuts from the system
     func loadExistingShortcuts() async {
         do {
-            let shortcuts = try await INVoiceShortcutCenter.shared.getAllVoiceShortcuts()
+            let shortcuts = try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<[INVoiceShortcut], Error>) in
+                INVoiceShortcutCenter.shared.getAllVoiceShortcuts { shortcuts, error in
+                    if let error = error {
+                        continuation.resume(throwing: error)
+                    } else {
+                        continuation.resume(returning: shortcuts ?? [])
+                    }
+                }
+            }
             donatedShortcuts = shortcuts
         } catch {
             print("Failed to load existing shortcuts: \(error)")
@@ -195,7 +203,15 @@ class ShortcutsManager: ObservableObject {
     /// Clear all donated shortcuts
     func clearAllShortcuts() async {
         do {
-            let shortcuts = try await INVoiceShortcutCenter.shared.getAllVoiceShortcuts()
+            let shortcuts = try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<[INVoiceShortcut], Error>) in
+                INVoiceShortcutCenter.shared.getAllVoiceShortcuts { shortcuts, error in
+                    if let error = error {
+                        continuation.resume(throwing: error)
+                    } else {
+                        continuation.resume(returning: shortcuts ?? [])
+                    }
+                }
+            }
             for shortcut in shortcuts {
                 if shortcut.shortcut.intent is StartSleepIntent ||
                    shortcut.shortcut.intent is PlaySoundsIntent ||

@@ -8,7 +8,7 @@
 
 #import "BackgroundsViewController.h"
 #import "Constants.h"
-#import "Background.h"
+// #import "Background.h" // Migrated to Swift BackgroundEntity
 #import "DatabaseManager.h"
 // #import "UIImageView+AFNetworking.h" // Legacy AFNetworking - replaced by SwiftUI
 #import "iSleepAppDelegate.h"

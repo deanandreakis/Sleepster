@@ -295,14 +295,17 @@ extension Product {
     
     private let swiftManager = StoreKitManager.shared
     
+    @MainActor
     @objc func hasBackgroundAccess() -> Bool {
         return swiftManager.hasBackgroundAccess
     }
     
+    @MainActor
     @objc func hasSoundMixingAccess() -> Bool {
         return swiftManager.hasSoundMixingAccess
     }
     
+    @MainActor
     @objc func hasPremiumAccess() -> Bool {
         return swiftManager.hasPremiumAccess
     }

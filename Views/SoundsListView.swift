@@ -135,7 +135,6 @@ struct SoundsListView: View {
                             Text("Favorites")
                         }
                         .font(.caption)
-                        .fontWeight(.medium)
                         .foregroundColor(showingFavoritesOnly ? .white : .primary)
                         .padding(.horizontal, 12)
                         .padding(.vertical, 6)
@@ -167,7 +166,6 @@ struct SoundsListView: View {
                 Text(category.rawValue)
             }
             .font(.caption)
-            .fontWeight(.medium)
             .foregroundColor(selectedCategory == category ? .white : .primary)
             .padding(.horizontal, 12)
             .padding(.vertical, 6)
@@ -283,7 +281,6 @@ struct SoundCardView: View {
                             }
                         }
                         .font(.caption)
-                        .fontWeight(.medium)
                         .foregroundColor(isSelected ? .white : .blue)
                         .padding(.horizontal, 12)
                         .padding(.vertical, 6)

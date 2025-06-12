@@ -7,7 +7,10 @@
 //http://www.raywenderlich.com/22324/beginning-uicollectionview-in-ios-6-part-12
 
 #import <UIKit/UIKit.h>
-#import "Background.h"
+// #import "Background.h" // Migrated to Swift BackgroundEntity
+
+// Forward declaration for legacy compatibility
+@class Background;
 
 @protocol BackgroundsViewControllerDelegate <NSObject>
 - (void)backgroundSelected:(Background*)background;

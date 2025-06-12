@@ -156,7 +156,7 @@ struct SettingsView: View {
     }
     
     private var generalSection: some View {
-        Section("General") {
+        VStack(spacing: 16) {
             Toggle("Haptic Feedback", isOn: $viewModel.isHapticsEnabled)
                 .onChange(of: viewModel.isHapticsEnabled) { value in
                     appState.isHapticsEnabled = value
@@ -167,17 +167,17 @@ struct SettingsView: View {
                     appState.isAutoLockDisabled = value
                 }
             
-            HStack {
-                Text("Background Quality")
-                Spacer()
-                Picker("Quality", selection: $viewModel.backgroundImageQuality) {
-                    Text("Low").tag(0)
-                    Text("Medium").tag(1)
-                    Text("High").tag(2)
-                }
-                .pickerStyle(.segmented)
-                .frame(width: 150)
-            }
+            // HStack {
+            //     Text("Background Quality")
+            //     Spacer()
+            //     Picker("Quality", selection: $viewModel.backgroundImageQuality) {
+            //         Text("Low").tag(0)
+            //         Text("Medium").tag(1)
+            //         Text("High").tag(2)
+            //     }
+            //     .pickerStyle(.segmented)
+            //     .frame(width: 150)
+            // }
         }
     }
     

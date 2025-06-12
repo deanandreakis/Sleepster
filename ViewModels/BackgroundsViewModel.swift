@@ -204,14 +204,15 @@ class BackgroundsViewModel: ObservableObject {
         for photo in photos {
             // Check if this background already exists
             let existingBackground = backgrounds.first { background in
-                background.bFullSizeUrl == photo.mediumURL
+                background.bFullSizeUrl == photo.mediumURL?.absoluteString
             }
             
             if existingBackground == nil {
-                let background = BackgroundEntity(context: context)
+                guard let entity = NSEntityDescription.entity(forEntityName: "Background", in: context) else { continue }
+                let background = BackgroundEntity(entity: entity, insertInto: context)
                 background.bTitle = photo.title
-                background.bThumbnailUrl = photo.thumbnailURL
-                background.bFullSizeUrl = photo.mediumURL
+                background.bThumbnailUrl = photo.thumbnailURL?.absoluteString
+                background.bFullSizeUrl = photo.mediumURL?.absoluteString
                 background.bColor = nil
                 background.isImage = true
                 background.isLocalImage = false

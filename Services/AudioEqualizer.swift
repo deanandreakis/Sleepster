@@ -389,6 +389,7 @@ struct SavedAudioPreset: Codable, Identifiable {
     let delayWetDryMix: Float
     let createdAt: Date
     
+    @MainActor
     init(
         name: String,
         description: String,

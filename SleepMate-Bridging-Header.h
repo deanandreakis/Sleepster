@@ -9,10 +9,8 @@
 #ifndef SleepMate_Bridging_Header_h
 #define SleepMate_Bridging_Header_h
 
-// MARK: - Core Data (Legacy)
+// MARK: - Database Manager (Legacy)
 #import "DatabaseManager.h"
-#import "Background.h" 
-#import "Sound.h"
 
 // MARK: - View Controllers
 #import "iSleepAppDelegate.h"

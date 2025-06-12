@@ -46,10 +46,10 @@ struct SleepView: View {
                 .padding()
                 
                 // Loading overlay
-                if viewModel.isLoading {
-                    LoadingView(message: "Preparing your sleep experience...")
-                        .transition(.opacity)
-                }
+                // if viewModel.isLoading {
+                //     LoadingView(message: "Preparing your sleep experience...")
+                //         .transition(.opacity)
+                // }
             }
         }
         .navigationBarHidden(true)
@@ -63,26 +63,26 @@ struct SleepView: View {
         .sheet(isPresented: $showingBrightnessControl) {
             BrightnessControlView()
         }
-        .alert(item: $viewModel.alertItem) { alert in
-            Alert(
-                title: Text(alert.title),
-                message: Text(alert.message),
-                dismissButton: alert.dismissButton
-            )
-        }
+        // .alert(item: $viewModel.alertItem) { alert in
+        //     Alert(
+        //         title: Text(alert.title),
+        //         message: Text(alert.message),
+        //         dismissButton: alert.dismissButton
+        //     )
+        // }
     }
     
     // MARK: - Subviews
     
     private var backgroundView: some View {
-        Group {
+        ZStack {
             if let backgroundImage = appState.currentBackgroundImage {
                 Image(uiImage: backgroundImage)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .ignoresSafeArea()
             } else {
-                appState.currentBackgroundColor
+                Color(appState.currentBackgroundColor)
                     .ignoresSafeArea()
             }
         }

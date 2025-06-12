@@ -228,8 +228,7 @@ struct QuickShortcutRow: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(shortcut.title)
                         .font(.subheadline)
-                        .fontWeight(.medium)
-                        .foregroundColor(.primary)
+                            .foregroundColor(.primary)
                     
                     Text(shortcut.description)
                         .font(.caption)
@@ -259,17 +258,16 @@ struct ExistingShortcutRow: View {
     
     var body: some View {
         HStack {
-            Image(systemName: iconForIntent(voiceShortcut.shortcut.intent))
+            Image(systemName: iconForIntent(voiceShortcut.shortcut.intent ?? INIntent()))
                 .foregroundColor(.blue)
                 .frame(width: 30)
             
             VStack(alignment: .leading, spacing: 4) {
-                Text(voiceShortcut.shortcut.intent.suggestedInvocationPhrase ?? "Custom Shortcut")
+                Text(voiceShortcut.shortcut.intent?.suggestedInvocationPhrase ?? "Custom Shortcut")
                     .font(.subheadline)
-                    .fontWeight(.medium)
                 
-                if let phrase = voiceShortcut.invocationPhrase {
-                    Text("\"" + phrase + "\"")
+                if !voiceShortcut.invocationPhrase.isEmpty {
+                    Text("\"" + voiceShortcut.invocationPhrase + "\"")
                         .font(.caption)
                         .foregroundColor(.blue)
                         .italic()
@@ -307,7 +305,9 @@ struct AddShortcutView: UIViewControllerRepresentable {
     @Environment(\.dismiss) private var dismiss
     
     func makeUIViewController(context: Context) -> INUIAddVoiceShortcutViewController {
-        let shortcut = INShortcut(intent: intent)
+        guard let shortcut = INShortcut(intent: intent) else {
+            return INUIAddVoiceShortcutViewController(shortcut: INShortcut(intent: INIntent())!)
+        }
         let viewController = INUIAddVoiceShortcutViewController(shortcut: shortcut)
         viewController.delegate = context.coordinator
         return viewController

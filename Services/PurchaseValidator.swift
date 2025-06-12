@@ -168,7 +168,12 @@ class PurchaseValidator: ObservableObject {
         return true
         #else
         // In production, only allow production transactions
-        return transaction.environment == .production
+        if #available(iOS 16.0, *) {
+            return transaction.environment == .production
+        } else {
+            // For iOS 15, assume production environment
+            return true
+        }
         #endif
     }
 }

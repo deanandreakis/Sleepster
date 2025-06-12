@@ -13,6 +13,8 @@ import Foundation
 class IntentHandler: NSObject {
     static let shared = IntentHandler()
     
+    private let serviceContainer = ServiceContainer.shared
+    
     private override init() {
         super.init()
     }
@@ -31,8 +33,10 @@ class IntentHandler: NSObject {
                !preferredSounds.isEmpty {
                 
                 for soundName in preferredSounds.prefix(3) { // Limit to 3 sounds
-                    if let sound = SoundLibrary.shared.sounds.first(where: { $0.name == soundName }) {
-                        await AudioMixingEngine.shared.playSound(sound)
+                    // Use DatabaseManager to find sounds by name
+                    let allSounds = DatabaseManager.shared.fetchAllSounds()
+                    if let sound = allSounds.first(where: { $0.bTitle == soundName }) {
+                        await AudioMixingEngine.shared.playSound(named: sound.bTitle ?? "")
                     }
                 }
             }
@@ -40,7 +44,7 @@ class IntentHandler: NSObject {
             // Set default timer if configured
             if let defaultTimer = userDefaults.object(forKey: "DefaultSleepTimer") as? TimeInterval,
                defaultTimer > 0 {
-                await SleepTimerManager.shared.startTimer(duration: defaultTimer)
+                await serviceContainer.timerManager.startTimer(duration: defaultTimer)
             }
             
             return StartSleepIntentResponse.success(message: "Sleep session started successfully")
@@ -55,9 +59,10 @@ class IntentHandler: NSObject {
         do {
             if let soundMix = intent.soundMix, !soundMix.isEmpty {
                 // Play specific sounds
+                let allSounds = DatabaseManager.shared.fetchAllSounds()
                 for soundName in soundMix {
-                    if let sound = SoundLibrary.shared.sounds.first(where: { $0.name == soundName }) {
-                        await AudioMixingEngine.shared.playSound(sound)
+                    if let sound = allSounds.first(where: { $0.bTitle == soundName }) {
+                        await AudioMixingEngine.shared.playSound(named: sound.bTitle ?? "")
                     }
                 }
                 
@@ -67,17 +72,18 @@ class IntentHandler: NSObject {
             } else {
                 // Play default/recent sounds
                 let userDefaults = UserDefaults.standard
+                let allSounds = DatabaseManager.shared.fetchAllSounds()
                 if let recentSounds = userDefaults.array(forKey: "RecentlyPlayedSounds") as? [String],
                    let firstSound = recentSounds.first,
-                   let sound = SoundLibrary.shared.sounds.first(where: { $0.name == firstSound }) {
+                   let sound = allSounds.first(where: { $0.bTitle == firstSound }) {
                     
-                    await AudioMixingEngine.shared.playSound(sound)
+                    await AudioMixingEngine.shared.playSound(named: sound.bTitle ?? "")
                     return PlaySoundsIntentResponse.success(message: "Playing \(firstSound)")
                 } else {
                     // Play a default sound
-                    if let defaultSound = SoundLibrary.shared.sounds.first {
-                        await AudioMixingEngine.shared.playSound(defaultSound)
-                        return PlaySoundsIntentResponse.success(message: "Playing \(defaultSound.name)")
+                    if let defaultSound = allSounds.first {
+                        await AudioMixingEngine.shared.playSound(named: defaultSound.bTitle ?? "")
+                        return PlaySoundsIntentResponse.success(message: "Playing \(defaultSound.bTitle ?? "default sound")")
                     }
                 }
             }
@@ -101,8 +107,8 @@ class IntentHandler: NSObject {
             }
             
             // Stop timer if running
-            if SleepTimerManager.shared.isTimerActive {
-                await SleepTimerManager.shared.stopTimer()
+            if serviceContainer.timerManager.isRunning {
+                await serviceContainer.timerManager.stopTimer()
             }
             
             return StopAudioIntentResponse.success(message: "All audio stopped")
@@ -124,7 +130,7 @@ class IntentHandler: NSObject {
                 duration = 30 * 60
             }
             
-            await SleepTimerManager.shared.startTimer(duration: duration)
+            await serviceContainer.timerManager.startTimer(duration: duration)
             
             let minutes = Int(duration / 60)
             return SetSleepTimerIntentResponse.success(message: "Sleep timer set for \(minutes) minutes")
@@ -169,11 +175,12 @@ class IntentHandler: NSObject {
                 return PlaySpecificSoundIntentResponse.failure(error: "No sound specified")
             }
             
-            guard let sound = SoundLibrary.shared.sounds.first(where: { $0.name == soundName }) else {
+            let allSounds = DatabaseManager.shared.fetchAllSounds()
+            guard let sound = allSounds.first(where: { $0.bTitle == soundName }) else {
                 return PlaySpecificSoundIntentResponse.failure(error: "Sound '\(soundName)' not found")
             }
             
-            await AudioMixingEngine.shared.playSound(sound)
+            await AudioMixingEngine.shared.playSound(named: sound.bTitle ?? "")
             return PlaySpecificSoundIntentResponse.success(message: "Playing \(soundName)")
             
         } catch {
@@ -188,7 +195,7 @@ class IntentHandler: NSObject {
                 return SetSpecificTimerIntentResponse.failure(error: "No duration specified")
             }
             
-            await SleepTimerManager.shared.startTimer(duration: duration)
+            await serviceContainer.timerManager.startTimer(duration: duration)
             
             let minutes = Int(duration / 60)
             return SetSpecificTimerIntentResponse.success(message: "Timer set for \(minutes) minutes")

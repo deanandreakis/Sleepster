@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import UserNotifications
 
 @MainActor
 class TimerManager: ObservableObject {
@@ -242,7 +243,9 @@ class TimerManager: ObservableObject {
     }
     
     deinit {
-        stopTimer()
-        cancelLocalNotification()
+        Task { @MainActor in
+            stopTimer()
+            cancelLocalNotification()
+        }
     }
 }

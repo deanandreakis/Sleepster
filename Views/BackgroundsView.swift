@@ -131,8 +131,7 @@ struct BackgroundsView: View {
                         Text("Favorites")
                     }
                     .font(.caption)
-                    .fontWeight(.medium)
-                    .foregroundColor(viewModel.showingFavoritesOnly ? .white : .primary)
+                            .foregroundColor(viewModel.showingFavoritesOnly ? .white : .primary)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 6)
                     .background(
@@ -159,8 +158,7 @@ struct BackgroundsView: View {
         } label: {
             Text(category.rawValue)
                 .font(.caption)
-                .fontWeight(.medium)
-                .foregroundColor(selectedCategory == category ? .white : .primary)
+                    .foregroundColor(selectedCategory == category ? .white : .primary)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 6)
                 .background(
@@ -308,8 +306,7 @@ struct BackgroundCardView: View {
                     if let title = background.bTitle {
                         Text(getDisplayName(title))
                             .font(.caption2)
-                            .fontWeight(.medium)
-                            .foregroundColor(.white)
+                                            .foregroundColor(.white)
                             .padding(.horizontal, 8)
                             .padding(.vertical, 4)
                             .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8))
