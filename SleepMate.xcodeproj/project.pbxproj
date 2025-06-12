@@ -186,8 +186,6 @@
 		05329D7D13D35FEE00F199CA /* ThunderStorm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ThunderStorm.mp3; sourceTree = "<group>"; };
 		053BF41312C5300500B2D546 /* player_play_256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_play_256.png; sourceTree = "<group>"; };
 		053BF45312CD428400B2D546 /* rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rain.mp3; sourceTree = "<group>"; };
-		05692F7111C1E6F800A119A4 /* BacklightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BacklightViewController.h; sourceTree = "<group>"; };
-		05692F7211C1E6F800A119A4 /* BacklightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BacklightViewController.m; sourceTree = "<group>"; };
 		05AAF2F91377084B00AD2167 /* kmoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kmoon.png; sourceTree = "<group>"; };
 		05AAF2FB1377085E00AD2167 /* kmoon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kmoon@2x.png"; sourceTree = "<group>"; };
 		05B073F2BFF1FF4ED3159CE1 /* Pods_SleepMate_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SleepMate_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,14 +194,8 @@
 		05E2B91D13197465005B3F97 /* heavy-rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "heavy-rain.mp3"; sourceTree = "<group>"; };
 		05E2B92113197477005B3F97 /* lake-waves.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "lake-waves.mp3"; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D3623240D0F684500981E51 /* iSleepAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSleepAppDelegate.h; sourceTree = "<group>"; };
-		1D3623250D0F684500981E51 /* iSleepAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iSleepAppDelegate.m; sourceTree = "<group>"; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765580DF743DE002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		289233A80DB2D0DB0083E9F9 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Classes/MainViewController.h; sourceTree = "<group>"; };
-		289233A90DB2D0DB0083E9F9 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Classes/MainViewController.m; sourceTree = "<group>"; };
-		289233AC0DB2D0DB0083E9F9 /* InformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InformationViewController.h; path = Classes/InformationViewController.h; sourceTree = "<group>"; };
-		289233AD0DB2D0DB0083E9F9 /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InformationViewController.m; path = Classes/InformationViewController.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* SleepMate_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SleepMate_Prefix.pch; sourceTree = "<group>"; };
 		4F16DFA4C9ABAD00487A7C14 /* Pods-SleepMate.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMate.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMate/Pods-SleepMate.distribution.xcconfig"; sourceTree = "<group>"; };
 		55096084B74BC362C8D7695C /* Pods-SleepMate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMate/Pods-SleepMate.debug.xcconfig"; sourceTree = "<group>"; };
@@ -298,10 +290,6 @@
 		C1403BC41728BE2500B75633 /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings.png; sourceTree = "<group>"; };
 		C1403BC61728BE4000B75633 /* Settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings@2x.png"; sourceTree = "<group>"; };
 		C144444C1C67D7DF00842946 /* playbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "playbutton@2x.png"; sourceTree = "<group>"; };
-		C14E0EF1167573F100811389 /* SoundsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundsViewController.h; sourceTree = "<group>"; };
-		C14E0EF2167573F100811389 /* SoundsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundsViewController.m; sourceTree = "<group>"; };
-		C14E0EF61675746A00811389 /* BackgroundsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundsViewController.h; sourceTree = "<group>"; };
-		C14E0EF71675746A00811389 /* BackgroundsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundsViewController.m; sourceTree = "<group>"; };
 		C14E0EFB1675772400811389 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		C1659CE6180B75B00062D8B3 /* SleepMate Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SleepMate Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1659CE7180B75B00062D8B3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -310,8 +298,6 @@
 		C1659CF3180B75B10062D8B3 /* SleepMate Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SleepMate Tests-Prefix.pch"; sourceTree = "<group>"; };
 		C169CB4B1C839EE0009E8BDF /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		C169CB4D1C83A47C009E8BDF /* at.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = at.png; sourceTree = "<group>"; };
-		C19DB54B178E58E8001820A7 /* TimerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerViewController.h; sourceTree = "<group>"; };
-		C19DB54C178E58E8001820A7 /* TimerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerViewController.m; sourceTree = "<group>"; };
 		C19DB55017922923001820A7 /* Timer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Timer.png; sourceTree = "<group>"; };
 		C19DB55217922947001820A7 /* Timer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Timer@2x.png"; sourceTree = "<group>"; };
 		C19DB55417924ABD001820A7 /* Fav-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Fav-1@2x.png"; sourceTree = "<group>"; };
@@ -335,15 +321,12 @@
 		C1C6080817982F650099590F /* SleepsterModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SleepsterModel.xcdatamodel; sourceTree = "<group>"; };
 		C1C6080E179849140099590F /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
 		C1C6081117984D580099590F /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
-		C1C6081217984DFC0099590F /* DatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseManager.h; sourceTree = "<group>"; };
 		C1C6081A1798638E0099590F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C1C6081C1798639A0099590F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C1CD259517B321600099F66D /* circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle@2x.png"; sourceTree = "<group>"; };
 		C1CD259717B321690099F66D /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		C1CD259917B474070099F66D /* check_mark_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check_mark_green.png; sourceTree = "<group>"; };
 		C1CD259B17B4741C0099F66D /* check_mark_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check_mark_green@2x.png"; sourceTree = "<group>"; };
-		C1D7B4081671A0860004D62E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		C1D7B4091671A0860004D62E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		C1E5F65A175C1CA10000BF16 /* Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Play.png; sourceTree = "<group>"; };
 		C1E5F65C175C1CBD0000BF16 /* Play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Play@2x.png"; sourceTree = "<group>"; };
 		DC45D3FAB282AC02CA8F8F6C /* libPods-SleepMateUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SleepMateUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -413,8 +396,6 @@
 		080E96DDFE201D6D7F000001 /* Application Delegate */ = {
 			isa = PBXGroup;
 			children = (
-				1D3623240D0F684500981E51 /* iSleepAppDelegate.h */,
-				1D3623250D0F684500981E51 /* iSleepAppDelegate.m */,
 			);
 			name = "Application Delegate";
 			path = Classes;
@@ -661,7 +642,6 @@
 		C1C6080617982F2A0099590F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C1C6081217984DFC0099590F /* DatabaseManager.h */,
 				C1C6080E179849140099590F /* Background.h */,
 				C1C6080717982F650099590F /* SleepsterModel.xcdatamodeld */,
 				C109245617D5520700AAB6AE /* Sound.h */,
@@ -686,20 +666,6 @@
 		C1D7B40716719F8B0004D62E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				05692F7111C1E6F800A119A4 /* BacklightViewController.h */,
-				05692F7211C1E6F800A119A4 /* BacklightViewController.m */,
-				289233A80DB2D0DB0083E9F9 /* MainViewController.h */,
-				289233A90DB2D0DB0083E9F9 /* MainViewController.m */,
-				289233AC0DB2D0DB0083E9F9 /* InformationViewController.h */,
-				289233AD0DB2D0DB0083E9F9 /* InformationViewController.m */,
-				C1D7B4081671A0860004D62E /* SettingsViewController.h */,
-				C1D7B4091671A0860004D62E /* SettingsViewController.m */,
-				C14E0EF1167573F100811389 /* SoundsViewController.h */,
-				C14E0EF2167573F100811389 /* SoundsViewController.m */,
-				C14E0EF61675746A00811389 /* BackgroundsViewController.h */,
-				C14E0EF71675746A00811389 /* BackgroundsViewController.m */,
-				C19DB54B178E58E8001820A7 /* TimerViewController.h */,
-				C19DB54C178E58E8001820A7 /* TimerViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
