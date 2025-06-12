@@ -10,6 +10,24 @@ import SwiftUI
 import CoreData
 import Combine
 
+enum SoundCategory: String, CaseIterable {
+    case all = "All"
+    case nature = "Nature"
+    case water = "Water"
+    case weather = "Weather"
+    case ambient = "Ambient"
+    
+    var icon: String {
+        switch self {
+        case .all: return "music.note.list"
+        case .nature: return "leaf"
+        case .water: return "drop"
+        case .weather: return "cloud.rain"
+        case .ambient: return "waveform"
+        }
+    }
+}
+
 @MainActor
 class SoundsViewModel: ObservableObject {
     
@@ -25,20 +43,29 @@ class SoundsViewModel: ObservableObject {
     @Published var errorMessage: String?
     @Published var searchText = ""
     @Published var showingFavoritesOnly = false
+    @Published var selectedCategory: SoundCategory = .all
     @Published var isPreviewPlaying = false
     @Published var previewingSound: SoundEntity?
     
     // MARK: - Computed Properties
     var filteredSounds: [SoundEntity] {
-        let soundsToFilter = showingFavoritesOnly ? favoriteSounds : sounds
+        var soundsToFilter = showingFavoritesOnly ? favoriteSounds : sounds
         
-        if searchText.isEmpty {
-            return soundsToFilter
-        } else {
-            return soundsToFilter.filter { sound in
+        // Apply category filter
+        if selectedCategory != .all {
+            soundsToFilter = soundsToFilter.filter { sound in
+                return getSoundCategory(sound) == selectedCategory
+            }
+        }
+        
+        // Apply search filter
+        if !searchText.isEmpty {
+            soundsToFilter = soundsToFilter.filter { sound in
                 sound.bTitle?.localizedCaseInsensitiveContains(searchText) ?? false
             }
         }
+        
+        return soundsToFilter
     }
     
     // MARK: - Private Properties
@@ -170,6 +197,10 @@ class SoundsViewModel: ObservableObject {
         searchText = ""
     }
     
+    func setCategory(_ category: SoundCategory) {
+        selectedCategory = category
+    }
+    
     // MARK: - Validation
     func canSelectSound(_ sound: SoundEntity) -> Bool {
         // Check if sound file exists
@@ -188,6 +219,30 @@ class SoundsViewModel: ObservableObject {
         // This would require loading the audio file to get duration
         // For now, return a placeholder
         return "Unknown"
+    }
+    
+    func getSoundCategory(_ sound: SoundEntity) -> SoundCategory {
+        guard let title = sound.bTitle?.lowercased() else { return .ambient }
+        
+        // Weather sounds
+        if title.contains("rain") || title.contains("storm") || title.contains("thunder") || title.contains("wind") {
+            return .weather
+        }
+        
+        // Water sounds
+        if title.contains("ocean") || title.contains("wave") || title.contains("stream") || 
+           title.contains("waterfall") || title.contains("lake") || title.contains("water") {
+            return .water
+        }
+        
+        // Nature sounds
+        if title.contains("forest") || title.contains("bird") || title.contains("cricket") || 
+           title.contains("frog") || title.contains("campfire") || title.contains("fire") {
+            return .nature
+        }
+        
+        // Default to ambient for anything else
+        return .ambient
     }
     
     func getSoundDescription(_ sound: SoundEntity) -> String {

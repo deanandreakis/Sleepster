@@ -37,7 +37,7 @@ class AppState: ObservableObject {
     @Published var timeRemaining: TimeInterval = 0
     
     // MARK: - Background State
-    @Published var currentBackgroundColor: UIColor = .black
+    @Published var currentBackgroundColor: UIColor = .white
     @Published var currentBackgroundImage: UIImage?
     @Published var isBackgroundImageMode = false
     

@@ -102,6 +102,14 @@ class MainViewModel: ObservableObject {
         // Load last used volume
         currentVolume = settingsManager.lastVolume
         audioManager.setVolume(currentVolume)
+        
+        // Load last used timer duration and display it
+        timerDuration = settingsManager.lastTimerDuration
+        if timerDuration > 0 && !isTimerRunning {
+            timeRemaining = timerDuration
+            updateTimerDisplay()
+            updateTimerProgress()
+        }
     }
     
     // MARK: - Actions
@@ -157,6 +165,13 @@ class MainViewModel: ObservableObject {
     func setTimerDuration(_ duration: TimeInterval) {
         timerDuration = duration
         settingsManager.lastTimerDuration = duration
+        
+        // Update display to show the selected duration when timer is not running
+        if !isTimerRunning {
+            timeRemaining = duration
+            updateTimerDisplay()
+            updateTimerProgress()
+        }
     }
     
     func selectSound(_ sound: SoundEntity) {

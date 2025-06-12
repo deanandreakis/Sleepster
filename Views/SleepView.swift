@@ -39,9 +39,6 @@ struct SleepView: View {
                     mainContentView(geometry: geometry)
                     
                     Spacer()
-                    
-                    // Bottom controls
-                    bottomControlsView
                 }
                 .padding()
                 
@@ -107,26 +104,14 @@ struct SleepView: View {
             
             Spacer()
             
-            HStack(spacing: 16) {
-                // Brightness control
-                Button {
-                    HapticFeedback.light()
-                    showingBrightnessControl = true
-                } label: {
-                    Image(systemName: "sun.max")
-                        .font(.title2)
-                        .foregroundColor(.primary)
-                }
-                
-                // Settings
-                Button {
-                    HapticFeedback.light()
-                    appState.selectedTab = .settings
-                } label: {
-                    Image(systemName: "gearshape")
-                        .font(.title2)
-                        .foregroundColor(.primary)
-                }
+            // Brightness control
+            Button {
+                HapticFeedback.light()
+                showingBrightnessControl = true
+            } label: {
+                Image(systemName: "sun.max")
+                    .font(.title2)
+                    .foregroundColor(.primary)
             }
         }
         .padding(.top)
@@ -240,56 +225,6 @@ struct SleepView: View {
         }
     }
     
-    private var bottomControlsView: some View {
-        HStack(spacing: 24) {
-            // Sounds navigation
-            Button {
-                HapticFeedback.light()
-                appState.selectedTab = .sounds
-            } label: {
-                VStack(spacing: 4) {
-                    Image(systemName: "speaker.wave.3")
-                        .font(.title2)
-                    Text("Sounds")
-                        .font(.caption)
-                }
-                .foregroundColor(.primary)
-            }
-            
-            Spacer()
-            
-            // Timer settings
-            Button {
-                HapticFeedback.light()
-                showingTimerSettings = true
-            } label: {
-                VStack(spacing: 4) {
-                    Image(systemName: "timer")
-                        .font(.title2)
-                    Text("Timer")
-                        .font(.caption)
-                }
-                .foregroundColor(.primary)
-            }
-            
-            Spacer()
-            
-            // Backgrounds navigation
-            Button {
-                HapticFeedback.light()
-                appState.selectedTab = .backgrounds
-            } label: {
-                VStack(spacing: 4) {
-                    Image(systemName: "photo")
-                        .font(.title2)
-                    Text("Backgrounds")
-                        .font(.caption)
-                }
-                .foregroundColor(.primary)
-            }
-        }
-        .padding(.bottom)
-    }
     
     // MARK: - Helper Methods
     

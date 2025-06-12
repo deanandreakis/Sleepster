@@ -11,26 +11,6 @@ struct SoundsListView: View {
     @EnvironmentObject var serviceContainer: ServiceContainer
     @StateObject private var viewModel: SoundsViewModel
     
-    @State private var showingFavoritesOnly = false
-    @State private var selectedCategory: SoundCategory = .all
-    
-    enum SoundCategory: String, CaseIterable {
-        case all = "All"
-        case nature = "Nature"
-        case water = "Water"
-        case weather = "Weather"
-        case ambient = "Ambient"
-        
-        var icon: String {
-            switch self {
-            case .all: return "music.note.list"
-            case .nature: return "leaf"
-            case .water: return "drop"
-            case .weather: return "cloud.rain"
-            case .ambient: return "waveform"
-            }
-        }
-    }
     
     init() {
         // ViewModel will be injected via environment in real usage
@@ -120,36 +100,41 @@ struct SoundsListView: View {
                     ForEach(SoundCategory.allCases, id: \.self) { category in
                         categoryButton(category)
                     }
-                    
-                    Divider()
-                        .frame(height: 20)
-                    
-                    // Favorites toggle
-                    Button {
-                        HapticFeedback.light()
-                        viewModel.toggleFavoritesFilter()
-                        showingFavoritesOnly = viewModel.showingFavoritesOnly
-                    } label: {
-                        HStack(spacing: 4) {
-                            Image(systemName: showingFavoritesOnly ? "heart.fill" : "heart")
-                            Text("Favorites")
-                        }
-                        .font(.caption)
-                        .foregroundColor(showingFavoritesOnly ? .white : .primary)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .background(
-                            RoundedRectangle(cornerRadius: 16)
-                                .fill(showingFavoritesOnly ? Color.red : Color.clear)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 16)
-                                        .stroke(.regularMaterial, lineWidth: 1)
-                                )
-                        )
-                    }
                 }
                 .padding(.horizontal)
             }
+            
+            // Favorites filter - separate row for better visibility
+            HStack {
+                Text("Show:")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                
+                Button {
+                    HapticFeedback.light()
+                    viewModel.toggleFavoritesFilter()
+                } label: {
+                    HStack(spacing: 4) {
+                        Image(systemName: viewModel.showingFavoritesOnly ? "heart.fill" : "heart")
+                        Text("Favorites Only")
+                    }
+                    .font(.caption)
+                    .foregroundColor(viewModel.showingFavoritesOnly ? .white : .primary)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(viewModel.showingFavoritesOnly ? Color.red : Color.clear)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .stroke(.regularMaterial, lineWidth: 1)
+                            )
+                    )
+                }
+                
+                Spacer()
+            }
+            .padding(.horizontal)
         }
         .padding()
         .background(.ultraThinMaterial)
@@ -158,20 +143,19 @@ struct SoundsListView: View {
     private func categoryButton(_ category: SoundCategory) -> some View {
         Button {
             HapticFeedback.light()
-            selectedCategory = category
-            // Filter sounds by category
+            viewModel.setCategory(category)
         } label: {
             HStack(spacing: 4) {
                 Image(systemName: category.icon)
                 Text(category.rawValue)
             }
             .font(.caption)
-            .foregroundColor(selectedCategory == category ? .white : .primary)
+            .foregroundColor(viewModel.selectedCategory == category ? .white : .primary)
             .padding(.horizontal, 12)
             .padding(.vertical, 6)
             .background(
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(selectedCategory == category ? Color.blue : Color.clear)
+                    .fill(viewModel.selectedCategory == category ? Color.blue : Color.clear)
                     .overlay(
                         RoundedRectangle(cornerRadius: 16)
                             .stroke(.regularMaterial, lineWidth: 1)
@@ -216,8 +200,7 @@ struct SoundsListView: View {
     
     private func clearFilters() {
         viewModel.clearSearch()
-        selectedCategory = .all
-        showingFavoritesOnly = false
+        viewModel.setCategory(.all)
         viewModel.showingFavoritesOnly = false
     }
 }

@@ -75,6 +75,12 @@ class DatabaseManager: ObservableObject {
     
     @MainActor
     func prePopulate() async {
+        // Clean up any duplicate sounds first
+        await removeDuplicateSounds()
+        
+        // Reset favorite status for existing default sounds
+        await resetDefaultSoundsFavoriteStatus()
+        
         if !isPermObjectsExist {
             await populateDefaultBackgrounds()
         }
@@ -165,14 +171,21 @@ class DatabaseManager: ObservableObject {
         
         let context = managedObjectContext
         
+        // Check if default sounds already exist to prevent duplicates
+        let existingSounds = fetchAllSounds()
+        let existingTitles = Set(existingSounds.compactMap { $0.bTitle })
+        
         for (title, url1, url2) in defaultSounds {
-            guard let entity = NSEntityDescription.entity(forEntityName: "Sound", in: context) else { continue }
-            let sound = SoundEntity(entity: entity, insertInto: context)
-            sound.bTitle = title
-            sound.soundUrl1 = url1
-            sound.soundUrl2 = url2
-            sound.isFavorite = true
-            sound.isSelected = false
+            // Only add if this sound doesn't already exist
+            if !existingTitles.contains(title) {
+                guard let entity = NSEntityDescription.entity(forEntityName: "Sound", in: context) else { continue }
+                let sound = SoundEntity(entity: entity, insertInto: context)
+                sound.bTitle = title
+                sound.soundUrl1 = url1
+                sound.soundUrl2 = url2
+                sound.isFavorite = false
+                sound.isSelected = false
+            }
         }
         
         await saveContextAsync()
@@ -206,6 +219,71 @@ class DatabaseManager: ObservableObject {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!
     }
     
+    // MARK: - Data Cleanup
+    
+    @MainActor
+    func resetDefaultSoundsFavoriteStatus() async {
+        let context = managedObjectContext
+        let request = SoundEntity.fetchAllSounds()
+        
+        do {
+            let allSounds = try context.fetch(request)
+            var updatedCount = 0
+            
+            for sound in allSounds {
+                // Reset favorite status for default sounds (those with .mp3 files in bundle)
+                if let soundUrl = sound.soundUrl1, soundUrl.hasSuffix(".mp3") {
+                    if sound.isFavorite {
+                        sound.isFavorite = false
+                        updatedCount += 1
+                    }
+                }
+            }
+            
+            if updatedCount > 0 {
+                await saveContextAsync()
+                print("Reset favorite status for \(updatedCount) default sounds")
+            }
+        } catch {
+            print("Error resetting favorite status: \(error)")
+        }
+    }
+    
+    @MainActor
+    func removeDuplicateSounds() async {
+        let context = managedObjectContext
+        let request = SoundEntity.fetchAllSounds()
+        
+        do {
+            let allSounds = try context.fetch(request)
+            var seenTitles: Set<String> = []
+            var soundsToDelete: [SoundEntity] = []
+            
+            for sound in allSounds {
+                guard let title = sound.bTitle else { continue }
+                
+                if seenTitles.contains(title) {
+                    // This is a duplicate
+                    soundsToDelete.append(sound)
+                } else {
+                    seenTitles.insert(title)
+                }
+            }
+            
+            // Delete duplicates
+            for sound in soundsToDelete {
+                context.delete(sound)
+            }
+            
+            if !soundsToDelete.isEmpty {
+                await saveContextAsync()
+                print("Removed \(soundsToDelete.count) duplicate sounds")
+            }
+        } catch {
+            print("Error removing duplicate sounds: \(error)")
+        }
+    }
+
     // MARK: - Entity Management
     
     @MainActor
