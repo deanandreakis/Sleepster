@@ -6,25 +6,15 @@
 	<string>development</string>
 	<key>com.apple.developer.healthkit</key>
 	<true/>
+	<key>com.apple.developer.healthkit.access</key>
+	<array>
+		<string>health-records</string>
+	</array>
 	<key>com.apple.developer.siri</key>
 	<true/>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.deanware.sleepster.shared</string>
-  </array>
-  <key>com.apple.developer.healthkit</key>
-  <true/>
-  <key>com.apple.developer.healthkit.access</key>
-  <array>
-      <string>health-records</string>
-  </array>
-  <key>com.apple.application-identifier</key>
-  <string>$(TeamIdentifierPrefix)$(CFBundleIdentifier)</string>
-  <key>com.apple.developer.app-groups</key>
-  <array>
-      <string>group.com.deanware.sleepster.shared</string>
-  </array>
-  <key>com.apple.developer.siri</key>
-  <true/>
+		<string>group.com.deanware.sleepmate.shared</string>
+	</array>
 </dict>
 </plist>
