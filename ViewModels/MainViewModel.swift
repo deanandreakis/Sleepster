@@ -22,19 +22,23 @@ class MainViewModel: ObservableObject {
     @Published var isSleepModeActive = false
     @Published var currentVolume: Float = 0.5
     @Published var isTimerRunning = false
-    @Published var timerDuration: TimeInterval = 0
-    @Published var timeRemaining: TimeInterval = 0
+    @Published var timerDuration: TimeInterval = 300.0
+    @Published var timeRemaining: TimeInterval = 300.0
     @Published var selectedSound: SoundEntity?
     @Published var selectedBackground: BackgroundEntity?
     @Published var isAudioPlaying = false
     @Published var errorMessage: String?
     
     // MARK: - Timer Display
-    @Published var timerDisplayText = "00:00"
+    @Published var timerDisplayText = "05:00"
     @Published var timerProgress: Double = 0.0
     
     // MARK: - Private Properties
     private var cancellables = Set<AnyCancellable>()
+    private var timerJustStarted = false
+    private var internalTimer: Timer?
+    private var timerStartTime: Date?
+    private var defaultSoundRetryCount = 0
     
     // MARK: - Initialization
     init(
@@ -71,19 +75,11 @@ class MainViewModel: ObservableObject {
             .assign(to: \.isTimerRunning, on: self)
             .store(in: &cancellables)
         
-        timerManager.$duration
-            .receive(on: DispatchQueue.main)
-            .assign(to: \.timerDuration, on: self)
-            .store(in: &cancellables)
+        // Note: Removed timerManager.$duration binding as it was overriding our timerDuration
+        // The MainViewModel manages timerDuration independently and syncs it to TimerManager when needed
         
-        timerManager.$timeRemaining
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] timeRemaining in
-                self?.timeRemaining = timeRemaining
-                self?.updateTimerDisplay()
-                self?.updateTimerProgress()
-            }
-            .store(in: &cancellables)
+        // Note: Disabled TimerManager timeRemaining binding to avoid 2-second jump
+        // Using our own internal timer for smooth countdown display
         
         // Timer completion
         timerManager.timerCompletedPublisher
@@ -99,21 +95,72 @@ class MainViewModel: ObservableObject {
         selectedSound = databaseManager.fetchSelectedSound()
         selectedBackground = databaseManager.fetchSelectedBackground()
         
+        // Set default sound if none is selected
+        if selectedSound == nil {
+            setDefaultSound()
+        }
+        
         // Load last used volume
         currentVolume = settingsManager.lastVolume
         audioManager.setVolume(currentVolume)
         
-        // Load last used timer duration and display it
-        timerDuration = settingsManager.lastTimerDuration
-        if timerDuration > 0 && !isTimerRunning {
+        // Set 5-minute default timer
+        timerDuration = 300.0
+        
+        // Always show the timer duration when not running (including defaults)
+        if !isTimerRunning {
             timeRemaining = timerDuration
             updateTimerDisplay()
             updateTimerProgress()
+        }
+        
+        // Force UI update
+        objectWillChange.send()
+    }
+    
+    func refreshSelectedSound() {
+        selectedSound = databaseManager.fetchSelectedSound()
+    }
+    
+    func ensureDefaultSound() {
+        if selectedSound == nil {
+            setDefaultSound()
+        }
+    }
+    
+    private func setDefaultSound() {
+        let allSounds = databaseManager.fetchAllSounds()
+        
+        // If no sounds are available yet, try again after a short delay (max 5 retries)
+        if allSounds.isEmpty && defaultSoundRetryCount < 5 {
+            defaultSoundRetryCount += 1
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                self?.setDefaultSound()
+            }
+            return
+        }
+        
+        // Look for "Thunder Storm" first
+        if let thunderstormSound = allSounds.first(where: { $0.bTitle == "Thunder Storm" }) {
+            selectSound(thunderstormSound)
+            print("Default sound set to Thunder Storm")
+            return
+        }
+        
+        // Fallback to first available sound if Thunder Storm not found
+        if let firstSound = allSounds.first {
+            selectSound(firstSound)
+            print("Default sound set to: \(firstSound.bTitle ?? "Unknown")")
+        } else {
+            print("No sounds available for default selection")
         }
     }
     
     // MARK: - Actions
     func startSleeping() {
+        // Refresh selected sound to ensure we have the latest selection
+        refreshSelectedSound()
+        
         guard let sound = selectedSound else {
             errorMessage = "Please select a sound first"
             return
@@ -128,6 +175,18 @@ class MainViewModel: ObservableObject {
         
         // Start timer if duration is set
         if timerDuration > 0 {
+            // Ensure timeRemaining matches timerDuration before starting
+            timeRemaining = timerDuration
+            updateTimerDisplay()
+            updateTimerProgress()
+            
+            // Start our own smooth countdown timer
+            startInternalTimer()
+            
+            // Force UI update
+            objectWillChange.send()
+            
+            // Still start TimerManager for background functionality (audio fadeout, etc.)
             timerManager.startTimer(duration: timerDuration)
         }
         
@@ -140,9 +199,17 @@ class MainViewModel: ObservableObject {
     func stopSleeping() {
         isSleepModeActive = false
         
+        // Stop our internal timer
+        stopInternalTimer()
+        
         // Stop audio and timer
         audioManager.stopAllSounds()
         timerManager.stopTimer()
+        
+        // Reset timer display to full duration
+        timeRemaining = timerDuration
+        updateTimerDisplay()
+        updateTimerProgress()
         
         // Re-enable auto-lock
         UIApplication.shared.isIdleTimerDisabled = false
@@ -172,6 +239,9 @@ class MainViewModel: ObservableObject {
             updateTimerDisplay()
             updateTimerProgress()
         }
+        
+        // Force UI update
+        objectWillChange.send()
     }
     
     func selectSound(_ sound: SoundEntity) {
@@ -208,8 +278,10 @@ class MainViewModel: ObservableObject {
     
     // MARK: - Timer Display Updates
     private func updateTimerDisplay() {
-        let minutes = Int(timeRemaining) / 60
-        let seconds = Int(timeRemaining) % 60
+        // Use ceiling to round up (e.g., 298.99 seconds should show as 299 seconds)
+        let totalSecondsRemaining = Int(ceil(timeRemaining))
+        let minutes = totalSecondsRemaining / 60
+        let seconds = totalSecondsRemaining % 60
         timerDisplayText = String(format: "%02d:%02d", minutes, seconds)
     }
     
@@ -230,14 +302,50 @@ class MainViewModel: ObservableObject {
         }
     }
     
+    // MARK: - Internal Timer Management
+    private func startInternalTimer() {
+        timerStartTime = Date()
+        
+        internalTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+            self?.updateInternalTimer()
+        }
+    }
+    
+    private func stopInternalTimer() {
+        internalTimer?.invalidate()
+        internalTimer = nil
+        timerStartTime = nil
+    }
+    
+    private func updateInternalTimer() {
+        guard let startTime = timerStartTime else { return }
+        
+        let elapsed = Date().timeIntervalSince(startTime)
+        let newTimeRemaining = max(0, timerDuration - elapsed)
+        
+        timeRemaining = newTimeRemaining
+        updateTimerDisplay()
+        updateTimerProgress()
+        
+        // Stop if we've reached zero (though TimerManager should handle completion)
+        if newTimeRemaining <= 0 {
+            stopInternalTimer()
+        }
+    }
+    
     // MARK: - Quick Actions
     func sleepNow() {
         // Use default settings for immediate sleep
         if selectedSound == nil {
-            // Select first available sound
-            let sounds = databaseManager.fetchAllSounds()
-            if let firstSound = sounds.first {
-                selectSound(firstSound)
+            // Reload from database in case the selectedSound wasn't loaded properly
+            selectedSound = databaseManager.fetchSelectedSound()
+            
+            // Only auto-select if there's truly no selected sound in database
+            if selectedSound == nil {
+                let sounds = databaseManager.fetchAllSounds()
+                if let firstSound = sounds.first {
+                    selectSound(firstSound)
+                }
             }
         }
         

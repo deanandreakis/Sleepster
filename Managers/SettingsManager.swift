@@ -41,8 +41,8 @@ class SettingsManager: ObservableObject {
         static let masterVolume: Float = 0.5
         static let lastVolume: Float = 0.5
         static let timerFadeOutDuration: TimeInterval = 10.0
-        static let defaultTimerDuration: TimeInterval = 1800.0 // 30 minutes
-        static let lastTimerDuration: TimeInterval = 1800.0
+        static let defaultTimerDuration: TimeInterval = 300.0 // 5 minutes
+        static let lastTimerDuration: TimeInterval = 300.0
         static let isPremiumUser = false
         static let isMultipleSoundsEnabled = false
         static let isMultipleBackgroundsEnabled = false
@@ -100,8 +100,13 @@ class SettingsManager: ObservableObject {
     }
     
     var lastTimerDuration: TimeInterval {
-        get { userDefaults.double(forKey: Keys.lastTimerDuration) }
-        set { userDefaults.set(newValue, forKey: Keys.lastTimerDuration) }
+        get { 
+            let value = userDefaults.double(forKey: Keys.lastTimerDuration)
+            return value > 0 ? value : Defaults.lastTimerDuration
+        }
+        set { 
+            userDefaults.set(newValue, forKey: Keys.lastTimerDuration)
+        }
     }
     
     // MARK: - Premium Features
@@ -221,10 +226,17 @@ class SettingsManager: ObservableObject {
     
     // MARK: - App Launch Handling
     private func handleAppLaunch() {
+        let currentAppLaunchCount = appLaunchCount
+        let isFirstLaunch = currentAppLaunchCount == 0
         appLaunchCount += 1
         
         let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
         let previousVersion = lastAppVersion
+        
+        if isFirstLaunch {
+            // First launch - explicitly set default timer duration
+            lastTimerDuration = Defaults.lastTimerDuration
+        }
         
         if previousVersion != currentVersion {
             handleVersionUpdate(from: previousVersion, to: currentVersion)
@@ -235,10 +247,11 @@ class SettingsManager: ObservableObject {
     private func handleVersionUpdate(from previousVersion: String?, to currentVersion: String?) {
         // Handle version-specific migrations
         if previousVersion == nil {
-            // First launch
-            print("First app launch detected")
+            // First launch - ensure default timer duration is set
+            if userDefaults.object(forKey: Keys.lastTimerDuration) == nil {
+                lastTimerDuration = Defaults.lastTimerDuration
+            }
         } else if let prev = previousVersion, let curr = currentVersion {
-            print("App updated from \(prev) to \(curr)")
             // Perform any version-specific migrations here
         }
     }

@@ -10,17 +10,11 @@ import SwiftUI
 struct SleepView: View {
     @EnvironmentObject var serviceContainer: ServiceContainer
     @EnvironmentObject var appState: AppState
-    @StateObject private var viewModel: MainViewModel
     
     @State private var showingTimerSettings = false
     @State private var showingBrightnessControl = false
     
-    init() {
-        // ViewModel will be injected via environment in real usage
-        // This is just for initialization
-        let container = ServiceContainer()
-        self._viewModel = StateObject(wrappedValue: container.mainViewModel)
-    }
+    @StateObject private var viewModel = SharedViewModelStore.shared.mainViewModel
     
     var body: some View {
         GeometryReader { geometry in
@@ -51,7 +45,12 @@ struct SleepView: View {
         }
         .navigationBarHidden(true)
         .onAppear {
-            setupViewModel()
+            // Refresh selected sound in case it was changed in another view
+            viewModel.refreshSelectedSound()
+            
+            // Ensure default sound is set if none selected
+            viewModel.ensureDefaultSound()
+            
             handleQuickSleep()
         }
         .sheet(isPresented: $showingTimerSettings) {
@@ -218,20 +217,18 @@ struct SleepView: View {
             Text(title)
                 .font(.caption)
                 .fontWeight(.medium)
-                .foregroundColor(.primary)
+                .foregroundColor(Int(viewModel.timerDuration) == minutes * 60 ? .white : .primary)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 8)
-                .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 8))
+                .background(
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Int(viewModel.timerDuration) == minutes * 60 ? Color.blue : Color.gray.opacity(0.2))
+                )
         }
     }
     
     
     // MARK: - Helper Methods
-    
-    private func setupViewModel() {
-        // In real implementation, this would be handled by dependency injection
-        // viewModel = serviceContainer.mainViewModel
-    }
     
     private func handleQuickSleep() {
         if appState.shouldStartSleepingImmediately {

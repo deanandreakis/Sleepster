@@ -8,6 +8,24 @@
 import Foundation
 import SwiftUI
 
+// MARK: - Shared ViewModel Store
+@MainActor
+class SharedViewModelStore: ObservableObject {
+    static let shared = SharedViewModelStore()
+    
+    private let serviceContainer = ServiceContainer.shared
+    
+    lazy var mainViewModel: MainViewModel = {
+        serviceContainer.mainViewModel
+    }()
+    
+    lazy var soundsViewModel: SoundsViewModel = {
+        serviceContainer.soundsViewModel
+    }()
+    
+    private init() {}
+}
+
 @MainActor
 class ServiceContainer: ObservableObject {
     static let shared = ServiceContainer()
@@ -73,11 +91,14 @@ class ServiceContainer: ObservableObject {
     
     // MARK: - ViewModels
     lazy var mainViewModel: MainViewModel = {
-        MainViewModel(
+        // Ensure SettingsManager is fully initialized before creating ViewModels
+        let settings = settingsManager
+        
+        return MainViewModel(
             audioManager: audioManager,
             timerManager: timerManager,
             databaseManager: databaseManager,
-            settingsManager: settingsManager
+            settingsManager: settings
         )
     }()
     

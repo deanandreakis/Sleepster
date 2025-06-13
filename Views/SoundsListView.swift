@@ -9,14 +9,8 @@ import SwiftUI
 
 struct SoundsListView: View {
     @EnvironmentObject var serviceContainer: ServiceContainer
-    @StateObject private var viewModel: SoundsViewModel
     
-    
-    init() {
-        // ViewModel will be injected via environment in real usage
-        let container = ServiceContainer()
-        self._viewModel = StateObject(wrappedValue: container.soundsViewModel)
-    }
+    @StateObject private var viewModel = SharedViewModelStore.shared.soundsViewModel
     
     var body: some View {
         NavigationView {
@@ -57,7 +51,7 @@ struct SoundsListView: View {
             }
         }
         .onAppear {
-            setupViewModel()
+            // ViewModel is accessed directly from serviceContainer
         }
         .alert("Error", isPresented: .constant(viewModel.errorMessage != nil)) {
             Button("OK") {
@@ -192,11 +186,6 @@ struct SoundsListView: View {
     }
     
     // MARK: - Helper Methods
-    
-    private func setupViewModel() {
-        // In real implementation, this would be handled by dependency injection
-        // viewModel = serviceContainer.soundsViewModel
-    }
     
     private func clearFilters() {
         viewModel.clearSearch()
