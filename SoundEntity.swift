@@ -23,6 +23,7 @@ extension SoundEntity {
     @NSManaged public var soundUrl2: String?
     @NSManaged public var isSelected: Bool
     @NSManaged public var isFavorite: Bool
+    @NSManaged public var isSelectedForMixing: Bool
 }
 
 // MARK: - Convenience Methods
@@ -37,6 +38,13 @@ extension SoundEntity {
         let request = fetchRequest()
         request.predicate = NSPredicate(format: "isSelected == TRUE")
         request.fetchLimit = 1
+        return request
+    }
+    
+    static func fetchSelectedSoundsForMixing() -> NSFetchRequest<SoundEntity> {
+        let request = fetchRequest()
+        request.predicate = NSPredicate(format: "isSelectedForMixing == TRUE")
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \SoundEntity.bTitle, ascending: true)]
         return request
     }
     
@@ -65,5 +73,17 @@ extension SoundEntity {
     
     func toggleFavorite() {
         isFavorite.toggle()
+    }
+    
+    func addToMix() {
+        isSelectedForMixing = true
+    }
+    
+    func removeFromMix() {
+        isSelectedForMixing = false
+    }
+    
+    func toggleMixSelection() {
+        isSelectedForMixing.toggle()
     }
 }

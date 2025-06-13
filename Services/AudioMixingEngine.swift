@@ -117,6 +117,7 @@ class AudioMixingEngine: ObservableObject {
     
     /// Stop all sounds
     func stopAllSounds(fadeOutDuration: TimeInterval = 0.0) async {
+        print("🔇 AudioMixingEngine stopAllSounds called")
         let playersToStop = activePlayers
         
         if fadeOutDuration > 0 {
@@ -130,11 +131,61 @@ class AudioMixingEngine: ObservableObject {
             }
         }
         
-        // Stop all players
+        // Stop all players immediately and forcefully
         for player in playersToStop {
-            audioPlayerNodes[player]?.stop()
-            cleanup(player)
+            if let playerNode = audioPlayerNodes[player] {
+                do {
+                    playerNode.stop()
+                    playerNode.reset() // Clear any scheduled buffers
+                } catch {
+                    print("Error stopping player node: \(error)")
+                }
+            }
         }
+        
+        // Disconnect and detach nodes safely
+        for player in playersToStop {
+            if let playerNode = audioPlayerNodes[player] {
+                do {
+                    if audioEngine.attachedNodes.contains(playerNode) {
+                        audioEngine.disconnectNodeInput(playerNode)
+                        audioEngine.detach(playerNode)
+                    }
+                } catch {
+                    print("Error disconnecting node: \(error)")
+                }
+            }
+        }
+        
+        // Clear all collections immediately
+        await MainActor.run {
+            self.activePlayers.removeAll()
+            self.audioPlayerNodes.removeAll()
+            self.audioFiles.removeAll()
+            self.updatePlayingState()
+        }
+        
+        print("🔇 AudioMixingEngine stopAllSounds complete")
+    }
+    
+    /// Force stop all audio immediately - nuclear option
+    func forceStopAll() {
+        // Nuclear option: stop the entire audio engine
+        audioEngine.stop()
+        
+        // Clear everything
+        activePlayers.removeAll()
+        audioPlayerNodes.removeAll()
+        audioFiles.removeAll()
+        
+        // Restart the engine for future use
+        do {
+            try audioEngine.start()
+        } catch {
+            print("Error restarting audio engine: \(error)")
+        }
+        
+        updatePlayingState()
     }
     
     /// Set volume for a specific sound
@@ -258,11 +309,22 @@ class AudioMixingEngine: ObservableObject {
     }
     
     private func cleanup(_ channelPlayer: AudioChannelPlayer) {
-        guard let playerNode = audioPlayerNodes[channelPlayer] else { return }
+        guard let playerNode = audioPlayerNodes[channelPlayer] else { 
+            // Still try to remove from active players even if node is missing
+            activePlayers.removeAll { $0.id == channelPlayer.id }
+            updatePlayingState()
+            return 
+        }
         
-        // Disconnect and detach from engine
-        audioEngine.disconnectNodeInput(playerNode)
-        audioEngine.detach(playerNode)
+        do {
+            // Disconnect and detach from engine with error handling
+            if audioEngine.attachedNodes.contains(playerNode) {
+                audioEngine.disconnectNodeInput(playerNode)
+                audioEngine.detach(playerNode)
+            }
+        } catch {
+            print("Error during audio node cleanup: \(error)")
+        }
         
         // Remove references
         audioPlayerNodes.removeValue(forKey: channelPlayer)

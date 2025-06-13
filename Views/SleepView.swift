@@ -94,7 +94,11 @@ struct SleepView: View {
                     .fontWeight(.bold)
                     .foregroundColor(.primary)
                 
-                if let soundTitle = viewModel.selectedSound?.bTitle {
+                if viewModel.isMixingMode && !viewModel.selectedSoundsForMixing.isEmpty {
+                    Text("\(viewModel.selectedSoundsForMixing.count) sounds selected for mixing")
+                        .font(.caption)
+                        .foregroundColor(.blue)
+                } else if let soundTitle = viewModel.selectedSound?.bTitle {
                     Text(soundTitle)
                         .font(.caption)
                         .foregroundColor(.secondary)

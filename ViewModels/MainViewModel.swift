@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 import Combine
 
+struct TimeoutError: Error {}
+
 @MainActor
 class MainViewModel: ObservableObject {
     
@@ -17,6 +19,7 @@ class MainViewModel: ObservableObject {
     private let timerManager: TimerManager
     private let databaseManager: DatabaseManager
     private let settingsManager: SettingsManager
+    private let audioMixingEngine: AudioMixingEngine
     
     // MARK: - Published Properties
     @Published var isSleepModeActive = false
@@ -26,8 +29,13 @@ class MainViewModel: ObservableObject {
     @Published var timeRemaining: TimeInterval = 300.0
     @Published var selectedSound: SoundEntity?
     @Published var selectedBackground: BackgroundEntity?
+    @Published var selectedSoundsForMixing: [SoundEntity] = []
+    @Published var isMixingMode = false
     @Published var isAudioPlaying = false
     @Published var errorMessage: String?
+    
+    // Audio mixing state
+    @Published var activeChannelPlayers: [String: AudioChannelPlayer] = [:]
     
     // MARK: - Timer Display
     @Published var timerDisplayText = "05:00"
@@ -45,12 +53,14 @@ class MainViewModel: ObservableObject {
         audioManager: AudioManager,
         timerManager: TimerManager,
         databaseManager: DatabaseManager,
-        settingsManager: SettingsManager
+        settingsManager: SettingsManager,
+        audioMixingEngine: AudioMixingEngine = AudioMixingEngine.shared
     ) {
         self.audioManager = audioManager
         self.timerManager = timerManager
         self.databaseManager = databaseManager
         self.settingsManager = settingsManager
+        self.audioMixingEngine = audioMixingEngine
         
         setupBindings()
         loadInitialData()
@@ -95,8 +105,14 @@ class MainViewModel: ObservableObject {
         selectedSound = databaseManager.fetchSelectedSound()
         selectedBackground = databaseManager.fetchSelectedBackground()
         
+        // Load selected sounds for mixing
+        selectedSoundsForMixing = databaseManager.fetchSelectedSoundsForMixing()
+        
+        // Determine mixing mode based on selected sounds
+        isMixingMode = !selectedSoundsForMixing.isEmpty
+        
         // Set default sound if none is selected
-        if selectedSound == nil {
+        if selectedSound == nil && selectedSoundsForMixing.isEmpty {
             setDefaultSound()
         }
         
@@ -120,6 +136,12 @@ class MainViewModel: ObservableObject {
     
     func refreshSelectedSound() {
         selectedSound = databaseManager.fetchSelectedSound()
+    }
+    
+    func refreshSelectedSounds() {
+        selectedSound = databaseManager.fetchSelectedSound()
+        selectedSoundsForMixing = databaseManager.fetchSelectedSoundsForMixing()
+        isMixingMode = !selectedSoundsForMixing.isEmpty
     }
     
     func ensureDefaultSound() {
@@ -156,22 +178,83 @@ class MainViewModel: ObservableObject {
         }
     }
     
-    // MARK: - Actions
-    func startSleeping() {
-        // Refresh selected sound to ensure we have the latest selection
-        refreshSelectedSound()
+    // MARK: - Sound Mixing
+    private func startMixedAudio() {
+        print("🎵 startMixedAudio called")
         
-        guard let sound = selectedSound else {
-            errorMessage = "Please select a sound first"
+        // Force stop any existing audio immediately
+        audioMixingEngine.forceStopAll()
+        
+        // Clear UI state immediately
+        activeChannelPlayers.removeAll()
+        
+        // Start audio setup in background - completely detached
+        Task {
+            // Small delay to ensure clean start
+            try? await Task.sleep(nanoseconds: 100_000_000) // 100ms
+            
+            // Start each selected sound
+            for sound in selectedSoundsForMixing {
+                if let soundName = sound.soundUrl1?.replacingOccurrences(of: ".mp3", with: "") {
+                    if let channelPlayer = await audioMixingEngine.playSound(named: soundName, volume: 1.0, loop: true) {
+                        activeChannelPlayers[soundName] = channelPlayer
+                    }
+                }
+            }
+            
+            print("🎵 Audio setup complete")
+        }
+    }
+    
+    func addSoundToMix(_ sound: SoundEntity) {
+        // Check maximum sounds limit (5)
+        guard selectedSoundsForMixing.count < 5 else {
+            errorMessage = "Maximum 5 sounds can be mixed simultaneously"
             return
         }
         
-        isSleepModeActive = true
-        
-        // Start playing selected sound
-        if let soundURL = sound.soundUrl1 {
-            audioManager.playSound(url: soundURL, loop: true)
+        sound.addToMix()
+        databaseManager.saveContext()
+        refreshSelectedSounds()
+    }
+    
+    func removeSoundFromMix(_ sound: SoundEntity) {
+        sound.removeFromMix()
+        databaseManager.saveContext()
+        refreshSelectedSounds()
+    }
+    
+    func toggleSoundInMix(_ sound: SoundEntity) {
+        if sound.isSelectedForMixing {
+            removeSoundFromMix(sound)
+        } else {
+            addSoundToMix(sound)
         }
+    }
+    
+    func setSoundVolume(_ volume: Float, for sound: SoundEntity) {
+        guard let soundName = sound.soundUrl1?.replacingOccurrences(of: ".mp3", with: ""),
+              let channelPlayer = activeChannelPlayers[soundName] else { return }
+        
+        audioMixingEngine.setVolume(volume, for: channelPlayer)
+    }
+    
+    func getSoundVolume(for sound: SoundEntity) -> Float {
+        guard let soundName = sound.soundUrl1?.replacingOccurrences(of: ".mp3", with: ""),
+              let channelPlayer = activeChannelPlayers[soundName] else { return 1.0 }
+        
+        return channelPlayer.volume
+    }
+    
+    // MARK: - Actions
+    func startSleeping() {
+        print("🎬 startSleeping called")
+        
+        // Refresh selected sounds
+        refreshSelectedSounds()
+        
+        // Update UI state IMMEDIATELY
+        isSleepModeActive = true
         
         // Start timer if duration is set
         if timerDuration > 0 {
@@ -183,10 +266,7 @@ class MainViewModel: ObservableObject {
             // Start our own smooth countdown timer
             startInternalTimer()
             
-            // Force UI update
-            objectWillChange.send()
-            
-            // Still start TimerManager for background functionality (audio fadeout, etc.)
+            // Start TimerManager for background functionality (audio fadeout, etc.)
             timerManager.startTimer(duration: timerDuration)
         }
         
@@ -194,26 +274,50 @@ class MainViewModel: ObservableObject {
         if settingsManager.isAutoLockDisabled {
             UIApplication.shared.isIdleTimerDisabled = true
         }
+        
+        print("🎬 UI state updated, starting audio in background")
+        
+        // Start audio based on mode
+        if isMixingMode && !selectedSoundsForMixing.isEmpty {
+            startMixedAudio()
+        } else if let sound = selectedSound {
+            // Fallback to single sound mode
+            if let soundURL = sound.soundUrl1 {
+                audioManager.playSound(url: soundURL, loop: true)
+            }
+        } else {
+            errorMessage = "Please select a sound first"
+            isSleepModeActive = false
+            return
+        }
+        
+        print("🎬 startSleeping complete - audio starting in background")
     }
     
     func stopSleeping() {
+        print("🛑 stopSleeping called")
+        
+        // Update UI state immediately
         isSleepModeActive = false
-        
-        // Stop our internal timer
         stopInternalTimer()
-        
-        // Stop audio and timer
-        audioManager.stopAllSounds()
         timerManager.stopTimer()
-        
-        // Reset timer display to full duration
         timeRemaining = timerDuration
-        updateTimerDisplay()
-        updateTimerProgress()
-        
-        // Re-enable auto-lock
+        timerDisplayText = "05:00"
+        timerProgress = 0.0
         UIApplication.shared.isIdleTimerDisabled = false
+        
+        // Stop legacy audio manager
+        audioManager.stopAllSounds()
+        
+        // Clear UI state
+        activeChannelPlayers.removeAll()
+        
+        // Force stop all audio mixing (nuclear option - stops entire engine)
+        audioMixingEngine.forceStopAll()
+        
+        print("🛑 stopSleeping complete")
     }
+    
     
     func toggleSleepMode() {
         if isSleepModeActive {

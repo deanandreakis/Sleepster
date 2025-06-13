@@ -326,6 +326,19 @@ class DatabaseManager: ObservableObject {
     }
     
     @MainActor
+    func fetchSelectedSoundsForMixing() -> [SoundEntity] {
+        let context = managedObjectContext
+        let request = SoundEntity.fetchSelectedSoundsForMixing()
+        
+        do {
+            return try context.fetch(request)
+        } catch {
+            print("Error fetching selected sounds for mixing: \(error)")
+            return []
+        }
+    }
+    
+    @MainActor
     func fetchSelectedBackground() -> BackgroundEntity? {
         let context = managedObjectContext
         let request = BackgroundEntity.fetchSelectedBackground()

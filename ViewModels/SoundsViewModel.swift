@@ -39,6 +39,8 @@ class SoundsViewModel: ObservableObject {
     @Published var sounds: [SoundEntity] = []
     @Published var favoriteSounds: [SoundEntity] = []
     @Published var selectedSound: SoundEntity?
+    @Published var selectedSoundsForMixing: [SoundEntity] = []
+    @Published var isMixingMode = false
     @Published var isLoading = false
     @Published var errorMessage: String?
     @Published var searchText = ""
@@ -72,7 +74,10 @@ class SoundsViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     // MARK: - Initialization
-    init(databaseManager: DatabaseManager, audioManager: AudioManager) {
+    init(
+        databaseManager: DatabaseManager, 
+        audioManager: AudioManager
+    ) {
         self.databaseManager = databaseManager
         self.audioManager = audioManager
         
@@ -104,11 +109,14 @@ class SoundsViewModel: ObservableObject {
                 let allSounds = databaseManager.fetchAllSounds()
                 let favorites = allSounds.filter { $0.isFavorite }
                 let selected = databaseManager.fetchSelectedSound()
+                let selectedForMixing = databaseManager.fetchSelectedSoundsForMixing()
                 
                 await MainActor.run {
                     self.sounds = allSounds
                     self.favoriteSounds = favorites
                     self.selectedSound = selected
+                    self.selectedSoundsForMixing = selectedForMixing
+                    self.isMixingMode = !selectedForMixing.isEmpty
                     self.isLoading = false
                 }
             }
@@ -135,6 +143,82 @@ class SoundsViewModel: ObservableObject {
         stopPreview()
         
         // Update UI
+        objectWillChange.send()
+    }
+    
+    // MARK: - Sound Mixing
+    func toggleSoundInMix(_ sound: SoundEntity) {
+        if sound.isSelectedForMixing {
+            removeSoundFromMix(sound)
+        } else {
+            addSoundToMix(sound)
+        }
+    }
+    
+    func addSoundToMix(_ sound: SoundEntity) {
+        // Check maximum sounds limit (5)
+        guard selectedSoundsForMixing.count < 5 else {
+            errorMessage = "Maximum 5 sounds can be mixed simultaneously"
+            return
+        }
+        
+        sound.addToMix()
+        selectedSoundsForMixing.append(sound)
+        isMixingMode = true
+        
+        // Save changes
+        databaseManager.saveContext()
+        
+        // Clear single selection when entering mixing mode
+        if selectedSound != nil {
+            selectedSound?.isSelected = false
+            selectedSound = nil
+        }
+        
+        objectWillChange.send()
+    }
+    
+    func removeSoundFromMix(_ sound: SoundEntity) {
+        sound.removeFromMix()
+        selectedSoundsForMixing.removeAll { $0 == sound }
+        
+        // Exit mixing mode if no sounds left
+        if selectedSoundsForMixing.isEmpty {
+            isMixingMode = false
+        }
+        
+        // Save changes
+        databaseManager.saveContext()
+        objectWillChange.send()
+    }
+    
+    func clearMix() {
+        for sound in selectedSoundsForMixing {
+            sound.removeFromMix()
+        }
+        selectedSoundsForMixing.removeAll()
+        isMixingMode = false
+        
+        databaseManager.saveContext()
+        objectWillChange.send()
+    }
+    
+    func enableMixingMode() {
+        isMixingMode = true
+        
+        // Clear single selection
+        if let currentSound = selectedSound {
+            currentSound.isSelected = false
+            selectedSound = nil
+            databaseManager.saveContext()
+        }
+        
+        objectWillChange.send()
+    }
+    
+    func disableMixingMode() {
+        clearMix()
+        isMixingMode = false
         objectWillChange.send()
     }
     

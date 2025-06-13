@@ -18,6 +18,11 @@ struct SoundsListView: View {
                 // Search and filter section
                 searchAndFilterSection
                 
+                // Mixing mode status banner
+                if viewModel.isMixingMode {
+                    mixingStatusBanner
+                }
+                
                 // Content
                 if viewModel.isLoading {
                     Spacer()
@@ -40,6 +45,34 @@ struct SoundsListView: View {
             .navigationTitle("Sounds")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        HapticFeedback.light()
+                        if viewModel.isMixingMode {
+                            viewModel.disableMixingMode()
+                        } else {
+                            viewModel.enableMixingMode()
+                        }
+                    } label: {
+                        HStack(spacing: 4) {
+                            Image(systemName: viewModel.isMixingMode ? "checkmark.circle.fill" : "plus.circle")
+                            Text(viewModel.isMixingMode ? "Mix" : "Mix")
+                        }
+                        .font(.caption)
+                        .foregroundColor(viewModel.isMixingMode ? .blue : .primary)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(viewModel.isMixingMode ? Color.blue.opacity(0.1) : Color.clear)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(viewModel.isMixingMode ? Color.blue : Color.gray, lineWidth: 1)
+                                )
+                        )
+                    }
+                }
+                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         HapticFeedback.light()
@@ -65,6 +98,42 @@ struct SoundsListView: View {
     }
     
     // MARK: - Subviews
+    
+    private var mixingStatusBanner: some View {
+        HStack {
+            Image(systemName: "speaker.wave.2.fill")
+                .foregroundColor(.blue)
+            
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Sound Mixing Mode")
+                    .font(.headline)
+                    .foregroundColor(.blue)
+                
+                Text("\(viewModel.selectedSoundsForMixing.count) of 5 sounds selected")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+            
+            Spacer()
+            
+            if !viewModel.selectedSoundsForMixing.isEmpty {
+                Button("Clear Mix") {
+                    HapticFeedback.light()
+                    viewModel.clearMix()
+                }
+                .font(.caption)
+                .foregroundColor(.red)
+            }
+        }
+        .padding()
+        .background(.blue.opacity(0.1))
+        .overlay(
+            Rectangle()
+                .frame(height: 1)
+                .foregroundColor(.blue.opacity(0.3)),
+            alignment: .bottom
+        )
+    }
     
     private var searchAndFilterSection: some View {
         VStack(spacing: 16) {
@@ -165,10 +234,16 @@ struct SoundsListView: View {
                     SoundCardView(
                         sound: sound,
                         isSelected: sound == viewModel.selectedSound,
+                        isSelectedForMixing: sound.isSelectedForMixing,
+                        isMixingMode: viewModel.isMixingMode,
                         isPreviewing: sound == viewModel.previewingSound,
                         onSelect: {
                             HapticFeedback.medium()
-                            viewModel.selectSound(sound)
+                            if viewModel.isMixingMode {
+                                viewModel.toggleSoundInMix(sound)
+                            } else {
+                                viewModel.selectSound(sound)
+                            }
                         },
                         onPreview: {
                             HapticFeedback.light()
@@ -198,6 +273,8 @@ struct SoundsListView: View {
 struct SoundCardView: View {
     let sound: SoundEntity
     let isSelected: Bool
+    let isSelectedForMixing: Bool
+    let isMixingMode: Bool
     let isPreviewing: Bool
     let onSelect: () -> Void
     let onPreview: () -> Void
@@ -242,23 +319,49 @@ struct SoundCardView: View {
                     
                     Spacer()
                     
-                    // Select button
+                    // Select button - different UI for mixing vs single mode
                     Button(action: onSelect) {
                         HStack(spacing: 4) {
-                            if isSelected {
-                                Image(systemName: "checkmark")
-                                Text("Selected")
+                            if isMixingMode {
+                                // Mixing mode: show checkbox-style UI
+                                Image(systemName: isSelectedForMixing ? "checkmark.square.fill" : "square")
+                                    .foregroundColor(isSelectedForMixing ? .blue : .gray)
+                                Text(isSelectedForMixing ? "In Mix" : "Add to Mix")
+                                    .foregroundColor(isSelectedForMixing ? .blue : .primary)
                             } else {
-                                Text("Select")
+                                // Single mode: show traditional selection UI
+                                if isSelected {
+                                    Image(systemName: "checkmark")
+                                    Text("Selected")
+                                } else {
+                                    Text("Select")
+                                }
                             }
                         }
                         .font(.caption)
-                        .foregroundColor(isSelected ? .white : .blue)
+                        .foregroundColor(
+                            isMixingMode ? 
+                            (isSelectedForMixing ? .blue : .primary) : 
+                            (isSelected ? .white : .blue)
+                        )
                         .padding(.horizontal, 12)
                         .padding(.vertical, 6)
                         .background(
                             RoundedRectangle(cornerRadius: 12)
-                                .fill(isSelected ? Color.blue : Color.blue.opacity(0.1))
+                                .fill(
+                                    isMixingMode ? 
+                                    (isSelectedForMixing ? Color.blue.opacity(0.1) : Color.clear) :
+                                    (isSelected ? Color.blue : Color.blue.opacity(0.1))
+                                )
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(
+                                            isMixingMode ?
+                                            (isSelectedForMixing ? Color.blue : Color.gray.opacity(0.3)) :
+                                            Color.clear,
+                                            lineWidth: 1
+                                        )
+                                )
                         )
                     }
                 }
@@ -266,10 +369,19 @@ struct SoundCardView: View {
         }
         .overlay(
             RoundedRectangle(cornerRadius: 12)
-                .stroke(isSelected ? Color.blue : Color.clear, lineWidth: 2)
+                .stroke(
+                    isMixingMode ? 
+                    (isSelectedForMixing ? Color.blue : Color.clear) :
+                    (isSelected ? Color.blue : Color.clear), 
+                    lineWidth: 2
+                )
         )
-        .scaleEffect(isSelected ? 1.02 : 1.0)
-        .animation(.easeInOut(duration: 0.2), value: isSelected)
+        .scaleEffect(
+            isMixingMode ? 
+            (isSelectedForMixing ? 1.02 : 1.0) :
+            (isSelected ? 1.02 : 1.0)
+        )
+        .animation(.easeInOut(duration: 0.2), value: isMixingMode ? isSelectedForMixing : isSelected)
     }
     
     private var waveformView: some View {

@@ -98,7 +98,8 @@ class ServiceContainer: ObservableObject {
             audioManager: audioManager,
             timerManager: timerManager,
             databaseManager: databaseManager,
-            settingsManager: settings
+            settingsManager: settings,
+            audioMixingEngine: audioMixingEngine
         )
     }()
     
