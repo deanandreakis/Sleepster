@@ -63,6 +63,12 @@ struct SleepsterTabView: View {
                 appState.startSleeping()
             }
         }
+        .simultaneousGesture(
+            TapGesture().onEnded { _ in
+                // Check if brightness restoration is pending and restore if needed
+                SharedViewModelStore.shared.mainViewModel.brightnessManager.restoreOnTouchIfNeeded()
+            }
+        )
     }
     
     private func setupTabBarAppearance() {

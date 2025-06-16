@@ -20,7 +20,7 @@ class MainViewModel: ObservableObject {
     private let databaseManager: DatabaseManager
     private let settingsManager: SettingsManager
     private let audioMixingEngine: AudioMixingEngine
-    private let brightnessManager: BrightnessManager
+    let brightnessManager: BrightnessManager
     
     // MARK: - Published Properties
     @Published var isSleepModeActive = false
@@ -327,6 +327,34 @@ class MainViewModel: ObservableObject {
         print("🛑 stopSleeping complete")
     }
     
+    // Stop sleeping when timer expires (don't restore brightness until user touch)
+    private func stopSleepingFromTimer() {
+        print("🛑 stopSleepingFromTimer called")
+        
+        isSleepModeActive = false
+        isTimerRunning = false
+        
+        // Reset timer display
+        timeRemaining = timerDuration
+        timerDisplayText = "05:00"
+        timerProgress = 0.0
+        UIApplication.shared.isIdleTimerDisabled = false
+        
+        // Schedule brightness restoration for user touch instead of immediate restore
+        brightnessManager.scheduleRestoreOnTouch()
+        
+        // Stop legacy audio manager
+        audioManager.stopAllSounds()
+        
+        // Clear UI state
+        activeChannelPlayers.removeAll()
+        
+        // Force stop all audio mixing (nuclear option - stops entire engine)
+        audioMixingEngine.forceStopAll()
+        
+        print("🛑 stopSleepingFromTimer complete - brightness will restore on user touch")
+    }
+    
     
     func toggleSleepMode() {
         if isSleepModeActive {
@@ -410,7 +438,7 @@ class MainViewModel: ObservableObject {
         // Gradually fade out audio
         audioManager.fadeOutAndStop(duration: 10.0) { [weak self] in
             DispatchQueue.main.async {
-                self?.stopSleeping()
+                self?.stopSleepingFromTimer()
             }
         }
     }

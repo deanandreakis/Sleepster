@@ -59,6 +59,12 @@ struct SleepView: View {
         .sheet(isPresented: $showingBrightnessControl) {
             BrightnessControlView()
         }
+        .simultaneousGesture(
+            TapGesture().onEnded { _ in
+                // Check if brightness restoration is pending and restore if needed
+                viewModel.brightnessManager.restoreOnTouchIfNeeded()
+            }
+        )
         // .alert(item: $viewModel.alertItem) { alert in
         //     Alert(
         //         title: Text(alert.title),

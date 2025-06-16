@@ -15,6 +15,7 @@ class BrightnessManager: ObservableObject {
     private let settingsManager: SettingsManager
     private var originalBrightness: Double = 0.5
     private var isSleepModeActive = false
+    private var shouldRestoreOnTouch = false
     
     // MARK: - Published Properties
     @Published var currentBrightness: Double = 0.5
@@ -106,6 +107,7 @@ class BrightnessManager: ObservableObject {
         }
         
         isSleepModeActive = false
+        shouldRestoreOnTouch = false
         
         print("🔆 Restoring brightness from \(UIScreen.main.brightness) to \(originalBrightness)")
         
@@ -118,6 +120,42 @@ class BrightnessManager: ObservableObject {
         settingsManager.lastBrightnessLevel = originalBrightness
         
         print("BrightnessManager: Restored brightness from sleep mode (\(Int(originalBrightness * 100))%)")
+    }
+    
+    /// Sets flag to restore brightness on next user touch (used when timer expires)
+    func scheduleRestoreOnTouch() {
+        print("🔆 BrightnessManager.scheduleRestoreOnTouch() called")
+        print("🔆 Auto-brightness enabled: \(settingsManager.isAutoBrightnessEnabled)")
+        print("🔆 Sleep mode active: \(isSleepModeActive)")
+        
+        guard settingsManager.isAutoBrightnessEnabled && isSleepModeActive else {
+            print("🔆 Conditions not met for restore on touch, exiting sleep mode normally")
+            isSleepModeActive = false
+            return
+        }
+        
+        shouldRestoreOnTouch = true
+        print("🔆 Brightness restoration scheduled for next user touch")
+    }
+    
+    /// Restores brightness if restoration is pending (called on user touch)
+    func restoreOnTouchIfNeeded() {
+        guard shouldRestoreOnTouch else { return }
+        
+        print("🔆 BrightnessManager.restoreOnTouchIfNeeded() - restoring brightness on user touch")
+        
+        shouldRestoreOnTouch = false
+        isSleepModeActive = false
+        
+        withAnimation(.easeInOut(duration: 1.0)) {
+            UIScreen.main.brightness = originalBrightness
+            currentBrightness = originalBrightness
+        }
+        
+        // Update saved brightness level to the restored value
+        settingsManager.lastBrightnessLevel = originalBrightness
+        
+        print("BrightnessManager: Restored brightness on user touch (\(Int(originalBrightness * 100))%)")
     }
     
     /// Forces an immediate stop of any brightness animations and restores to last known good state
@@ -168,6 +206,11 @@ class BrightnessManager: ObservableObject {
     /// Returns whether sleep mode is currently active
     var isSleepMode: Bool {
         return isSleepModeActive
+    }
+    
+    /// Returns whether brightness restoration is pending user touch
+    var isPendingRestoreOnTouch: Bool {
+        return shouldRestoreOnTouch
     }
     
     /// Updates the sleep mode brightness level
