@@ -350,4 +350,24 @@ class DatabaseManager: ObservableObject {
             return nil
         }
     }
+    
+    // MARK: - Async Versions for Non-Blocking Access
+    
+    func fetchSelectedSoundAsync() async -> SoundEntity? {
+        await MainActor.run {
+            fetchSelectedSound()
+        }
+    }
+    
+    func fetchSelectedBackgroundAsync() async -> BackgroundEntity? {
+        await MainActor.run {
+            fetchSelectedBackground()
+        }
+    }
+    
+    func fetchSelectedSoundsForMixingAsync() async -> [SoundEntity] {
+        await MainActor.run {
+            fetchSelectedSoundsForMixing()
+        }
+    }
 }

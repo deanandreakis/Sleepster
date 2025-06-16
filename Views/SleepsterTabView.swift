@@ -10,76 +10,57 @@ import SwiftUI
 struct SleepsterTabView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var serviceContainer: ServiceContainer
+    @EnvironmentObject var coreDataStack: CoreDataStack
     
     var body: some View {
-        TabView(selection: $appState.selectedTab) {
-            // Main Sleep Tab
+        TabView {
             SleepView()
                 .tabItem {
-                    Image(systemName: TabItem.main.systemImage)
-                    Text(TabItem.main.title)
+                    Image(systemName: "moon.fill")
+                    Text("Main")
                 }
-                .tag(TabItem.main)
             
-            // Sounds Tab
             SoundsListView()
                 .tabItem {
-                    Image(systemName: TabItem.sounds.systemImage)
-                    Text(TabItem.sounds.title)
+                    Image(systemName: "speaker.wave.3.fill")
+                    Text("Sounds")
                 }
-                .tag(TabItem.sounds)
             
-            // Backgrounds Tab
             BackgroundsView()
                 .tabItem {
-                    Image(systemName: TabItem.backgrounds.systemImage)
-                    Text(TabItem.backgrounds.title)
+                    Image(systemName: "photo.fill")
+                    Text("Backgrounds")
                 }
-                .tag(TabItem.backgrounds)
             
-            // Settings Tab
             SettingsView()
                 .tabItem {
-                    Image(systemName: TabItem.settings.systemImage)
-                    Text(TabItem.settings.title)
+                    Image(systemName: "gearshape.fill")
+                    Text("Settings")
                 }
-                .tag(TabItem.settings)
             
-            // Information Tab
             InformationView()
                 .tabItem {
-                    Image(systemName: TabItem.information.systemImage)
-                    Text(TabItem.information.title)
+                    Image(systemName: "info.circle.fill")
+                    Text("Info")
                 }
-                .tag(TabItem.information)
         }
-        .accentColor(.primary)
-        .onAppear {
-            setupTabBarAppearance()
-        }
-        .onChange(of: appState.shouldStartSleepingImmediately) { shouldStart in
-            if shouldStart {
-                appState.selectedTab = .main
-                appState.startSleeping()
-            }
-        }
-        .simultaneousGesture(
-            TapGesture().onEnded { _ in
-                // Check if brightness restoration is pending and restore if needed
-                SharedViewModelStore.shared.mainViewModel.brightnessManager.restoreOnTouchIfNeeded()
-            }
-        )
     }
+}
+
+// MARK: - Loading Tab View
+struct LoadingTabView: View {
+    let message: String
     
-    private func setupTabBarAppearance() {
-        // Customize tab bar appearance
-        let appearance = UITabBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor.systemBackground
-        
-        // Set the appearance for different states
-        UITabBar.appearance().standardAppearance = appearance
-        UITabBar.appearance().scrollEdgeAppearance = appearance
+    var body: some View {
+        VStack(spacing: 20) {
+            ProgressView()
+                .scaleEffect(1.5)
+            Text(message)
+                .font(.title2)
+                .foregroundColor(.secondary)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color(.systemBackground))
     }
 }
 

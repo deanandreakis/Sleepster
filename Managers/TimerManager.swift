@@ -23,7 +23,7 @@ class TimerManager: ObservableObject {
     private let audioManager: AudioManager
     
     // MARK: - Timer Components
-    private var timer: Timer?
+    private var cancellables = Set<AnyCancellable>()
     private var startTime: Date?
     private var pausedTime: TimeInterval = 0
     private var fadeOutDuration: TimeInterval = 10.0
@@ -61,8 +61,7 @@ class TimerManager: ObservableObject {
     }
     
     func stopTimer() {
-        timer?.invalidate()
-        timer = nil
+        cancellables.removeAll()
         isRunning = false
         isPaused = false
         timeRemaining = 0
@@ -74,8 +73,7 @@ class TimerManager: ObservableObject {
     func pauseTimer() {
         guard isRunning && !isPaused else { return }
         
-        timer?.invalidate()
-        timer = nil
+        cancellables.removeAll()
         isPaused = true
         
         // Store how much time has passed
@@ -106,14 +104,13 @@ class TimerManager: ObservableObject {
     
     // MARK: - Internal Timer
     private func startInternalTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-            self?.updateTimer()
-        }
-        
-        // Ensure timer runs in background
-        if let timer = timer {
-            RunLoop.current.add(timer, forMode: .common)
-        }
+        // Use SwiftUI's Timer.publish for non-blocking timer
+        Timer.publish(every: 1, on: .main, in: .common)
+            .autoconnect()
+            .sink { [weak self] _ in
+                self?.updateTimer()
+            }
+            .store(in: &cancellables)
     }
     
     private func updateTimer() {
@@ -139,23 +136,21 @@ class TimerManager: ObservableObject {
     }
     
     private func timerCompleted() {
-        timer?.invalidate()
-        timer = nil
+        cancellables.removeAll()
         isRunning = false
         isPaused = false
         timeRemaining = 0
         progress = 1.0
         
-        // Start fade out
-        audioManager.fadeOutAndStop(duration: fadeOutDuration) { [weak self] in
-            self?.timerCompletedSubject.send()
-        }
+        // Send completion signal immediately - let MainViewModel handle audio fade
+        timerCompletedSubject.send()
     }
     
     // MARK: - Timer State
     var formattedTimeRemaining: String {
-        let minutes = Int(timeRemaining) / 60
-        let seconds = Int(timeRemaining) % 60
+        let totalSeconds = Int(round(timeRemaining))
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
         return String(format: "%02d:%02d", minutes, seconds)
     }
     

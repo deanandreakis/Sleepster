@@ -45,8 +45,6 @@ class MainViewModel: ObservableObject {
     // MARK: - Private Properties
     private var cancellables = Set<AnyCancellable>()
     private var timerJustStarted = false
-    private var internalTimer: Timer?
-    private var timerStartTime: Date?
     private var defaultSoundRetryCount = 0
     
     // MARK: - Initialization
@@ -88,11 +86,15 @@ class MainViewModel: ObservableObject {
             .assign(to: \.isTimerRunning, on: self)
             .store(in: &cancellables)
         
-        // Note: Removed timerManager.$duration binding as it was overriding our timerDuration
-        // The MainViewModel manages timerDuration independently and syncs it to TimerManager when needed
-        
-        // Note: Disabled TimerManager timeRemaining binding to avoid 2-second jump
-        // Using our own internal timer for smooth countdown display
+        // Timer Manager timeRemaining binding
+        timerManager.$timeRemaining
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] timeRemaining in
+                self?.timeRemaining = timeRemaining
+                self?.updateTimerDisplay()
+                self?.updateTimerProgress()
+            }
+            .store(in: &cancellables)
         
         // Timer completion
         timerManager.timerCompletedPublisher
@@ -104,37 +106,41 @@ class MainViewModel: ObservableObject {
     }
     
     private func loadInitialData() {
-        // Load selected sound and background
-        selectedSound = databaseManager.fetchSelectedSound()
-        selectedBackground = databaseManager.fetchSelectedBackground()
-        
-        // Load selected sounds for mixing
-        selectedSoundsForMixing = databaseManager.fetchSelectedSoundsForMixing()
-        
-        // Determine mixing mode based on selected sounds
-        isMixingMode = !selectedSoundsForMixing.isEmpty
-        
-        // Set default sound if none is selected
-        if selectedSound == nil && selectedSoundsForMixing.isEmpty {
-            setDefaultSound()
-        }
-        
-        // Load last used volume
-        currentVolume = settingsManager.lastVolume
-        audioManager.setVolume(currentVolume)
-        
-        // Set 5-minute default timer
+        // Set immediate defaults for responsive UI
         timerDuration = 300.0
+        timeRemaining = timerDuration
+        currentVolume = settingsManager.lastVolume
+        updateTimerDisplay()
+        updateTimerProgress()
         
-        // Always show the timer duration when not running (including defaults)
-        if !isTimerRunning {
-            timeRemaining = timerDuration
-            updateTimerDisplay()
-            updateTimerProgress()
+        // Load data asynchronously to avoid blocking UI
+        Task.detached(priority: .background) { [weak self] in
+            guard let self = self else { return }
+            
+            // Load from database on background thread
+            let sound = await self.databaseManager.fetchSelectedSoundAsync()
+            let background = await self.databaseManager.fetchSelectedBackgroundAsync()
+            let soundsForMixing = await self.databaseManager.fetchSelectedSoundsForMixingAsync()
+            
+            // Update UI on main thread
+            await MainActor.run {
+                self.selectedSound = sound
+                self.selectedBackground = background
+                self.selectedSoundsForMixing = soundsForMixing
+                self.isMixingMode = !soundsForMixing.isEmpty
+                
+                // Set default sound if none is selected
+                if sound == nil && soundsForMixing.isEmpty {
+                    self.setDefaultSound()
+                }
+                
+                // Set volume after audio manager is ready
+                self.audioManager.setVolume(self.currentVolume)
+                
+                // Force UI update
+                self.objectWillChange.send()
+            }
         }
-        
-        // Force UI update
-        objectWillChange.send()
     }
     
     func refreshSelectedSound() {
@@ -261,15 +267,7 @@ class MainViewModel: ObservableObject {
         
         // Start timer if duration is set
         if timerDuration > 0 {
-            // Ensure timeRemaining matches timerDuration before starting
-            timeRemaining = timerDuration
-            updateTimerDisplay()
-            updateTimerProgress()
-            
-            // Start our own smooth countdown timer
-            startInternalTimer()
-            
-            // Start TimerManager for background functionality (audio fadeout, etc.)
+            // Start TimerManager - it will handle all timer functionality
             timerManager.startTimer(duration: timerDuration)
         }
         
@@ -305,11 +303,7 @@ class MainViewModel: ObservableObject {
         
         // Update UI state immediately
         isSleepModeActive = false
-        stopInternalTimer()
         timerManager.stopTimer()
-        timeRemaining = timerDuration
-        timerDisplayText = "05:00"
-        timerProgress = 0.0
         UIApplication.shared.isIdleTimerDisabled = false
         
         // Restore brightness if auto-adjust was enabled
@@ -327,33 +321,6 @@ class MainViewModel: ObservableObject {
         print("🛑 stopSleeping complete")
     }
     
-    // Stop sleeping when timer expires (don't restore brightness until user touch)
-    private func stopSleepingFromTimer() {
-        print("🛑 stopSleepingFromTimer called")
-        
-        isSleepModeActive = false
-        isTimerRunning = false
-        
-        // Reset timer display
-        timeRemaining = timerDuration
-        timerDisplayText = "05:00"
-        timerProgress = 0.0
-        UIApplication.shared.isIdleTimerDisabled = false
-        
-        // Schedule brightness restoration for user touch instead of immediate restore
-        brightnessManager.scheduleRestoreOnTouch()
-        
-        // Stop legacy audio manager
-        audioManager.stopAllSounds()
-        
-        // Clear UI state
-        activeChannelPlayers.removeAll()
-        
-        // Force stop all audio mixing (nuclear option - stops entire engine)
-        audioMixingEngine.forceStopAll()
-        
-        print("🛑 stopSleepingFromTimer complete - brightness will restore on user touch")
-    }
     
     
     func toggleSleepMode() {
@@ -419,8 +386,8 @@ class MainViewModel: ObservableObject {
     
     // MARK: - Timer Display Updates
     private func updateTimerDisplay() {
-        // Use ceiling to round up (e.g., 298.99 seconds should show as 299 seconds)
-        let totalSecondsRemaining = Int(ceil(timeRemaining))
+        // Use standard rounding for smooth display (avoids visual jumps)
+        let totalSecondsRemaining = Int(round(timeRemaining))
         let minutes = totalSecondsRemaining / 60
         let seconds = totalSecondsRemaining % 60
         timerDisplayText = String(format: "%02d:%02d", minutes, seconds)
@@ -435,44 +402,33 @@ class MainViewModel: ObservableObject {
     }
     
     private func handleTimerCompletion() {
-        // Gradually fade out audio
-        audioManager.fadeOutAndStop(duration: 10.0) { [weak self] in
-            DispatchQueue.main.async {
-                self?.stopSleepingFromTimer()
+        // Update UI state immediately to maintain responsiveness
+        isSleepModeActive = false
+        UIApplication.shared.isIdleTimerDisabled = false
+        
+        // Schedule brightness restoration for user touch instead of immediate restore
+        brightnessManager.scheduleRestoreOnTouch()
+        
+        // Handle audio cleanup with a simpler non-blocking approach
+        // Use a short fade duration and immediate cleanup to avoid UI blocking
+        audioManager.fadeOutAndStop(duration: 2.0) { [weak self] in
+            Task { @MainActor [weak self] in
+                guard let self = self else { return }
+                
+                // Stop legacy audio manager
+                self.audioManager.stopAllSounds()
+                
+                // Clear UI state
+                self.activeChannelPlayers.removeAll()
+                
+                // Force stop all audio mixing with minimal delay
+                DispatchQueue.global(qos: .background).async {
+                    self.audioMixingEngine.forceStopAll()
+                }
             }
         }
     }
     
-    // MARK: - Internal Timer Management
-    private func startInternalTimer() {
-        timerStartTime = Date()
-        
-        internalTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-            self?.updateInternalTimer()
-        }
-    }
-    
-    private func stopInternalTimer() {
-        internalTimer?.invalidate()
-        internalTimer = nil
-        timerStartTime = nil
-    }
-    
-    private func updateInternalTimer() {
-        guard let startTime = timerStartTime else { return }
-        
-        let elapsed = Date().timeIntervalSince(startTime)
-        let newTimeRemaining = max(0, timerDuration - elapsed)
-        
-        timeRemaining = newTimeRemaining
-        updateTimerDisplay()
-        updateTimerProgress()
-        
-        // Stop if we've reached zero (though TimerManager should handle completion)
-        if newTimeRemaining <= 0 {
-            stopInternalTimer()
-        }
-    }
     
     // MARK: - Quick Actions
     func sleepNow() {

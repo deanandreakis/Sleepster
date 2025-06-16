@@ -28,7 +28,7 @@ class AudioManager: NSObject, ObservableObject {
     
     // MARK: - Legacy AVAudioPlayer (for compatibility)
     private var audioPlayer: AVAudioPlayer?
-    private var fadeTimer: Timer?
+    private var fadeCancellable: AnyCancellable?
     
     // MARK: - Core Data
     private let coreDataStack: CoreDataStack
@@ -172,8 +172,8 @@ class AudioManager: NSObject, ObservableObject {
     
     // MARK: - Audio Control
     func stopAllSounds() {
-        fadeTimer?.invalidate()
-        fadeTimer = nil
+        fadeCancellable?.cancel()
+        fadeCancellable = nil
         
         audioPlayer?.stop()
         audioPlayer = nil
@@ -230,21 +230,30 @@ class AudioManager: NSObject, ObservableObject {
         let stepDuration = duration / Double(fadeSteps)
         let volumeStep = originalVolume / Float(fadeSteps)
         
-        var currentStep = 0
-        
-        fadeTimer = Timer.scheduledTimer(withTimeInterval: stepDuration, repeats: true) { [weak self] timer in
-            currentStep += 1
-            let newVolume = originalVolume - (volumeStep * Float(currentStep))
-            
-            if newVolume <= 0 || currentStep >= fadeSteps {
-                timer.invalidate()
-                self?.stopAllSounds()
-                self?.fadeCompletionHandler?()
-                self?.fadeCompletionHandler = nil
-            } else {
-                player.volume = newVolume
-            }
+        // Use a reference type to capture currentStep
+        class StepCounter {
+            var value = 0
         }
+        let currentStep = StepCounter()
+        
+        fadeCancellable = Timer.publish(every: stepDuration, on: .main, in: .common)
+            .autoconnect()
+            .sink { [weak self] _ in
+                guard let self = self, let player = self.audioPlayer else { return }
+                
+                currentStep.value += 1
+                let newVolume = originalVolume - (volumeStep * Float(currentStep.value))
+                
+                if newVolume <= 0 || currentStep.value >= fadeSteps {
+                    self.fadeCancellable?.cancel()
+                    self.fadeCancellable = nil
+                    self.stopAllSounds()
+                    self.fadeCompletionHandler?()
+                    self.fadeCompletionHandler = nil
+                } else {
+                    player.volume = newVolume
+                }
+            }
     }
     
     func fadeIn(duration: TimeInterval) {
@@ -340,7 +349,7 @@ class AudioManager: NSObject, ObservableObject {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-        fadeTimer?.invalidate()
+        fadeCancellable?.cancel()
         Task { @MainActor in
             stopAllSounds()
         }

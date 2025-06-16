@@ -42,20 +42,34 @@ struct SleepsterApp: App {
     }
     
     private func setupApp() {
+        NSLog("📱 SleepsterApp: setupApp() called")
         // Pass dependencies to app delegate
         appDelegate.serviceContainer = serviceContainer
         appDelegate.appState = appState
         
-        // Initialize color scheme from settings
-        appState.updateColorScheme(isDarkMode: serviceContainer.settingsManager.isDarkModeEnabled)
-        
-        // Initialize database if needed
+        // Initialize Core Data and heavy operations asynchronously
         Task {
-            await serviceContainer.databaseManager.prePopulate()
+            NSLog("📱 SleepsterApp: Starting async initialization task")
+            // Initialize Core Data stack first
+            await serviceContainer.coreDataStack.initializeAsync()
+            NSLog("📱 SleepsterApp: Core Data initialization complete")
+            
+            // Initialize color scheme from settings (after Core Data is ready)
+            await MainActor.run {
+                appState.updateColorScheme(isDarkMode: serviceContainer.settingsManager.isDarkModeEnabled)
+                NSLog("📱 SleepsterApp: Color scheme initialized")
+            }
+            
+            // Initialize database population in background (non-blocking)
+            Task.detached(priority: .background) {
+                await serviceContainer.databaseManager.prePopulate()
+            }
+            
+            // Setup audio session in background
+            Task.detached(priority: .utility) {
+                await serviceContainer.audioManager.setupAudioSession()
+            }
         }
-        
-        // Setup audio session
-        serviceContainer.audioManager.setupAudioSession()
     }
     
     private func handleShortcutItem(type: String) {

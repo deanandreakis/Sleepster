@@ -13,18 +13,57 @@ import Combine
 class CoreDataStack: ObservableObject {
     static let shared = CoreDataStack()
     
+    @Published var isInitialized = false
+    private var _persistentContainer: NSPersistentContainer?
+    
     private init() {}
     
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "SleepsterModel")
-        container.loadPersistentStores { _, error in
-            if let error = error as NSError? {
-                fatalError("Core Data error: \(error), \(error.userInfo)")
+    var persistentContainer: NSPersistentContainer {
+        if let container = _persistentContainer {
+            return container
+        } else {
+            // Fallback synchronous creation - should only happen after async init
+            let container = NSPersistentContainer(name: "SleepsterModel")
+            container.loadPersistentStores { _, _ in }
+            container.viewContext.automaticallyMergesChangesFromParent = true
+            _persistentContainer = container
+            return container
+        }
+    }
+    
+    func initializeAsync() async {
+        guard !isInitialized else { 
+            NSLog("📱 CoreDataStack: Already initialized")
+            return 
+        }
+        
+        NSLog("📱 CoreDataStack: Starting async initialization...")
+        
+        await withCheckedContinuation { continuation in
+            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                NSLog("📱 CoreDataStack: Creating persistent container...")
+                let container = NSPersistentContainer(name: "SleepsterModel")
+                container.loadPersistentStores { _, error in
+                    if let error = error as NSError? {
+                        NSLog("📱 CoreDataStack: ERROR - %@, %@", error.localizedDescription, error.userInfo.description)
+                        // Don't crash the app, just log and continue
+                    } else {
+                        NSLog("📱 CoreDataStack: Persistent stores loaded successfully")
+                    }
+                    
+                    container.viewContext.automaticallyMergesChangesFromParent = true
+                    
+                    DispatchQueue.main.async {
+                        NSLog("📱 CoreDataStack: Setting isInitialized = true")
+                        self?._persistentContainer = container
+                        self?.isInitialized = true
+                        continuation.resume()
+                        NSLog("📱 CoreDataStack: Initialization complete!")
+                    }
+                }
             }
         }
-        container.viewContext.automaticallyMergesChangesFromParent = true
-        return container
-    }()
+    }
     
     var viewContext: NSManagedObjectContext {
         persistentContainer.viewContext
