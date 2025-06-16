@@ -90,9 +90,13 @@ class MainViewModel: ObservableObject {
         timerManager.$timeRemaining
             .receive(on: DispatchQueue.main)
             .sink { [weak self] timeRemaining in
-                self?.timeRemaining = timeRemaining
-                self?.updateTimerDisplay()
-                self?.updateTimerProgress()
+                guard let self = self else { return }
+                // Only update from TimerManager when timer is actually running
+                if self.timerManager.isRunning {
+                    self.timeRemaining = timeRemaining
+                    self.updateTimerDisplay()
+                    self.updateTimerProgress()
+                }
             }
             .store(in: &cancellables)
         
@@ -107,7 +111,7 @@ class MainViewModel: ObservableObject {
     
     private func loadInitialData() {
         // Set immediate defaults for responsive UI
-        timerDuration = 300.0
+        timerDuration = settingsManager.lastTimerDuration
         timeRemaining = timerDuration
         currentVolume = settingsManager.lastVolume
         updateTimerDisplay()

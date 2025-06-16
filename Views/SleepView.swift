@@ -216,7 +216,6 @@ struct SleepView: View {
                 .foregroundColor(.primary)
             
             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 12) {
-                quickTimerButton("1m", minutes: 1)
                 quickTimerButton("5m", minutes: 5)
                 quickTimerButton("15m", minutes: 15)
                 quickTimerButton("30m", minutes: 30)
