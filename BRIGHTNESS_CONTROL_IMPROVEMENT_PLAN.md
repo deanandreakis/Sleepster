@@ -25,54 +25,37 @@
    - When enabled, shows explanatory text about automatic dimming
    - Haptic feedback when toggled
 
-## 🚧 Missing/Incomplete Implementation
+## ✅ Completed Implementation
 
-### 1. Settings Persistence
-**Problem**: The auto-adjust setting and brightness preferences are not saved between app launches.
+### 1. Settings Persistence ✅ COMPLETED
+**Implementation**: Added brightness settings to SettingsManager.swift and integrated with BrightnessControlView.swift
 
-**Location**: BrightnessControlView.swift:12-13, 139
-```swift
-@State private var brightness: Double = UIScreen.main.brightness
-@State private var autoAdjust = false
-```
+**Changes Made**:
+- Added `isAutoBrightnessEnabled`, `lastBrightnessLevel`, `sleepModeBrightnessLevel` to SettingsManager
+- Updated BrightnessControlView to use SettingsManager for persistence
+- Settings now save and load correctly between app launches
 
-**Solution Needed**:
-- Add brightness settings to `SettingsManager.swift`
-- Save/load auto-adjust preference
-- Remember last brightness level
+### 2. Sleep Mode Integration ✅ COMPLETED  
+**Implementation**: Created BrightnessManager service and integrated with MainViewModel sleep mode.
 
-### 2. Sleep Mode Integration
-**Problem**: The auto-brightness feature doesn't actually integrate with sleep mode.
+**Changes Made**:
+- Created `BrightnessManager.swift` for centralized brightness control
+- Integrated with MainViewModel.startSleeping() and stopSleeping() methods
+- Added proper brightness dimming/restoration during sleep mode
+- Environment object injection for SwiftUI integration
 
-**Current Implementation**: BrightnessControlView.swift:160-167
-```swift
-private func enableAutoAdjust() {
-    // In a real implementation, this would integrate with the sleep mode
-    // to automatically adjust brightness when sleep starts/stops
-    withAnimation(.easeInOut(duration: 2.0)) {
-        brightness = 0.1
-        UIScreen.main.brightness = 0.1
-    }
-}
-```
+### 3. Advanced Features (Future Enhancement Opportunities)
+- Scheduling (e.g., auto-dim after sunset)
+- Gradual brightness transitions during sleep countdown
+- Different presets for day/night modes
+- Adaptive brightness based on ambient light
 
-**Integration Points Needed**:
-- MainViewModel.swift:startSleeping() - trigger auto-dim
-- MainViewModel.swift:stopSleeping() - restore brightness
-- AppState.swift - track sleep mode state changes
+## 🎯 Implementation Status
 
-### 3. Advanced Features Missing
-- No scheduling (e.g., auto-dim after sunset)
-- No gradual brightness transitions during sleep
-- No different presets for day/night modes
-- No brightness restoration when sleep mode ends
+### ✅ Phase 1: Settings Persistence - COMPLETED
+**Files modified**: `Managers/SettingsManager.swift`, `Views/BrightnessControlView.swift`
 
-## 🎯 Implementation Plan
-
-### Phase 1: Settings Persistence
-**Files to modify**: `Managers/SettingsManager.swift`, `Views/BrightnessControlView.swift`
-
-1. **Add to SettingsManager.swift**:
+**Completed Implementation**:
 ```swift
 // Add to Keys enum
 static let isAutoBrightnessEnabled = "isAutoBrightnessEnabled"
@@ -122,8 +105,8 @@ var body: some View {
 }
 ```
 
-### Phase 2: Sleep Mode Integration
-**Files to modify**: `ViewModels/MainViewModel.swift`, `Views/BrightnessControlView.swift`
+### ✅ Phase 2: Sleep Mode Integration - COMPLETED
+**Files modified**: `ViewModels/MainViewModel.swift`, `Managers/BrightnessManager.swift`, `ServiceContainer.swift`, `SleepsterApp.swift`
 
 1. **Add to MainViewModel.swift**:
 ```swift
@@ -239,6 +222,32 @@ class BrightnessManager: ObservableObject {
 - Consider battery impact of frequent brightness changes
 - Test on various device brightness levels and conditions
 
+## ✅ Final Implementation Summary
+
+**Phase 1 & 2 Complete!** The brightness control feature is now fully functional with:
+
+### 🎯 Completed Features:
+- ✅ **Settings Persistence**: All brightness preferences save/load between app launches
+- ✅ **Sleep Mode Integration**: Auto-brightness dims when sleep starts, restores when stopped
+- ✅ **Manual Controls**: Slider and preset buttons work with persistent storage
+- ✅ **Centralized Management**: BrightnessManager service handles all brightness operations
+- ✅ **Environment Integration**: Proper SwiftUI environment object injection
+- ✅ **Error-Free Build**: Successfully compiles and runs
+
+### 🚀 How to Use:
+1. **Settings Tab**: Access brightness controls from Settings
+2. **Manual Adjustment**: Use slider or preset buttons (Dim, Low, Medium, Bright)
+3. **Auto-Brightness**: Toggle "Auto-adjust for sleep" to enable automatic dimming
+4. **Sleep Mode**: When auto-adjust is enabled, screen automatically dims during sleep and restores afterward
+
+### 📂 Files Modified:
+- `Managers/SettingsManager.swift` - Added brightness settings storage
+- `Managers/BrightnessManager.swift` - **NEW** - Centralized brightness control service
+- `Views/BrightnessControlView.swift` - Updated for persistence and better integration
+- `ViewModels/MainViewModel.swift` - Sleep mode brightness integration
+- `ServiceContainer.swift` - Dependency injection for BrightnessManager
+- `SleepsterApp.swift` - Environment object injection
+
 ---
 *Created: December 2025*
-*Status: Ready for implementation*
+*Status: ✅ **COMPLETED** - Ready for use!*

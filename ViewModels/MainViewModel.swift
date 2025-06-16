@@ -20,6 +20,7 @@ class MainViewModel: ObservableObject {
     private let databaseManager: DatabaseManager
     private let settingsManager: SettingsManager
     private let audioMixingEngine: AudioMixingEngine
+    private let brightnessManager: BrightnessManager
     
     // MARK: - Published Properties
     @Published var isSleepModeActive = false
@@ -54,13 +55,15 @@ class MainViewModel: ObservableObject {
         timerManager: TimerManager,
         databaseManager: DatabaseManager,
         settingsManager: SettingsManager,
-        audioMixingEngine: AudioMixingEngine = AudioMixingEngine.shared
+        audioMixingEngine: AudioMixingEngine = AudioMixingEngine.shared,
+        brightnessManager: BrightnessManager
     ) {
         self.audioManager = audioManager
         self.timerManager = timerManager
         self.databaseManager = databaseManager
         self.settingsManager = settingsManager
         self.audioMixingEngine = audioMixingEngine
+        self.brightnessManager = brightnessManager
         
         setupBindings()
         loadInitialData()
@@ -275,6 +278,9 @@ class MainViewModel: ObservableObject {
             UIApplication.shared.isIdleTimerDisabled = true
         }
         
+        // Auto-adjust brightness if enabled
+        brightnessManager.dimForSleep()
+        
         print("🎬 UI state updated, starting audio in background")
         
         // Start audio based on mode
@@ -305,6 +311,9 @@ class MainViewModel: ObservableObject {
         timerDisplayText = "05:00"
         timerProgress = 0.0
         UIApplication.shared.isIdleTimerDisabled = false
+        
+        // Restore brightness if auto-adjust was enabled
+        brightnessManager.restoreFromSleep()
         
         // Stop legacy audio manager
         audioManager.stopAllSounds()

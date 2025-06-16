@@ -46,7 +46,6 @@
 		5E7DA6972DFA3F750012AFB5 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6942DFA3F740012AFB5 /* TimerManager.swift */; };
 		5E7DA6982DFA3F750012AFB5 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6952DFA3F740012AFB5 /* AudioManager.swift */; };
 		5E7DA6992DFA3F750012AFB5 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6962DFA3F750012AFB5 /* SettingsManager.swift */; };
-		2E867C70ED504BF8A3702B0C /* BrightnessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7858925B47A14211B90AB71C /* BrightnessManager.swift */; };
 		5E7DA6A62DFA3F940012AFB5 /* CustomComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA69A2DFA3F930012AFB5 /* CustomComponents.swift */; };
 		5E7DA6A72DFA3F940012AFB5 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA69B2DFA3F930012AFB5 /* InformationView.swift */; };
 		5E7DA6A82DFA3F940012AFB5 /* BrightnessControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA69C2DFA3F940012AFB5 /* BrightnessControlView.swift */; };
@@ -223,7 +222,6 @@
 		5E7DA6942DFA3F740012AFB5 /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimerManager.swift; path = Managers/TimerManager.swift; sourceTree = "<group>"; };
 		5E7DA6952DFA3F740012AFB5 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioManager.swift; path = Managers/AudioManager.swift; sourceTree = "<group>"; };
 		5E7DA6962DFA3F750012AFB5 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsManager.swift; path = Managers/SettingsManager.swift; sourceTree = "<group>"; };
-		7858925B47A14211B90AB71C /* BrightnessManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BrightnessManager.swift; path = Managers/BrightnessManager.swift; sourceTree = "<group>"; };
 		5E7DA69A2DFA3F930012AFB5 /* CustomComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomComponents.swift; path = Views/Components/CustomComponents.swift; sourceTree = "<group>"; };
 		5E7DA69B2DFA3F930012AFB5 /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InformationView.swift; path = Views/InformationView.swift; sourceTree = "<group>"; };
 		5E7DA69C2DFA3F940012AFB5 /* BrightnessControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BrightnessControlView.swift; path = Views/BrightnessControlView.swift; sourceTree = "<group>"; };
@@ -451,7 +449,6 @@
 				5E7DA6A32DFA3F940012AFB5 /* TimerSettingsView.swift */,
 				5E7DA6952DFA3F740012AFB5 /* AudioManager.swift */,
 				5E7DA6962DFA3F750012AFB5 /* SettingsManager.swift */,
-				7858925B47A14211B90AB71C /* BrightnessManager.swift */,
 				5E7DA6942DFA3F740012AFB5 /* TimerManager.swift */,
 				5E7DA68D2DFA3F620012AFB5 /* BackgroundsViewModel.swift */,
 				5E7DA68A2DFA3F620012AFB5 /* InformationViewModel.swift */,
@@ -948,7 +945,6 @@
 				5E7DA6972DFA3F750012AFB5 /* TimerManager.swift in Sources */,
 				5E7DA6982DFA3F750012AFB5 /* AudioManager.swift in Sources */,
 				5E7DA6992DFA3F750012AFB5 /* SettingsManager.swift in Sources */,
-				2E867C70ED504BF8A3702B0C /* BrightnessManager.swift in Sources */,
 				5E7DA68E2DFA3F620012AFB5 /* TimerViewModel.swift in Sources */,
 				5E7DA68F2DFA3F620012AFB5 /* MainViewModel.swift in Sources */,
 				5E7DA6902DFA3F620012AFB5 /* InformationViewModel.swift in Sources */,

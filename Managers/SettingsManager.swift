@@ -31,6 +31,9 @@ class SettingsManager: ObservableObject {
         static let backgroundImageQuality = "backgroundImageQuality"
         static let isAnalyticsEnabled = "isAnalyticsEnabled"
         static let lastDatabaseVersion = "lastDatabaseVersion"
+        static let isAutoBrightnessEnabled = "isAutoBrightnessEnabled"
+        static let lastBrightnessLevel = "lastBrightnessLevel"
+        static let sleepModeBrightnessLevel = "sleepModeBrightnessLevel"
     }
     
     // MARK: - Default Values
@@ -51,6 +54,9 @@ class SettingsManager: ObservableObject {
         static let backgroundImageQuality = 1 // 0=low, 1=medium, 2=high
         static let isAnalyticsEnabled = true
         static let lastDatabaseVersion = 1
+        static let isAutoBrightnessEnabled = false
+        static let lastBrightnessLevel: Double = 0.5
+        static let sleepModeBrightnessLevel: Double = 0.1
     }
     
     private let userDefaults = UserDefaults.standard
@@ -181,6 +187,37 @@ class SettingsManager: ObservableObject {
         set { userDefaults.set(newValue, forKey: Keys.lastDatabaseVersion) }
     }
     
+    // MARK: - Brightness Settings
+    var isAutoBrightnessEnabled: Bool {
+        get { userDefaults.bool(forKey: Keys.isAutoBrightnessEnabled) }
+        set { 
+            userDefaults.set(newValue, forKey: Keys.isAutoBrightnessEnabled)
+            objectWillChange.send()
+        }
+    }
+    
+    var lastBrightnessLevel: Double {
+        get { 
+            let value = userDefaults.double(forKey: Keys.lastBrightnessLevel)
+            return value > 0 ? value : Defaults.lastBrightnessLevel
+        }
+        set { 
+            userDefaults.set(newValue, forKey: Keys.lastBrightnessLevel)
+            objectWillChange.send()
+        }
+    }
+    
+    var sleepModeBrightnessLevel: Double {
+        get { 
+            let value = userDefaults.double(forKey: Keys.sleepModeBrightnessLevel)
+            return value > 0 ? value : Defaults.sleepModeBrightnessLevel
+        }
+        set { 
+            userDefaults.set(newValue, forKey: Keys.sleepModeBrightnessLevel)
+            objectWillChange.send()
+        }
+    }
+    
     // MARK: - Initialization
     init() {
         // Load current values or set defaults
@@ -218,7 +255,10 @@ class SettingsManager: ObservableObject {
             Keys.hasCompletedOnboarding: Defaults.hasCompletedOnboarding,
             Keys.backgroundImageQuality: Defaults.backgroundImageQuality,
             Keys.isAnalyticsEnabled: Defaults.isAnalyticsEnabled,
-            Keys.lastDatabaseVersion: Defaults.lastDatabaseVersion
+            Keys.lastDatabaseVersion: Defaults.lastDatabaseVersion,
+            Keys.isAutoBrightnessEnabled: Defaults.isAutoBrightnessEnabled,
+            Keys.lastBrightnessLevel: Defaults.lastBrightnessLevel,
+            Keys.sleepModeBrightnessLevel: Defaults.sleepModeBrightnessLevel
         ]
         
         userDefaults.register(defaults: defaults)

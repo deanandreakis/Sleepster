@@ -89,17 +89,23 @@ class ServiceContainer: ObservableObject {
         SettingsManager()
     }()
     
+    lazy var brightnessManager: BrightnessManager = {
+        BrightnessManager(settingsManager: settingsManager)
+    }()
+    
     // MARK: - ViewModels
     lazy var mainViewModel: MainViewModel = {
         // Ensure SettingsManager is fully initialized before creating ViewModels
         let settings = settingsManager
+        let brightness = brightnessManager
         
         return MainViewModel(
             audioManager: audioManager,
             timerManager: timerManager,
             databaseManager: databaseManager,
             settingsManager: settings,
-            audioMixingEngine: audioMixingEngine
+            audioMixingEngine: audioMixingEngine,
+            brightnessManager: brightness
         )
     }()
     

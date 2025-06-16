@@ -28,6 +28,8 @@ struct SleepsterApp: App {
                 .environmentObject(serviceContainer.coreDataStack)
                 .environmentObject(serviceContainer.audioManager)
                 .environmentObject(serviceContainer.timerManager)
+                .environmentObject(serviceContainer.settingsManager)
+                .environmentObject(serviceContainer.brightnessManager)
                 .onAppear {
                     setupApp()
                 }
