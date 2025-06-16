@@ -37,7 +37,7 @@ class AppState: ObservableObject {
     @Published var timeRemaining: TimeInterval = 0
     
     // MARK: - Background State
-    @Published var currentBackgroundColor: UIColor = .white
+    @Published var currentBackgroundColor: UIColor = .systemBackground
     @Published var currentBackgroundImage: UIImage?
     @Published var isBackgroundImageMode = false
     
@@ -55,12 +55,6 @@ class AppState: ObservableObject {
     @Published var navigationPath: [String] = [] // iOS 15.0 compatible navigation
     
     // MARK: - Settings State
-    @Published var isDarkModeEnabled = false {
-        didSet {
-            updateColorScheme()
-        }
-    }
-    
     @Published var isHapticsEnabled = true
     @Published var isAutoLockDisabled = true
     
@@ -72,16 +66,13 @@ class AppState: ObservableObject {
     // MARK: - User Preferences
     private func loadUserPreferences() {
         // Load saved preferences
-        isDarkModeEnabled = UserDefaults.standard.bool(forKey: "isDarkModeEnabled")
         isHapticsEnabled = UserDefaults.standard.bool(forKey: "isHapticsEnabled")
         isAutoLockDisabled = UserDefaults.standard.bool(forKey: "isAutoLockDisabled")
         currentVolume = UserDefaults.standard.float(forKey: "lastVolume")
-        
-        updateColorScheme()
     }
     
-    private func updateColorScheme() {
-        colorScheme = isDarkModeEnabled ? .dark : .light
+    func updateColorScheme(isDarkMode: Bool) {
+        colorScheme = isDarkMode ? .dark : .light
     }
     
     // MARK: - Notifications Setup

@@ -46,6 +46,9 @@ struct SleepsterApp: App {
         appDelegate.serviceContainer = serviceContainer
         appDelegate.appState = appState
         
+        // Initialize color scheme from settings
+        appState.updateColorScheme(isDarkMode: serviceContainer.settingsManager.isDarkModeEnabled)
+        
         // Initialize database if needed
         Task {
             await serviceContainer.databaseManager.prePopulate()

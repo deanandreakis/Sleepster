@@ -95,7 +95,7 @@ struct SettingsView: View {
         Section("Appearance") {
             Toggle("Dark Mode", isOn: $viewModel.isDarkModeEnabled)
                 .onChange(of: viewModel.isDarkModeEnabled) { value in
-                    appState.isDarkModeEnabled = value
+                    appState.updateColorScheme(isDarkMode: value)
                 }
         }
     }

@@ -113,7 +113,7 @@ struct BackgroundImageView: SwiftUI.View {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.title2)
                         .foregroundColor(.blue)
-                        .background(Color.white, in: Circle())
+                        .background(Color(.systemBackground), in: Circle())
                         .offset(x: 35, y: -35)
                 }
             }

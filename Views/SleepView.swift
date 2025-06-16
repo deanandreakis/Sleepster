@@ -226,7 +226,7 @@ struct SleepView: View {
                 .padding(.vertical, 8)
                 .background(
                     RoundedRectangle(cornerRadius: 8)
-                        .fill(Int(viewModel.timerDuration) == minutes * 60 ? Color.blue : Color.gray.opacity(0.2))
+                        .fill(Int(viewModel.timerDuration) == minutes * 60 ? Color.blue : Color(.systemGray5))
                 )
         }
     }
