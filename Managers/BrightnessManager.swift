@@ -58,14 +58,28 @@ class BrightnessManager: ObservableObject {
     
     /// Dims the screen for sleep mode if auto-brightness is enabled
     func dimForSleep() {
-        guard settingsManager.isAutoBrightnessEnabled else { return }
-        guard !isSleepModeActive else { return }
+        print("🔆 BrightnessManager.dimForSleep() called")
+        print("🔆 Auto-brightness enabled: \(settingsManager.isAutoBrightnessEnabled)")
+        print("🔆 Sleep mode active: \(isSleepModeActive)")
+        print("🔆 Current brightness: \(UIScreen.main.brightness)")
+        print("🔆 Target brightness: \(settingsManager.sleepModeBrightnessLevel)")
+        
+        guard settingsManager.isAutoBrightnessEnabled else { 
+            print("🔆 Auto-brightness is disabled, skipping dim")
+            return 
+        }
+        guard !isSleepModeActive else { 
+            print("🔆 Sleep mode already active, skipping dim")
+            return 
+        }
         
         // Store current brightness to restore later
         originalBrightness = UIScreen.main.brightness
         isSleepModeActive = true
         
         let targetBrightness = settingsManager.sleepModeBrightnessLevel
+        
+        print("🔆 Setting brightness from \(originalBrightness) to \(targetBrightness)")
         
         withAnimation(.easeInOut(duration: 2.0)) {
             UIScreen.main.brightness = targetBrightness
@@ -77,10 +91,23 @@ class BrightnessManager: ObservableObject {
     
     /// Restores the original brightness when sleep mode ends
     func restoreFromSleep() {
-        guard settingsManager.isAutoBrightnessEnabled else { return }
-        guard isSleepModeActive else { return }
+        print("🔆 BrightnessManager.restoreFromSleep() called")
+        print("🔆 Auto-brightness enabled: \(settingsManager.isAutoBrightnessEnabled)")
+        print("🔆 Sleep mode active: \(isSleepModeActive)")
+        print("🔆 Original brightness: \(originalBrightness)")
+        
+        guard settingsManager.isAutoBrightnessEnabled else { 
+            print("🔆 Auto-brightness is disabled, skipping restore")
+            return 
+        }
+        guard isSleepModeActive else { 
+            print("🔆 Sleep mode not active, skipping restore")
+            return 
+        }
         
         isSleepModeActive = false
+        
+        print("🔆 Restoring brightness from \(UIScreen.main.brightness) to \(originalBrightness)")
         
         withAnimation(.easeInOut(duration: 1.0)) {
             UIScreen.main.brightness = originalBrightness

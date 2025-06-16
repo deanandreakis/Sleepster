@@ -26,7 +26,7 @@ struct BrightnessControlView: View {
                     Text("Screen Brightness")
                         .font(.title2)
                         
-                    Text("Adjust brightness for comfortable sleep")
+                    Text("Set brightness level for sleep mode")
                         .font(.body)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
@@ -55,9 +55,8 @@ struct BrightnessControlView: View {
             }
         }
         .onAppear {
-            brightness = settingsManager.lastBrightnessLevel
+            brightness = settingsManager.sleepModeBrightnessLevel
             autoAdjust = settingsManager.isAutoBrightnessEnabled
-            UIScreen.main.brightness = brightness
         }
         // .presentationDetents([.medium, .large]) // iOS 16+ only
     }
@@ -78,7 +77,7 @@ struct BrightnessControlView: View {
                     .font(.title3)
                 
                 Slider(value: $brightness, in: 0.01...1.0) { _ in
-                    brightnessManager.setBrightness(brightness, animated: false)
+                    settingsManager.sleepModeBrightnessLevel = brightness
                     HapticFeedback.light()
                 }
                 .tint(.yellow)
@@ -88,7 +87,7 @@ struct BrightnessControlView: View {
                     .font(.title3)
             }
             
-            Text("Slide to adjust screen brightness")
+            Text("Set sleep mode brightness level")
                 .font(.caption)
                 .foregroundColor(.secondary)
         }
@@ -115,7 +114,7 @@ struct BrightnessControlView: View {
         Button {
             HapticFeedback.medium()
             self.brightness = brightness
-            brightnessManager.setBrightness(brightness, animated: true, duration: 0.5)
+            settingsManager.sleepModeBrightnessLevel = brightness
         } label: {
             VStack(spacing: 8) {
                 Image(systemName: icon)
@@ -142,9 +141,6 @@ struct BrightnessControlView: View {
                 .onChange(of: autoAdjust) { enabled in
                     HapticFeedback.light()
                     settingsManager.isAutoBrightnessEnabled = enabled
-                    if enabled {
-                        enableAutoAdjust()
-                    }
                 }
             
             if autoAdjust {
@@ -159,13 +155,6 @@ struct BrightnessControlView: View {
     }
     
     // MARK: - Helper Methods
-    
-    private func enableAutoAdjust() {
-        // Demo: Set brightness to sleep mode level when auto-adjust is enabled
-        let sleepBrightness = settingsManager.sleepModeBrightnessLevel
-        brightness = sleepBrightness
-        brightnessManager.setBrightness(sleepBrightness, animated: true, duration: 2.0)
-    }
 }
 
 // MARK: - Preview
