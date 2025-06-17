@@ -133,6 +133,9 @@ class MainViewModel: ObservableObject {
                 self.selectedSoundsForMixing = soundsForMixing
                 self.isMixingMode = !soundsForMixing.isEmpty
                 
+                // Load animation from background entity
+                self.updateAppStateAnimation(from: background)
+                
                 // Set default sound if none is selected
                 if sound == nil && soundsForMixing.isEmpty {
                     self.setDefaultSound()
@@ -155,6 +158,11 @@ class MainViewModel: ObservableObject {
         selectedSound = databaseManager.fetchSelectedSound()
         selectedSoundsForMixing = databaseManager.fetchSelectedSoundsForMixing()
         isMixingMode = !selectedSoundsForMixing.isEmpty
+    }
+    
+    func refreshSelectedBackground() {
+        selectedBackground = databaseManager.fetchSelectedBackground()
+        updateAppStateAnimation(from: selectedBackground)
     }
     
     func ensureDefaultSound() {
@@ -193,8 +201,6 @@ class MainViewModel: ObservableObject {
     
     // MARK: - Sound Mixing
     private func startMixedAudio() {
-        print("🎵 startMixedAudio called")
-        
         // Force stop any existing audio immediately
         audioMixingEngine.forceStopAll()
         
@@ -214,8 +220,6 @@ class MainViewModel: ObservableObject {
                     }
                 }
             }
-            
-            print("🎵 Audio setup complete")
         }
     }
     
@@ -261,10 +265,9 @@ class MainViewModel: ObservableObject {
     
     // MARK: - Actions
     func startSleeping() {
-        print("🎬 startSleeping called")
-        
-        // Refresh selected sounds
+        // Refresh selected sounds and background
         refreshSelectedSounds()
+        refreshSelectedBackground()
         
         // Update UI state IMMEDIATELY
         isSleepModeActive = true
@@ -283,8 +286,6 @@ class MainViewModel: ObservableObject {
         // Auto-adjust brightness if enabled
         brightnessManager.dimForSleep()
         
-        print("🎬 UI state updated, starting audio in background")
-        
         // Start audio based on mode
         if isMixingMode && !selectedSoundsForMixing.isEmpty {
             startMixedAudio()
@@ -298,13 +299,9 @@ class MainViewModel: ObservableObject {
             isSleepModeActive = false
             return
         }
-        
-        print("🎬 startSleeping complete - audio starting in background")
     }
     
     func stopSleeping() {
-        print("🛑 stopSleeping called")
-        
         // Update UI state immediately
         isSleepModeActive = false
         timerManager.stopTimer()
@@ -321,8 +318,6 @@ class MainViewModel: ObservableObject {
         
         // Force stop all audio mixing (nuclear option - stops entire engine)
         audioMixingEngine.forceStopAll()
-        
-        print("🛑 stopSleeping complete")
     }
     
     
@@ -383,6 +378,7 @@ class MainViewModel: ObservableObject {
         // Select new background
         background.selectBackground()
         selectedBackground = background
+        updateAppStateAnimation(from: background)
         
         // Save to database
         databaseManager.saveContext()
@@ -456,5 +452,28 @@ class MainViewModel: ObservableObject {
         }
         
         startSleeping()
+    }
+    
+    // MARK: - Animation Management
+    
+    private func updateAppStateAnimation(from background: BackgroundEntity?) {
+        guard let background = background,
+              let animationType = background.animationType else {
+            // Clear animation if no background is selected
+            AppState.shared.setAnimation(nil)
+            return
+        }
+        
+        // Find the corresponding animation
+        if let animation = AnimationRegistry.shared.animation(for: animationType) {
+            AppState.shared.setAnimation(animation)
+            
+            // Update animation settings from the background entity
+            AppState.shared.updateAnimationSettings(
+                intensity: background.intensityLevel > 0 ? Float(background.intensityLevel) / 3.0 : 0.5,
+                speed: background.speedMultiplier > 0 ? background.speedMultiplier : 1.0,
+                colorTheme: ColorTheme(rawValue: background.colorTheme ?? "default") ?? .defaultTheme
+            )
+        }
     }
 }

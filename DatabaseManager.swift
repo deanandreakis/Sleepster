@@ -13,9 +13,8 @@ class DatabaseManager: ObservableObject {
     static let shared = DatabaseManager()
     
     // Constants
-    private let minNumBgObjects = 50
-    private let numPermanentBgObjects = 20
-    private let flickrAPIKey = "ab284ac09b04f83cf5af22e4bc3b6e56"
+    private let minNumBgObjects = 10  // Reduced for animation system
+    private let numPermanentBgObjects = 6  // Number of default animations
     
     private var isPermObjectsExist = false
     
@@ -82,75 +81,52 @@ class DatabaseManager: ObservableObject {
         await resetDefaultSoundsFavoriteStatus()
         
         if !isPermObjectsExist {
-            await populateDefaultBackgrounds()
+            await populateDefaultAnimations()
         }
         
-        // Fetch default sounds and backgrounds from Flickr
-        await fetchDefaultContent()
+        // Populate default sounds only (animations handled separately)
+        await populateDefaultSounds()
     }
     
     @MainActor
-    private func populateDefaultBackgrounds() async {
-        let colorArray = [
-            "whiteColor", "blueColor", "redColor", "greenColor",
-            "blackColor", "darkGrayColor", "lightGrayColor", "grayColor",
-            "cyanColor", "yellowColor", "magentaColor", "orangeColor",
-            "purpleColor", "brownColor", "clearColor"
-        ]
-        
+    private func populateDefaultAnimations() async {
         let context = managedObjectContext
+        let animations = AnimationRegistry.shared.animations
         
-        // Add color backgrounds
-        for colorName in colorArray {
-            guard let entity = NSEntityDescription.entity(forEntityName: "Background", in: context) else { continue }
-            let background = BackgroundEntity(entity: entity, insertInto: context)
-            background.bTitle = colorName
-            background.bThumbnailUrl = nil
-            background.bFullSizeUrl = nil
-            background.bColor = colorName
-            background.isFavorite = true
-            background.isImage = false
-            background.isLocalImage = false
-            background.isSelected = false
+        // Create entities for all available animations
+        for animation in animations {
+            // Check if entity already exists
+            let request = BackgroundEntity.fetchRequest()
+            request.predicate = NSPredicate(format: "animationType == %@", animation.id)
+            
+            let existingEntities = (try? context.fetch(request)) ?? []
+            if existingEntities.isEmpty {
+                // Create new animation entity
+                guard let entity = NSEntityDescription.entity(forEntityName: "Background", in: context) else { continue }
+                let backgroundEntity = BackgroundEntity(entity: entity, insertInto: context)
+                backgroundEntity.animationType = animation.id
+                backgroundEntity.isSelected = false
+                backgroundEntity.isFavorite = false
+                backgroundEntity.speedMultiplier = 1.0
+                backgroundEntity.intensityLevel = 2 // Medium intensity
+                backgroundEntity.colorTheme = ColorTheme.defaultTheme.rawValue
+            }
         }
         
-        // Add local image backgrounds
-        let localImages = [
-            ("z_Independence Grove", "igrove_1"),
-            ("z_Independence Grove_1", "grove2"),
-            ("z_Independence Grove_2", "grove3"),
-            ("z_Independence Grove_3", "grove4"),
-            ("z_Independence Grove_4", "grove5")
-        ]
-        
-        for (title, imageName) in localImages {
-            guard let entity = NSEntityDescription.entity(forEntityName: "Background", in: context) else { continue }
-            let background = BackgroundEntity(entity: entity, insertInto: context)
-            background.bTitle = title
-            background.bThumbnailUrl = imageName
-            background.bFullSizeUrl = imageName
-            background.bColor = nil
-            background.isFavorite = true
-            background.isImage = true
-            background.isLocalImage = true
-            background.isSelected = false
+        // Select a default animation if none is selected
+        let selectedRequest = BackgroundEntity.fetchSelectedBackground()
+        let selectedEntities = (try? context.fetch(selectedRequest)) ?? []
+        if selectedEntities.isEmpty, let firstAnimation = animations.first {
+            let request = BackgroundEntity.fetchRequest()
+            request.predicate = NSPredicate(format: "animationType == %@", firstAnimation.id)
+            if let entity = (try? context.fetch(request))?.first {
+                entity.isSelected = true
+            }
         }
         
         await saveContextAsync()
     }
     
-    private func fetchDefaultContent() async {
-        // Fetch default nature sounds and backgrounds
-        await withTaskGroup(of: Void.self) { group in
-            group.addTask {
-                await self.populateDefaultSounds()
-            }
-            
-            group.addTask {
-                BackgroundEntity.fetchPics(completion: { _ in }, withSearchTags: "ocean,waves,rain,wind,waterfall,stream,forest,fire")
-            }
-        }
-    }
     
     @MainActor
     private func populateDefaultSounds() async {
@@ -201,10 +177,12 @@ class DatabaseManager: ObservableObject {
         do {
             let count = try context.count(for: fetchRequest)
             
-            if count < minNumBgObjects {
-                isPermObjectsExist = count >= numPermanentBgObjects
+            // For animation system, we need at least the default animations
+            if count < numPermanentBgObjects {
+                isPermObjectsExist = false
                 return true
             } else {
+                isPermObjectsExist = true
                 return false
             }
         } catch {

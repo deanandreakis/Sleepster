@@ -9,8 +9,9 @@ import SwiftUI
 
 struct SleepView: View {
     @EnvironmentObject var serviceContainer: ServiceContainer
-    @EnvironmentObject var appState: AppState
+    @ObservedObject var appState: AppState = AppState.shared
     @EnvironmentObject var coreDataStack: CoreDataStack
+    @Environment(\.colorScheme) var colorScheme
     
     @State private var showingTimerSettings = false
     @State private var showingBrightnessControl = false
@@ -48,6 +49,13 @@ struct SleepView: View {
                     }
                     .background(Color(.systemBackground).opacity(0.9))
                 }
+                
+                // Full-screen sleep animation overlay
+                if viewModel.isSleepModeActive {
+                    sleepAnimationOverlay
+                        .ignoresSafeArea(.all)
+                        .transition(.opacity.animation(.easeInOut(duration: 0.5)))
+                }
             }
         }
         .navigationBarHidden(true)
@@ -68,8 +76,11 @@ struct SleepView: View {
         }
         .simultaneousGesture(
             TapGesture().onEnded { _ in
-                // Check if brightness restoration is pending and restore if needed
-                viewModel.brightnessManager.restoreOnTouchIfNeeded()
+                // Only handle brightness restoration when not in sleep mode
+                // (Sleep mode overlay handles its own tap gesture)
+                if !viewModel.isSleepModeActive {
+                    viewModel.brightnessManager.restoreOnTouchIfNeeded()
+                }
             }
         )
         // .alert(item: $viewModel.alertItem) { alert in
@@ -84,19 +95,143 @@ struct SleepView: View {
     // MARK: - Subviews
     
     private var backgroundView: some View {
+        // Plain white background like other tabs - no animation in normal mode
+        Color(.systemBackground)
+            .ignoresSafeArea()
+    }
+    
+    // MARK: - Computed Properties
+    
+    private var shouldDimAnimation: Bool {
+        // Dim the animation if we're in sleep mode OR if the brightness has been manually dimmed
+        // But NOT just because we're in dark mode - animations should be vibrant in dark mode
+        return viewModel.isSleepModeActive || appState.isDimmed
+    }
+    
+    private var fallbackGradientColors: [Color] {
+        if colorScheme == .dark {
+            return [.black, .gray]
+        } else {
+            return [Color.blue.opacity(0.3), Color.purple.opacity(0.3), Color.white]
+        }
+    }
+    
+    private var adaptedColorTheme: ColorTheme {
+        // In light mode, we want to use lighter, more vibrant themes
+        // unless the user specifically selected a different theme
+        if colorScheme == .light && appState.animationColorTheme == .defaultTheme {
+            return .warm // Use warm theme for better light mode visibility
+        }
+        return appState.animationColorTheme
+    }
+    
+    private var sleepAnimationOverlay: some View {
         ZStack {
-            if let backgroundImage = appState.currentBackgroundImage {
-                Image(uiImage: backgroundImage)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .ignoresSafeArea()
+            // Full-screen animation
+            if let selectedAnimation = appState.selectedAnimation {
+                selectedAnimation.createView(
+                    intensity: appState.animationIntensity,
+                    speed: appState.animationSpeed,
+                    colorTheme: appState.animationColorTheme,
+                    dimmed: true // Always dimmed in sleep mode
+                )
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.black) // Ensure full coverage
             } else {
-                Color(appState.currentBackgroundColor)
-                    .ignoresSafeArea()
+                // Fallback: Use default animation if none selected
+                VStack {
+                    Text("No animation selected")
+                        .foregroundColor(.white)
+                        .padding()
+                    defaultSleepAnimation
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.black) // Ensure full coverage
+            }
+            
+            // Optional: Add subtle timer display in sleep mode
+            if viewModel.isTimerRunning {
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Text(viewModel.timerDisplayText)
+                            .font(.title3.monospacedDigit())
+                            .foregroundColor(.white.opacity(0.6))
+                            .padding()
+                        Spacer()
+                    }
+                    Spacer()
+                        .frame(height: 50) // Keep timer away from bottom edge
+                }
             }
         }
-        .animation(.easeInOut(duration: 0.5), value: appState.currentBackgroundImage)
-        .animation(.easeInOut(duration: 0.5), value: appState.currentBackgroundColor)
+        .onTapGesture {
+            // Tap anywhere to exit sleep mode
+            HapticFeedback.medium()
+            Task {
+                await viewModel.stopSleeping()
+            }
+        }
+    }
+    
+    private var defaultSleepAnimation: some View {
+        // Simple default animation for when no specific animation is selected
+        GeometryReader { geometry in
+            ZStack {
+                // Dark gradient background
+                LinearGradient(
+                    colors: [.black, .indigo.opacity(0.3)],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                
+                // Simple pulsing stars at fixed positions
+                ForEach(defaultStarPositions(in: geometry.size), id: \.id) { star in
+                    Circle()
+                        .fill(.white.opacity(0.4))
+                        .frame(width: star.size, height: star.size)
+                        .position(x: star.x, y: star.y)
+                        .opacity(0.3 + 0.4 * sin(Date().timeIntervalSince1970 * star.speed + star.phase))
+                        .animation(
+                            .easeInOut(duration: star.duration)
+                            .repeatForever(autoreverses: true),
+                            value: Date().timeIntervalSince1970
+                        )
+                }
+            }
+        }
+    }
+    
+    private struct StarData: Identifiable {
+        let id = UUID()
+        let x: CGFloat
+        let y: CGFloat
+        let size: CGFloat
+        let speed: Double
+        let phase: Double
+        let duration: Double
+    }
+    
+    private func defaultStarPositions(in size: CGSize) -> [StarData] {
+        // Generate consistent star positions based on screen size
+        let positions: [(x: Float, y: Float)] = [
+            (0.1, 0.1), (0.3, 0.05), (0.6, 0.15), (0.8, 0.1), (0.9, 0.25),
+            (0.15, 0.3), (0.4, 0.25), (0.7, 0.35), (0.05, 0.45), (0.5, 0.4),
+            (0.85, 0.5), (0.2, 0.6), (0.6, 0.65), (0.9, 0.7), (0.1, 0.8),
+            (0.35, 0.75), (0.75, 0.85), (0.45, 0.9), (0.8, 0.95), (0.25, 0.95)
+        ]
+        
+        return positions.enumerated().map { index, pos in
+            StarData(
+                x: CGFloat(pos.x) * size.width,
+                y: CGFloat(pos.y) * size.height,
+                size: CGFloat([1.5, 2.0, 2.5][index % 3]),
+                speed: [0.5, 0.8, 1.2][index % 3],
+                phase: Double(index) * 0.3,
+                duration: [3.0, 4.0, 5.0][index % 3]
+            )
+        }
     }
     
     private var headerView: some View {

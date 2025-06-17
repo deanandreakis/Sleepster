@@ -2,7 +2,7 @@
 //  BackgroundsViewModel.swift
 //  SleepMate
 //
-//  Created by Claude on Phase 2 Migration
+//  Created by Claude on Phase 1 Migration - Animated Backgrounds
 //
 
 import Foundation
@@ -15,301 +15,187 @@ class BackgroundsViewModel: ObservableObject {
     
     // MARK: - Dependencies
     private let databaseManager: DatabaseManager
-    private let flickrAPIClient: FlickrAPIClient
     
     // MARK: - Published Properties
-    @Published var backgrounds: [BackgroundEntity] = []
-    @Published var favoriteBackgrounds: [BackgroundEntity] = []
-    @Published var selectedBackground: BackgroundEntity?
+    @Published var backgroundEntities: [BackgroundEntity] = []
+    @Published var selectedAnimationId: String?
     @Published var isLoading = false
     @Published var errorMessage: String?
-    @Published var searchText = ""
-    @Published var showingFavoritesOnly = false
-    @Published var isSearching = false
-    @Published var searchResults: [BackgroundEntity] = []
-    
-    // MARK: - Search Categories
-    @Published var selectedCategory: BackgroundCategory = .all
-    
-    enum BackgroundCategory: String, CaseIterable {
-        case all = "All"
-        case colors = "Colors"
-        case nature = "Nature"
-        case local = "Local"
-        case flickr = "Online"
-        
-        var searchTags: String {
-            switch self {
-            case .all: return ""
-            case .colors: return ""
-            case .nature: return "nature,landscape,forest,mountain,ocean"
-            case .local: return ""
-            case .flickr: return "peaceful,calm,relaxing,meditation"
-            }
-        }
-    }
-    
-    // MARK: - Computed Properties
-    var filteredBackgrounds: [BackgroundEntity] {
-        var backgroundsToFilter = showingFavoritesOnly ? favoriteBackgrounds : backgrounds
-        
-        // Filter by category
-        switch selectedCategory {
-        case .all:
-            break // Show all
-        case .colors:
-            backgroundsToFilter = backgroundsToFilter.filter { !$0.isImage }
-        case .nature:
-            backgroundsToFilter = backgroundsToFilter.filter { $0.isImage && !$0.isLocalImage }
-        case .local:
-            backgroundsToFilter = backgroundsToFilter.filter { $0.isLocalImage }
-        case .flickr:
-            backgroundsToFilter = backgroundsToFilter.filter { $0.isImage && !$0.isLocalImage }
-        }
-        
-        // Filter by search text
-        if searchText.isEmpty {
-            return backgroundsToFilter
-        } else {
-            return backgroundsToFilter.filter { background in
-                background.bTitle?.localizedCaseInsensitiveContains(searchText) ?? false
-            }
-        }
-    }
+    @Published var animationSettings = AnimationSettings.default
     
     // MARK: - Private Properties
     private var cancellables = Set<AnyCancellable>()
-    private var searchTask: Task<Void, Never>?
     
     // MARK: - Initialization
-    init(databaseManager: DatabaseManager, flickrAPIClient: FlickrAPIClient) {
+    init(databaseManager: DatabaseManager) {
         self.databaseManager = databaseManager
-        self.flickrAPIClient = flickrAPIClient
-        
-        loadBackgrounds()
-        setupSearchDebounce()
+        loadAnimations()
+        loadSelectedAnimation()
     }
     
-    // MARK: - Setup
-    private func setupSearchDebounce() {
-        // Debounce search to avoid too many API calls
-        $searchText
-            .debounce(for: .milliseconds(500), scheduler: DispatchQueue.main)
-            .sink { [weak self] searchText in
-                if !searchText.isEmpty && self?.selectedCategory != .colors && self?.selectedCategory != .local {
-                    self?.searchFlickrImages(for: searchText)
-                }
-            }
-            .store(in: &cancellables)
-    }
-    
-    // MARK: - Data Loading
-    func loadBackgrounds() {
+    // MARK: - Public Methods
+    func loadAnimations() {
         isLoading = true
         
-        Task {
-            let allBackgrounds = databaseManager.fetchAllBackgrounds()
-            let favorites = allBackgrounds.filter { $0.isFavorite }
-            let selected = databaseManager.fetchSelectedBackground()
+        // Load existing entities from Core Data
+        loadBackgroundEntities()
+        
+        // Create entities for new animations if they don't exist
+        createDefaultAnimationEntities()
+        
+        isLoading = false
+    }
+    
+    func selectAnimation(_ animationId: String) {
+        // Perform selection with smooth state update
+        withAnimation(.easeInOut(duration: 0.3)) {
+            // Deselect all current selections
+            for entity in backgroundEntities {
+                entity.isSelected = false
+            }
             
-            await MainActor.run {
-                self.backgrounds = allBackgrounds
-                self.favoriteBackgrounds = favorites
-                self.selectedBackground = selected
-                self.isLoading = false
+            // Select the new animation
+            if let entity = backgroundEntities.first(where: { $0.animationType == animationId }) {
+                entity.isSelected = true
+                selectedAnimationId = animationId
+                
+                // Save settings to entity
+                entity.speedMultiplier = animationSettings.speed
+                entity.intensityLevel = Int32(animationSettings.intensity * 3) // 0-3 scale
+                entity.colorTheme = animationSettings.colorTheme.rawValue
+                
+                // Update app state with smooth transition
+                if let animation = AnimationRegistry.shared.animation(for: animationId) {
+                    AppState.shared.setAnimation(animation)
+                    AppState.shared.updateAnimationSettings(
+                        intensity: animationSettings.intensity,
+                        speed: animationSettings.speed,
+                        colorTheme: animationSettings.colorTheme
+                    )
+                }
+                
+                databaseManager.saveContext()
             }
         }
     }
     
-    func refreshBackgrounds() {
-        loadBackgrounds()
+    func toggleFavorite(_ animationId: String) {
+        if let entity = backgroundEntities.first(where: { $0.animationType == animationId }) {
+            entity.toggleFavorite()
+            databaseManager.saveContext()
+        }
     }
     
-    // MARK: - Actions
-    func selectBackground(_ background: BackgroundEntity) {
-        // Deselect current background
-        selectedBackground?.isSelected = false
+    func updateSettings(_ settings: AnimationSettings) {
+        // Update with smooth animation
+        withAnimation(.easeInOut(duration: 0.2)) {
+            animationSettings = settings
+        }
         
-        // Select new background
-        background.selectBackground()
-        selectedBackground = background
-        
-        // Save changes
-        databaseManager.saveContext()
-        
-        // Update UI
-        objectWillChange.send()
+        // Update the selected entity and app state
+        if let selectedId = selectedAnimationId,
+           let entity = backgroundEntities.first(where: { $0.animationType == selectedId }) {
+            entity.speedMultiplier = settings.speed
+            entity.intensityLevel = Int32(settings.intensity * 3)
+            entity.colorTheme = settings.colorTheme.rawValue
+            
+            // Update app state for immediate effect
+            AppState.shared.updateAnimationSettings(
+                intensity: settings.intensity,
+                speed: settings.speed,
+                colorTheme: settings.colorTheme
+            )
+            
+            databaseManager.saveContext()
+        }
     }
     
-    func toggleFavorite(_ background: BackgroundEntity) {
-        background.toggleFavorite()
-        databaseManager.saveContext()
+    // MARK: - Private Methods
+    private func loadBackgroundEntities() {
+        let request = BackgroundEntity.fetchAllBackgrounds()
+        let context = databaseManager.managedObjectContext
         
-        // Update favorites list
-        if background.isFavorite {
-            if !favoriteBackgrounds.contains(background) {
-                favoriteBackgrounds.append(background)
+        do {
+            backgroundEntities = try context.fetch(request)
+        } catch {
+            print("Error loading background entities: \(error)")
+            backgroundEntities = []
+        }
+    }
+    
+    private func loadSelectedAnimation() {
+        let request = BackgroundEntity.fetchSelectedBackground()
+        let context = databaseManager.managedObjectContext
+        
+        do {
+            if let selected = try context.fetch(request).first {
+                selectedAnimationId = selected.animationType
+                
+                // Load settings from entity
+                animationSettings.speed = selected.speedMultiplier
+                animationSettings.intensity = Float(selected.intensityLevel) / 3.0
+                animationSettings.colorTheme = ColorTheme(rawValue: selected.colorTheme ?? "default") ?? .defaultTheme
             }
-        } else {
-            favoriteBackgrounds.removeAll { $0 == background }
-        }
-        
-        objectWillChange.send()
-    }
-    
-    func toggleFavoritesFilter() {
-        showingFavoritesOnly.toggle()
-    }
-    
-    func selectCategory(_ category: BackgroundCategory) {
-        selectedCategory = category
-        
-        // Clear search if switching to local categories
-        if category == .colors || category == .local {
-            searchText = ""
+        } catch {
+            print("Error loading selected background: \(error)")
         }
     }
     
-    // MARK: - Search
-    func searchFlickrImages(for query: String) {
-        // Cancel previous search
-        searchTask?.cancel()
+    private func createDefaultAnimationEntities() {
+        let animations = AnimationRegistry.shared.animations
+        let context = databaseManager.managedObjectContext
         
-        guard !query.isEmpty else { return }
-        
-        searchTask = Task {
-            isSearching = true
+        for animation in animations {
+            // Check if entity already exists
+            let request = BackgroundEntity.fetchRequest()
+            request.predicate = NSPredicate(format: "animationType == %@", animation.id)
             
             do {
-                let flickrPhotos = try await flickrAPIClient.searchPhotos(tags: query, perPage: 20)
-                
-                await MainActor.run {
-                    // Convert Flickr photos to BackgroundEntity objects
-                    self.createBackgroundsFromFlickrPhotos(flickrPhotos)
-                    self.isSearching = false
+                let existingEntities = try context.fetch(request)
+                if existingEntities.isEmpty {
+                    // Create new entity
+                    let entity = BackgroundEntity(context: context)
+                    entity.animationType = animation.id
+                    entity.isSelected = false
+                    entity.isFavorite = false
+                    entity.speedMultiplier = 1.0
+                    entity.intensityLevel = 2 // Medium intensity
+                    entity.colorTheme = ColorTheme.defaultTheme.rawValue
+                    
+                    backgroundEntities.append(entity)
                 }
             } catch {
-                await MainActor.run {
-                    self.errorMessage = "Search failed: \(error.localizedDescription)"
-                    self.isSearching = false
-                }
-            }
-        }
-    }
-    
-    private func createBackgroundsFromFlickrPhotos(_ photos: [FlickrPhoto]) {
-        let context = databaseManager.coreDataStack.viewContext
-        var newBackgrounds: [BackgroundEntity] = []
-        
-        for photo in photos {
-            // Check if this background already exists
-            let existingBackground = backgrounds.first { background in
-                background.bFullSizeUrl == photo.mediumURL?.absoluteString
-            }
-            
-            if existingBackground == nil {
-                guard let entity = NSEntityDescription.entity(forEntityName: "Background", in: context) else { continue }
-                let background = BackgroundEntity(entity: entity, insertInto: context)
-                background.bTitle = photo.title
-                background.bThumbnailUrl = photo.thumbnailURL?.absoluteString
-                background.bFullSizeUrl = photo.mediumURL?.absoluteString
-                background.bColor = nil
-                background.isImage = true
-                background.isLocalImage = false
-                background.isFavorite = false
-                background.isSelected = false
-                
-                newBackgrounds.append(background)
+                print("Error checking for existing animation entity: \(error)")
             }
         }
         
-        if !newBackgrounds.isEmpty {
-            // Save new backgrounds
-            databaseManager.saveContext()
-            
-            // Add to backgrounds array
-            backgrounds.append(contentsOf: newBackgrounds)
-        }
-    }
-    
-    func clearSearch() {
-        searchText = ""
-        searchResults = []
-    }
-    
-    // MARK: - Background Management
-    func deleteBackground(_ background: BackgroundEntity) {
-        // Don't allow deletion of favorite local backgrounds
-        if background.isLocalImage && background.isFavorite {
-            errorMessage = "Cannot delete built-in backgrounds"
-            return
+        // Select default animation if none is selected
+        if selectedAnimationId == nil, let firstAnimation = animations.first {
+            selectAnimation(firstAnimation.id)
         }
         
-        // Remove from Core Data
-        let context = databaseManager.coreDataStack.viewContext
-        context.delete(background)
         databaseManager.saveContext()
-        
-        // Remove from arrays
-        backgrounds.removeAll { $0 == background }
-        favoriteBackgrounds.removeAll { $0 == background }
-        
-        // Select a different background if this was selected
-        if selectedBackground == background {
-            selectedBackground = backgrounds.first { $0.isFavorite }
-            selectedBackground?.selectBackground()
-            databaseManager.saveContext()
+    }
+    
+    // MARK: - Computed Properties
+    var selectedAnimation: AnimatedBackground? {
+        guard let selectedId = selectedAnimationId else { return nil }
+        return AnimationRegistry.shared.animation(for: selectedId)
+    }
+    
+    var favoriteAnimations: [BackgroundEntity] {
+        return backgroundEntities.filter { $0.isFavorite }
+    }
+    
+    func animationsForCategory(_ category: BackgroundCategory) -> [BackgroundEntity] {
+        let animationIds = AnimationRegistry.shared.animationsForCategory(category).map { $0.id }
+        return backgroundEntities.filter { entity in
+            guard let animationType = entity.animationType else { return false }
+            return animationIds.contains(animationType)
         }
     }
     
-    // MARK: - Helper Methods
-    func getBackgroundColor(_ background: BackgroundEntity) -> Color {
-        guard let colorName = background.bColor else { return .black }
-        
-        switch colorName {
-        case "whiteColor": return .white
-        case "blueColor": return .blue
-        case "redColor": return .red
-        case "greenColor": return .green
-        case "blackColor": return .black
-        case "darkGrayColor": return Color(.darkGray)
-        case "lightGrayColor": return Color(.lightGray)
-        case "grayColor": return .gray
-        case "cyanColor": return .cyan
-        case "yellowColor": return .yellow
-        case "magentaColor": return .pink
-        case "orangeColor": return .orange
-        case "purpleColor": return .purple
-        case "brownColor": return .brown
-        case "clearColor": return .clear
-        default: return .black
-        }
-    }
-    
-    func getBackgroundImage(_ background: BackgroundEntity) -> UIImage? {
-        guard background.isImage else { return nil }
-        
-        if background.isLocalImage {
-            // Load from bundle
-            guard let imageName = background.bThumbnailUrl else { return nil }
-            return UIImage(named: imageName)
-        } else {
-            // For remote images, this would need to be loaded asynchronously
-            // In Phase 3, we'll implement proper async image loading
-            return nil
-        }
-    }
-    
-    func getDisplayName(_ background: BackgroundEntity) -> String {
-        guard let title = background.bTitle else { return "Unknown" }
-        
-        // Clean up title for display
-        if title.hasPrefix("z_") {
-            return String(title.dropFirst(2)).replacingOccurrences(of: "_", with: " ")
-        }
-        
-        return title.replacingOccurrences(of: "Color", with: "")
-            .replacingOccurrences(of: "_", with: " ")
-            .capitalized
+    func isFavorite(_ animationId: String) -> Bool {
+        return backgroundEntities.first { $0.animationType == animationId }?.isFavorite ?? false
     }
 }

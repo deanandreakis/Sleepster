@@ -52,16 +52,6 @@ class ErrorHandler: ObservableObject {
     
     private func mapToAppError(_ error: Error, context: String) -> AppError {
         switch error {
-        case let networkError as NetworkError:
-            return AppError(
-                type: .network,
-                title: "Network Error",
-                message: networkError.localizedDescription,
-                recoveryAction: networkError.recoverySuggestion,
-                context: context,
-                underlyingError: error
-            )
-            
         case is DecodingError:
             return AppError(
                 type: .dataCorruption,

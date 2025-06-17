@@ -2,7 +2,7 @@
 //  BackgroundsView.swift
 //  SleepMate
 //
-//  Created by Claude on Phase 3 Migration
+//  Created by Claude on Phase 1 Migration - Animated Backgrounds
 //
 
 import SwiftUI
@@ -12,8 +12,12 @@ struct BackgroundsView: View {
     @StateObject private var viewModel: BackgroundsViewModel
     @EnvironmentObject var appState: AppState
     
-    @State private var selectedCategory: BackgroundsViewModel.BackgroundCategory = .all
-    @State private var showingSearch = false
+    @State private var selectedCategory: BackgroundCategory = .classic
+    @State private var showingCustomization = false
+    @State private var showingFavorites = false
+    @State private var animationSettings = AnimationSettings.default
+    @State private var selectedAnimationForPreview: AnimatedBackground?
+    @State private var showingPreviewModal = false
     
     init() {
         // ViewModel will be injected via environment in real usage
@@ -24,406 +28,645 @@ struct BackgroundsView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                // Search and filter section
-                if showingSearch || !viewModel.searchText.isEmpty {
-                    searchSection
+                // Category tabs
+                categoryTabsSection
+                
+                // Animation grid
+                animationGridSection
+                
+                // Customization panel
+                if showingCustomization {
+                    customizationPanel
                 }
-                
-                // Category filters
-                categoryFiltersSection
-                
-                // Content
-                backgroundsContent
             }
-            .navigationTitle("Backgrounds")
+            .navigationTitle(showingFavorites ? "Favorites" : "Animations")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                    Button {
+                        HapticFeedback.light()
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            showingFavorites.toggle()
+                        }
+                    } label: {
+                        Image(systemName: showingFavorites ? "star.fill" : "star")
+                            .foregroundColor(showingFavorites ? .yellow : .accentColor)
+                    }
+                }
+                
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button {
                         HapticFeedback.light()
-                        withAnimation {
-                            showingSearch.toggle()
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            showingCustomization.toggle()
                         }
                     } label: {
-                        Image(systemName: showingSearch ? "xmark" : "magnifyingglass")
-                    }
-                    
-                    Button {
-                        HapticFeedback.light()
-                        viewModel.refreshBackgrounds()
-                    } label: {
-                        Image(systemName: "arrow.clockwise")
+                        Image(systemName: showingCustomization ? "slider.horizontal.3.fill" : "slider.horizontal.3")
                     }
                 }
             }
         }
         .onAppear {
-            setupViewModel()
+            viewModel.loadAnimations()
+            // Sync animation settings with view model
+            animationSettings = viewModel.animationSettings
         }
-        .alert("Error", isPresented: .constant(viewModel.errorMessage != nil)) {
-            Button("OK") {
-                viewModel.errorMessage = nil
-            }
-        } message: {
-            if let errorMessage = viewModel.errorMessage {
-                Text(errorMessage)
-            }
+        .onChange(of: animationSettings) { newSettings in
+            viewModel.updateSettings(newSettings)
         }
-    }
-    
-    // MARK: - Subviews
-    
-    private var searchSection: some View {
-        VStack(spacing: 12) {
-            HStack {
-                Image(systemName: "magnifyingglass")
-                    .foregroundColor(.secondary)
-                
-                TextField("Search backgrounds...", text: $viewModel.searchText)
-                    .textFieldStyle(.plain)
-                
-                if !viewModel.searchText.isEmpty {
-                    Button {
-                        viewModel.clearSearch()
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundColor(.secondary)
+        .sheet(isPresented: $showingPreviewModal) {
+            if let animation = selectedAnimationForPreview {
+                AnimationPreviewModal(
+                    animation: animation,
+                    settings: $animationSettings,
+                    onSelect: {
+                        viewModel.selectAnimation(animation.id)
+                        showingPreviewModal = false
+                        HapticFeedback.success()
+                    },
+                    onFavorite: {
+                        viewModel.toggleFavorite(animation.id)
+                        HapticFeedback.light()
                     }
-                }
-            }
-            .padding()
-            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 12))
-            
-            if viewModel.isSearching {
-                HStack {
-                    ProgressView()
-                        .scaleEffect(0.8)
-                    Text("Searching online...")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    Spacer()
-                }
-                .padding(.horizontal)
-            }
-        }
-        .padding()
-        .background(.ultraThinMaterial)
-        .transition(.move(edge: .top).combined(with: .opacity))
-    }
-    
-    private var categoryFiltersSection: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 12) {
-                ForEach(BackgroundsViewModel.BackgroundCategory.allCases, id: \.self) { category in
-                    categoryButton(category)
-                }
-                
-                Divider()
-                    .frame(height: 20)
-                
-                // Favorites toggle
-                Button {
-                    HapticFeedback.light()
-                    viewModel.toggleFavoritesFilter()
-                } label: {
-                    HStack(spacing: 4) {
-                        Image(systemName: viewModel.showingFavoritesOnly ? "heart.fill" : "heart")
-                        Text("Favorites")
-                    }
-                    .font(.caption)
-                            .foregroundColor(viewModel.showingFavoritesOnly ? .white : .primary)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 6)
-                    .background(
-                        RoundedRectangle(cornerRadius: 16)
-                            .fill(viewModel.showingFavoritesOnly ? Color.red : Color.clear)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 16)
-                                    .stroke(.regularMaterial, lineWidth: 1)
-                            )
-                    )
-                }
-            }
-            .padding(.horizontal)
-        }
-        .padding(.vertical, 8)
-        .background(.ultraThinMaterial)
-    }
-    
-    private func categoryButton(_ category: BackgroundsViewModel.BackgroundCategory) -> some View {
-        Button {
-            HapticFeedback.light()
-            selectedCategory = category
-            viewModel.selectCategory(category)
-        } label: {
-            Text(category.rawValue)
-                .font(.caption)
-                    .foregroundColor(selectedCategory == category ? .white : .primary)
-                .padding(.horizontal, 12)
-                .padding(.vertical, 6)
-                .background(
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(selectedCategory == category ? Color.blue : Color.clear)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 16)
-                                .stroke(.regularMaterial, lineWidth: 1)
-                        )
                 )
+            }
         }
     }
     
-    private var backgroundsContent: some View {
+    // MARK: - Category Tabs
+    private var categoryTabsSection: some View {
         Group {
-            if viewModel.isLoading {
-                VStack {
-                    Spacer()
-                    LoadingView(message: "Loading backgrounds...")
-                    Spacer()
-                }
-            } else if viewModel.filteredBackgrounds.isEmpty {
-                VStack {
-                    Spacer()
-                    EmptyStateView(
-                        icon: "photo.on.rectangle",
-                        title: "No Backgrounds Found",
-                        subtitle: selectedCategory == .all ? 
-                            "Try searching for nature, landscapes, or peaceful scenes." :
-                            "Try a different category or search term.",
-                        actionTitle: "Reset Filters",
-                        action: resetFilters
-                    )
-                    Spacer()
-                }
-            } else {
-                backgroundsGrid
-            }
-        }
-    }
-    
-    private var backgroundsGrid: some View {
-        ScrollView {
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 12), count: 3), spacing: 12) {
-                ForEach(viewModel.filteredBackgrounds, id: \.objectID) { background in
-                    BackgroundCardView(
-                        background: background,
-                        isSelected: background == viewModel.selectedBackground,
-                        onSelect: {
-                            HapticFeedback.medium()
-                            viewModel.selectBackground(background)
-                            updateAppBackground(background)
-                        },
-                        onFavorite: {
-                            HapticFeedback.light()
-                            viewModel.toggleFavorite(background)
-                        }
-                    )
-                }
-            }
-            .padding()
-        }
-    }
-    
-    // MARK: - Helper Methods
-    
-    private func setupViewModel() {
-        // In real implementation, this would be handled by dependency injection
-        // viewModel = serviceContainer.backgroundsViewModel
-        selectedCategory = viewModel.selectedCategory
-    }
-    
-    private func resetFilters() {
-        viewModel.clearSearch()
-        selectedCategory = .all
-        viewModel.selectCategory(.all)
-        viewModel.showingFavoritesOnly = false
-    }
-    
-    private func updateAppBackground(_ background: BackgroundEntity) {
-        if background.isImage {
-            if background.isLocalImage {
-                // Load local image
-                if let imageName = background.bFullSizeUrl,
-                   let image = UIImage(named: imageName) {
-                    appState.setBackground(image: image)
-                }
-            } else {
-                // Load remote image (in a real app, this would use proper async loading)
-                if let urlString = background.bFullSizeUrl,
-                   let url = URL(string: urlString) {
-                    Task {
-                        do {
-                            let (data, _) = try await URLSession.shared.data(from: url)
-                            if let image = UIImage(data: data) {
-                                await MainActor.run {
-                                    appState.setBackground(image: image)
+            if !showingFavorites {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 16) {
+                        ForEach(BackgroundCategory.allCases, id: \.self) { category in
+                            CategoryTab(
+                                title: category.displayName,
+                                isSelected: selectedCategory == category
+                            ) {
+                                HapticFeedback.light()
+                                withAnimation(.easeInOut(duration: 0.2)) {
+                                    selectedCategory = category
                                 }
                             }
-                        } catch {
-                            print("Failed to load background image: \(error)")
+                        }
+                    }
+                    .padding(.horizontal)
+                }
+                .padding(.vertical, 8)
+            }
+        }
+    }
+    
+    // MARK: - Animation Grid
+    private var animationGridSection: some View {
+        ScrollView {
+            if displayedAnimations.isEmpty {
+                // Empty state
+                VStack(spacing: 16) {
+                    Image(systemName: showingFavorites ? "star.slash" : "moon.zzz")
+                        .font(.system(size: 48))
+                        .foregroundColor(.secondary)
+                    
+                    Text(showingFavorites ? "No Favorites Yet" : "No Animations Found")
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+                    
+                    if showingFavorites {
+                        Text("Tap the star on any animation to add it to your favorites")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .padding()
+            } else {
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16), count: 2), spacing: 16) {
+                    ForEach(displayedAnimations, id: \.id) { animation in
+                        EnhancedAnimationCard(
+                            animation: animation,
+                            isSelected: viewModel.selectedAnimationId == animation.id,
+                            isFavorite: viewModel.isFavorite(animation.id),
+                            settings: animationSettings,
+                            onTap: {
+                                HapticFeedback.medium()
+                                viewModel.selectAnimation(animation.id)
+                            },
+                            onLongPress: {
+                                HapticFeedback.light()
+                                selectedAnimationForPreview = animation
+                                showingPreviewModal = true
+                            },
+                            onFavorite: {
+                                HapticFeedback.light()
+                                viewModel.toggleFavorite(animation.id)
+                            }
+                        )
+                    }
+                }
+                .padding()
+            }
+        }
+    }
+    
+    // MARK: - Customization Panel
+    private var customizationPanel: some View {
+        VStack(spacing: 0) {
+            Divider()
+            
+            VStack(spacing: 20) {
+                // Header
+                HStack {
+                    Image(systemName: "paintbrush.pointed")
+                        .foregroundColor(.accentColor)
+                    Text("Customization")
+                        .font(.headline.weight(.semibold))
+                        .foregroundColor(.primary)
+                    Spacer()
+                    
+                    // Reset button
+                    Button("Reset") {
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            animationSettings = AnimationSettings.default
+                        }
+                        HapticFeedback.light()
+                    }
+                    .font(.subheadline.weight(.medium))
+                    .foregroundColor(.accentColor)
+                }
+                
+                // Speed control with enhanced UI
+                VStack(spacing: 8) {
+                    HStack {
+                        Label("Speed", systemImage: "speedometer")
+                            .font(.subheadline.weight(.medium))
+                            .foregroundColor(.primary)
+                        
+                        Spacer()
+                        
+                        Text(speedLabel)
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundColor(.accentColor)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(Color.accentColor.opacity(0.1))
+                            .cornerRadius(6)
+                    }
+                    
+                    HStack(spacing: 12) {
+                        Image(systemName: "tortoise")
+                            .foregroundColor(.secondary)
+                            .font(.caption)
+                        
+                        Slider(value: $animationSettings.speed, in: 0.25...2.0, step: 0.25)
+                            .tint(.accentColor)
+                        
+                        Image(systemName: "hare")
+                            .foregroundColor(.secondary)
+                            .font(.caption)
+                    }
+                }
+                .padding(.vertical, 8)
+                .padding(.horizontal, 12)
+                .background(Color(.systemGray6))
+                .cornerRadius(12)
+                
+                // Intensity control with enhanced UI
+                VStack(spacing: 8) {
+                    HStack {
+                        Label("Intensity", systemImage: "slider.horizontal.below.rectangle")
+                            .font(.subheadline.weight(.medium))
+                            .foregroundColor(.primary)
+                        
+                        Spacer()
+                        
+                        Text(intensityLabel)
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundColor(.accentColor)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(Color.accentColor.opacity(0.1))
+                            .cornerRadius(6)
+                    }
+                    
+                    HStack(spacing: 12) {
+                        Image(systemName: "circle.dotted")
+                            .foregroundColor(.secondary)
+                            .font(.caption)
+                        
+                        Slider(value: $animationSettings.intensity, in: 0.0...1.0, step: 0.25)
+                            .tint(.accentColor)
+                        
+                        Image(systemName: "circle.hexagongrid")
+                            .foregroundColor(.secondary)
+                            .font(.caption)
+                    }
+                }
+                .padding(.vertical, 8)
+                .padding(.horizontal, 12)
+                .background(Color(.systemGray6))
+                .cornerRadius(12)
+                
+                // Color theme with enhanced UI
+                VStack(spacing: 12) {
+                    HStack {
+                        Label("Color Theme", systemImage: "paintpalette")
+                            .font(.subheadline.weight(.medium))
+                            .foregroundColor(.primary)
+                        
+                        Spacer()
+                        
+                        Text(animationSettings.colorTheme.displayName)
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundColor(.accentColor)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(Color.accentColor.opacity(0.1))
+                            .cornerRadius(6)
+                    }
+                    
+                    HStack(spacing: 12) {
+                        ForEach(ColorTheme.allCases, id: \.self) { theme in
+                            EnhancedColorThemeButton(
+                                theme: theme,
+                                isSelected: animationSettings.colorTheme == theme
+                            ) {
+                                withAnimation(.easeInOut(duration: 0.2)) {
+                                    animationSettings.colorTheme = theme
+                                }
+                                HapticFeedback.light()
+                            }
                         }
                     }
                 }
+                .padding(.vertical, 8)
+                .padding(.horizontal, 12)
+                .background(Color(.systemGray6))
+                .cornerRadius(12)
             }
+            .padding()
+        }
+        .background(Color(UIColor.systemBackground))
+    }
+    
+    private var speedLabel: String {
+        switch animationSettings.speed {
+        case 0.25: return "Ultra Slow"
+        case 0.5: return "Slow"
+        case 0.75: return "Relaxed"
+        case 1.0: return "Normal"
+        case 1.25: return "Lively"
+        case 1.5: return "Fast"
+        case 1.75: return "Very Fast"
+        case 2.0: return "Energetic"
+        default: return "\(String(format: "%.1fx", animationSettings.speed))"
+        }
+    }
+    
+    // MARK: - Computed Properties
+    private var displayedAnimations: [AnimatedBackground] {
+        if showingFavorites {
+            let favoriteIds = viewModel.favoriteAnimations.compactMap { $0.animationType }
+            return AnimationRegistry.shared.animations.filter { favoriteIds.contains($0.id) }
         } else {
-            // Color background
-            let color = viewModel.getBackgroundColor(background)
-            appState.setBackground(color: UIColor(color))
+            return AnimationRegistry.shared.animationsForCategory(selectedCategory)
+        }
+    }
+    
+    private var intensityLabel: String {
+        switch animationSettings.intensity {
+        case 0.0..<0.33: return "Low"
+        case 0.33..<0.67: return "Medium"
+        default: return "High"
         }
     }
 }
 
-// MARK: - Background Card View
-struct BackgroundCardView: View {
-    let background: BackgroundEntity
+// MARK: - Category Tab
+struct CategoryTab: View {
+    let title: String
     let isSelected: Bool
-    let onSelect: () -> Void
-    let onFavorite: () -> Void
+    let action: () -> Void
     
     var body: some View {
-        Button(action: onSelect) {
+        Button(action: action) {
+            Text(title)
+                .font(.subheadline.weight(isSelected ? .semibold : .regular))
+                .foregroundColor(isSelected ? .white : .secondary)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 8)
+                .background(
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(isSelected ? Color.accentColor : Color.clear)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.accentColor.opacity(0.3), lineWidth: 1)
+                )
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+}
+
+// MARK: - Enhanced Animation Card
+struct EnhancedAnimationCard: View {
+    let animation: AnimatedBackground
+    let isSelected: Bool
+    let isFavorite: Bool
+    let settings: AnimationSettings
+    let onTap: () -> Void
+    let onLongPress: () -> Void
+    let onFavorite: () -> Void
+    
+    @State private var isPressed = false
+    
+    var body: some View {
+        VStack(spacing: 12) {
+            // Preview area with live animation
             ZStack {
-                // Background content
-                backgroundContent
+                RoundedRectangle(cornerRadius: 16)
+                    .frame(height: 140)
+                    .foregroundColor(.clear)
+                    .overlay(
+                        animation.createView(
+                            intensity: settings.intensity,
+                            speed: settings.speed * 0.5, // Slower for preview
+                            colorTheme: settings.colorTheme,
+                            dimmed: false
+                        )
+                        .clipped()
+                        .cornerRadius(16)
+                    )
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(isSelected ? Color.accentColor : Color.gray.opacity(0.2), lineWidth: isSelected ? 3 : 1)
+                    )
                 
-                // Overlay for selection and favorite
+                // Favorite button overlay
                 VStack {
                     HStack {
                         Spacer()
-                        
                         Button(action: onFavorite) {
-                            Image(systemName: background.isFavorite ? "heart.fill" : "heart")
-                                .font(.caption)
-                                .foregroundColor(background.isFavorite ? .red : .white)
-                                .padding(4)
-                                .background(.ultraThinMaterial, in: Circle())
+                            Image(systemName: isFavorite ? "star.fill" : "star")
+                                .font(.system(size: 16, weight: .medium))
+                                .foregroundColor(isFavorite ? .yellow : .white)
+                                .background(
+                                    Circle()
+                                        .fill(.ultraThinMaterial)
+                                        .frame(width: 28, height: 28)
+                                )
                         }
-                        .buttonStyle(.plain)
+                        .buttonStyle(PlainButtonStyle())
                     }
-                    
                     Spacer()
-                    
-                    // Title overlay
-                    if let title = background.bTitle {
-                        Text(getDisplayName(title))
-                            .font(.caption2)
-                                            .foregroundColor(.white)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 4)
-                            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8))
-                            .lineLimit(1)
-                    }
                 }
-                .padding(8)
+                .padding(12)
                 
                 // Selection indicator
                 if isSelected {
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.blue, lineWidth: 3)
-                        .background(
-                            Color.blue.opacity(0.2)
-                                .clipShape(RoundedRectangle(cornerRadius: 12))
-                        )
-                    
-                    Image(systemName: "checkmark.circle.fill")
-                        .font(.title3)
-                        .foregroundColor(.blue)
-                        .background(Color(.systemBackground), in: Circle())
-                        .offset(x: 35, y: -35)
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Image(systemName: "checkmark.circle.fill")
+                                .font(.system(size: 20))
+                                .foregroundColor(.accentColor)
+                                .background(
+                                    Circle()
+                                        .fill(.ultraThinMaterial)
+                                        .frame(width: 32, height: 32)
+                                )
+                            Spacer()
+                        }
+                    }
+                    .padding(12)
                 }
             }
+            
+            // Title and category
+            VStack(spacing: 4) {
+                Text(animation.title)
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundColor(.primary)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(1)
+                
+                Text(animation.category.displayName)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
         }
-        .buttonStyle(.plain)
-        .frame(height: 120)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
-        .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
+        .scaleEffect(isPressed ? 0.95 : 1.0)
+        .animation(.easeInOut(duration: 0.1), value: isPressed)
+        .onTapGesture {
+            onTap()
+        }
+        .onLongPressGesture(minimumDuration: 0.5, maximumDistance: 50) {
+            onLongPress()
+        } onPressingChanged: { pressing in
+            isPressed = pressing
+        }
+    }
+}
+
+// MARK: - Enhanced Color Theme Button
+struct EnhancedColorThemeButton: View {
+    let theme: ColorTheme
+    let isSelected: Bool
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            VStack(spacing: 6) {
+                ZStack {
+                    Circle()
+                        .fill(themeColor)
+                        .frame(width: 40, height: 40)
+                        .overlay(
+                            Circle()
+                                .stroke(isSelected ? Color.accentColor : Color.gray.opacity(0.3), 
+                                       lineWidth: isSelected ? 3 : 1)
+                        )
+                        .shadow(
+                            color: isSelected ? Color.accentColor.opacity(0.3) : Color.clear,
+                            radius: isSelected ? 4 : 0
+                        )
+                    
+                    if isSelected {
+                        Image(systemName: "checkmark")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundColor(.white)
+                    }
+                }
+                
+                Text(theme.displayName)
+                    .font(isSelected ? .caption2.weight(.semibold) : .caption2.weight(.regular))
+                    .foregroundColor(isSelected ? .accentColor : .secondary)
+            }
+        }
+        .buttonStyle(PlainButtonStyle())
         .scaleEffect(isSelected ? 1.05 : 1.0)
         .animation(.easeInOut(duration: 0.2), value: isSelected)
     }
     
-    private var backgroundContent: some View {
-        Group {
-            if background.isImage {
-                if background.isLocalImage {
-                    // Local image
-                    if let imageName = background.bThumbnailUrl {
-                        Image(imageName)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                    } else {
-                        placeholderView
-                    }
-                } else {
-                    // Remote image
-                    AsyncImageView(
-                        url: background.bThumbnailUrl,
-                        contentMode: .fill
-                    )
-                }
-            } else {
-                // Color background
-                backgroundColorView
-            }
+    private var themeColor: Color {
+        switch theme {
+        case .defaultTheme: return .blue
+        case .warm: return .orange
+        case .cool: return .cyan
+        case .monochrome: return .gray
         }
-    }
-    
-    private var backgroundColorView: some View {
-        Rectangle()
-            .fill(getBackgroundColor())
-            .overlay {
-                if background.bColor == "clearColor" {
-                    // Show checkerboard pattern for clear color
-                    CheckerboardView()
-                        .opacity(0.3)
-                }
-            }
-    }
-    
-    private var placeholderView: some View {
-        Rectangle()
-            .fill(.regularMaterial)
-            .overlay {
-                Image(systemName: "photo")
-                    .foregroundColor(.secondary)
-            }
-    }
-    
-    private func getBackgroundColor() -> Color {
-        guard let colorName = background.bColor else { return .black }
-        
-        switch colorName {
-        case "whiteColor": return .white
-        case "blueColor": return .blue
-        case "redColor": return .red
-        case "greenColor": return .green
-        case "blackColor": return .black
-        case "darkGrayColor": return Color(.darkGray)
-        case "lightGrayColor": return Color(.lightGray)
-        case "grayColor": return .gray
-        case "cyanColor": return .cyan
-        case "yellowColor": return .yellow
-        case "magentaColor": return .pink
-        case "orangeColor": return .orange
-        case "purpleColor": return .purple
-        case "brownColor": return .brown
-        case "clearColor": return .clear
-        default: return .black
-        }
-    }
-    
-    private func getDisplayName(_ title: String) -> String {
-        if title.hasPrefix("z_") {
-            return String(title.dropFirst(2)).replacingOccurrences(of: "_", with: " ")
-        }
-        
-        return title.replacingOccurrences(of: "Color", with: "")
-            .replacingOccurrences(of: "_", with: " ")
-            .capitalized
     }
 }
 
-// MARK: - Preview
+// MARK: - Legacy Color Theme Button (for backward compatibility)
+struct ColorThemeButton: View {
+    let theme: ColorTheme
+    let isSelected: Bool
+    let action: () -> Void
+    
+    var body: some View {
+        EnhancedColorThemeButton(theme: theme, isSelected: isSelected, action: action)
+    }
+}
+
+// MARK: - Animation Preview Modal
+struct AnimationPreviewModal: View {
+    let animation: AnimatedBackground
+    @Binding var settings: AnimationSettings
+    let onSelect: () -> Void
+    let onFavorite: () -> Void
+    
+    @Environment(\.presentationMode) var presentationMode
+    
+    var body: some View {
+        NavigationView {
+            VStack(spacing: 0) {
+                // Full-screen preview
+                ZStack {
+                    animation.createView(
+                        intensity: settings.intensity,
+                        speed: settings.speed,
+                        colorTheme: settings.colorTheme,
+                        dimmed: false
+                    )
+                    .ignoresSafeArea()
+                    
+                    // Overlay controls
+                    VStack {
+                        Spacer()
+                        
+                        // Live settings panel
+                        VStack(spacing: 16) {
+                            // Title
+                            Text(animation.title)
+                                .font(.title2.weight(.bold))
+                                .foregroundColor(.white)
+                                .shadow(radius: 4)
+                            
+                            // Settings controls with live updates
+                            VStack(spacing: 12) {
+                                // Speed
+                                HStack {
+                                    Text("Speed")
+                                        .foregroundColor(.white)
+                                    Spacer()
+                                    Text("\(String(format: "%.1fx", settings.speed))")
+                                        .foregroundColor(.white.opacity(0.8))
+                                }
+                                Slider(value: $settings.speed, in: 0.25...2.0, step: 0.25)
+                                    .tint(.white)
+                                
+                                // Intensity
+                                HStack {
+                                    Text("Intensity")
+                                        .foregroundColor(.white)
+                                    Spacer()
+                                    Text(intensityLabel)
+                                        .foregroundColor(.white.opacity(0.8))
+                                }
+                                Slider(value: $settings.intensity, in: 0.0...1.0, step: 0.25)
+                                    .tint(.white)
+                                
+                                // Color themes
+                                HStack {
+                                    Text("Theme")
+                                        .foregroundColor(.white)
+                                    Spacer()
+                                    
+                                    HStack(spacing: 8) {
+                                        ForEach(ColorTheme.allCases, id: \.self) { theme in
+                                            Button {
+                                                settings.colorTheme = theme
+                                                HapticFeedback.light()
+                                            } label: {
+                                                Circle()
+                                                    .fill(themeColor(for: theme))
+                                                    .frame(width: 24, height: 24)
+                                                    .overlay(
+                                                        Circle()
+                                                            .stroke(.white, lineWidth: settings.colorTheme == theme ? 2 : 0)
+                                                    )
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .padding()
+                            .background(.ultraThinMaterial)
+                            .cornerRadius(16)
+                        }
+                        .padding()
+                    }
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel") {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                    .foregroundColor(.white)
+                }
+                
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button {
+                        onFavorite()
+                    } label: {
+                        Image(systemName: "star")
+                            .foregroundColor(.white)
+                    }
+                    
+                    Button("Select") {
+                        onSelect()
+                    }
+                    .foregroundColor(.white)
+                    .font(.body.weight(.semibold))
+                }
+            }
+        }
+    }
+    
+    private var intensityLabel: String {
+        switch settings.intensity {
+        case 0.0..<0.33: return "Low"
+        case 0.33..<0.67: return "Medium"
+        default: return "High"
+        }
+    }
+    
+    private func themeColor(for theme: ColorTheme) -> Color {
+        switch theme {
+        case .defaultTheme: return .blue
+        case .warm: return .orange
+        case .cool: return .cyan
+        case .monochrome: return .gray
+        }
+    }
+}
+
 #Preview {
     BackgroundsView()
         .environmentObject(ServiceContainer())
-        .environmentObject(AppState())
+        .environmentObject(AppState.shared)
 }

@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3394" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Background" representedClassName="Background" syncable="YES">
-        <attribute name="bColor" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="bFullSizeUrl" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="bThumbnailUrl" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="bTitle" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="isFavorite" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="isImage" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="isLocalImage" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="isSelected" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="animationType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="colorTheme" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="intensityLevel" optional="YES" attributeType="Integer 32" defaultValue="2" syncable="YES"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" defaultValue="NO" syncable="YES"/>
+        <attribute name="isSelected" optional="YES" attributeType="Boolean" defaultValue="NO" syncable="YES"/>
+        <attribute name="speedMultiplier" optional="YES" attributeType="Float" defaultValue="1" syncable="YES"/>
     </entity>
     <entity name="Sound" representedClassName="Sound" syncable="YES">
         <attribute name="bTitle" optional="YES" attributeType="String" syncable="YES"/>

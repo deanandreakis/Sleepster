@@ -47,17 +47,9 @@ class ServiceContainer: ObservableObject {
         TimerManager(audioManager: audioManager)
     }()
     
-    // MARK: - Phase 4 Modern Services
-    lazy var networkMonitor: NetworkMonitor = {
-        NetworkMonitor.shared
-    }()
-    
-    lazy var flickrService: FlickrService = {
-        FlickrService.shared
-    }()
-    
-    lazy var imageCache: ImageCache = {
-        ImageCache.shared
+    // MARK: - Animation Services (Phase 1)
+    lazy var animationPerformanceMonitor: AnimationPerformanceMonitor = {
+        AnimationPerformanceMonitor()
     }()
     
     lazy var errorHandler: ErrorHandler = {
@@ -80,9 +72,9 @@ class ServiceContainer: ObservableObject {
         AudioEffectsProcessor.shared
     }()
     
-    // MARK: - Legacy Services (for backward compatibility)
-    lazy var flickrAPIClient: FlickrAPIClient = {
-        FlickrAPIClient.shared
+    // MARK: - Animation Services
+    lazy var animationRegistry: AnimationRegistry = {
+        AnimationRegistry.shared
     }()
     
     lazy var settingsManager: SettingsManager = {
@@ -118,8 +110,7 @@ class ServiceContainer: ObservableObject {
     
     lazy var backgroundsViewModel: BackgroundsViewModel = {
         BackgroundsViewModel(
-            databaseManager: databaseManager,
-            flickrAPIClient: flickrAPIClient
+            databaseManager: databaseManager
         )
     }()
     

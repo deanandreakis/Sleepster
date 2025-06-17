@@ -247,37 +247,36 @@ final class IntegrationTests: XCTestCase {
         userDefaults?.removeObject(forKey: "currentSound")
     }
     
-    // MARK: - Network Integration Tests
+    // MARK: - Animation Integration Tests
     
-    func testNetworkMonitorWithFlickrService() async throws {
+    func testAnimationRegistryIntegration() async throws {
         // Given
-        let networkMonitor = serviceContainer.networkMonitor
-        let flickrService = serviceContainer.flickrService
+        let animationRegistry = AnimationRegistry.shared
         
         // When
-        await networkMonitor.startMonitoring()
+        let animations = animationRegistry.animations
         
         // Then
-        XCTAssertNotNil(networkMonitor.currentStatus)
-        XCTAssertNotNil(flickrService)
+        XCTAssertFalse(animations.isEmpty)
+        XCTAssertGreaterThan(animations.count, 0)
         
-        // Cleanup
-        await networkMonitor.stopMonitoring()
+        // Test that we have animations in different categories
+        let categories = Set(animations.map { $0.category })
+        XCTAssertTrue(categories.contains(.classic))
+        XCTAssertTrue(categories.contains(.nature))
+        XCTAssertTrue(categories.contains(.celestial))
     }
     
-    func testImageCacheWithFlickrService() async throws {
+    func testAnimationPerformanceMonitorIntegration() async throws {
         // Given
-        let imageCache = serviceContainer.imageCache
-        let flickrService = serviceContainer.flickrService
-        let testURL = "https://example.com/test.jpg"
+        let performanceMonitor = serviceContainer.animationPerformanceMonitor
         
         // When
-        let cachedImage = await imageCache.image(for: testURL)
+        performanceMonitor.updateFrameRate()
         
         // Then
-        // In test environment, image might not load
-        XCTAssertNotNil(imageCache)
-        XCTAssertNotNil(flickrService)
+        XCTAssertNotNil(performanceMonitor)
+        XCTAssertGreaterThan(performanceMonitor.currentFPS, 0)
     }
     
     // MARK: - Error Handling Integration Tests

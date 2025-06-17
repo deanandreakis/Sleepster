@@ -24,6 +24,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765590DF743DE002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765580DF743DE002DB57D /* CoreGraphics.framework */; };
+		2E867C70ED504BF8A3702B0C /* BrightnessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7858925B47A14211B90AB71C /* BrightnessManager.swift */; };
 		5E7DA66F2DFA3CAF0012AFB5 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E7DA66E2DFA3CAF0012AFB5 /* HealthKit.framework */; };
 		5E7DA6712DFA3CB80012AFB5 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E7DA6702DFA3CB80012AFB5 /* Intents.framework */; };
 		5E7DA6732DFA3CC00012AFB5 /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E7DA6722DFA3CC00012AFB5 /* IntentsUI.framework */; };
@@ -33,7 +34,6 @@
 		5E7DA67E2DFA3EAC0012AFB5 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6772DFA3EAC0012AFB5 /* DatabaseManager.swift */; };
 		5E7DA67F2DFA3EAC0012AFB5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6782DFA3EAC0012AFB5 /* Constants.swift */; };
 		5E7DA6802DFA3EAC0012AFB5 /* SleepsterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6792DFA3EAC0012AFB5 /* SleepsterApp.swift */; };
-		5E7DA6812DFA3EAC0012AFB5 /* FlickrAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA67A2DFA3EAC0012AFB5 /* FlickrAPIClient.swift */; };
 		5E7DA6852DFA3F370012AFB5 /* PerformanceOptimizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6822DFA3F370012AFB5 /* PerformanceOptimizations.swift */; };
 		5E7DA6862DFA3F370012AFB5 /* BackgroundEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6832DFA3F370012AFB5 /* BackgroundEntity.swift */; };
 		5E7DA6872DFA3F370012AFB5 /* ServiceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6842DFA3F370012AFB5 /* ServiceContainer.swift */; };
@@ -46,7 +46,6 @@
 		5E7DA6972DFA3F750012AFB5 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6942DFA3F740012AFB5 /* TimerManager.swift */; };
 		5E7DA6982DFA3F750012AFB5 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6952DFA3F740012AFB5 /* AudioManager.swift */; };
 		5E7DA6992DFA3F750012AFB5 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6962DFA3F750012AFB5 /* SettingsManager.swift */; };
-		2E867C70ED504BF8A3702B0C /* BrightnessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7858925B47A14211B90AB71C /* BrightnessManager.swift */; };
 		5E7DA6A62DFA3F940012AFB5 /* CustomComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA69A2DFA3F930012AFB5 /* CustomComponents.swift */; };
 		5E7DA6A72DFA3F940012AFB5 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA69B2DFA3F930012AFB5 /* InformationView.swift */; };
 		5E7DA6A82DFA3F940012AFB5 /* BrightnessControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA69C2DFA3F940012AFB5 /* BrightnessControlView.swift */; };
@@ -57,14 +56,10 @@
 		5E7DA6AD2DFA3F940012AFB5 /* ShortcutsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6A12DFA3F940012AFB5 /* ShortcutsSettingsView.swift */; };
 		5E7DA6AE2DFA3F940012AFB5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6A22DFA3F940012AFB5 /* SettingsView.swift */; };
 		5E7DA6AF2DFA3F940012AFB5 /* TimerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6A32DFA3F940012AFB5 /* TimerSettingsView.swift */; };
-		5E7DA6B02DFA3F940012AFB5 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6A42DFA3F940012AFB5 /* AsyncImageView.swift */; };
 		5E7DA6B12DFA3F940012AFB5 /* SoundsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6A52DFA3F940012AFB5 /* SoundsListView.swift */; };
-		5E7DA6C12DFA3FCE0012AFB5 /* FlickrService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6B22DFA3FCD0012AFB5 /* FlickrService.swift */; };
-		5E7DA6C22DFA3FCE0012AFB5 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6B32DFA3FCD0012AFB5 /* NetworkError.swift */; };
 		5E7DA6C32DFA3FCE0012AFB5 /* AudioMixingEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6B42DFA3FCD0012AFB5 /* AudioMixingEngine.swift */; };
 		5E7DA6C42DFA3FCE0012AFB5 /* ShortcutsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6B52DFA3FCD0012AFB5 /* ShortcutsManager.swift */; };
 		5E7DA6C52DFA3FCE0012AFB5 /* StoreKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6B62DFA3FCD0012AFB5 /* StoreKitManager.swift */; };
-		5E7DA6C62DFA3FCE0012AFB5 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6B72DFA3FCD0012AFB5 /* NetworkMonitor.swift */; };
 		5E7DA6C72DFA3FCE0012AFB5 /* AudioFading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6B82DFA3FCD0012AFB5 /* AudioFading.swift */; };
 		5E7DA6C82DFA3FCE0012AFB5 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6B92DFA3FCE0012AFB5 /* IntentHandler.swift */; };
 		5E7DA6C92DFA3FCE0012AFB5 /* AudioEqualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6BA2DFA3FCE0012AFB5 /* AudioEqualizer.swift */; };
@@ -73,11 +68,11 @@
 		5E7DA6CC2DFA3FCE0012AFB5 /* AudioSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6BD2DFA3FCE0012AFB5 /* AudioSessionManager.swift */; };
 		5E7DA6CD2DFA3FCE0012AFB5 /* PurchaseValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6BE2DFA3FCE0012AFB5 /* PurchaseValidator.swift */; };
 		5E7DA6CE2DFA3FCE0012AFB5 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6BF2DFA3FCE0012AFB5 /* ErrorHandler.swift */; };
-		5E7DA6CF2DFA3FCE0012AFB5 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7DA6C02DFA3FCE0012AFB5 /* ImageCache.swift */; };
 		5E7DA6D62DFA40390012AFB5 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E7DA6D52DFA40390012AFB5 /* WidgetKit.framework */; };
 		5E7DA6D82DFA40390012AFB5 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E7DA6D72DFA40390012AFB5 /* SwiftUI.framework */; };
 		5E7DA6EA2DFA403A0012AFB5 /* SleepsterWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5E7DA6D42DFA40390012AFB5 /* SleepsterWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5E80572F20AD1BEE000EECEC /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E80572E20AD1BEE000EECEC /* Media.xcassets */; };
+		5EB626E32E01C28300F3A737 /* AnimationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB626E22E01C28300F3A737 /* AnimationEngine.swift */; };
 		5ED66C492DFA5D32009F93A8 /* IntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED66C442DFA5D32009F93A8 /* IntegrationTests.swift */; };
 		5ED66C4A2DFA5D32009F93A8 /* AudioMixingEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED66C452DFA5D32009F93A8 /* AudioMixingEngineTests.swift */; };
 		5ED66C4B2DFA5D32009F93A8 /* StoreKitManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED66C462DFA5D32009F93A8 /* StoreKitManagerTests.swift */; };
@@ -210,7 +205,6 @@
 		5E7DA6772DFA3EAC0012AFB5 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		5E7DA6782DFA3EAC0012AFB5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5E7DA6792DFA3EAC0012AFB5 /* SleepsterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepsterApp.swift; sourceTree = "<group>"; };
-		5E7DA67A2DFA3EAC0012AFB5 /* FlickrAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrAPIClient.swift; sourceTree = "<group>"; };
 		5E7DA6822DFA3F370012AFB5 /* PerformanceOptimizations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceOptimizations.swift; sourceTree = "<group>"; };
 		5E7DA6832DFA3F370012AFB5 /* BackgroundEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundEntity.swift; sourceTree = "<group>"; };
 		5E7DA6842DFA3F370012AFB5 /* ServiceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceContainer.swift; sourceTree = "<group>"; };
@@ -223,7 +217,6 @@
 		5E7DA6942DFA3F740012AFB5 /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimerManager.swift; path = Managers/TimerManager.swift; sourceTree = "<group>"; };
 		5E7DA6952DFA3F740012AFB5 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioManager.swift; path = Managers/AudioManager.swift; sourceTree = "<group>"; };
 		5E7DA6962DFA3F750012AFB5 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsManager.swift; path = Managers/SettingsManager.swift; sourceTree = "<group>"; };
-		7858925B47A14211B90AB71C /* BrightnessManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BrightnessManager.swift; path = Managers/BrightnessManager.swift; sourceTree = "<group>"; };
 		5E7DA69A2DFA3F930012AFB5 /* CustomComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomComponents.swift; path = Views/Components/CustomComponents.swift; sourceTree = "<group>"; };
 		5E7DA69B2DFA3F930012AFB5 /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InformationView.swift; path = Views/InformationView.swift; sourceTree = "<group>"; };
 		5E7DA69C2DFA3F940012AFB5 /* BrightnessControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BrightnessControlView.swift; path = Views/BrightnessControlView.swift; sourceTree = "<group>"; };
@@ -234,14 +227,10 @@
 		5E7DA6A12DFA3F940012AFB5 /* ShortcutsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ShortcutsSettingsView.swift; path = Views/ShortcutsSettingsView.swift; sourceTree = "<group>"; };
 		5E7DA6A22DFA3F940012AFB5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsView.swift; path = Views/SettingsView.swift; sourceTree = "<group>"; };
 		5E7DA6A32DFA3F940012AFB5 /* TimerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimerSettingsView.swift; path = Views/TimerSettingsView.swift; sourceTree = "<group>"; };
-		5E7DA6A42DFA3F940012AFB5 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AsyncImageView.swift; path = Views/Components/AsyncImageView.swift; sourceTree = "<group>"; };
 		5E7DA6A52DFA3F940012AFB5 /* SoundsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SoundsListView.swift; path = Views/SoundsListView.swift; sourceTree = "<group>"; };
-		5E7DA6B22DFA3FCD0012AFB5 /* FlickrService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FlickrService.swift; path = Services/FlickrService.swift; sourceTree = "<group>"; };
-		5E7DA6B32DFA3FCD0012AFB5 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkError.swift; path = Services/NetworkError.swift; sourceTree = "<group>"; };
 		5E7DA6B42DFA3FCD0012AFB5 /* AudioMixingEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioMixingEngine.swift; path = Services/AudioMixingEngine.swift; sourceTree = "<group>"; };
 		5E7DA6B52DFA3FCD0012AFB5 /* ShortcutsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ShortcutsManager.swift; path = Services/ShortcutsManager.swift; sourceTree = "<group>"; };
 		5E7DA6B62DFA3FCD0012AFB5 /* StoreKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StoreKitManager.swift; path = Services/StoreKitManager.swift; sourceTree = "<group>"; };
-		5E7DA6B72DFA3FCD0012AFB5 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkMonitor.swift; path = Services/NetworkMonitor.swift; sourceTree = "<group>"; };
 		5E7DA6B82DFA3FCD0012AFB5 /* AudioFading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioFading.swift; path = Services/AudioFading.swift; sourceTree = "<group>"; };
 		5E7DA6B92DFA3FCE0012AFB5 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IntentHandler.swift; path = Services/IntentHandler.swift; sourceTree = "<group>"; };
 		5E7DA6BA2DFA3FCE0012AFB5 /* AudioEqualizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioEqualizer.swift; path = Services/AudioEqualizer.swift; sourceTree = "<group>"; };
@@ -250,12 +239,12 @@
 		5E7DA6BD2DFA3FCE0012AFB5 /* AudioSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioSessionManager.swift; path = Services/AudioSessionManager.swift; sourceTree = "<group>"; };
 		5E7DA6BE2DFA3FCE0012AFB5 /* PurchaseValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PurchaseValidator.swift; path = Services/PurchaseValidator.swift; sourceTree = "<group>"; };
 		5E7DA6BF2DFA3FCE0012AFB5 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ErrorHandler.swift; path = Services/ErrorHandler.swift; sourceTree = "<group>"; };
-		5E7DA6C02DFA3FCE0012AFB5 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageCache.swift; path = Services/ImageCache.swift; sourceTree = "<group>"; };
 		5E7DA6D42DFA40390012AFB5 /* SleepsterWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SleepsterWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E7DA6D52DFA40390012AFB5 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		5E7DA6D72DFA40390012AFB5 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		5E7DA6F02DFA42060012AFB5 /* SleepsterWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SleepsterWidgetExtension.entitlements; sourceTree = "<group>"; };
 		5E80572E20AD1BEE000EECEC /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		5EB626E22E01C28300F3A737 /* AnimationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AnimationEngine.swift; path = Services/AnimationEngine.swift; sourceTree = "<group>"; };
 		5ED66C442DFA5D32009F93A8 /* IntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IntegrationTests.swift; path = "SleepMate Tests/IntegrationTests.swift"; sourceTree = "<group>"; };
 		5ED66C452DFA5D32009F93A8 /* AudioMixingEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioMixingEngineTests.swift; path = "SleepMate Tests/AudioMixingEngineTests.swift"; sourceTree = "<group>"; };
 		5ED66C462DFA5D32009F93A8 /* StoreKitManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StoreKitManagerTests.swift; path = "SleepMate Tests/StoreKitManagerTests.swift"; sourceTree = "<group>"; };
@@ -263,6 +252,7 @@
 		5ED66C482DFA5D32009F93A8 /* SleepTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SleepTrackerTests.swift; path = "SleepMate Tests/SleepTrackerTests.swift"; sourceTree = "<group>"; };
 		6722F04C518D07A9CE4E04F0 /* Pods-SleepMate Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMate Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMate Tests/Pods-SleepMate Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6A1031317627378E6C3AB43B /* Pods-SleepMateUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMateUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMateUITests/Pods-SleepMateUITests.release.xcconfig"; sourceTree = "<group>"; };
+		7858925B47A14211B90AB71C /* BrightnessManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BrightnessManager.swift; path = Managers/BrightnessManager.swift; sourceTree = "<group>"; };
 		84B85D2233386DCF8008A80B /* Pods-SleepMateUITests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMateUITests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMateUITests/Pods-SleepMateUITests.distribution.xcconfig"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* SleepMate-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SleepMate-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		94C5B64B55EB5EBB7DF09961 /* Pods-SleepMate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SleepMate.release.xcconfig"; path = "Pods/Target Support Files/Pods-SleepMate/Pods-SleepMate.release.xcconfig"; sourceTree = "<group>"; };
@@ -416,6 +406,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				5EB626E22E01C28300F3A737 /* AnimationEngine.swift */,
 				5ED66C452DFA5D32009F93A8 /* AudioMixingEngineTests.swift */,
 				5ED66C442DFA5D32009F93A8 /* IntegrationTests.swift */,
 				5ED66C482DFA5D32009F93A8 /* SleepTrackerTests.swift */,
@@ -427,17 +418,12 @@
 				5E7DA6B42DFA3FCD0012AFB5 /* AudioMixingEngine.swift */,
 				5E7DA6BD2DFA3FCE0012AFB5 /* AudioSessionManager.swift */,
 				5E7DA6BF2DFA3FCE0012AFB5 /* ErrorHandler.swift */,
-				5E7DA6B22DFA3FCD0012AFB5 /* FlickrService.swift */,
-				5E7DA6C02DFA3FCE0012AFB5 /* ImageCache.swift */,
 				5E7DA6B92DFA3FCE0012AFB5 /* IntentHandler.swift */,
-				5E7DA6B32DFA3FCD0012AFB5 /* NetworkError.swift */,
-				5E7DA6B72DFA3FCD0012AFB5 /* NetworkMonitor.swift */,
 				5E7DA6BE2DFA3FCE0012AFB5 /* PurchaseValidator.swift */,
 				5E7DA6B52DFA3FCD0012AFB5 /* ShortcutsManager.swift */,
 				5E7DA6BC2DFA3FCE0012AFB5 /* SleepTracker.swift */,
 				5E7DA6B62DFA3FCD0012AFB5 /* StoreKitManager.swift */,
 				5E7DA6BB2DFA3FCE0012AFB5 /* SubscriptionManager.swift */,
-				5E7DA6A42DFA3F940012AFB5 /* AsyncImageView.swift */,
 				5E7DA69E2DFA3F940012AFB5 /* BackgroundsView.swift */,
 				5E7DA69C2DFA3F940012AFB5 /* BrightnessControlView.swift */,
 				5E7DA69A2DFA3F930012AFB5 /* CustomComponents.swift */,
@@ -466,7 +452,6 @@
 				5E7DA6782DFA3EAC0012AFB5 /* Constants.swift */,
 				5E7DA6752DFA3EAC0012AFB5 /* CoreDataStack.swift */,
 				5E7DA6772DFA3EAC0012AFB5 /* DatabaseManager.swift */,
-				5E7DA67A2DFA3EAC0012AFB5 /* FlickrAPIClient.swift */,
 				5E7DA6792DFA3EAC0012AFB5 /* SleepsterApp.swift */,
 				5E7DA6742DFA3EAC0012AFB5 /* SoundEntity.swift */,
 				5E80572E20AD1BEE000EECEC /* Media.xcassets */,
@@ -918,12 +903,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E7DA6C12DFA3FCE0012AFB5 /* FlickrService.swift in Sources */,
-				5E7DA6C22DFA3FCE0012AFB5 /* NetworkError.swift in Sources */,
 				5E7DA6C32DFA3FCE0012AFB5 /* AudioMixingEngine.swift in Sources */,
 				5E7DA6C42DFA3FCE0012AFB5 /* ShortcutsManager.swift in Sources */,
 				5E7DA6C52DFA3FCE0012AFB5 /* StoreKitManager.swift in Sources */,
-				5E7DA6C62DFA3FCE0012AFB5 /* NetworkMonitor.swift in Sources */,
 				5E7DA6C72DFA3FCE0012AFB5 /* AudioFading.swift in Sources */,
 				5E7DA6C82DFA3FCE0012AFB5 /* IntentHandler.swift in Sources */,
 				5E7DA6C92DFA3FCE0012AFB5 /* AudioEqualizer.swift in Sources */,
@@ -932,7 +914,6 @@
 				5E7DA6CC2DFA3FCE0012AFB5 /* AudioSessionManager.swift in Sources */,
 				5E7DA6CD2DFA3FCE0012AFB5 /* PurchaseValidator.swift in Sources */,
 				5E7DA6CE2DFA3FCE0012AFB5 /* ErrorHandler.swift in Sources */,
-				5E7DA6CF2DFA3FCE0012AFB5 /* ImageCache.swift in Sources */,
 				5E7DA6A62DFA3F940012AFB5 /* CustomComponents.swift in Sources */,
 				5E7DA6A72DFA3F940012AFB5 /* InformationView.swift in Sources */,
 				5E7DA6A82DFA3F940012AFB5 /* BrightnessControlView.swift in Sources */,
@@ -943,13 +924,13 @@
 				5E7DA6AD2DFA3F940012AFB5 /* ShortcutsSettingsView.swift in Sources */,
 				5E7DA6AE2DFA3F940012AFB5 /* SettingsView.swift in Sources */,
 				5E7DA6AF2DFA3F940012AFB5 /* TimerSettingsView.swift in Sources */,
-				5E7DA6B02DFA3F940012AFB5 /* AsyncImageView.swift in Sources */,
 				5E7DA6B12DFA3F940012AFB5 /* SoundsListView.swift in Sources */,
 				5E7DA6972DFA3F750012AFB5 /* TimerManager.swift in Sources */,
 				5E7DA6982DFA3F750012AFB5 /* AudioManager.swift in Sources */,
 				5E7DA6992DFA3F750012AFB5 /* SettingsManager.swift in Sources */,
 				2E867C70ED504BF8A3702B0C /* BrightnessManager.swift in Sources */,
 				5E7DA68E2DFA3F620012AFB5 /* TimerViewModel.swift in Sources */,
+				5EB626E32E01C28300F3A737 /* AnimationEngine.swift in Sources */,
 				5E7DA68F2DFA3F620012AFB5 /* MainViewModel.swift in Sources */,
 				5E7DA6902DFA3F620012AFB5 /* InformationViewModel.swift in Sources */,
 				5E7DA6912DFA3F620012AFB5 /* SettingsViewModel.swift in Sources */,
@@ -964,7 +945,6 @@
 				5E7DA67E2DFA3EAC0012AFB5 /* DatabaseManager.swift in Sources */,
 				5E7DA67F2DFA3EAC0012AFB5 /* Constants.swift in Sources */,
 				5E7DA6802DFA3EAC0012AFB5 /* SleepsterApp.swift in Sources */,
-				5E7DA6812DFA3EAC0012AFB5 /* FlickrAPIClient.swift in Sources */,
 				C1C6080917982F650099590F /* SleepsterModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,6 +12,9 @@ import UIKit
 @MainActor
 class AppState: ObservableObject {
     
+    // MARK: - Singleton
+    static let shared = AppState()
+    
     // MARK: - UI State
     @Published var selectedTab: TabItem = .main
     @Published var colorScheme: ColorScheme? = nil
@@ -36,10 +39,12 @@ class AppState: ObservableObject {
     @Published var isTimerRunning = false
     @Published var timeRemaining: TimeInterval = 0
     
-    // MARK: - Background State
-    @Published var currentBackgroundColor: UIColor = .systemBackground
-    @Published var currentBackgroundImage: UIImage?
-    @Published var isBackgroundImageMode = false
+    // MARK: - Animation State
+    @Published var selectedAnimation: AnimatedBackground?
+    @Published var animationIntensity: Float = 0.5
+    @Published var animationSpeed: Float = 1.0
+    @Published var animationColorTheme: ColorTheme = .defaultTheme
+    @Published var isDimmed = false
     
     // MARK: - Alert State
     @Published var alertItem: AlertItem?
@@ -147,15 +152,18 @@ class AppState: ObservableObject {
         isTimerRunning = isRunning
     }
     
-    func setBackground(color: UIColor) {
-        currentBackgroundColor = color
-        currentBackgroundImage = nil
-        isBackgroundImageMode = false
+    func setAnimation(_ animation: AnimatedBackground?) {
+        selectedAnimation = animation
     }
     
-    func setBackground(image: UIImage) {
-        currentBackgroundImage = image
-        isBackgroundImageMode = true
+    func updateAnimationSettings(intensity: Float, speed: Float, colorTheme: ColorTheme) {
+        animationIntensity = intensity
+        animationSpeed = speed
+        animationColorTheme = colorTheme
+    }
+    
+    func setDimmedMode(_ dimmed: Bool) {
+        isDimmed = dimmed
     }
     
     deinit {

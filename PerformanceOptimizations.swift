@@ -165,9 +165,12 @@ class MemoryOptimizer {
         imageCache.removeAllObjects()
         audioBufferCache.removeAllObjects()
         
-        // Force garbage collection
+        // Force garbage collection and animation cleanup
         Task {
-            await ImageCache.shared.clearAllCaches()
+            // Clear any animation caches if implemented in Phase 2
+            await AnimationRegistry.shared.animations.forEach { _ in
+                // Animation cleanup will be implemented in Phase 2
+            }
         }
         
         // Notify audio engine to release unused resources
@@ -290,26 +293,21 @@ class DebounceManager {
     }
 }
 
-// MARK: - Network Performance Optimization
+// MARK: - Animation Performance Optimization
 
-extension FlickrService {
-    func optimizeImageLoading() {
-        // Implement progressive image loading
-        // Load thumbnails first, then full resolution
+extension AnimationRegistry {
+    func optimizeAnimationLoading() {
+        // Implement progressive animation loading for Phase 2
+        // Load simple animations first, then complex ones
     }
     
-    func prefetchImages(urls: [String]) async {
-        // Prefetch images in background
-        let prefetchTasks = urls.prefix(5).map { url in
-            Task {
-                guard let imageURL = URL(string: url) else { return }
-                await ImageCache.shared.image(for: imageURL)
-            }
-        }
+    func preloadAnimations(for category: BackgroundCategory) async {
+        // Preload animations for specific category
+        let categoryAnimations = animationsForCategory(category).prefix(3)
         
-        // Wait for prefetch to complete
-        for task in prefetchTasks {
-            _ = await task.value
+        for animation in categoryAnimations {
+            // Preload animation resources if needed in Phase 2
+            _ = animation.previewView()
         }
     }
 }

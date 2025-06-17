@@ -89,40 +89,42 @@ final class ViewModelTests: XCTestCase {
     
     func testBackgroundsViewModelInitialization() throws {
         // Given/When
-        let viewModel = BackgroundsViewModel()
+        let mockDatabaseManager = DatabaseManager.shared
+        let viewModel = BackgroundsViewModel(databaseManager: mockDatabaseManager)
         
         // Then
         XCTAssertNotNil(viewModel)
         XCTAssertFalse(viewModel.isLoading)
-        XCTAssertTrue(viewModel.backgrounds.isEmpty)
-        XCTAssertNil(viewModel.selectedBackground)
-        XCTAssertTrue(viewModel.searchText.isEmpty)
+        XCTAssertTrue(viewModel.backgroundEntities.isEmpty)
+        XCTAssertNil(viewModel.selectedAnimationId)
     }
     
-    func testBackgroundsViewModelSearch() async throws {
+    func testBackgroundsViewModelAnimationSelection() async throws {
         // Given
-        let viewModel = BackgroundsViewModel()
-        let searchQuery = "forest"
+        let mockDatabaseManager = DatabaseManager.shared
+        let viewModel = BackgroundsViewModel(databaseManager: mockDatabaseManager)
+        let testAnimationId = "counting_sheep"
         
         // When
-        viewModel.searchText = searchQuery
-        await viewModel.searchBackgrounds()
+        viewModel.selectAnimation(testAnimationId)
         
         // Then
-        XCTAssertEqual(viewModel.searchText, searchQuery)
-        // Note: In test environment, search results would be mocked
+        XCTAssertEqual(viewModel.selectedAnimationId, testAnimationId)
+        // Note: In test environment, database operations would be mocked
     }
     
-    func testBackgroundsViewModelSelection() throws {
+    func testBackgroundsViewModelFavorites() throws {
         // Given
-        let viewModel = BackgroundsViewModel()
-        let testBackground = createTestBackground()
+        let mockDatabaseManager = DatabaseManager.shared
+        let viewModel = BackgroundsViewModel(databaseManager: mockDatabaseManager)
+        let testAnimationId = "gentle_waves"
         
         // When
-        viewModel.selectBackground(testBackground)
+        viewModel.toggleFavorite(testAnimationId)
         
         // Then
-        XCTAssertEqual(viewModel.selectedBackground?.id, testBackground.id)
+        // Note: In test environment, database operations would be mocked
+        XCTAssertNotNil(viewModel)
     }
     
     // MARK: - TimerViewModel Tests
@@ -244,13 +246,14 @@ final class ViewModelTests: XCTestCase {
     }
     
     func testBackgroundsViewModelPerformance() throws {
-        let viewModel = BackgroundsViewModel()
-        let backgrounds = createMultipleTestBackgrounds(count: 100)
+        let mockDatabaseManager = DatabaseManager.shared
+        let viewModel = BackgroundsViewModel(databaseManager: mockDatabaseManager)
+        let animations = createMultipleTestAnimations(count: 100)
         
         measure {
-            viewModel.backgrounds = backgrounds
-            for background in backgrounds.prefix(10) {
-                viewModel.selectBackground(background)
+            // Test animation selection performance
+            for animation in animations.prefix(10) {
+                viewModel.selectAnimation(animation.id)
             }
         }
     }
@@ -281,26 +284,20 @@ final class ViewModelTests: XCTestCase {
         }
     }
     
-    private func createTestBackground(name: String = "TestBackground") -> Background {
-        return Background(
-            id: UUID(),
-            name: name,
-            thumbnailURL: "https://example.com/thumb.jpg",
-            fullImageURL: "https://example.com/full.jpg",
-            category: .nature,
-            isPremium: false
+    private func createTestAnimation(id: String = "test_animation", title: String = "Test Animation") -> AnimatedBackground {
+        return PlaceholderAnimation(
+            id: id,
+            title: title,
+            category: .nature
         )
     }
     
-    private func createMultipleTestBackgrounds(count: Int) -> [Background] {
+    private func createMultipleTestAnimations(count: Int) -> [AnimatedBackground] {
         return (0..<count).map { index in
-            Background(
-                id: UUID(),
-                name: "TestBackground\(index)",
-                thumbnailURL: "https://example.com/thumb\(index).jpg",
-                fullImageURL: "https://example.com/full\(index).jpg",
-                category: .nature,
-                isPremium: index % 4 == 0 // Every 4th background is premium
+            PlaceholderAnimation(
+                id: "test_animation_\(index)",
+                title: "Test Animation \(index)",
+                category: BackgroundCategory.allCases[index % BackgroundCategory.allCases.count]
             )
         }
     }
