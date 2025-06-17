@@ -12,6 +12,8 @@ struct SleepView: View {
     @ObservedObject var appState: AppState = AppState.shared
     @EnvironmentObject var coreDataStack: CoreDataStack
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
     
     @State private var showingTimerSettings = false
     @State private var showingBrightnessControl = false
@@ -19,35 +21,22 @@ struct SleepView: View {
     
     var body: some View {
         GeometryReader { geometry in
+            let isLandscape = geometry.size.width > geometry.size.height
+            
             ZStack {
                 // Background
                 backgroundView
                 
-                // Main content
-                VStack(spacing: 0) {
-                    // Header with app title and controls
-                    headerView
-                    
-                    Spacer()
-                    
-                    // Main sleep interface
-                    mainContentView(geometry: geometry)
-                    
-                    Spacer()
+                // Main content - adaptive layout based on orientation
+                if isLandscape {
+                    landscapeLayout(geometry: geometry)
+                } else {
+                    portraitLayout(geometry: geometry)
                 }
-                .padding()
-                .opacity(coreDataStack.isInitialized ? 1.0 : 0.3)
                 
                 // Loading overlay
                 if !coreDataStack.isInitialized {
-                    VStack(spacing: 20) {
-                        ProgressView()
-                            .scaleEffect(1.5)
-                        Text("Preparing Sleep Experience...")
-                            .font(.title2)
-                            .foregroundColor(.secondary)
-                    }
-                    .background(Color(.systemBackground).opacity(0.9))
+                    loadingOverlay
                 }
                 
                 // Full-screen sleep animation overlay
@@ -83,13 +72,170 @@ struct SleepView: View {
                 }
             }
         )
-        // .alert(item: $viewModel.alertItem) { alert in
-        //     Alert(
-        //         title: Text(alert.title),
-        //         message: Text(alert.message),
-        //         dismissButton: alert.dismissButton
-        //     )
-        // }
+    }
+    
+    // MARK: - Layout Views
+    
+    private func portraitLayout(geometry: GeometryProxy) -> some View {
+        VStack(spacing: 0) {
+            // Header with app title and controls
+            headerView
+            
+            Spacer()
+            
+            // Main sleep interface
+            mainContentView(geometry: geometry)
+            
+            Spacer()
+        }
+        .padding()
+        .opacity(coreDataStack.isInitialized ? 1.0 : 0.3)
+    }
+    
+    private func landscapeLayout(geometry: GeometryProxy) -> some View {
+        ScrollView(.vertical, showsIndicators: false) {
+            HStack(alignment: .top, spacing: 30) {
+                // Left side - Timer and controls
+                VStack(spacing: 20) {
+                    headerView
+                    
+                    // Timer display (smaller in landscape)
+                    ZStack {
+                        CircularProgressView(
+                            progress: viewModel.timerProgress,
+                            lineWidth: 8,
+                            color: viewModel.isTimerRunning ? .blue : .gray.opacity(0.3)
+                        )
+                        .frame(width: 140, height: 140)
+                        
+                        VStack(spacing: 4) {
+                            TimerDisplayView(
+                                timeText: viewModel.timerDisplayText,
+                                isActive: viewModel.isTimerRunning
+                            )
+                            .font(.title3) // Smaller font for landscape
+                            
+                            if viewModel.isTimerRunning {
+                                Text("remaining")
+                                    .font(.caption2)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                    }
+                    .onTapGesture {
+                        HapticFeedback.light()
+                        showingTimerSettings = true
+                    }
+                    
+                    // Volume control (more compact)
+                    VStack(spacing: 8) {
+                        HStack {
+                            Image(systemName: "speaker.fill")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                            Text("Volume")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                            Spacer()
+                            Text("\(Int(viewModel.currentVolume * 100))%")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                        
+                        VolumeSliderView(
+                            volume: $viewModel.currentVolume,
+                            onVolumeChange: viewModel.updateVolume
+                        )
+                    }
+                }
+                .frame(maxWidth: geometry.size.width * 0.45)
+                
+                // Right side - Sleep button and quick timers
+                VStack(spacing: 20) {
+                    // Main sleep button (slightly smaller)
+                    Button {
+                        HapticFeedback.medium()
+                        viewModel.toggleSleepMode()
+                    } label: {
+                        HStack(spacing: 10) {
+                            Image(systemName: viewModel.isSleepModeActive ? "stop.fill" : "play.fill")
+                                .font(.title3)
+                            
+                            Text(viewModel.isSleepModeActive ? "Stop" : "Start Sleep")
+                                .font(.title3)
+                                .fontWeight(.semibold)
+                        }
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 24)
+                        .padding(.vertical, 12)
+                        .background(
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(viewModel.isSleepModeActive ? Color.red : Color.blue)
+                                .shadow(color: viewModel.isSleepModeActive ? .red.opacity(0.3) : .blue.opacity(0.3), radius: 6, x: 0, y: 3)
+                        )
+                    }
+                    .scaleEffect(viewModel.isSleepModeActive ? 1.05 : 1.0)
+                    .animation(.easeInOut, value: viewModel.isSleepModeActive)
+                    
+                    // Quick timer buttons (more compact)
+                    VStack(spacing: 12) {
+                        Text("Quick Timer")
+                            .font(.subheadline)
+                            .fontWeight(.medium)
+                            .foregroundColor(.primary)
+                        
+                        VStack(spacing: 8) {
+                            HStack(spacing: 8) {
+                                quickTimerButtonCompact("5m", minutes: 5)
+                                quickTimerButtonCompact("15m", minutes: 15)
+                                quickTimerButtonCompact("30m", minutes: 30)
+                            }
+                            HStack(spacing: 8) {
+                                quickTimerButtonCompact("45m", minutes: 45)
+                                quickTimerButtonCompact("1h", minutes: 60)
+                                quickTimerButtonCompact("2h", minutes: 120)
+                            }
+                        }
+                    }
+                }
+                .frame(maxWidth: geometry.size.width * 0.45)
+            }
+            .padding()
+        }
+        .opacity(coreDataStack.isInitialized ? 1.0 : 0.3)
+    }
+    
+    private var loadingOverlay: some View {
+        VStack(spacing: 20) {
+            ProgressView()
+                .scaleEffect(1.5)
+            Text("Preparing Sleep Experience...")
+                .font(.title2)
+                .foregroundColor(.secondary)
+        }
+        .background(Color(.systemBackground).opacity(0.9))
+    }
+    
+    private var quickTimerButtonsLandscapeView: some View {
+        VStack(spacing: 16) {
+            Text("Quick Timer")
+                .font(.headline)
+                .foregroundColor(.primary)
+            
+            // Compact 2x3 grid for landscape
+            VStack(spacing: 12) {
+                HStack(spacing: 12) {
+                    quickTimerButton("5m", minutes: 5)
+                    quickTimerButton("15m", minutes: 15)
+                    quickTimerButton("30m", minutes: 30)
+                }
+                HStack(spacing: 12) {
+                    quickTimerButton("45m", minutes: 45)
+                    quickTimerButton("1h", minutes: 60)
+                    quickTimerButton("2h", minutes: 120)
+                }
+            }
+        }
     }
     
     // MARK: - Subviews
@@ -126,43 +272,44 @@ struct SleepView: View {
     }
     
     private var sleepAnimationOverlay: some View {
-        ZStack {
-            // Full-screen animation
-            if let selectedAnimation = appState.selectedAnimation {
-                selectedAnimation.createView(
-                    intensity: appState.animationIntensity,
-                    speed: appState.animationSpeed,
-                    colorTheme: appState.animationColorTheme,
-                    dimmed: true // Always dimmed in sleep mode
-                )
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color.black) // Ensure full coverage
-            } else {
-                // Fallback: Use default animation if none selected
-                VStack {
-                    Text("No animation selected")
-                        .foregroundColor(.white)
-                        .padding()
-                    defaultSleepAnimation
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color.black) // Ensure full coverage
-            }
+        GeometryReader { geometry in
+            let isLandscape = geometry.size.width > geometry.size.height
             
-            // Optional: Add subtle timer display in sleep mode
-            if viewModel.isTimerRunning {
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        Text(viewModel.timerDisplayText)
-                            .font(.title3.monospacedDigit())
-                            .foregroundColor(.white.opacity(0.6))
-                            .padding()
+            ZStack {
+                // Full-screen animation
+                if let selectedAnimation = appState.selectedAnimation {
+                    selectedAnimation.createView(
+                        intensity: appState.animationIntensity,
+                        speed: appState.animationSpeed,
+                        colorTheme: appState.animationColorTheme,
+                        dimmed: true // Always dimmed in sleep mode
+                    )
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color.black) // Ensure full coverage
+                } else {
+                    // Fallback: Use default animation if none selected
+                    defaultSleepAnimation
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color.black) // Ensure full coverage
+                }
+                
+                // Timer display in sleep mode - positioned for both orientations
+                if viewModel.isTimerRunning {
+                    sleepModeTimerOverlay(geometry: geometry, isLandscape: isLandscape)
+                }
+                
+                // Exit hint for landscape mode
+                if isLandscape {
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Text("Tap to wake")
+                                .font(.caption)
+                                .foregroundColor(.white.opacity(0.4))
+                                .padding()
+                        }
                         Spacer()
                     }
-                    Spacer()
-                        .frame(height: 50) // Keep timer away from bottom edge
                 }
             }
         }
@@ -171,6 +318,37 @@ struct SleepView: View {
             HapticFeedback.medium()
             Task {
                 await viewModel.stopSleeping()
+            }
+        }
+    }
+    
+    private func sleepModeTimerOverlay(geometry: GeometryProxy, isLandscape: Bool) -> some View {
+        VStack {
+            if isLandscape {
+                // In landscape, place timer in the corner
+                HStack {
+                    Spacer()
+                    VStack {
+                        Text(viewModel.timerDisplayText)
+                            .font(.title2.monospacedDigit())
+                            .foregroundColor(.white.opacity(0.7))
+                            .padding()
+                        Spacer()
+                    }
+                }
+            } else {
+                // In portrait, center timer at bottom
+                Spacer()
+                HStack {
+                    Spacer()
+                    Text(viewModel.timerDisplayText)
+                        .font(.title3.monospacedDigit())
+                        .foregroundColor(.white.opacity(0.6))
+                        .padding()
+                    Spacer()
+                }
+                Spacer()
+                    .frame(height: 50) // Keep timer away from bottom edge
             }
         }
     }
@@ -374,6 +552,25 @@ struct SleepView: View {
                 .padding(.vertical, 8)
                 .background(
                     RoundedRectangle(cornerRadius: 8)
+                        .fill(Int(viewModel.timerDuration) == minutes * 60 ? Color.blue : Color(.systemGray5))
+                )
+        }
+    }
+    
+    private func quickTimerButtonCompact(_ title: String, minutes: Int) -> some View {
+        Button {
+            HapticFeedback.light()
+            viewModel.setTimerDuration(TimeInterval(minutes * 60))
+        } label: {
+            Text(title)
+                .font(.caption2)
+                .fontWeight(.medium)
+                .foregroundColor(Int(viewModel.timerDuration) == minutes * 60 ? .white : .primary)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 6)
+                .frame(minWidth: 40)
+                .background(
+                    RoundedRectangle(cornerRadius: 6)
                         .fill(Int(viewModel.timerDuration) == minutes * 60 ? Color.blue : Color(.systemGray5))
                 )
         }

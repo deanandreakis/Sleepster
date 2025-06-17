@@ -118,8 +118,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        // Default to portrait orientation, allow landscape for specific views if needed
-        return .portrait
+        // Allow portrait and landscape orientations for main screen
+        return [.portrait, .landscapeLeft, .landscapeRight]
     }
 }
 
