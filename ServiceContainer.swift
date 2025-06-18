@@ -144,7 +144,9 @@ class ServiceContainer: ObservableObject {
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            self?.handleAppDidEnterBackground()
+            Task { @MainActor in
+                self?.handleAppDidEnterBackground()
+            }
         }
         
         NotificationCenter.default.addObserver(
@@ -152,18 +154,22 @@ class ServiceContainer: ObservableObject {
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            self?.handleAppWillTerminate()
+            Task { @MainActor in
+                self?.handleAppWillTerminate()
+            }
         }
     }
     
+    @MainActor
     private func handleAppDidEnterBackground() {
         // Save any pending data
         databaseManager.saveContext()
         
-        // Handle audio session for background playback
+        // Handle audio session for background playbook
         audioSessionManager.handleAppDidEnterBackground()
     }
     
+    @MainActor
     private func handleAppWillTerminate() {
         // Final cleanup
         databaseManager.saveContext()

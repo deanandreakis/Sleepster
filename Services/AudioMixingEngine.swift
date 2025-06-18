@@ -134,25 +134,17 @@ class AudioMixingEngine: ObservableObject {
         // Stop all players immediately and forcefully
         for player in playersToStop {
             if let playerNode = audioPlayerNodes[player] {
-                do {
-                    playerNode.stop()
-                    playerNode.reset() // Clear any scheduled buffers
-                } catch {
-                    print("Error stopping player node: \(error)")
-                }
+                playerNode.stop()
+                playerNode.reset() // Clear any scheduled buffers
             }
         }
         
         // Disconnect and detach nodes safely
         for player in playersToStop {
             if let playerNode = audioPlayerNodes[player] {
-                do {
-                    if audioEngine.attachedNodes.contains(playerNode) {
-                        audioEngine.disconnectNodeInput(playerNode)
-                        audioEngine.detach(playerNode)
-                    }
-                } catch {
-                    print("Error disconnecting node: \(error)")
+                if audioEngine.attachedNodes.contains(playerNode) {
+                    audioEngine.disconnectNodeInput(playerNode)
+                    audioEngine.detach(playerNode)
                 }
             }
         }
@@ -215,7 +207,7 @@ class AudioMixingEngine: ObservableObject {
         
         // Play preset sounds
         for soundConfig in preset.sounds {
-            await playSound(
+            _ = await playSound(
                 named: soundConfig.name,
                 volume: soundConfig.volume,
                 loop: soundConfig.loop,
@@ -316,14 +308,10 @@ class AudioMixingEngine: ObservableObject {
             return 
         }
         
-        do {
-            // Disconnect and detach from engine with error handling
-            if audioEngine.attachedNodes.contains(playerNode) {
-                audioEngine.disconnectNodeInput(playerNode)
-                audioEngine.detach(playerNode)
-            }
-        } catch {
-            print("Error during audio node cleanup: \(error)")
+        // Disconnect and detach from engine
+        if audioEngine.attachedNodes.contains(playerNode) {
+            audioEngine.disconnectNodeInput(playerNode)
+            audioEngine.detach(playerNode)
         }
         
         // Remove references

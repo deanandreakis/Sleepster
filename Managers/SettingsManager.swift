@@ -291,7 +291,7 @@ class SettingsManager: ObservableObject {
             if userDefaults.object(forKey: Keys.lastTimerDuration) == nil {
                 lastTimerDuration = Defaults.lastTimerDuration
             }
-        } else if let prev = previousVersion, let curr = currentVersion {
+        } else if let _ = previousVersion, let _ = currentVersion {
             // Perform any version-specific migrations here
         }
     }

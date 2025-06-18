@@ -53,7 +53,9 @@ class PerformanceMonitor: ObservableObject {
     private func updateMetrics() {
         memoryUsage = getCurrentMemoryUsage()
         cpuUsage = getCurrentCPUUsage()
-        audioLatency = AudioMixingEngine.shared.currentLatency
+        Task { @MainActor in
+            audioLatency = AudioMixingEngine.shared.currentLatency
+        }
         frameRate = UIScreen.main.maximumFramesPerSecond > 0 ? Double(UIScreen.main.maximumFramesPerSecond) : 60.0
     }
     
@@ -168,13 +170,13 @@ class MemoryOptimizer {
         // Force garbage collection and animation cleanup
         Task {
             // Clear any animation caches if implemented in Phase 2
-            await AnimationRegistry.shared.animations.forEach { _ in
+            AnimationRegistry.shared.animations.forEach { _ in
                 // Animation cleanup will be implemented in Phase 2
             }
         }
         
         // Notify audio engine to release unused resources
-        Task {
+        Task { @MainActor in
             await AudioMixingEngine.shared.releaseUnusedResources()
         }
         
@@ -233,7 +235,7 @@ extension AudioMixingEngine {
     
     func optimizeForPowerSaving() async {
         // Reduce audio quality for power saving
-        await setMasterVolume(masterVolume * 0.8) // Slightly reduce volume
+        setMasterVolume(masterVolume * 0.8) // Slightly reduce volume
         
         // Use lower sample rate if possible
         let audioSession = AVAudioSession.sharedInstance()
@@ -383,12 +385,14 @@ class BatteryOptimizer {
     }
     
     private func enablePowerSavingMode() {
-        Task {
+        Task { @MainActor in
             // Reduce audio processing
             await AudioMixingEngine.shared.optimizeForPowerSaving()
             
             // Reduce animation frame rate
-            UIView.setAnimationsEnabled(false)
+            await MainActor.run {
+                UIView.setAnimationsEnabled(false)
+            }
             
             // Reduce background processing
             MemoryOptimizer.shared.optimizeForBackground()
@@ -398,12 +402,14 @@ class BatteryOptimizer {
     }
     
     private func disablePowerSavingMode() {
-        Task {
+        Task { @MainActor in
             // Restore normal audio processing
             await AudioMixingEngine.shared.optimizeBufferSize()
             
             // Restore animations
-            UIView.setAnimationsEnabled(true)
+            await MainActor.run {
+                UIView.setAnimationsEnabled(true)
+            }
             
             // Restore normal processing
             MemoryOptimizer.shared.optimizeForForeground()

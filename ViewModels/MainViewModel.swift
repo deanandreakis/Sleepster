@@ -53,7 +53,7 @@ class MainViewModel: ObservableObject {
         timerManager: TimerManager,
         databaseManager: DatabaseManager,
         settingsManager: SettingsManager,
-        audioMixingEngine: AudioMixingEngine = AudioMixingEngine.shared,
+        audioMixingEngine: AudioMixingEngine,
         brightnessManager: BrightnessManager
     ) {
         self.audioManager = audioManager
@@ -422,7 +422,7 @@ class MainViewModel: ObservableObject {
                 self.activeChannelPlayers.removeAll()
                 
                 // Force stop all audio mixing with minimal delay
-                DispatchQueue.global(qos: .background).async {
+                Task { @MainActor in
                     self.audioMixingEngine.forceStopAll()
                 }
             }

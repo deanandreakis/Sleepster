@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import AVFoundation
+@preconcurrency import AVFoundation
 import Combine
 
 @MainActor
@@ -357,13 +357,15 @@ class AudioManager: NSObject, ObservableObject {
 }
 
 // MARK: - AVAudioPlayerDelegate
-extension AudioManager: AVAudioPlayerDelegate {
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        if flag && !isLooping {
-            isPlaying = false
-            currentSoundURL = nil
-            playCompletionHandler?()
-            playCompletionHandler = nil
+extension AudioManager: @preconcurrency AVAudioPlayerDelegate {
+    nonisolated func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        Task { @MainActor in
+            if flag && !isLooping {
+                isPlaying = false
+                currentSoundURL = nil
+                playCompletionHandler?()
+                playCompletionHandler = nil
+            }
         }
     }
     

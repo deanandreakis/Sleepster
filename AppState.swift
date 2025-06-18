@@ -87,8 +87,10 @@ class AppState: ObservableObject {
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            self?.isAppActive = true
-            self?.isInBackground = false
+            Task { @MainActor in
+                self?.isAppActive = true
+                self?.isInBackground = false
+            }
         }
         
         NotificationCenter.default.addObserver(
@@ -96,7 +98,9 @@ class AppState: ObservableObject {
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            self?.isAppActive = false
+            Task { @MainActor in
+                self?.isAppActive = false
+            }
         }
         
         NotificationCenter.default.addObserver(
@@ -104,7 +108,9 @@ class AppState: ObservableObject {
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            self?.isInBackground = true
+            Task { @MainActor in
+                self?.isInBackground = true
+            }
         }
     }
     
