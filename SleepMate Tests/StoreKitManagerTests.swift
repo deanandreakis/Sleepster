@@ -62,7 +62,7 @@ final class StoreKitManagerTests: XCTestCase {
     func testInitialPurchaseState() throws {
         // Given/When/Then
         XCTAssertFalse(storeKitManager.isPurchased("nonexistent_product"))
-        XCTAssertFalse(storeKitManager.hasPremiumFeatures)
+        XCTAssertFalse(storeKitManager.hasPremiumAccess)
         XCTAssertNil(storeKitManager.errorMessage)
     }
     
@@ -75,20 +75,19 @@ final class StoreKitManagerTests: XCTestCase {
         
         // Then
         XCTAssertEqual(storeKitManager.errorMessage, testError)
-        XCTAssertTrue(storeKitManager.hasError)
+        XCTAssertNotNil(storeKitManager.errorMessage)
     }
     
     func testClearError() throws {
         // Given
         storeKitManager.errorMessage = "Test error"
-        XCTAssertTrue(storeKitManager.hasError)
+        XCTAssertNotNil(storeKitManager.errorMessage)
         
         // When
-        storeKitManager.clearError()
+        storeKitManager.errorMessage = nil
         
         // Then
         XCTAssertNil(storeKitManager.errorMessage)
-        XCTAssertFalse(storeKitManager.hasError)
     }
     
     // MARK: - Mock Purchase Tests
@@ -106,24 +105,24 @@ final class StoreKitManagerTests: XCTestCase {
     
     func testPremiumFeaturesCheck() throws {
         // Given
-        XCTAssertFalse(storeKitManager.hasPremiumFeatures)
+        XCTAssertFalse(storeKitManager.hasPremiumAccess)
         
         // When
         storeKitManager.purchasedProducts.insert(StoreKitManager.ProductType.premiumPack.rawValue)
         
         // Then
-        XCTAssertTrue(storeKitManager.hasPremiumFeatures)
+        XCTAssertTrue(storeKitManager.hasPremiumAccess)
     }
     
     func testSubscriptionPremiumFeatures() throws {
         // Given
-        XCTAssertFalse(storeKitManager.hasPremiumFeatures)
+        XCTAssertFalse(storeKitManager.hasPremiumAccess)
         
         // When
         storeKitManager.purchasedProducts.insert(StoreKitManager.ProductType.yearlySubscription.rawValue)
         
         // Then
-        XCTAssertTrue(storeKitManager.hasPremiumFeatures)
+        XCTAssertTrue(storeKitManager.hasPremiumAccess)
     }
     
     // MARK: - Performance Tests

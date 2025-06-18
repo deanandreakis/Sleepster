@@ -96,7 +96,7 @@ struct ShortcutsSettingsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .task {
                 if !shortcutsManager.isInitialized {
-                    await shortcutsManager.setupShortcuts()
+                    shortcutsManager.setupShortcuts()
                 }
             }
             .refreshable {
@@ -228,7 +228,7 @@ struct QuickShortcutRow: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(shortcut.title)
                         .font(.subheadline)
-                            .foregroundColor(.primary)
+                        .foregroundColor(.primary)
                     
                     Text(shortcut.description)
                         .font(.caption)
@@ -334,7 +334,7 @@ struct AddShortcutView: UIViewControllerRepresentable {
             if let error = error {
                 print("Failed to add voice shortcut: \(error)")
             } else if let voiceShortcut = voiceShortcut {
-                print("Added voice shortcut: \(voiceShortcut.invocationPhrase ?? "Unknown")")
+                print("Added voice shortcut: \(voiceShortcut.invocationPhrase)")
                 
                 // Refresh shortcuts list
                 Task {

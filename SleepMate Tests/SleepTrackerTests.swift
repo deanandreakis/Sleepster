@@ -301,11 +301,16 @@ final class SleepTrackerTests: XCTestCase {
     
     private func createMockSleepDataArray(count: Int) -> [SleepData] {
         return (0..<count).map { index in
-            SleepData(
+            let dayOffset = TimeInterval(-index * 24 * 60 * 60)
+            let baseDate = Date().addingTimeInterval(dayOffset)
+            let startTime = baseDate
+            let endTime = baseDate.addingTimeInterval(8 * 60 * 60)
+            
+            return SleepData(
                 id: UUID(),
-                date: Date().addingTimeInterval(TimeInterval(-index * 24 * 60 * 60)),
-                startTime: Date().addingTimeInterval(TimeInterval(-index * 24 * 60 * 60)),
-                endTime: Date().addingTimeInterval(TimeInterval(-index * 24 * 60 * 60) + 8 * 60 * 60),
+                date: baseDate,
+                startTime: startTime,
+                endTime: endTime,
                 duration: 8 * 60 * 60,
                 category: .asleep,
                 source: "SleepMate"

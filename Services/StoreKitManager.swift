@@ -293,7 +293,9 @@ extension Product {
 @objc class StoreKitManagerObjC: NSObject {
     @objc static let shared = StoreKitManagerObjC()
     
-    private let swiftManager = StoreKitManager.shared
+    private var swiftManager: StoreKitManager {
+        StoreKitManager.shared
+    }
     
     @MainActor
     @objc func hasBackgroundAccess() -> Bool {

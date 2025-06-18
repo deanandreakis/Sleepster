@@ -191,13 +191,9 @@ class ShortcutsManager: ObservableObject {
     
     /// Delete a specific shortcut
     func deleteShortcut(withIdentifier identifier: String) async {
-        do {
-            try await INVoiceShortcutCenter.shared.setShortcutSuggestions([])
-            await loadExistingShortcuts()
-            print("Deleted shortcut: \(identifier)")
-        } catch {
-            print("Failed to delete shortcut \(identifier): \(error)")
-        }
+        INVoiceShortcutCenter.shared.setShortcutSuggestions([])
+        await loadExistingShortcuts()
+        print("Deleted shortcut: \(identifier)")
     }
     
     /// Clear all donated shortcuts
@@ -218,7 +214,7 @@ class ShortcutsManager: ObservableObject {
                    shortcut.shortcut.intent is StopAudioIntent ||
                    shortcut.shortcut.intent is SetSleepTimerIntent ||
                    shortcut.shortcut.intent is CheckSleepStatsIntent {
-                    try await INVoiceShortcutCenter.shared.setShortcutSuggestions([])
+                    INVoiceShortcutCenter.shared.setShortcutSuggestions([])
                 }
             }
             await loadExistingShortcuts()

@@ -190,8 +190,10 @@ class SleepTracker: ObservableObject {
                     return
                 }
                 
-                let statistics = self.calculateSleepStatistics(from: sleepSamples, period: period)
-                continuation.resume(returning: statistics)
+                Task { @MainActor in
+                    let statistics = self.calculateSleepStatistics(from: sleepSamples, period: period)
+                    continuation.resume(returning: statistics)
+                }
             }
             
             healthStore.execute(query)
@@ -238,7 +240,7 @@ class SleepTracker: ObservableObject {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         
-        if let data = try? encoder.encode(session) {
+        if (try? encoder.encode(session)) != nil {
             var sessions = getStoredSessions()
             sessions.append(session)
             

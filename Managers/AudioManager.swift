@@ -350,14 +350,14 @@ class AudioManager: NSObject, ObservableObject {
     deinit {
         NotificationCenter.default.removeObserver(self)
         fadeCancellable?.cancel()
-        Task { @MainActor in
-            stopAllSounds()
-        }
+        // Stop sounds synchronously in deinit to avoid capturing self
+        audioPlayer?.stop()
+        audioPlayer = nil
     }
 }
 
 // MARK: - AVAudioPlayerDelegate
-extension AudioManager: @preconcurrency AVAudioPlayerDelegate {
+extension AudioManager: AVAudioPlayerDelegate {
     nonisolated func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         Task { @MainActor in
             if flag && !isLooping {

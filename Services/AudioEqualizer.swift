@@ -374,7 +374,7 @@ struct AudioPresetManager {
 // MARK: - Saved Audio Preset Model
 
 struct SavedAudioPreset: Codable, Identifiable {
-    let id = UUID()
+    let id: UUID
     let name: String
     let description: String
     let equalizerPreset: String
@@ -397,6 +397,7 @@ struct SavedAudioPreset: Codable, Identifiable {
         effects: AudioEffectsProcessor,
         masterVolume: Float
     ) {
+        self.id = UUID()
         self.name = name
         self.description = description
         self.equalizerPreset = equalizer.currentPreset.rawValue

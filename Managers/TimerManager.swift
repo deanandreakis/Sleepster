@@ -238,9 +238,8 @@ class TimerManager: ObservableObject {
     }
     
     deinit {
-        Task { @MainActor in
-            stopTimer()
-            cancelLocalNotification()
-        }
+        // Clean up synchronously in deinit to avoid capturing self
+        cancellables.removeAll()
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["sleepster.timer.completed"])
     }
 }

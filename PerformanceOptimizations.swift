@@ -53,9 +53,7 @@ class PerformanceMonitor: ObservableObject {
     private func updateMetrics() {
         memoryUsage = getCurrentMemoryUsage()
         cpuUsage = getCurrentCPUUsage()
-        Task { @MainActor in
-            audioLatency = AudioMixingEngine.shared.currentLatency
-        }
+        audioLatency = AudioMixingEngine.shared.currentLatency
         frameRate = UIScreen.main.maximumFramesPerSecond > 0 ? Double(UIScreen.main.maximumFramesPerSecond) : 60.0
     }
     
@@ -326,21 +324,21 @@ extension DatabaseManager {
         coreDataStack.viewContext.automaticallyMergesChangesFromParent = true
     }
     
+    @MainActor
     func performBackgroundTask<T>(_ block: @escaping (NSManagedObjectContext) throws -> T) async throws -> T {
         return try await withCheckedThrowingContinuation { continuation in
-            Task { @MainActor in
-                coreDataStack.persistentContainer.performBackgroundTask { context in
-                    do {
-                        let result = try block(context)
-                        continuation.resume(returning: result)
-                    } catch {
-                        continuation.resume(throwing: error)
-                    }
+            coreDataStack.persistentContainer.performBackgroundTask { context in
+                do {
+                    let result = try block(context)
+                    continuation.resume(returning: result)
+                } catch {
+                    continuation.resume(throwing: error)
                 }
             }
         }
     }
     
+    @MainActor
     func batchDelete(entityName: String, predicate: NSPredicate) async throws {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetchRequest.predicate = predicate
@@ -390,9 +388,7 @@ class BatteryOptimizer {
             await AudioMixingEngine.shared.optimizeForPowerSaving()
             
             // Reduce animation frame rate
-            await MainActor.run {
-                UIView.setAnimationsEnabled(false)
-            }
+            UIView.setAnimationsEnabled(false)
             
             // Reduce background processing
             MemoryOptimizer.shared.optimizeForBackground()
@@ -407,9 +403,7 @@ class BatteryOptimizer {
             await AudioMixingEngine.shared.optimizeBufferSize()
             
             // Restore animations
-            await MainActor.run {
-                UIView.setAnimationsEnabled(true)
-            }
+            UIView.setAnimationsEnabled(true)
             
             // Restore normal processing
             MemoryOptimizer.shared.optimizeForForeground()
@@ -428,7 +422,7 @@ class LaunchOptimizer {
     
     func optimizeAppLaunch() {
         // Defer non-critical initializations
-        DispatchQueue.main.async {
+        Task { @MainActor in
             self.initializeNonCriticalServices()
         }
         
@@ -438,6 +432,7 @@ class LaunchOptimizer {
         }
     }
     
+    @MainActor
     private func initializeNonCriticalServices() {
         // Initialize services that aren't needed immediately
         _ = ShortcutsManager.shared

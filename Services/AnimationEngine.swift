@@ -222,8 +222,6 @@ class PlaceholderAnimation: BaseAnimatedBackground {
             return [Color.cyan.opacity(alpha), Color.blue.opacity(alpha)]
         case (_, .monochrome):
             return [Color.gray.opacity(alpha), Color.white.opacity(alpha)]
-        default:
-            return [Color.blue.opacity(alpha), Color.gray.opacity(alpha)]
         }
     }
 }
