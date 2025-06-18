@@ -76,6 +76,7 @@ Each major feature has its own view controller with corresponding XIB files:
 - Bundle ID follows pattern: com.deanware.sleepster.*
 - Version managed in Info.plist (currently 2.5, build 115)
 - Uses legacy AFNetworking 1.3 (consider updating for new features)
+- Never start the simulator for testing changes unless specifically told to do so
 
 ## Multi-Sound Mixing Feature
 

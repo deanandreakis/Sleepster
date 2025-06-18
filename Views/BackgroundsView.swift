@@ -194,6 +194,17 @@ struct BackgroundsView: View {
                     }
                     .font(.subheadline.weight(.medium))
                     .foregroundColor(.accentColor)
+                    
+                    // Done button
+                    Button("Done") {
+                        HapticFeedback.light()
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            showingCustomization = false
+                        }
+                    }
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundColor(.accentColor)
+                    .padding(.leading, 16)
                 }
                 
                 // Speed control with enhanced UI
