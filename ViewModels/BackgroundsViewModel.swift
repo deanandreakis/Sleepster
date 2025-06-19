@@ -25,12 +25,15 @@ class BackgroundsViewModel: ObservableObject {
     
     // MARK: - Private Properties
     private var cancellables = Set<AnyCancellable>()
+    private var isSelectingAnimation = false
     
     // MARK: - Initialization
     init(databaseManager: DatabaseManager) {
         self.databaseManager = databaseManager
+        print("🏗️ BackgroundsViewModel initializing...")
         loadAnimations()
         loadSelectedAnimation()
+        print("🏗️ BackgroundsViewModel initialization complete")
     }
     
     // MARK: - Public Methods
@@ -47,6 +50,12 @@ class BackgroundsViewModel: ObservableObject {
     }
     
     func selectAnimation(_ animationId: String) {
+        guard !isSelectingAnimation else {
+            print("⚠️ Selection already in progress, ignoring: \(animationId)")
+            return
+        }
+        
+        isSelectingAnimation = true
         print("🎯 Selecting animation: \(animationId)")
         
         // Perform selection with smooth state update
@@ -90,6 +99,8 @@ class BackgroundsViewModel: ObservableObject {
                 print("❌ Could not find entity for animation ID: \(animationId)")
             }
         }
+        
+        isSelectingAnimation = false
     }
     
     func toggleFavorite(_ animationId: String) {
@@ -161,6 +172,20 @@ class BackgroundsViewModel: ObservableObject {
                 animationSettings.speed = selected.speedMultiplier
                 animationSettings.intensity = Float(selected.intensityLevel) / 3.0
                 animationSettings.colorTheme = ColorTheme(rawValue: selected.colorTheme ?? "default") ?? .defaultTheme
+                
+                // Update AppState with the loaded selection
+                if let animationType = selected.animationType,
+                   let animation = AnimationRegistry.shared.animation(for: animationType) {
+                    print("🎬 Loading saved AppState animation: \(animation.title)")
+                    Task { @MainActor in
+                        AppState.shared.setAnimation(animation)
+                        AppState.shared.updateAnimationSettings(
+                            intensity: animationSettings.intensity,
+                            speed: animationSettings.speed,
+                            colorTheme: animationSettings.colorTheme
+                        )
+                    }
+                }
             } else {
                 print("📱 No selected animation found, will use default")
             }
@@ -197,9 +222,28 @@ class BackgroundsViewModel: ObservableObject {
             }
         }
         
-        // Select default animation if none is selected
+        // Select default animation if none is selected (without triggering full selection flow)
         if selectedAnimationId == nil, let firstAnimation = animations.first {
-            selectAnimation(firstAnimation.id)
+            print("🎯 No animation selected, setting default: \(firstAnimation.id)")
+            
+            // Find or create the entity for the first animation
+            if let entity = backgroundEntities.first(where: { $0.animationType == firstAnimation.id }) {
+                entity.isSelected = true
+                selectedAnimationId = firstAnimation.id
+                
+                // Update AppState directly without triggering full selection flow
+                if let animation = AnimationRegistry.shared.animation(for: firstAnimation.id) {
+                    print("🎬 Setting default AppState animation: \(animation.title)")
+                    Task { @MainActor in
+                        AppState.shared.setAnimation(animation)
+                        AppState.shared.updateAnimationSettings(
+                            intensity: animationSettings.intensity,
+                            speed: animationSettings.speed,
+                            colorTheme: animationSettings.colorTheme
+                        )
+                    }
+                }
+            }
         }
         
         databaseManager.saveContext()
