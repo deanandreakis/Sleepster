@@ -47,10 +47,15 @@ class BackgroundsViewModel: ObservableObject {
     }
     
     func selectAnimation(_ animationId: String) {
+        print("🎯 Selecting animation: \(animationId)")
+        
         // Perform selection with smooth state update
         withAnimation(.easeInOut(duration: 0.3)) {
             // Deselect all current selections
             for entity in backgroundEntities {
+                if entity.isSelected {
+                    print("📤 Deselecting: \(entity.animationType ?? "nil")")
+                }
                 entity.isSelected = false
             }
             
@@ -58,6 +63,7 @@ class BackgroundsViewModel: ObservableObject {
             if let entity = backgroundEntities.first(where: { $0.animationType == animationId }) {
                 entity.isSelected = true
                 selectedAnimationId = animationId
+                print("✅ Selected animation: \(animationId)")
                 
                 // Save settings to entity
                 entity.speedMultiplier = animationSettings.speed
@@ -66,6 +72,7 @@ class BackgroundsViewModel: ObservableObject {
                 
                 // Update app state with smooth transition
                 if let animation = AnimationRegistry.shared.animation(for: animationId) {
+                    print("🎬 Setting AppState animation: \(animation.title)")
                     Task { @MainActor in
                         AppState.shared.setAnimation(animation)
                         AppState.shared.updateAnimationSettings(
@@ -74,9 +81,13 @@ class BackgroundsViewModel: ObservableObject {
                             colorTheme: animationSettings.colorTheme
                         )
                     }
+                } else {
+                    print("❌ Could not find animation for ID: \(animationId)")
                 }
                 
                 databaseManager.saveContext()
+            } else {
+                print("❌ Could not find entity for animation ID: \(animationId)")
             }
         }
     }
@@ -130,16 +141,31 @@ class BackgroundsViewModel: ObservableObject {
         let context = databaseManager.managedObjectContext
         
         do {
-            if let selected = try context.fetch(request).first {
+            let selectedBackgrounds = try context.fetch(request)
+            
+            // Fix data corruption: ensure only one background is selected
+            if selectedBackgrounds.count > 1 {
+                print("⚠️ Found \(selectedBackgrounds.count) selected backgrounds, fixing...")
+                // Deselect all but the first
+                for (index, background) in selectedBackgrounds.enumerated() {
+                    background.isSelected = (index == 0)
+                }
+                databaseManager.saveContext()
+            }
+            
+            if let selected = selectedBackgrounds.first {
                 selectedAnimationId = selected.animationType
+                print("📱 Loaded selected animation: \(selected.animationType ?? "nil")")
                 
                 // Load settings from entity
                 animationSettings.speed = selected.speedMultiplier
                 animationSettings.intensity = Float(selected.intensityLevel) / 3.0
                 animationSettings.colorTheme = ColorTheme(rawValue: selected.colorTheme ?? "default") ?? .defaultTheme
+            } else {
+                print("📱 No selected animation found, will use default")
             }
         } catch {
-            print("Error loading selected background: \(error)")
+            print("❌ Error loading selected background: \(error)")
         }
     }
     
@@ -199,5 +225,34 @@ class BackgroundsViewModel: ObservableObject {
     
     func isFavorite(_ animationId: String) -> Bool {
         return backgroundEntities.first { $0.animationType == animationId }?.isFavorite ?? false
+    }
+    
+    // MARK: - Debug and Reset Methods
+    
+    func debugCurrentSelection() {
+        print("🔍 Current BackgroundsViewModel state:")
+        print("   selectedAnimationId: \(selectedAnimationId ?? "nil")")
+        print("   backgroundEntities count: \(backgroundEntities.count)")
+        
+        for entity in backgroundEntities {
+            print("   Entity: \(entity.animationType ?? "nil") - Selected: \(entity.isSelected)")
+        }
+        
+        let request = BackgroundEntity.fetchSelectedBackground()
+        let context = databaseManager.managedObjectContext
+        do {
+            let selected = try context.fetch(request)
+            print("   Core Data selected count: \(selected.count)")
+            for background in selected {
+                print("     -> \(background.animationType ?? "nil")")
+            }
+        } catch {
+            print("   Core Data fetch error: \(error)")
+        }
+    }
+    
+    func resetToCountingSheep() {
+        print("🔄 Resetting to Counting Sheep (Dreamy Meadow)")
+        selectAnimation("counting_sheep")
     }
 }
