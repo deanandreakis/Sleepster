@@ -282,6 +282,7 @@ struct EnhancedCountingSheepView: View {
     
     @State private var sheepPositions: [SheepData] = []
     @State private var animationTimer: Timer?
+    @State private var floatingTimer: Timer?
     @State private var cloudPositions: [CloudData] = []
     @State private var windOffset: CGFloat = 0
     @State private var twinklePhase: Double = 0
@@ -296,6 +297,10 @@ struct EnhancedCountingSheepView: View {
         var jumpPhase: Double = 0
         var scale: CGFloat = 1.0
         var shadowOpacity: Double = 0.3
+        var floatPhase: Double = Double.random(in: 0...2 * .pi)
+        var floatAmplitude: CGFloat = CGFloat.random(in: 15...40)
+        var driftSpeed: CGFloat = CGFloat.random(in: 0.3...1.2)
+        var isFloating: Bool = false
     }
     
     private struct CloudData: Identifiable {
@@ -474,13 +479,33 @@ struct EnhancedCountingSheepView: View {
     
     private func setupSheep() {
         sheepPositions = []
-        let sheepCount = Int(intensity * 6) + 2
+        let sheepCount = Int(intensity * 20) + 12  // Significantly more sheep
         for i in 0..<sheepCount {
+            // Create sheep at various positions and heights for floating effect
+            let yPosition: CGFloat
+            if i < sheepCount / 2 {
+                // Some sheep on the ground level
+                yPosition = UIScreen.main.bounds.height * 0.72
+            } else {
+                // Many floating sheep in the sky
+                yPosition = CGFloat.random(in: UIScreen.main.bounds.height * 0.2...UIScreen.main.bounds.height * 0.6)
+            }
+            
+            let xPosition: CGFloat
+            if i < sheepCount / 3 {
+                // Traditional line of sheep
+                xPosition = -80 - CGFloat(i * 120)
+            } else {
+                // Random floating positions
+                xPosition = CGFloat.random(in: -200...UIScreen.main.bounds.width + 200)
+            }
+            
             sheepPositions.append(SheepData(
-                x: -80 - CGFloat(i * 120),
-                y: UIScreen.main.bounds.height * 0.72,
-                scale: CGFloat.random(in: 0.8...1.2),
-                shadowOpacity: Double.random(in: 0.2...0.5)
+                x: xPosition,
+                y: yPosition,
+                scale: CGFloat.random(in: 0.6...1.4),
+                shadowOpacity: Double.random(in: 0.1...0.4),
+                isFloating: i >= sheepCount / 2  // Mark sky sheep as floating
             ))
         }
     }
@@ -505,6 +530,11 @@ struct EnhancedCountingSheepView: View {
             animateSheep()
         }
         
+        // Floating sheep animation
+        floatingTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+            animateFloatingSheep()
+        }
+        
         // Continuous environmental animations
         withAnimation(.linear(duration: 20.0 / Double(speed)).repeatForever(autoreverses: false)) {
             windOffset = 100
@@ -522,6 +552,8 @@ struct EnhancedCountingSheepView: View {
     private func stopAnimations() {
         animationTimer?.invalidate()
         animationTimer = nil
+        floatingTimer?.invalidate()
+        floatingTimer = nil
     }
     
     private func animateSheep() {
@@ -553,6 +585,40 @@ struct EnhancedCountingSheepView: View {
                     }
                 }
                 break
+            }
+        }
+    }
+    
+    private func animateFloatingSheep() {
+        let bounds = UIScreen.main.bounds
+        
+        for i in 0..<sheepPositions.count {
+            if sheepPositions[i].isFloating {
+                // Update floating phase for smooth sine wave motion
+                sheepPositions[i].floatPhase += 0.05 * Double(speed)
+                
+                // Apply floating movement - gentle up and down motion
+                let floatOffset = sin(sheepPositions[i].floatPhase) * sheepPositions[i].floatAmplitude
+                
+                // Slow horizontal drift
+                sheepPositions[i].x += sheepPositions[i].driftSpeed * CGFloat(speed) * 0.3
+                
+                // Apply smooth vertical floating
+                withAnimation(.easeInOut(duration: 0.1)) {
+                    sheepPositions[i].jumpHeight = floatOffset
+                }
+                
+                // Boundary wrapping for horizontal movement
+                if sheepPositions[i].x > bounds.width + 100 {
+                    sheepPositions[i].x = -100
+                } else if sheepPositions[i].x < -100 {
+                    sheepPositions[i].x = bounds.width + 100
+                }
+                
+                // Gentle scale pulsing for floating sheep
+                let scaleBase = CGFloat.random(in: 0.7...1.3)
+                let scalePulse = 0.1 * sin(sheepPositions[i].floatPhase * 1.5)
+                sheepPositions[i].scale = scaleBase + CGFloat(scalePulse)
             }
         }
     }
@@ -749,6 +815,10 @@ struct EnhancedGentleWavesView: View {
     @State private var bubblePositions: [BubbleData] = []
     @State private var shimmerOffset: CGFloat = 0
     @State private var surfaceGlitter: [GlitterData] = []
+    @State private var seaweed: [SeaweedData] = []
+    @State private var fish: [FishData] = []
+    @State private var jellyfish: [JellyfishData] = []
+    @State private var plankton: [PlanktonData] = []
     
     private struct BubbleData: Identifiable {
         let id = UUID()
@@ -766,6 +836,48 @@ struct EnhancedGentleWavesView: View {
         let y: CGFloat
         let intensity: Double
         let sparklePhase: Double
+    }
+    
+    private struct SeaweedData: Identifiable {
+        let id = UUID()
+        let x: CGFloat
+        let baseY: CGFloat
+        var swayPhase: Double
+        let height: CGFloat
+        let swayAmplitude: CGFloat
+        let segments: Int
+    }
+    
+    private struct FishData: Identifiable {
+        let id = UUID()
+        var x: CGFloat
+        var y: CGFloat
+        var velocity: CGVector
+        let size: CGFloat
+        let color: Color
+        var swimmingPhase: Double
+        let schoolId: Int
+    }
+    
+    private struct JellyfishData: Identifiable {
+        let id = UUID()
+        var x: CGFloat
+        var y: CGFloat
+        var pulsePhase: Double
+        let size: CGFloat
+        var driftVelocity: CGVector
+        let opacity: Double
+        let tentacleCount: Int
+    }
+    
+    private struct PlanktonData: Identifiable {
+        let id = UUID()
+        var x: CGFloat
+        var y: CGFloat
+        let size: CGFloat
+        var glowPhase: Double
+        let color: Color
+        var driftVelocity: CGVector
     }
     
     var body: some View {
@@ -833,6 +945,83 @@ struct EnhancedGentleWavesView: View {
                             y: bubble.y
                         )
                         .shadow(color: .white.opacity(0.3), radius: 2)
+                }
+                
+                // Swaying seaweed at the bottom
+                ForEach(seaweed) { seaweedStrand in
+                    SeaweedShape(
+                        segments: seaweedStrand.segments,
+                        height: seaweedStrand.height,
+                        swayPhase: seaweedStrand.swayPhase,
+                        swayAmplitude: seaweedStrand.swayAmplitude
+                    )
+                    .fill(
+                        LinearGradient(
+                            colors: [
+                                Color.green.opacity(dimmed ? 0.3 : 0.6),
+                                Color.green.opacity(dimmed ? 0.1 : 0.3)
+                            ],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                    )
+                    .position(x: seaweedStrand.x, y: seaweedStrand.baseY)
+                    .shadow(color: .black.opacity(0.3), radius: 2)
+                }
+                
+                // Swimming fish in schools
+                ForEach(fish) { fishItem in
+                    FishShape(swimmingPhase: fishItem.swimmingPhase)
+                        .fill(fishItem.color.opacity(dimmed ? 0.4 : 0.7))
+                        .frame(width: fishItem.size, height: fishItem.size * 0.6)
+                        .position(x: fishItem.x, y: fishItem.y)
+                        .shadow(color: fishItem.color.opacity(0.3), radius: 1)
+                }
+                
+                // Graceful jellyfish
+                ForEach(jellyfish) { jellyfishItem in
+                    JellyfishShape(
+                        pulsePhase: jellyfishItem.pulsePhase,
+                        tentacleCount: jellyfishItem.tentacleCount
+                    )
+                    .fill(
+                        RadialGradient(
+                            colors: [
+                                Color.purple.opacity(jellyfishItem.opacity * (dimmed ? 0.3 : 0.5)),
+                                Color.pink.opacity(jellyfishItem.opacity * (dimmed ? 0.2 : 0.3)),
+                                .clear
+                            ],
+                            center: .center,
+                            startRadius: 0,
+                            endRadius: jellyfishItem.size
+                        )
+                    )
+                    .frame(width: jellyfishItem.size, height: jellyfishItem.size * 1.2)
+                    .position(x: jellyfishItem.x, y: jellyfishItem.y)
+                    .blur(radius: 1)
+                    .blendMode(.screen)
+                }
+                
+                // Glowing plankton
+                ForEach(plankton) { planktonItem in
+                    Circle()
+                        .fill(
+                            RadialGradient(
+                                colors: [
+                                    planktonItem.color.opacity(dimmed ? 0.4 : 0.8),
+                                    planktonItem.color.opacity(dimmed ? 0.1 : 0.3),
+                                    .clear
+                                ],
+                                center: .center,
+                                startRadius: 0,
+                                endRadius: planktonItem.size
+                            )
+                        )
+                        .frame(width: planktonItem.size, height: planktonItem.size)
+                        .position(x: planktonItem.x, y: planktonItem.y)
+                        .scaleEffect(0.5 + sin(planktonItem.glowPhase) * 0.3)
+                        .blur(radius: 0.5)
+                        .blendMode(.screen)
                 }
                 
                 // Multi-layered waves with depth
@@ -920,6 +1109,10 @@ struct EnhancedGentleWavesView: View {
         .onAppear {
             setupBubbles()
             setupSurfaceGlitter()
+            setupSeaweed()
+            setupFish()
+            setupJellyfish()
+            setupPlankton()
             startAnimations()
         }
     }
@@ -954,6 +1147,88 @@ struct EnhancedGentleWavesView: View {
         }
     }
     
+    private func setupSeaweed() {
+        seaweed = []
+        let seaweedCount = Int(intensity * 15) + 8
+        let bounds = UIScreen.main.bounds
+        
+        for _ in 0..<seaweedCount {
+            seaweed.append(SeaweedData(
+                x: CGFloat.random(in: 0...bounds.width),
+                baseY: bounds.height - CGFloat.random(in: 20...80),
+                swayPhase: Double.random(in: 0...2 * .pi),
+                height: CGFloat.random(in: 60...120),
+                swayAmplitude: CGFloat.random(in: 10...25),
+                segments: Int.random(in: 5...12)
+            ))
+        }
+    }
+    
+    private func setupFish() {
+        fish = []
+        let fishCount = Int(intensity * 25) + 15
+        let bounds = UIScreen.main.bounds
+        let fishColors: [Color] = [.orange, .yellow, .cyan, .blue, .gray]
+        
+        for i in 0..<fishCount {
+            let schoolId = i / 5  // Groups of 5 fish per school
+            fish.append(FishData(
+                x: CGFloat.random(in: -50...bounds.width + 50),
+                y: CGFloat.random(in: bounds.height * 0.3...bounds.height * 0.8),
+                velocity: CGVector(
+                    dx: Double.random(in: -30...30),
+                    dy: Double.random(in: -10...10)
+                ),
+                size: CGFloat.random(in: 8...20),
+                color: fishColors.randomElement() ?? .orange,
+                swimmingPhase: Double.random(in: 0...2 * .pi),
+                schoolId: schoolId
+            ))
+        }
+    }
+    
+    private func setupJellyfish() {
+        jellyfish = []
+        let jellyfishCount = Int(intensity * 8) + 4
+        let bounds = UIScreen.main.bounds
+        
+        for _ in 0..<jellyfishCount {
+            jellyfish.append(JellyfishData(
+                x: CGFloat.random(in: 0...bounds.width),
+                y: CGFloat.random(in: bounds.height * 0.2...bounds.height * 0.7),
+                pulsePhase: Double.random(in: 0...2 * .pi),
+                size: CGFloat.random(in: 25...60),
+                driftVelocity: CGVector(
+                    dx: Double.random(in: -8...8),
+                    dy: Double.random(in: -5...5)
+                ),
+                opacity: Double.random(in: 0.3...0.8),
+                tentacleCount: Int.random(in: 6...12)
+            ))
+        }
+    }
+    
+    private func setupPlankton() {
+        plankton = []
+        let planktonCount = Int(intensity * 40) + 20
+        let bounds = UIScreen.main.bounds
+        let planktonColors: [Color] = [.green, .cyan, .blue, .white, .yellow]
+        
+        for _ in 0..<planktonCount {
+            plankton.append(PlanktonData(
+                x: CGFloat.random(in: 0...bounds.width),
+                y: CGFloat.random(in: 0...bounds.height),
+                size: CGFloat.random(in: 1...4),
+                glowPhase: Double.random(in: 0...2 * .pi),
+                color: planktonColors.randomElement() ?? .cyan,
+                driftVelocity: CGVector(
+                    dx: Double.random(in: -2...2),
+                    dy: Double.random(in: -2...2)
+                )
+            ))
+        }
+    }
+    
     private func startAnimations() {
         // Primary wave animation
         withAnimation(
@@ -979,9 +1254,13 @@ struct EnhancedGentleWavesView: View {
             shimmerOffset = 300
         }
         
-        // Bubble animation
+        // Marine life animations
         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
             updateBubbles()
+            updateSeaweed()
+            updateFish()
+            updateJellyfish()
+            updatePlankton()
         }
     }
     
@@ -1001,6 +1280,147 @@ struct EnhancedGentleWavesView: View {
                     wobblePhase: Double.random(in: 0...2 * .pi)
                 )
                 bubblePositions[i] = newBubble
+            }
+        }
+    }
+    
+    private func updateSeaweed() {
+        for i in 0..<seaweed.count {
+            seaweed[i].swayPhase += 0.03 * Double(speed)
+        }
+    }
+    
+    private func updateFish() {
+        let bounds = UIScreen.main.bounds
+        
+        for i in 0..<fish.count {
+            // Update swimming animation
+            fish[i].swimmingPhase += 0.15 * Double(speed)
+            
+            // School behavior - fish in same school try to stay together
+            var schoolCenterX: CGFloat = 0
+            var schoolCenterY: CGFloat = 0
+            var schoolMates = 0
+            
+            for j in 0..<fish.count {
+                if fish[j].schoolId == fish[i].schoolId && i != j {
+                    schoolCenterX += fish[j].x
+                    schoolCenterY += fish[j].y
+                    schoolMates += 1
+                }
+            }
+            
+            if schoolMates > 0 {
+                schoolCenterX /= CGFloat(schoolMates)
+                schoolCenterY /= CGFloat(schoolMates)
+                
+                // Gently steer towards school center
+                let attraction = 0.5
+                fish[i].velocity.dx += (Double(schoolCenterX - fish[i].x) * attraction * 0.01)
+                fish[i].velocity.dy += (Double(schoolCenterY - fish[i].y) * attraction * 0.01)
+            }
+            
+            // Apply movement
+            fish[i].x += CGFloat(fish[i].velocity.dx * 0.1)
+            fish[i].y += CGFloat(fish[i].velocity.dy * 0.1)
+            
+            // Boundary wrapping
+            if fish[i].x > bounds.width + 50 {
+                fish[i].x = -50
+            } else if fish[i].x < -50 {
+                fish[i].x = bounds.width + 50
+            }
+            
+            if fish[i].y > bounds.height + 50 {
+                fish[i].y = bounds.height * 0.3
+            } else if fish[i].y < bounds.height * 0.2 {
+                fish[i].y = bounds.height * 0.8
+            }
+            
+            // Random direction changes
+            if Double.random(in: 0...1) < 0.02 {
+                fish[i].velocity.dx += Double.random(in: -5...5)
+                fish[i].velocity.dy += Double.random(in: -3...3)
+                
+                // Limit velocity
+                let maxSpeed = 40.0
+                let currentSpeed = sqrt(fish[i].velocity.dx * fish[i].velocity.dx + fish[i].velocity.dy * fish[i].velocity.dy)
+                if currentSpeed > maxSpeed {
+                    fish[i].velocity.dx = (fish[i].velocity.dx / currentSpeed) * maxSpeed
+                    fish[i].velocity.dy = (fish[i].velocity.dy / currentSpeed) * maxSpeed
+                }
+            }
+        }
+    }
+    
+    private func updateJellyfish() {
+        let bounds = UIScreen.main.bounds
+        
+        for i in 0..<jellyfish.count {
+            // Update pulsing animation
+            jellyfish[i].pulsePhase += 0.08 * Double(speed)
+            
+            // Gentle floating movement
+            jellyfish[i].x += CGFloat(jellyfish[i].driftVelocity.dx * 0.05)
+            jellyfish[i].y += CGFloat(jellyfish[i].driftVelocity.dy * 0.05)
+            
+            // Add some sine wave motion
+            let time = Date().timeIntervalSince1970
+            let floatOffset = sin(time * 0.5 + Double(i) * 0.3) * 8
+            jellyfish[i].y += CGFloat(floatOffset * 0.1)
+            
+            // Boundary wrapping
+            if jellyfish[i].x > bounds.width + 100 {
+                jellyfish[i].x = -100
+            } else if jellyfish[i].x < -100 {
+                jellyfish[i].x = bounds.width + 100
+            }
+            
+            if jellyfish[i].y > bounds.height {
+                jellyfish[i].y = bounds.height * 0.2
+            } else if jellyfish[i].y < 0 {
+                jellyfish[i].y = bounds.height * 0.7
+            }
+            
+            // Occasional direction changes
+            if Double.random(in: 0...1) < 0.015 {
+                jellyfish[i].driftVelocity = CGVector(
+                    dx: Double.random(in: -8...8),
+                    dy: Double.random(in: -5...5)
+                )
+            }
+        }
+    }
+    
+    private func updatePlankton() {
+        let bounds = UIScreen.main.bounds
+        
+        for i in 0..<plankton.count {
+            // Update glow animation
+            plankton[i].glowPhase += 0.1 * Double(speed)
+            
+            // Gentle drifting movement
+            plankton[i].x += CGFloat(plankton[i].driftVelocity.dx * 0.1)
+            plankton[i].y += CGFloat(plankton[i].driftVelocity.dy * 0.1)
+            
+            // Add some organic movement
+            let time = Date().timeIntervalSince1970
+            let organicX = sin(time * 0.3 + Double(i) * 0.1) * 2
+            let organicY = cos(time * 0.4 + Double(i) * 0.15) * 2
+            plankton[i].x += CGFloat(organicX * 0.1)
+            plankton[i].y += CGFloat(organicY * 0.1)
+            
+            // Boundary wrapping
+            if plankton[i].x > bounds.width + 20 {
+                plankton[i].x = -20
+            } else if plankton[i].x < -20 {
+                plankton[i].x = bounds.width + 20
+            }
+            
+            if plankton[i].y > bounds.height + 20 {
+                plankton[i].y = -20
+            } else if plankton[i].y < -20 {
+                plankton[i].y = bounds.height + 20
             }
         }
     }
@@ -1104,6 +1524,119 @@ struct WaveShape: Shape {
             offset: offset,
             complexity: 2
         ).path(in: rect)
+    }
+}
+
+// MARK: - Marine Life Shapes
+
+struct SeaweedShape: Shape {
+    let segments: Int
+    let height: CGFloat
+    let swayPhase: Double
+    let swayAmplitude: CGFloat
+    
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        
+        let segmentHeight = height / CGFloat(segments)
+        let startX = rect.midX
+        let startY = rect.maxY
+        
+        path.move(to: CGPoint(x: startX, y: startY))
+        
+        for segment in 0..<segments {
+            let y = startY - CGFloat(segment + 1) * segmentHeight
+            let swayOffset = sin(swayPhase + Double(segment) * 0.5) * Double(swayAmplitude)
+            let x = startX + CGFloat(swayOffset)
+            
+            let controlX = startX + CGFloat(swayOffset * 0.5)
+            let controlY = y + segmentHeight * 0.5
+            
+            path.addQuadCurve(
+                to: CGPoint(x: x, y: y),
+                control: CGPoint(x: controlX, y: controlY)
+            )
+        }
+        
+        return path
+    }
+}
+
+struct FishShape: Shape {
+    let swimmingPhase: Double
+    
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        
+        let bodyWidth = rect.width * 0.7
+        let bodyHeight = rect.height * 0.6
+        let tailWidth = rect.width * 0.4
+        let tailHeight = rect.height * 0.8
+        
+        // Fish body (ellipse)
+        let bodyRect = CGRect(
+            x: rect.minX,
+            y: rect.midY - bodyHeight/2,
+            width: bodyWidth,
+            height: bodyHeight
+        )
+        path.addEllipse(in: bodyRect)
+        
+        // Tail (triangle with swimming motion)
+        let tailOffset = sin(swimmingPhase) * 3
+        let tailTip = CGPoint(x: rect.maxX, y: rect.midY + CGFloat(tailOffset))
+        let tailTop = CGPoint(x: rect.maxX - tailWidth, y: rect.midY - tailHeight/2)
+        let tailBottom = CGPoint(x: rect.maxX - tailWidth, y: rect.midY + tailHeight/2)
+        
+        path.move(to: tailTop)
+        path.addLine(to: tailTip)
+        path.addLine(to: tailBottom)
+        path.closeSubpath()
+        
+        return path
+    }
+}
+
+struct JellyfishShape: Shape {
+    let pulsePhase: Double
+    let tentacleCount: Int
+    
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        
+        // Bell (dome)
+        let pulseFactor = 1.0 + sin(pulsePhase) * 0.2
+        let bellWidth = rect.width * CGFloat(pulseFactor)
+        let bellHeight = rect.height * 0.3 * CGFloat(pulseFactor)
+        
+        let bellRect = CGRect(
+            x: rect.midX - bellWidth/2,
+            y: rect.minY,
+            width: bellWidth,
+            height: bellHeight
+        )
+        path.addEllipse(in: bellRect)
+        
+        // Tentacles
+        let tentacleSpacing = bellWidth / CGFloat(tentacleCount + 1)
+        for i in 0..<tentacleCount {
+            let startX = bellRect.minX + CGFloat(i + 1) * tentacleSpacing
+            let startY = bellRect.maxY
+            
+            let tentacleLength = rect.height * 0.7 * CGFloat(0.8 + Double.random(in: 0...0.4))
+            let waveOffset = sin(pulsePhase + Double(i) * 0.3) * 5
+            
+            path.move(to: CGPoint(x: startX, y: startY))
+            
+            let segments = 8
+            for segment in 1...segments {
+                let y = startY + tentacleLength * CGFloat(segment) / CGFloat(segments)
+                let x = startX + CGFloat(waveOffset * sin(Double(segment) * 0.5))
+                path.addLine(to: CGPoint(x: x, y: y))
+            }
+        }
+        
+        return path
     }
 }
 
@@ -2262,6 +2795,10 @@ struct EnhancedGeometricPatternsView: View {
     @State private var particleOffset: CGFloat = 0
     @State private var colorShift: Double = 0
     @State private var energyPulse: Double = 0
+    @State private var orbitingSymbols: [OrbitingSymbolData] = []
+    @State private var lightBeams: [LightBeamData] = []
+    @State private var crystalline: [CrystallineData] = []
+    @State private var spiralEnergy: [SpiralEnergyData] = []
     
     var body: some View {
         GeometryReader { geometry in
@@ -2323,6 +2860,26 @@ struct EnhancedGeometricPatternsView: View {
                 // Energy particles flowing in geometric patterns
                 energyParticles(geometry: geometry)
                 
+                // Orbiting sacred symbols around the center
+                ForEach(orbitingSymbols) { symbol in
+                    orbitingSymbolView(symbol: symbol, geometry: geometry)
+                }
+                
+                // Radiating light beams
+                ForEach(lightBeams) { beam in
+                    lightBeamView(beam: beam, geometry: geometry)
+                }
+                
+                // Crystalline structures
+                ForEach(crystalline) { crystal in
+                    crystallineView(crystal: crystal)
+                }
+                
+                // Spiral energy flows
+                ForEach(spiralEnergy) { spiral in
+                    spiralEnergyView(spiral: spiral, geometry: geometry)
+                }
+                
                 // Central mandala with breathing effect
                 ZStack {
                     SacredMandalaShape()
@@ -2348,6 +2905,7 @@ struct EnhancedGeometricPatternsView: View {
             }
         }
         .onAppear {
+            setupEnhancedGeometry()
             startGeometricAnimations()
         }
     }
@@ -2359,6 +2917,47 @@ struct EnhancedGeometricPatternsView: View {
         case .monochrome: return .white
         default: return .purple
         }
+    }
+    
+    // MARK: - Data Structures for Enhanced Sacred Geometry
+    
+    private struct OrbitingSymbolData: Identifiable {
+        let id = UUID()
+        var angle: Double
+        let radius: CGFloat
+        let speed: Double
+        let symbolType: Int
+        let size: CGFloat
+        var rotation: Double
+    }
+    
+    private struct LightBeamData: Identifiable {
+        let id = UUID()
+        let startAngle: Double
+        let length: CGFloat
+        var intensity: Double
+        let width: CGFloat
+        let color: Color
+    }
+    
+    private struct CrystallineData: Identifiable {
+        let id = UUID()
+        var x: CGFloat
+        var y: CGFloat
+        let size: CGFloat
+        var rotation: Double
+        var pulsePhase: Double
+        let facets: Int
+        let clarity: Double
+    }
+    
+    private struct SpiralEnergyData: Identifiable {
+        let id = UUID()
+        var phase: Double
+        let radius: CGFloat
+        let speed: Double
+        let color: Color
+        let spiralType: Int
     }
     
     private func startGeometricAnimations() {
@@ -2409,6 +3008,243 @@ struct EnhancedGeometricPatternsView: View {
         ) {
             energyPulse = 2 * .pi
         }
+        
+        // Update animations for enhanced elements
+        Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { _ in
+            updateEnhancedGeometry()
+        }
+    }
+    
+    private func setupEnhancedGeometry() {
+        setupOrbitingSymbols()
+        setupLightBeams()
+        setupCrystallineStructures()
+        setupSpiralEnergy()
+    }
+    
+    private func setupOrbitingSymbols() {
+        orbitingSymbols = []
+        let symbolCount = Int(intensity * 12) + 8
+        
+        for i in 0..<symbolCount {
+            orbitingSymbols.append(OrbitingSymbolData(
+                angle: Double(i) * (360.0 / Double(symbolCount)),
+                radius: CGFloat.random(in: 80...200),
+                speed: Double.random(in: 0.5...2.0),
+                symbolType: i % 6,
+                size: CGFloat.random(in: 15...35),
+                rotation: 0
+            ))
+        }
+    }
+    
+    private func setupLightBeams() {
+        lightBeams = []
+        let beamCount = Int(intensity * 8) + 6
+        let colors: [Color] = [getThemeColor(), .white, .cyan, .purple, .orange]
+        
+        for i in 0..<beamCount {
+            lightBeams.append(LightBeamData(
+                startAngle: Double(i) * (360.0 / Double(beamCount)),
+                length: CGFloat.random(in: 100...250),
+                intensity: Double.random(in: 0.3...0.8),
+                width: CGFloat.random(in: 1...4),
+                color: colors.randomElement() ?? getThemeColor()
+            ))
+        }
+    }
+    
+    private func setupCrystallineStructures() {
+        crystalline = []
+        let crystalCount = Int(intensity * 15) + 10
+        let bounds = UIScreen.main.bounds
+        
+        for _ in 0..<crystalCount {
+            crystalline.append(CrystallineData(
+                x: CGFloat.random(in: 0...bounds.width),
+                y: CGFloat.random(in: 0...bounds.height),
+                size: CGFloat.random(in: 8...25),
+                rotation: 0,
+                pulsePhase: Double.random(in: 0...2 * .pi),
+                facets: Int.random(in: 6...12),
+                clarity: Double.random(in: 0.3...0.9)
+            ))
+        }
+    }
+    
+    private func setupSpiralEnergy() {
+        spiralEnergy = []
+        let spiralCount = Int(intensity * 6) + 4
+        let energyColors: [Color] = [getThemeColor(), .white, .cyan, .purple]
+        
+        for i in 0..<spiralCount {
+            spiralEnergy.append(SpiralEnergyData(
+                phase: Double(i) * .pi / 2,
+                radius: CGFloat.random(in: 50...150),
+                speed: Double.random(in: 0.8...2.5),
+                color: energyColors.randomElement() ?? getThemeColor(),
+                spiralType: i % 3
+            ))
+        }
+    }
+    
+    private func updateEnhancedGeometry() {
+        // Update orbiting symbols
+        for i in 0..<orbitingSymbols.count {
+            orbitingSymbols[i].angle += orbitingSymbols[i].speed * Double(speed) * 0.5
+            orbitingSymbols[i].rotation += orbitingSymbols[i].speed * Double(speed) * 2
+        }
+        
+        // Update light beam intensity
+        for i in 0..<lightBeams.count {
+            let time = Date().timeIntervalSince1970
+            lightBeams[i].intensity = 0.3 + 0.5 * (sin(time * 2 + Double(i) * 0.5) + 1) / 2
+        }
+        
+        // Update crystalline structures
+        for i in 0..<crystalline.count {
+            crystalline[i].rotation += Double.random(in: 0.5...1.5) * Double(speed)
+            crystalline[i].pulsePhase += 0.05 * Double(speed)
+        }
+        
+        // Update spiral energy
+        for i in 0..<spiralEnergy.count {
+            spiralEnergy[i].phase += spiralEnergy[i].speed * 0.03 * Double(speed)
+        }
+    }
+    
+    // MARK: - Enhanced View Functions
+    
+    private func orbitingSymbolView(symbol: OrbitingSymbolData, geometry: GeometryProxy) -> some View {
+        let centerX = geometry.size.width / 2
+        let centerY = geometry.size.height / 2
+        
+        let x = centerX + symbol.radius * cos(symbol.angle * .pi / 180)
+        let y = centerY + symbol.radius * sin(symbol.angle * .pi / 180)
+        
+        let strokeColor = getThemeColor().opacity(dimmed ? 0.3 : 0.6)
+        
+        switch symbol.symbolType {
+        case 0: 
+            return AnyView(
+                FlowerOfLifeShape()
+                    .stroke(strokeColor, lineWidth: 1)
+                    .frame(width: symbol.size, height: symbol.size)
+                    .rotationEffect(.degrees(symbol.rotation))
+                    .position(x: x, y: y)
+                    .blur(radius: 0.5)
+            )
+        case 1: 
+            return AnyView(
+                TriquetraShape()
+                    .stroke(strokeColor, lineWidth: 1)
+                    .frame(width: symbol.size, height: symbol.size)
+                    .rotationEffect(.degrees(symbol.rotation))
+                    .position(x: x, y: y)
+                    .blur(radius: 0.5)
+            )
+        case 2: 
+            return AnyView(
+                VesicaPiscisShape()
+                    .stroke(strokeColor, lineWidth: 1)
+                    .frame(width: symbol.size, height: symbol.size)
+                    .rotationEffect(.degrees(symbol.rotation))
+                    .position(x: x, y: y)
+                    .blur(radius: 0.5)
+            )
+        case 3: 
+            return AnyView(
+                EnneagramShape()
+                    .stroke(strokeColor, lineWidth: 1)
+                    .frame(width: symbol.size, height: symbol.size)
+                    .rotationEffect(.degrees(symbol.rotation))
+                    .position(x: x, y: y)
+                    .blur(radius: 0.5)
+            )
+        case 4: 
+            return AnyView(
+                SriYantraShape()
+                    .stroke(strokeColor, lineWidth: 1)
+                    .frame(width: symbol.size, height: symbol.size)
+                    .rotationEffect(.degrees(symbol.rotation))
+                    .position(x: x, y: y)
+                    .blur(radius: 0.5)
+            )
+        default: 
+            return AnyView(
+                MetatronsCubeShape()
+                    .stroke(strokeColor, lineWidth: 1)
+                    .frame(width: symbol.size, height: symbol.size)
+                    .rotationEffect(.degrees(symbol.rotation))
+                    .position(x: x, y: y)
+                    .blur(radius: 0.5)
+            )
+        }
+    }
+    
+    private func lightBeamView(beam: LightBeamData, geometry: GeometryProxy) -> some View {
+        let centerX = geometry.size.width / 2
+        let centerY = geometry.size.height / 2
+        
+        return Rectangle()
+            .fill(
+                LinearGradient(
+                    colors: [
+                        beam.color.opacity(beam.intensity * (dimmed ? 0.2 : 0.5)),
+                        beam.color.opacity(beam.intensity * (dimmed ? 0.1 : 0.3)),
+                        .clear
+                    ],
+                    startPoint: .leading,
+                    endPoint: .trailing
+                )
+            )
+            .frame(width: beam.length, height: beam.width)
+            .position(x: centerX, y: centerY)
+            .rotationEffect(.degrees(beam.startAngle))
+            .blur(radius: 1)
+            .blendMode(.screen)
+    }
+    
+    private func crystallineView(crystal: CrystallineData) -> some View {
+        let opacity = crystal.clarity * (sin(crystal.pulsePhase) * 0.3 + 0.7)
+        
+        return RegularPolygonShape(sides: crystal.facets)
+            .stroke(
+                RadialGradient(
+                    colors: [
+                        getThemeColor().opacity(opacity * (dimmed ? 0.3 : 0.7)),
+                        getThemeColor().opacity(opacity * (dimmed ? 0.1 : 0.4)),
+                        .clear
+                    ],
+                    center: .center,
+                    startRadius: 0,
+                    endRadius: crystal.size / 2
+                ),
+                lineWidth: 1
+            )
+            .frame(width: crystal.size, height: crystal.size)
+            .rotationEffect(.degrees(crystal.rotation))
+            .position(x: crystal.x, y: crystal.y)
+            .scaleEffect(0.8 + sin(crystal.pulsePhase) * 0.2)
+            .shadow(color: getThemeColor().opacity(0.3), radius: 2)
+    }
+    
+    private func spiralEnergyView(spiral: SpiralEnergyData, geometry: GeometryProxy) -> some View {
+        let centerX = geometry.size.width / 2
+        let centerY = geometry.size.height / 2
+        
+        return SpiralShape(
+            phase: spiral.phase,
+            radius: spiral.radius,
+            spiralType: spiral.spiralType
+        )
+        .stroke(
+            spiral.color.opacity(dimmed ? 0.2 : 0.5),
+            lineWidth: 1.5
+        )
+        .position(x: centerX, y: centerY)
+        .blur(radius: 1)
+        .blendMode(.screen)
     }
     
     // MARK: - Helper Views
@@ -3299,5 +4135,83 @@ struct LightningBoltShape: Shape {
 struct RaindropShape: Shape {
     func path(in rect: CGRect) -> Path {
         return EnhancedRaindropShape().path(in: rect)
+    }
+}
+
+// MARK: - Enhanced Sacred Geometry Shapes
+
+struct RegularPolygonShape: Shape {
+    let sides: Int
+    
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        
+        guard sides >= 3 else { return path }
+        
+        let center = CGPoint(x: rect.midX, y: rect.midY)
+        let radius = min(rect.width, rect.height) / 2
+        let angleStep = 2 * Double.pi / Double(sides)
+        
+        let startAngle = -Double.pi / 2 // Start from top
+        let firstPoint = CGPoint(
+            x: center.x + radius * cos(startAngle),
+            y: center.y + radius * sin(startAngle)
+        )
+        
+        path.move(to: firstPoint)
+        
+        for i in 1..<sides {
+            let angle = startAngle + angleStep * Double(i)
+            let point = CGPoint(
+                x: center.x + radius * cos(angle),
+                y: center.y + radius * sin(angle)
+            )
+            path.addLine(to: point)
+        }
+        
+        path.closeSubpath()
+        return path
+    }
+}
+
+struct SpiralShape: Shape {
+    let phase: Double
+    let radius: CGFloat
+    let spiralType: Int
+    
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        
+        let center = CGPoint(x: rect.midX, y: rect.midY)
+        let maxRadius = min(rect.width, rect.height) / 2
+        let scaledRadius = min(radius, maxRadius)
+        
+        let steps = 100
+        let angleStep = 0.1
+        
+        for step in 0..<steps {
+            let t = Double(step) * angleStep
+            let currentRadius = scaledRadius * (Double(step) / Double(steps))
+            
+            let angle = switch spiralType {
+            case 0: // Fibonacci spiral
+                phase + t * 2
+            case 1: // Logarithmic spiral
+                phase + t * 1.5
+            default: // Archimedean spiral
+                phase + t
+            }
+            
+            let x = center.x + CGFloat(currentRadius * cos(angle))
+            let y = center.y + CGFloat(currentRadius * sin(angle))
+            
+            if step == 0 {
+                path.move(to: CGPoint(x: x, y: y))
+            } else {
+                path.addLine(to: CGPoint(x: x, y: y))
+            }
+        }
+        
+        return path
     }
 }
