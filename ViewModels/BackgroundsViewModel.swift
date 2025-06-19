@@ -66,12 +66,14 @@ class BackgroundsViewModel: ObservableObject {
                 
                 // Update app state with smooth transition
                 if let animation = AnimationRegistry.shared.animation(for: animationId) {
-                    AppState.shared.setAnimation(animation)
-                    AppState.shared.updateAnimationSettings(
-                        intensity: animationSettings.intensity,
-                        speed: animationSettings.speed,
-                        colorTheme: animationSettings.colorTheme
-                    )
+                    Task { @MainActor in
+                        AppState.shared.setAnimation(animation)
+                        AppState.shared.updateAnimationSettings(
+                            intensity: animationSettings.intensity,
+                            speed: animationSettings.speed,
+                            colorTheme: animationSettings.colorTheme
+                        )
+                    }
                 }
                 
                 databaseManager.saveContext()

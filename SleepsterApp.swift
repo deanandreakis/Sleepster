@@ -12,7 +12,7 @@ import UIKit
 @main
 struct SleepsterApp: App {
     // Dependency injection container
-    @StateObject private var serviceContainer = ServiceContainer()
+    @StateObject private var serviceContainer = ServiceContainer.shared
     
     // App state management
     @StateObject private var appState = AppState()

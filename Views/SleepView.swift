@@ -17,33 +17,41 @@ struct SleepView: View {
     
     @State private var showingTimerSettings = false
     @State private var showingBrightnessControl = false
-    @StateObject private var viewModel = SharedViewModelStore.shared.mainViewModel
+    
+    @StateObject private var viewModel = ServiceContainer.shared.mainViewModel
     
     var body: some View {
         GeometryReader { geometry in
             let isLandscape = geometry.size.width > geometry.size.height
             
-            ZStack {
-                // Background
-                backgroundView
-                
-                // Main content - adaptive layout based on orientation
-                if isLandscape {
-                    landscapeLayout(geometry: geometry)
-                } else {
-                    portraitLayout(geometry: geometry)
-                }
-                
-                // Loading overlay
-                if !coreDataStack.isInitialized {
-                    loadingOverlay
-                }
-                
-                // Full-screen sleep animation overlay
-                if viewModel.isSleepModeActive {
+            if viewModel.isSleepModeActive {
+                // Full-screen sleep animation overlay - covers everything
+                ZStack {
+                    // Solid black background to ensure no bleed-through
+                    Color.black
+                        .ignoresSafeArea(.all)
+                    
+                    // Sleep animation overlay
                     sleepAnimationOverlay
                         .ignoresSafeArea(.all)
-                        .transition(.opacity.animation(.easeInOut(duration: 0.5)))
+                }
+                .transition(.opacity.animation(.easeInOut(duration: 0.5)))
+            } else {
+                ZStack {
+                    // Background
+                    backgroundView
+                    
+                    // Main content - adaptive layout based on orientation
+                    if isLandscape {
+                        landscapeLayout(geometry: geometry)
+                    } else {
+                        portraitLayout(geometry: geometry)
+                    }
+                    
+                    // Loading overlay
+                    if !coreDataStack.isInitialized {
+                        loadingOverlay
+                    }
                 }
             }
         }
@@ -276,6 +284,14 @@ struct SleepView: View {
             let isLandscape = geometry.size.width > geometry.size.height
             
             ZStack {
+                // Black background that covers everything including safe areas
+                Color.black
+                    .frame(
+                        width: geometry.size.width + 100,
+                        height: geometry.size.height + 100
+                    )
+                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                
                 // Full-screen animation
                 if let selectedAnimation = appState.selectedAnimation {
                     selectedAnimation.createView(
@@ -285,12 +301,10 @@ struct SleepView: View {
                         dimmed: true // Always dimmed in sleep mode
                     )
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color.black) // Ensure full coverage
                 } else {
                     // Fallback: Use default animation if none selected
                     defaultSleepAnimation
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color.black) // Ensure full coverage
                 }
                 
                 // Timer display in sleep mode - positioned for both orientations

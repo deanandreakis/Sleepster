@@ -159,13 +159,17 @@ class AppState: ObservableObject {
     }
     
     func setAnimation(_ animation: AnimatedBackground?) {
-        selectedAnimation = animation
+        Task { @MainActor in
+            selectedAnimation = animation
+        }
     }
     
     func updateAnimationSettings(intensity: Float, speed: Float, colorTheme: ColorTheme) {
-        animationIntensity = intensity
-        animationSpeed = speed
-        animationColorTheme = colorTheme
+        Task { @MainActor in
+            animationIntensity = intensity
+            animationSpeed = speed
+            animationColorTheme = colorTheme
+        }
     }
     
     func setDimmedMode(_ dimmed: Bool) {
