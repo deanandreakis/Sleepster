@@ -301,6 +301,7 @@ struct EnhancedCountingSheepView: View {
         var floatAmplitude: CGFloat = CGFloat.random(in: 15...40)
         var driftSpeed: CGFloat = CGFloat.random(in: 0.3...1.2)
         var isFloating: Bool = false
+        let baseScale: CGFloat = CGFloat.random(in: 1.2...2.0)  // Larger base scale
     }
     
     private struct CloudData: Identifiable {
@@ -437,8 +438,8 @@ struct EnhancedCountingSheepView: View {
                         // Shadow
                         Ellipse()
                             .fill(Color.black.opacity(sheep.shadowOpacity * (dimmed ? 0.2 : 0.4)))
-                            .frame(width: 40 * sheep.scale, height: 8 * sheep.scale)
-                            .position(x: sheep.x + 2, y: sheep.y + 15)
+                            .frame(width: 55 * sheep.scale, height: 12 * sheep.scale)
+                            .position(x: sheep.x + 2, y: sheep.y + 20)
                             .blur(radius: 2)
                         
                         // Sheep body with enhanced design
@@ -454,10 +455,9 @@ struct EnhancedCountingSheepView: View {
                                     endRadius: 25
                                 )
                             )
-                            .frame(width: 35 * sheep.scale, height: 25 * sheep.scale)
+                            .frame(width: 50 * sheep.scale, height: 35 * sheep.scale)
                             .position(x: sheep.x, y: sheep.y - sheep.jumpHeight)
-                            .scaleEffect(sheep.scale)
-                            .animation(.spring(response: 0.6, dampingFraction: 0.8), value: sheep.jumpHeight)
+                            .animation(.easeInOut(duration: 0.3), value: sheep.jumpHeight)
                             .shadow(color: .white.opacity(0.3), radius: 3)
                     }
                 }
@@ -500,12 +500,13 @@ struct EnhancedCountingSheepView: View {
                 xPosition = CGFloat.random(in: -200...UIScreen.main.bounds.width + 200)
             }
             
+            let isFloating = i >= sheepCount / 2
             sheepPositions.append(SheepData(
                 x: xPosition,
                 y: yPosition,
-                scale: CGFloat.random(in: 0.6...1.4),
+                scale: isFloating ? CGFloat.random(in: 1.2...2.0) : CGFloat.random(in: 0.8...1.6),
                 shadowOpacity: Double.random(in: 0.1...0.4),
-                isFloating: i >= sheepCount / 2  // Mark sky sheep as floating
+                isFloating: isFloating
             ))
         }
     }
@@ -530,8 +531,8 @@ struct EnhancedCountingSheepView: View {
             animateSheep()
         }
         
-        // Floating sheep animation
-        floatingTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+        // Floating sheep animation - smoother updates
+        floatingTimer = Timer.scheduledTimer(withTimeInterval: 0.033, repeats: true) { _ in
             animateFloatingSheep()
         }
         
@@ -580,7 +581,7 @@ struct EnhancedCountingSheepView: View {
                         // Reset sheep position if off screen
                         if sheepPositions[i].x > UIScreen.main.bounds.width + 100 {
                             sheepPositions[i].x = -80
-                            sheepPositions[i].scale = CGFloat.random(in: 0.8...1.2)
+                            sheepPositions[i].scale = sheepPositions[i].baseScale
                         }
                     }
                 }
@@ -595,18 +596,16 @@ struct EnhancedCountingSheepView: View {
         for i in 0..<sheepPositions.count {
             if sheepPositions[i].isFloating {
                 // Update floating phase for smooth sine wave motion
-                sheepPositions[i].floatPhase += 0.05 * Double(speed)
+                sheepPositions[i].floatPhase += 0.02 * Double(speed) // Slower, smoother
                 
                 // Apply floating movement - gentle up and down motion
-                let floatOffset = sin(sheepPositions[i].floatPhase) * sheepPositions[i].floatAmplitude
+                let floatOffset = sin(sheepPositions[i].floatPhase) * sheepPositions[i].floatAmplitude * 0.5
                 
-                // Slow horizontal drift
-                sheepPositions[i].x += sheepPositions[i].driftSpeed * CGFloat(speed) * 0.3
+                // Slow horizontal drift - much more gradual
+                sheepPositions[i].x += sheepPositions[i].driftSpeed * CGFloat(speed) * 0.05
                 
-                // Apply smooth vertical floating
-                withAnimation(.easeInOut(duration: 0.1)) {
-                    sheepPositions[i].jumpHeight = floatOffset
-                }
+                // Apply smooth vertical floating - direct assignment, no animation wrapper
+                sheepPositions[i].jumpHeight = floatOffset
                 
                 // Boundary wrapping for horizontal movement
                 if sheepPositions[i].x > bounds.width + 100 {
@@ -615,10 +614,9 @@ struct EnhancedCountingSheepView: View {
                     sheepPositions[i].x = bounds.width + 100
                 }
                 
-                // Gentle scale pulsing for floating sheep
-                let scaleBase = CGFloat.random(in: 0.7...1.3)
-                let scalePulse = 0.1 * sin(sheepPositions[i].floatPhase * 1.5)
-                sheepPositions[i].scale = scaleBase + CGFloat(scalePulse)
+                // Gentle scale pulsing for floating sheep - use base scale
+                let scalePulse = 0.05 * sin(sheepPositions[i].floatPhase * 0.8) // Much smaller, slower pulse
+                sheepPositions[i].scale = sheepPositions[i].baseScale + CGFloat(scalePulse)
             }
         }
     }
