@@ -55,6 +55,12 @@ class BackgroundsViewModel: ObservableObject {
             return
         }
         
+        // Don't re-select if it's already the current selection
+        if selectedAnimationId == animationId {
+            print("⚠️ Animation \(animationId) is already selected, ignoring")
+            return
+        }
+        
         isSelectingAnimation = true
         print("🎯 Selecting animation: \(animationId)")
         
@@ -222,7 +228,7 @@ class BackgroundsViewModel: ObservableObject {
             }
         }
         
-        // Select default animation if none is selected (without triggering full selection flow)
+        // Select default animation if none is selected (only if loadSelectedAnimation didn't find one)
         if selectedAnimationId == nil, let firstAnimation = animations.first {
             print("🎯 No animation selected, setting default: \(firstAnimation.id)")
             
@@ -244,6 +250,8 @@ class BackgroundsViewModel: ObservableObject {
                     }
                 }
             }
+        } else {
+            print("📋 Using previously loaded animation: \(selectedAnimationId ?? "nil")")
         }
         
         databaseManager.saveContext()
