@@ -10,18 +10,12 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject var serviceContainer: ServiceContainer
     @EnvironmentObject var appState: AppState
-    @StateObject private var viewModel: SettingsViewModel
+    @StateObject private var viewModel = ServiceContainer.shared.settingsViewModel
     
     @State private var showingResetConfirmation = false
     @State private var showingExportSheet = false
     @State private var showingImportSheet = false
     @State private var exportedSettings = ""
-    
-    init() {
-        // ViewModel will be injected via environment in real usage
-        let container = ServiceContainer()
-        self._viewModel = StateObject(wrappedValue: container.settingsViewModel)
-    }
     
     var body: some View {
         NavigationView {

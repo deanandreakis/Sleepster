@@ -9,16 +9,10 @@ import SwiftUI
 
 struct InformationView: View {
     @EnvironmentObject var serviceContainer: ServiceContainer
-    @StateObject private var viewModel: InformationViewModel
+    @StateObject private var viewModel = ServiceContainer.shared.informationViewModel
     
     @State private var showingFAQ = false
     @State private var selectedFAQItem: FAQItem?
-    
-    init() {
-        // ViewModel will be injected via environment in real usage
-        let container = ServiceContainer()
-        self._viewModel = StateObject(wrappedValue: container.informationViewModel)
-    }
     
     var body: some View {
         NavigationView {

@@ -9,18 +9,12 @@ import SwiftUI
 
 struct TimerSettingsView: View {
     @EnvironmentObject var serviceContainer: ServiceContainer
-    @StateObject private var viewModel: TimerViewModel
+    @StateObject private var viewModel = ServiceContainer.shared.timerViewModel
     @Environment(\.dismiss) private var dismiss
     
     @State private var customHours = 0
     @State private var customMinutes = 30
     @State private var showingCustomPicker = false
-    
-    init() {
-        // ViewModel will be injected via environment in real usage
-        let container = ServiceContainer()
-        self._viewModel = StateObject(wrappedValue: container.timerViewModel)
-    }
     
     var body: some View {
         NavigationView {

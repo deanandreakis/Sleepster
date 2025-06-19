@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BackgroundsView: View {
     @EnvironmentObject var serviceContainer: ServiceContainer
-    @StateObject private var viewModel: BackgroundsViewModel
+    @StateObject private var viewModel = ServiceContainer.shared.backgroundsViewModel
     @EnvironmentObject var appState: AppState
     
     @State private var selectedCategory: BackgroundCategory = .classic
@@ -18,12 +18,6 @@ struct BackgroundsView: View {
     @State private var animationSettings = AnimationSettings.default
     @State private var selectedAnimationForPreview: AnimatedBackground?
     @State private var showingPreviewModal = false
-    
-    init() {
-        // ViewModel will be injected via environment in real usage
-        let container = ServiceContainer()
-        self._viewModel = StateObject(wrappedValue: container.backgroundsViewModel)
-    }
     
     var body: some View {
         NavigationView {
