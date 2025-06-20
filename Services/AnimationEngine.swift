@@ -311,6 +311,18 @@ struct EnhancedCountingSheepView: View {
         var driftSpeed: CGFloat = CGFloat.random(in: 0.3...1.2)
         var isFloating: Bool = false
         let baseScale: CGFloat = CGFloat.random(in: 1.2...2.0)  // Larger base scale
+        
+        // Enhanced floating properties for more natural movement
+        var verticalPhase: Double = Double.random(in: 0...2 * .pi)
+        var horizontalPhase: Double = Double.random(in: 0...2 * .pi)
+        var rotationPhase: Double = Double.random(in: 0...2 * .pi)
+        var verticalFrequency: Double = Double.random(in: 0.8...1.4)
+        var horizontalFrequency: Double = Double.random(in: 0.5...1.0)
+        var rotationFrequency: Double = Double.random(in: 0.3...0.7)
+        var floatRadius: CGFloat = CGFloat.random(in: 20...80)
+        var baseX: CGFloat = 0  // Base position for orbital movement
+        var baseY: CGFloat = 0  // Base position for orbital movement
+        var currentRotation: Double = 0
     }
     
     private struct CloudData: Identifiable {
@@ -451,20 +463,11 @@ struct EnhancedCountingSheepView: View {
                             .position(x: sheep.x + 2, y: sheep.y + 20)
                             .blur(radius: 2)
                         
-                        // Sheep body with enhanced design
+                        // Cartoon sheep using the enhanced shape approach
                         EnhancedSheepShape()
-                            .fill(
-                                RadialGradient(
-                                    colors: [
-                                        Color.white.opacity(dimmed ? 0.6 : 0.9),
-                                        Color.gray.opacity(dimmed ? 0.3 : 0.5)
-                                    ],
-                                    center: .topLeading,
-                                    startRadius: 5,
-                                    endRadius: 25
-                                )
-                            )
+                            .fill(getSheepColor(colorTheme: colorTheme, dimmed: dimmed, primary: true))
                             .frame(width: 50 * sheep.scale, height: 35 * sheep.scale)
+                            .rotationEffect(.radians(sheep.currentRotation))
                             .position(x: sheep.x, y: sheep.y - sheep.jumpHeight)
                             .animation(.easeInOut(duration: 0.3), value: sheep.jumpHeight)
                             .shadow(color: .white.opacity(0.3), radius: 3)
@@ -510,13 +513,21 @@ struct EnhancedCountingSheepView: View {
             }
             
             let isFloating = i >= sheepCount / 2
-            sheepPositions.append(SheepData(
+            var sheepData = SheepData(
                 x: xPosition,
                 y: yPosition,
                 scale: isFloating ? CGFloat.random(in: 1.2...2.0) : CGFloat.random(in: 0.8...1.6),
                 shadowOpacity: Double.random(in: 0.1...0.4),
                 isFloating: isFloating
-            ))
+            )
+            
+            // Set base positions for floating sheep orbital movement
+            if isFloating {
+                sheepData.baseX = xPosition
+                sheepData.baseY = yPosition
+            }
+            
+            sheepPositions.append(sheepData)
         }
     }
     
@@ -601,33 +612,80 @@ struct EnhancedCountingSheepView: View {
     
     private func animateFloatingSheep() {
         let bounds = UIScreen.main.bounds
+        let _ = CACurrentMediaTime()
         
         for i in 0..<sheepPositions.count {
             if sheepPositions[i].isFloating {
-                // Update floating phase for smooth sine wave motion
-                sheepPositions[i].floatPhase += 0.02 * Double(speed) // Slower, smoother
+                let sheep = sheepPositions[i]
                 
-                // Apply floating movement - gentle up and down motion
-                let floatOffset = sin(sheepPositions[i].floatPhase) * sheepPositions[i].floatAmplitude * 0.5
+                // Update phase values for natural variation
+                sheepPositions[i].verticalPhase += 0.015 * sheep.verticalFrequency * Double(speed)
+                sheepPositions[i].horizontalPhase += 0.01 * sheep.horizontalFrequency * Double(speed)
+                sheepPositions[i].rotationPhase += 0.008 * sheep.rotationFrequency * Double(speed)
                 
-                // Slow horizontal drift - much more gradual
-                sheepPositions[i].x += sheepPositions[i].driftSpeed * CGFloat(speed) * 0.05
+                // Organic floating motion using multiple sine waves
+                let verticalFloat = sin(sheepPositions[i].verticalPhase) * sheep.floatAmplitude * 0.4
+                let horizontalFloat = cos(sheepPositions[i].horizontalPhase) * (sheep.floatAmplitude * 0.6)
                 
-                // Apply smooth vertical floating - direct assignment, no animation wrapper
-                sheepPositions[i].jumpHeight = floatOffset
+                // Add subtle orbital/circular motion for some sheep
+                let orbitalX = cos(sheepPositions[i].horizontalPhase * 0.7) * sheep.floatRadius * 0.3
+                let orbitalY = sin(sheepPositions[i].verticalPhase * 0.5) * sheep.floatRadius * 0.2
                 
-                // Boundary wrapping for horizontal movement
-                if sheepPositions[i].x > bounds.width + 100 {
-                    sheepPositions[i].x = -100
-                } else if sheepPositions[i].x < -100 {
-                    sheepPositions[i].x = bounds.width + 100
+                // Gentle main drift movement
+                sheepPositions[i].baseX += sheep.driftSpeed * CGFloat(speed) * 0.03
+                
+                // Combine all movements for natural, dreamlike floating
+                sheepPositions[i].x = sheep.baseX + horizontalFloat + orbitalX
+                sheepPositions[i].jumpHeight = verticalFloat + orbitalY
+                
+                // Add subtle rotation for visual interest
+                sheepPositions[i].currentRotation = sin(sheepPositions[i].rotationPhase) * 0.1
+                
+                // Scale variation for breathing effect
+                let breathingScale = 1.0 + sin(sheepPositions[i].verticalPhase * 1.3) * 0.05
+                sheepPositions[i].scale = sheep.baseScale * breathingScale
+                
+                // Vary shadow opacity based on height for depth
+                let heightFactor = abs(sheepPositions[i].jumpHeight) / sheep.floatAmplitude
+                sheepPositions[i].shadowOpacity = Double(0.1 + heightFactor * 0.3) * (dimmed ? 0.5 : 1.0)
+                
+                // Boundary handling with smooth wrapping
+                if sheepPositions[i].x > bounds.width + 200 {
+                    sheepPositions[i].baseX = -200
+                    sheepPositions[i].baseY = CGFloat.random(in: bounds.height * 0.2...bounds.height * 0.6)
+                    // Randomize properties for variety
+                    sheepPositions[i].verticalFrequency = Double.random(in: 0.8...1.4)
+                    sheepPositions[i].horizontalFrequency = Double.random(in: 0.5...1.0)
+                    sheepPositions[i].floatAmplitude = CGFloat.random(in: 15...40)
+                } else if sheepPositions[i].x < -200 {
+                    sheepPositions[i].baseX = bounds.width + 200
+                    sheepPositions[i].baseY = CGFloat.random(in: bounds.height * 0.2...bounds.height * 0.6)
+                    // Randomize properties for variety
+                    sheepPositions[i].verticalFrequency = Double.random(in: 0.8...1.4)
+                    sheepPositions[i].horizontalFrequency = Double.random(in: 0.5...1.0)
+                    sheepPositions[i].floatAmplitude = CGFloat.random(in: 15...40)
                 }
-                
-                // Gentle scale pulsing for floating sheep - use base scale
-                let scalePulse = 0.05 * sin(sheepPositions[i].floatPhase * 0.8) // Much smaller, slower pulse
-                sheepPositions[i].scale = sheepPositions[i].baseScale + CGFloat(scalePulse)
             }
         }
+    }
+}
+
+// MARK: - Helper Functions
+
+private func getSheepColor(colorTheme: ColorTheme, dimmed: Bool, primary: Bool) -> Color {
+    let baseOpacity = primary ? (dimmed ? 0.7 : 0.95) : (dimmed ? 0.3 : 0.5)
+    
+    switch colorTheme {
+    case .defaultTheme:
+        return primary ? Color.white.opacity(baseOpacity) : Color.gray.opacity(baseOpacity)
+    case .warm:
+        return primary ? Color.init(red: 1.0, green: 0.95, blue: 0.9).opacity(baseOpacity) : 
+                        Color.init(red: 0.8, green: 0.6, blue: 0.4).opacity(baseOpacity)
+    case .cool:
+        return primary ? Color.init(red: 0.9, green: 0.95, blue: 1.0).opacity(baseOpacity) : 
+                        Color.init(red: 0.6, green: 0.7, blue: 0.8).opacity(baseOpacity)
+    case .monochrome:
+        return primary ? Color.white.opacity(baseOpacity * 0.8) : Color.gray.opacity(baseOpacity)
     }
 }
 
@@ -637,46 +695,459 @@ struct EnhancedSheepShape: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         
-        // Fluffy body with multiple curves
-        let bodyRect = CGRect(x: rect.minX + 3, y: rect.minY + 6, width: rect.width - 8, height: rect.height - 8)
+        // Scale factor based on rect size for consistent proportions
+        let scale = min(rect.width, rect.height) / 60
+        let centerX = rect.midX
+        let centerY = rect.midY
         
-        // Main body (fluffy cloud-like shape)
-        path.addEllipse(in: bodyRect)
-        
-        // Additional fluffy bumps
-        let bump1 = CGRect(x: bodyRect.minX + bodyRect.width * 0.2, y: bodyRect.minY - 2, width: 6, height: 6)
-        let bump2 = CGRect(x: bodyRect.minX + bodyRect.width * 0.6, y: bodyRect.minY - 1, width: 5, height: 5)
-        let bump3 = CGRect(x: bodyRect.minX + bodyRect.width * 0.8, y: bodyRect.minY + 2, width: 4, height: 4)
-        
-        path.addEllipse(in: bump1)
-        path.addEllipse(in: bump2)
-        path.addEllipse(in: bump3)
-        
-        // Head (slightly larger and more detailed)
-        let headSize: CGFloat = 10
-        let headRect = CGRect(x: rect.maxX - headSize - 1, y: rect.minY + 2, width: headSize, height: headSize)
-        path.addEllipse(in: headRect)
-        
-        // Ears
-        let ear1 = CGRect(x: headRect.minX + 1, y: headRect.minY - 1, width: 3, height: 3)
-        let ear2 = CGRect(x: headRect.minX + 6, y: headRect.minY - 1, width: 3, height: 3)
-        path.addEllipse(in: ear1)
-        path.addEllipse(in: ear2)
-        
-        // Legs
-        let legWidth: CGFloat = 2
-        let legHeight: CGFloat = 6
-        let leg1 = CGRect(x: bodyRect.minX + 3, y: bodyRect.maxY - 2, width: legWidth, height: legHeight)
-        let leg2 = CGRect(x: bodyRect.minX + 8, y: bodyRect.maxY - 2, width: legWidth, height: legHeight)
-        let leg3 = CGRect(x: bodyRect.maxX - 8, y: bodyRect.maxY - 2, width: legWidth, height: legHeight)
-        let leg4 = CGRect(x: bodyRect.maxX - 3, y: bodyRect.maxY - 2, width: legWidth, height: legHeight)
-        
-        path.addRoundedRect(in: leg1, cornerSize: CGSize(width: 1, height: 1))
-        path.addRoundedRect(in: leg2, cornerSize: CGSize(width: 1, height: 1))
-        path.addRoundedRect(in: leg3, cornerSize: CGSize(width: 1, height: 1))
-        path.addRoundedRect(in: leg4, cornerSize: CGSize(width: 1, height: 1))
+        // Create cartoon sheep matching reference image exactly
+        createFluffyBody(path: &path, centerX: centerX, centerY: centerY, scale: scale)
+        createSheepFace(path: &path, centerX: centerX, centerY: centerY, scale: scale)
+        createDroppyEars(path: &path, centerX: centerX, centerY: centerY, scale: scale)
+        createSheepEyes(path: &path, centerX: centerX, centerY: centerY, scale: scale)
+        createSheepNose(path: &path, centerX: centerX, centerY: centerY, scale: scale)
+        createSheepLegs(path: &path, centerX: centerX, centerY: centerY, scale: scale)
         
         return path
+    }
+    
+    private func createFluffyBody(path: inout Path, centerX: CGFloat, centerY: CGFloat, scale: CGFloat) {
+        // Main fluffy cloud body with perfect scalloped edges like reference
+        let bodyCenter = CGPoint(x: centerX - 2*scale, y: centerY + 2*scale)
+        let bodyWidth = 30*scale
+        let bodyHeight = 16*scale
+        
+        // Main body oval
+        path.addEllipse(in: CGRect(
+            x: bodyCenter.x - bodyWidth/2,
+            y: bodyCenter.y - bodyHeight/2,
+            width: bodyWidth,
+            height: bodyHeight
+        ))
+        
+        // Perfect scalloped edges like the reference image
+        let scallops = [
+            // Top row of scallops
+            CGRect(x: bodyCenter.x - 12*scale, y: bodyCenter.y - bodyHeight/2 - 2*scale, width: 5*scale, height: 5*scale),
+            CGRect(x: bodyCenter.x - 5*scale, y: bodyCenter.y - bodyHeight/2 - 2.5*scale, width: 4.5*scale, height: 4.5*scale),
+            CGRect(x: bodyCenter.x + 2*scale, y: bodyCenter.y - bodyHeight/2 - 2*scale, width: 4*scale, height: 4*scale),
+            CGRect(x: bodyCenter.x + 8*scale, y: bodyCenter.y - bodyHeight/2 - 1.5*scale, width: 3.5*scale, height: 3.5*scale),
+            
+            // Left side scallops
+            CGRect(x: bodyCenter.x - bodyWidth/2 - 2*scale, y: bodyCenter.y - 5*scale, width: 4*scale, height: 4*scale),
+            CGRect(x: bodyCenter.x - bodyWidth/2 - 1.5*scale, y: bodyCenter.y, width: 3.5*scale, height: 4*scale),
+            CGRect(x: bodyCenter.x - bodyWidth/2 - 2*scale, y: bodyCenter.y + 4*scale, width: 4*scale, height: 3.5*scale),
+            
+            // Right side scallops
+            CGRect(x: bodyCenter.x + bodyWidth/2 - 2*scale, y: bodyCenter.y - 3*scale, width: 3.5*scale, height: 4*scale),
+            CGRect(x: bodyCenter.x + bodyWidth/2 - 1.5*scale, y: bodyCenter.y + 2*scale, width: 4*scale, height: 3.5*scale),
+            
+            // Bottom scallops
+            CGRect(x: bodyCenter.x - 6*scale, y: bodyCenter.y + bodyHeight/2 - 1.5*scale, width: 4*scale, height: 3*scale),
+            CGRect(x: bodyCenter.x + 1*scale, y: bodyCenter.y + bodyHeight/2 - 2*scale, width: 3.5*scale, height: 3.5*scale),
+            CGRect(x: bodyCenter.x + 7*scale, y: bodyCenter.y + bodyHeight/2 - 1*scale, width: 3*scale, height: 3*scale)
+        ]
+        
+        for scallop in scallops {
+            path.addEllipse(in: scallop)
+        }
+    }
+    
+    private func createSheepFace(path: inout Path, centerX: CGFloat, centerY: CGFloat, scale: CGFloat) {
+        // White oval face positioned exactly like reference image
+        let faceCenter = CGPoint(x: centerX + 12*scale, y: centerY - 2*scale)
+        let faceWidth = 10*scale
+        let faceHeight = 12*scale
+        
+        path.addEllipse(in: CGRect(
+            x: faceCenter.x - faceWidth/2,
+            y: faceCenter.y - faceHeight/2,
+            width: faceWidth,
+            height: faceHeight
+        ))
+    }
+    
+    private func createDroppyEars(path: inout Path, centerX: CGFloat, centerY: CGFloat, scale: CGFloat) {
+        // Black droopy ears exactly like reference
+        let faceCenter = CGPoint(x: centerX + 12*scale, y: centerY - 2*scale)
+        let earWidth = 2.5*scale
+        let earHeight = 5*scale
+        
+        // Left ear
+        let leftEarCenter = CGPoint(x: faceCenter.x - 3*scale, y: faceCenter.y - 4*scale)
+        createDroppyEarShape(path: &path, center: leftEarCenter, width: earWidth, height: earHeight)
+        
+        // Right ear  
+        let rightEarCenter = CGPoint(x: faceCenter.x + 3*scale, y: faceCenter.y - 4*scale)
+        createDroppyEarShape(path: &path, center: rightEarCenter, width: earWidth, height: earHeight)
+    }
+    
+    private func createDroppyEarShape(path: inout Path, center: CGPoint, width: CGFloat, height: CGFloat) {
+        // Create perfect droopy ear shape wider at bottom like reference
+        path.move(to: CGPoint(x: center.x, y: center.y - height/2))
+        
+        // Smooth curves for droopy shape
+        path.addQuadCurve(
+            to: CGPoint(x: center.x + width/2, y: center.y - height/4),
+            control: CGPoint(x: center.x + width/2, y: center.y - height/2)
+        )
+        
+        path.addQuadCurve(
+            to: CGPoint(x: center.x + width/3, y: center.y + height/2),
+            control: CGPoint(x: center.x + width/2, y: center.y + height/4)
+        )
+        
+        path.addQuadCurve(
+            to: CGPoint(x: center.x - width/3, y: center.y + height/2),
+            control: CGPoint(x: center.x, y: center.y + height/2)
+        )
+        
+        path.addQuadCurve(
+            to: CGPoint(x: center.x - width/2, y: center.y - height/4),
+            control: CGPoint(x: center.x - width/2, y: center.y + height/4)
+        )
+        
+        path.addQuadCurve(
+            to: CGPoint(x: center.x, y: center.y - height/2),
+            control: CGPoint(x: center.x - width/2, y: center.y - height/2)
+        )
+    }
+    
+    private func createSheepEyes(path: inout Path, centerX: CGFloat, centerY: CGFloat, scale: CGFloat) {
+        // Simple black oval eyes like reference
+        let faceCenter = CGPoint(x: centerX + 12*scale, y: centerY - 2*scale)
+        let eyeWidth = 1.5*scale
+        let eyeHeight = 1.2*scale
+        
+        // Left eye
+        path.addEllipse(in: CGRect(
+            x: faceCenter.x - 2.5*scale - eyeWidth/2,
+            y: faceCenter.y - 1*scale - eyeHeight/2,
+            width: eyeWidth,
+            height: eyeHeight
+        ))
+        
+        // Right eye
+        path.addEllipse(in: CGRect(
+            x: faceCenter.x + 1.5*scale - eyeWidth/2,
+            y: faceCenter.y - 1*scale - eyeHeight/2,
+            width: eyeWidth,
+            height: eyeHeight
+        ))
+    }
+    
+    private func createSheepNose(path: inout Path, centerX: CGFloat, centerY: CGFloat, scale: CGFloat) {
+        // Small black nose
+        let faceCenter = CGPoint(x: centerX + 12*scale, y: centerY - 2*scale)
+        let noseSize = 0.8*scale
+        
+        path.addEllipse(in: CGRect(
+            x: faceCenter.x - noseSize/2,
+            y: faceCenter.y + 1.5*scale - noseSize/2,
+            width: noseSize,
+            height: noseSize * 0.7
+        ))
+    }
+    
+    private func createSheepLegs(path: inout Path, centerX: CGFloat, centerY: CGFloat, scale: CGFloat) {
+        // Four black legs with hooves exactly like reference
+        let bodyCenter = CGPoint(x: centerX - 2*scale, y: centerY + 2*scale)
+        let legWidth = 2*scale
+        let legHeight = 8*scale
+        let hoofWidth = 2.5*scale
+        let hoofHeight = 1.5*scale
+        
+        // Leg positions evenly spaced under body
+        let legPositions: [CGFloat] = [-8*scale, -3*scale, 3*scale, 8*scale]
+        
+        for legX in legPositions {
+            let legBottom = bodyCenter.y + 8*scale + legHeight
+            
+            // Leg (rectangle)
+            path.addRect(CGRect(
+                x: bodyCenter.x + legX - legWidth/2,
+                y: bodyCenter.y + 8*scale,
+                width: legWidth,
+                height: legHeight
+            ))
+            
+            // Hoof (oval at bottom)
+            path.addEllipse(in: CGRect(
+                x: bodyCenter.x + legX - hoofWidth/2,
+                y: legBottom - hoofHeight/2,
+                width: hoofWidth,
+                height: hoofHeight
+            ))
+        }
+    }
+}
+
+// MARK: - Shared Coordinate System for Sheep
+struct SheepCoordinates {
+    let rect: CGRect
+    let centerX: CGFloat
+    let centerY: CGFloat
+    let bodyWidth: CGFloat
+    let bodyHeight: CGFloat
+    let bodyCenter: CGPoint
+    let faceWidth: CGFloat
+    let faceHeight: CGFloat
+    let faceCenter: CGPoint
+    
+    init(in rect: CGRect) {
+        self.rect = rect
+        self.centerX = rect.midX
+        self.centerY = rect.midY
+        self.bodyWidth = rect.width * 0.7
+        self.bodyHeight = rect.height * 0.5
+        self.bodyCenter = CGPoint(x: centerX, y: centerY + rect.height * 0.1)
+        self.faceWidth = bodyWidth * 0.4
+        self.faceHeight = bodyHeight * 0.8
+        self.faceCenter = CGPoint(x: centerX + bodyWidth * 0.25, y: centerY - rect.height * 0.05)
+    }
+}
+
+// MARK: - Layered Sheep Shapes (Multi-colored)
+struct SheepBodyShape: Shape {
+    func path(in rect: CGRect) -> Path {
+        let coords = SheepCoordinates(in: rect)
+        var path = Path()
+        
+        // Create main body oval
+        let mainRect = CGRect(
+            x: coords.bodyCenter.x - coords.bodyWidth/2,
+            y: coords.bodyCenter.y - coords.bodyHeight/2,
+            width: coords.bodyWidth,
+            height: coords.bodyHeight
+        )
+        path.addEllipse(in: mainRect)
+        
+        // Add scalloped bumps around the edge for fluffy cloud texture
+        let bumpSize = coords.bodyHeight * 0.25
+        let bumps = [
+            // Top scallops
+            CGRect(x: coords.bodyCenter.x - coords.bodyWidth * 0.3, y: coords.bodyCenter.y - coords.bodyHeight/2 - bumpSize * 0.3, width: bumpSize, height: bumpSize),
+            CGRect(x: coords.bodyCenter.x - coords.bodyWidth * 0.1, y: coords.bodyCenter.y - coords.bodyHeight/2 - bumpSize * 0.4, width: bumpSize * 0.8, height: bumpSize * 0.8),
+            CGRect(x: coords.bodyCenter.x + coords.bodyWidth * 0.1, y: coords.bodyCenter.y - coords.bodyHeight/2 - bumpSize * 0.3, width: bumpSize * 0.9, height: bumpSize * 0.9),
+            CGRect(x: coords.bodyCenter.x + coords.bodyWidth * 0.25, y: coords.bodyCenter.y - coords.bodyHeight/2 - bumpSize * 0.2, width: bumpSize * 0.7, height: bumpSize * 0.7),
+            
+            // Left side scallops
+            CGRect(x: coords.bodyCenter.x - coords.bodyWidth/2 - bumpSize * 0.3, y: coords.bodyCenter.y - coords.bodyHeight * 0.2, width: bumpSize * 0.8, height: bumpSize * 0.8),
+            CGRect(x: coords.bodyCenter.x - coords.bodyWidth/2 - bumpSize * 0.2, y: coords.bodyCenter.y, width: bumpSize * 0.6, height: bumpSize * 0.9),
+            CGRect(x: coords.bodyCenter.x - coords.bodyWidth/2 - bumpSize * 0.3, y: coords.bodyCenter.y + coords.bodyHeight * 0.2, width: bumpSize * 0.7, height: bumpSize * 0.7),
+            
+            // Right side scallops
+            CGRect(x: coords.bodyCenter.x + coords.bodyWidth/2 - bumpSize * 0.3, y: coords.bodyCenter.y - coords.bodyHeight * 0.15, width: bumpSize * 0.7, height: bumpSize * 0.8),
+            CGRect(x: coords.bodyCenter.x + coords.bodyWidth/2 - bumpSize * 0.2, y: coords.bodyCenter.y + coords.bodyHeight * 0.1, width: bumpSize * 0.8, height: bumpSize * 0.6),
+            
+            // Bottom scallops
+            CGRect(x: coords.bodyCenter.x - coords.bodyWidth * 0.2, y: coords.bodyCenter.y + coords.bodyHeight/2 - bumpSize * 0.2, width: bumpSize * 0.8, height: bumpSize * 0.6),
+            CGRect(x: coords.bodyCenter.x, y: coords.bodyCenter.y + coords.bodyHeight/2 - bumpSize * 0.3, width: bumpSize * 0.7, height: bumpSize * 0.7),
+            CGRect(x: coords.bodyCenter.x + coords.bodyWidth * 0.15, y: coords.bodyCenter.y + coords.bodyHeight/2 - bumpSize * 0.2, width: bumpSize * 0.6, height: bumpSize * 0.5)
+        ]
+        
+        for bump in bumps {
+            path.addEllipse(in: bump)
+        }
+        
+        return path
+    }
+}
+
+struct SheepFaceShape: Shape {
+    func path(in rect: CGRect) -> Path {
+        let coords = SheepCoordinates(in: rect)
+        var path = Path()
+        
+        // Create white face (oval shape positioned on the right side)
+        let faceRect = CGRect(
+            x: coords.faceCenter.x - coords.faceWidth/2,
+            y: coords.faceCenter.y - coords.faceHeight/2,
+            width: coords.faceWidth,
+            height: coords.faceHeight
+        )
+        path.addEllipse(in: faceRect)
+        
+        return path
+    }
+}
+
+struct SheepEarsShape: Shape {
+    func path(in rect: CGRect) -> Path {
+        let coords = SheepCoordinates(in: rect)
+        var path = Path()
+        
+        let earWidth = coords.faceWidth * 0.25
+        let earHeight = coords.faceHeight * 0.4
+        
+        // Left ear
+        let leftEarCenter = CGPoint(x: coords.faceCenter.x - coords.faceWidth * 0.2, y: coords.faceCenter.y - coords.faceHeight * 0.3)
+        path.addPath(createDroppyEar(center: leftEarCenter, width: earWidth, height: earHeight))
+        
+        // Right ear
+        let rightEarCenter = CGPoint(x: coords.faceCenter.x + coords.faceWidth * 0.2, y: coords.faceCenter.y - coords.faceHeight * 0.3)
+        path.addPath(createDroppyEar(center: rightEarCenter, width: earWidth, height: earHeight))
+        
+        return path
+    }
+    
+    private func createDroppyEar(center: CGPoint, width: CGFloat, height: CGFloat) -> Path {
+        var path = Path()
+        
+        // Create a droopy ear shape (wider at bottom, like in reference image)
+        path.move(to: CGPoint(x: center.x, y: center.y - height/2))
+        
+        // Top curve
+        path.addCurve(
+            to: CGPoint(x: center.x + width/2, y: center.y - height/4),
+            control1: CGPoint(x: center.x + width/3, y: center.y - height/2),
+            control2: CGPoint(x: center.x + width/2, y: center.y - height/3)
+        )
+        
+        // Right side curve (droopy)
+        path.addCurve(
+            to: CGPoint(x: center.x + width/3, y: center.y + height/2),
+            control1: CGPoint(x: center.x + width/2, y: center.y),
+            control2: CGPoint(x: center.x + width/2, y: center.y + height/3)
+        )
+        
+        // Bottom curve
+        path.addCurve(
+            to: CGPoint(x: center.x - width/3, y: center.y + height/2),
+            control1: CGPoint(x: center.x, y: center.y + height/2),
+            control2: CGPoint(x: center.x - width/6, y: center.y + height/2)
+        )
+        
+        // Left side curve (droopy)
+        path.addCurve(
+            to: CGPoint(x: center.x - width/2, y: center.y - height/4),
+            control1: CGPoint(x: center.x - width/2, y: center.y + height/3),
+            control2: CGPoint(x: center.x - width/2, y: center.y)
+        )
+        
+        // Close back to top
+        path.addCurve(
+            to: CGPoint(x: center.x, y: center.y - height/2),
+            control1: CGPoint(x: center.x - width/2, y: center.y - height/3),
+            control2: CGPoint(x: center.x - width/3, y: center.y - height/2)
+        )
+        
+        return path
+    }
+}
+
+struct SheepEyesShape: Shape {
+    func path(in rect: CGRect) -> Path {
+        let coords = SheepCoordinates(in: rect)
+        var path = Path()
+        
+        let eyeWidth = coords.faceWidth * 0.15
+        let eyeHeight = eyeWidth * 0.8
+        
+        // Left eye
+        let leftEyeRect = CGRect(
+            x: coords.faceCenter.x - coords.faceWidth * 0.15 - eyeWidth/2,
+            y: coords.faceCenter.y - coords.faceHeight * 0.1 - eyeHeight/2,
+            width: eyeWidth,
+            height: eyeHeight
+        )
+        path.addEllipse(in: leftEyeRect)
+        
+        // Right eye
+        let rightEyeRect = CGRect(
+            x: coords.faceCenter.x + coords.faceWidth * 0.15 - eyeWidth/2,
+            y: coords.faceCenter.y - coords.faceHeight * 0.1 - eyeHeight/2,
+            width: eyeWidth,
+            height: eyeHeight
+        )
+        path.addEllipse(in: rightEyeRect)
+        
+        return path
+    }
+}
+
+struct SheepNoseShape: Shape {
+    func path(in rect: CGRect) -> Path {
+        let coords = SheepCoordinates(in: rect)
+        var path = Path()
+        
+        let noseWidth = coords.faceWidth * 0.08
+        let noseHeight = noseWidth * 0.6
+        let noseRect = CGRect(
+            x: coords.faceCenter.x - noseWidth/2,
+            y: coords.faceCenter.y + coords.faceHeight * 0.1 - noseHeight/2,
+            width: noseWidth,
+            height: noseHeight
+        )
+        path.addEllipse(in: noseRect)
+        
+        return path
+    }
+}
+
+struct SheepLegsShape: Shape {
+    func path(in rect: CGRect) -> Path {
+        let coords = SheepCoordinates(in: rect)
+        var path = Path()
+        
+        let legWidth = coords.bodyWidth * 0.08
+        let legHeight = coords.rect.height * 0.25
+        let hoofWidth = legWidth * 1.2
+        let hoofHeight = legHeight * 0.2
+        
+        // Leg positions (evenly spaced under body)
+        let legSpacing = coords.bodyWidth * 0.2
+        let legY = coords.bodyCenter.y + coords.bodyHeight/2 + legHeight/2
+        
+        for i in 0..<4 {
+            let legX = coords.centerX - coords.bodyWidth * 0.25 + CGFloat(i) * legSpacing
+            
+            // Leg (rectangle)
+            let legRect = CGRect(
+                x: legX - legWidth/2,
+                y: legY - legHeight/2,
+                width: legWidth,
+                height: legHeight
+            )
+            path.addRect(legRect)
+            
+            // Hoof (oval at bottom of leg)
+            let hoofRect = CGRect(
+                x: legX - hoofWidth/2,
+                y: legY + legHeight/2 - hoofHeight/2,
+                width: hoofWidth,
+                height: hoofHeight
+            )
+            path.addEllipse(in: hoofRect)
+        }
+        
+        return path
+    }
+}
+
+// MARK: - Complete Layered Sheep View
+struct LayeredCartoonSheep: View {
+    var body: some View {
+        ZStack {
+            whiteComponents
+            blackComponents
+        }
+    }
+    
+    private var whiteComponents: some View {
+        ZStack {
+            SheepBodyShape().fill(.white)
+            SheepFaceShape().fill(.white)
+        }
+    }
+    
+    private var blackComponents: some View {
+        ZStack {
+            SheepEarsShape().fill(.black)
+            SheepEyesShape().fill(.black)
+            SheepNoseShape().fill(.black)
+            SheepLegsShape().fill(.black)
+        }
     }
 }
 
