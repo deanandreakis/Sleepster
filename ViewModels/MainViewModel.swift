@@ -457,9 +457,15 @@ class MainViewModel: ObservableObject {
     // MARK: - Animation Management
     
     private func updateAppStateAnimation(from background: BackgroundEntity?) {
-        guard let background = background,
-              let animationType = background.animationType else {
+        guard let background = background else {
             // Clear animation if no background is selected
+            AppState.shared.setAnimation(nil)
+            return
+        }
+        
+        // Safely access animationType - if this is an old entity without animationType, skip
+        guard let animationType = background.animationType else {
+            print("⚠️ Background entity missing animationType - skipping animation update")
             AppState.shared.setAnimation(nil)
             return
         }
@@ -468,12 +474,15 @@ class MainViewModel: ObservableObject {
         if let animation = AnimationRegistry.shared.animation(for: animationType) {
             AppState.shared.setAnimation(animation)
             
-            // Update animation settings from the background entity
+            // Update animation settings from the background entity with safe defaults
             AppState.shared.updateAnimationSettings(
                 intensity: background.intensityLevel > 0 ? Float(background.intensityLevel) / 3.0 : 0.5,
                 speed: background.speedMultiplier > 0 ? background.speedMultiplier : 1.0,
                 colorTheme: ColorTheme(rawValue: background.colorTheme ?? "default") ?? .defaultTheme
             )
+        } else {
+            print("⚠️ Could not find animation for type: \(animationType)")
+            AppState.shared.setAnimation(nil)
         }
     }
 }

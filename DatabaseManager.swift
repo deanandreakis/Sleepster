@@ -322,9 +322,18 @@ class DatabaseManager: ObservableObject {
         let request = BackgroundEntity.fetchSelectedBackground()
         
         do {
-            return try context.fetch(request).first
+            let results = try context.fetch(request)
+            guard let background = results.first else { return nil }
+            
+            // Ensure we have a properly formed BackgroundEntity with animationType
+            if background.animationType == nil {
+                print("⚠️ Found background entity without animationType - skipping")
+                return nil
+            }
+            
+            return background
         } catch {
-            print("Error fetching selected background: \(error)")
+            print("❌ Error fetching selected background: \(error)")
             return nil
         }
     }
