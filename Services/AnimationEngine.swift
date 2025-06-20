@@ -164,7 +164,16 @@ class AnimationRegistry: ObservableObject {
     }
     
     func animationsForCategory(_ category: BackgroundCategory) -> [AnimatedBackground] {
-        return animations.filter { $0.category == category }
+        let filtered = animations.filter { $0.category == category }
+        
+        #if DEBUG
+        print("🔍 AnimationRegistry.animationsForCategory(\(category)):")
+        for (index, animation) in filtered.enumerated() {
+            print("   [\(index)] \(animation.id) → '\(animation.title)'")
+        }
+        #endif
+        
+        return filtered
     }
 }
 
@@ -491,7 +500,7 @@ struct EnhancedCountingSheepView: View {
                 yPosition = CGFloat.random(in: UIScreen.main.bounds.height * 0.2...UIScreen.main.bounds.height * 0.6)
             }
             
-            let xPosition: CGFloat
+             let xPosition: CGFloat
             if i < sheepCount / 3 {
                 // Traditional line of sheep
                 xPosition = -80 - CGFloat(i * 120)

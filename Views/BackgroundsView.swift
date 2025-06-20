@@ -9,8 +9,13 @@ import SwiftUI
 
 struct BackgroundsView: View {
     @EnvironmentObject var serviceContainer: ServiceContainer
-    @StateObject private var viewModel = ServiceContainer.shared.backgroundsViewModel
+    @ObservedObject var viewModel: BackgroundsViewModel
     @EnvironmentObject var appState: AppState
+    
+    init() {
+        // Use the shared instance to ensure consistency
+        self.viewModel = ServiceContainer.shared.backgroundsViewModel
+    }
     
     @State private var selectedCategory: BackgroundCategory = .classic
     @State private var showingCustomization = false
@@ -49,6 +54,17 @@ struct BackgroundsView: View {
                 }
                 
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    #if DEBUG
+                    Button {
+                        print("🔄 Debug: Force state reset requested")
+                        viewModel.forceStateReset()
+                        HapticFeedback.light()
+                    } label: {
+                        Image(systemName: "arrow.clockwise.circle")
+                            .foregroundColor(.red)
+                    }
+                    #endif
+                    
                     Button {
                         HapticFeedback.light()
                         withAnimation(.easeInOut(duration: 0.3)) {
@@ -61,9 +77,28 @@ struct BackgroundsView: View {
             }
         }
         .onAppear {
+            #if DEBUG
+            print("🔧 DEBUG: BackgroundsView.onAppear() called - MODIFIED VERSION")
+            #endif
+            
             viewModel.loadAnimations()
             // Sync animation settings with view model
             animationSettings = viewModel.animationSettings
+            
+            #if DEBUG
+            // Auto-run debug check when view appears
+            print("🔧 BackgroundsView appeared - running debug check...")
+            viewModel.debugAnimationOrdering()
+            viewModel.debugAnimationSelectionIssue()
+            #endif
+            // Fix any state inconsistencies on appear
+            viewModel.fixStateInconsistencies()
+            
+            // Debug: Print detailed state for animation selection issue investigation
+            #if DEBUG
+            print("🔍 BackgroundsView appeared - Running debug check...")
+            viewModel.debugAnimationSelectionIssue()
+            #endif
         }
         .onChange(of: animationSettings) { newSettings in
             viewModel.updateSettings(newSettings)
@@ -138,14 +173,22 @@ struct BackgroundsView: View {
             } else {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16), count: 2), spacing: 16) {
                     ForEach(displayedAnimations, id: \.id) { animation in
+                        // Fix: Capture animation ID and animation reference explicitly to prevent closure capture issues
+                        let animationId = animation.id
+                        let animationTitle = animation.title
+                        
                         EnhancedAnimationCard(
                             animation: animation,
-                            isSelected: viewModel.selectedAnimationId == animation.id,
-                            isFavorite: viewModel.isFavorite(animation.id),
+                            isSelected: viewModel.selectedAnimationId == animationId,
+                            isFavorite: viewModel.isFavorite(animationId),
                             settings: animationSettings,
                             onTap: {
+                                #if DEBUG
+                                print("🎯 DEBUG: User tapped animation card: '\(animationTitle)' (ID: \(animationId))")
+                                print("🎯 DEBUG: About to call viewModel.selectAnimation(\(animationId))")
+                                #endif
                                 HapticFeedback.medium()
-                                viewModel.selectAnimation(animation.id)
+                                viewModel.selectAnimation(animationId)
                             },
                             onLongPress: {
                                 HapticFeedback.light()
@@ -154,7 +197,7 @@ struct BackgroundsView: View {
                             },
                             onFavorite: {
                                 HapticFeedback.light()
-                                viewModel.toggleFavorite(animation.id)
+                                viewModel.toggleFavorite(animationId)
                             }
                         )
                     }
@@ -331,12 +374,22 @@ struct BackgroundsView: View {
     
     // MARK: - Computed Properties
     private var displayedAnimations: [AnimatedBackground] {
+        let animations: [AnimatedBackground]
         if showingFavorites {
             let favoriteIds = viewModel.favoriteAnimations.compactMap { $0.animationType }
-            return AnimationRegistry.shared.animations.filter { favoriteIds.contains($0.id) }
+            animations = AnimationRegistry.shared.animations.filter { favoriteIds.contains($0.id) }
         } else {
-            return AnimationRegistry.shared.animationsForCategory(selectedCategory)
+            animations = AnimationRegistry.shared.animationsForCategory(selectedCategory)
         }
+        
+        #if DEBUG
+        print("🔍 DisplayedAnimations for category \(selectedCategory):")
+        for (index, animation) in animations.enumerated() {
+            print("   [\(index)] \(animation.id) → '\(animation.title)'")
+        }
+        #endif
+        
+        return animations
     }
     
     private var intensityLabel: String {
@@ -672,6 +725,6 @@ struct AnimationPreviewModal: View {
 
 #Preview {
     BackgroundsView()
-        .environmentObject(ServiceContainer())
+        .environmentObject(ServiceContainer.shared)
         .environmentObject(AppState.shared)
 }
