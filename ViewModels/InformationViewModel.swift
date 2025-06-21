@@ -23,17 +23,16 @@ class InformationViewModel: ObservableObject {
     // MARK: - App Information
     let appName = "Sleepster"
     let developerName = "Dean Andreakis"
-    let copyrightYear = "2024"
+    let copyrightYear = "2025"
     let appStoreURL = "https://apps.apple.com/app/sleepster/id123456789" // Replace with actual URL
     
     // MARK: - Social Links
     let facebookURL = "https://facebook.com/sleepsterapp"
     let twitterURL = "https://twitter.com/sleepsterapp"
-    let websiteURL = "https://sleepsterapp.com"
+    let websiteURL = "https://sleepster.deanware.com"
     
     // MARK: - Support Information
-    let supportEmail = "support@sleepsterapp.com"
-    let feedbackEmail = "feedback@sleepsterapp.com"
+    let supportEmail = "sleepster@deanware.com"
     
     // MARK: - Features List
     let features = [
@@ -47,11 +46,11 @@ class InformationViewModel: ObservableObject {
     
     // MARK: - FAQ Items
     let faqItems = [
-        FAQItem(question: "How do I set a sleep timer?", answer: "Tap the timer icon in the main screen to set a duration. The app will automatically fade out the sound when the timer expires."),
-        FAQItem(question: "Can I use my own background images?", answer: "Currently, you can choose from our curated collection of nature backgrounds or search for new ones online."),
+        FAQItem(question: "How do I set a sleep timer?", answer: "On the main screen, select one of the timer duration options in the Quick Timer section. The app will automatically fade out the sound when the timer expires."),
+        FAQItem(question: "Can I use my own background images?", answer: "Currently, you can only choose from our curated collection of animations."),
         FAQItem(question: "Why does the sound stop when I lock my phone?", answer: "Make sure 'Disable Auto-Lock' is enabled in Settings to prevent the phone from sleeping while using the app."),
         FAQItem(question: "How do I restore my purchases?", answer: "Go to Settings and tap 'Restore Purchases' to restore any premium features you've previously purchased."),
-        FAQItem(question: "The app uses too much battery. What can I do?", answer: "Try using solid color backgrounds instead of images, and consider using shorter timer durations.")
+        FAQItem(question: "The app uses too much battery. What can I do?", answer: "Try using shorter timer durations and lower brightness settings.")
     ]
     
     // MARK: - Initialization
@@ -112,9 +111,9 @@ class InformationViewModel: ObservableObject {
         let subject = "Sleepster Feedback - Version \(appVersion)"
         
         if MFMailComposeViewController.canSendMail() {
-            showMailComposer(to: feedbackEmail, subject: subject, body: "")
+            showMailComposer(to: supportEmail, subject: subject, body: "")
         } else {
-            sendEmail(to: feedbackEmail, subject: subject)
+            sendEmail(to: supportEmail, subject: subject)
         }
     }
     
