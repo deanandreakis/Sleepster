@@ -78,6 +78,12 @@ class BrightnessManager: ObservableObject {
         originalBrightness = UIScreen.main.brightness
         isSleepModeActive = true
         
+        // Add detailed debugging for brightness setting retrieval
+        let storedValue = UserDefaults.standard.double(forKey: "sleepModeBrightnessLevel")
+        let settingsValue = settingsManager.sleepModeBrightnessLevel
+        print("🔆 Stored UserDefaults value: \(storedValue)")
+        print("🔆 SettingsManager value: \(settingsValue)")
+        
         let targetBrightness = settingsManager.sleepModeBrightnessLevel
         
         print("🔆 Setting brightness from \(originalBrightness) to \(targetBrightness)")

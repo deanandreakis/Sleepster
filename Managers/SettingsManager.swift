@@ -54,7 +54,7 @@ class SettingsManager: ObservableObject {
         static let backgroundImageQuality = 1 // 0=low, 1=medium, 2=high
         static let isAnalyticsEnabled = true
         static let lastDatabaseVersion = 1
-        static let isAutoBrightnessEnabled = false
+        static let isAutoBrightnessEnabled = true
         static let lastBrightnessLevel: Double = 0.5
         static let sleepModeBrightnessLevel: Double = 0.1
     }
@@ -209,8 +209,15 @@ class SettingsManager: ObservableObject {
     
     var sleepModeBrightnessLevel: Double {
         get { 
-            let value = userDefaults.double(forKey: Keys.sleepModeBrightnessLevel)
-            return value > 0 ? value : Defaults.sleepModeBrightnessLevel
+            // Check if the key exists first
+            if userDefaults.object(forKey: Keys.sleepModeBrightnessLevel) != nil {
+                let value = userDefaults.double(forKey: Keys.sleepModeBrightnessLevel)
+                // Allow values >= 0.01 (minimum brightness), use default if somehow 0
+                return value >= 0.01 ? value : Defaults.sleepModeBrightnessLevel
+            } else {
+                // Key doesn't exist, return default
+                return Defaults.sleepModeBrightnessLevel
+            }
         }
         set { 
             userDefaults.set(newValue, forKey: Keys.sleepModeBrightnessLevel)
