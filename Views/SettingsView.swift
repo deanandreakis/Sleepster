@@ -13,9 +13,6 @@ struct SettingsView: View {
     @StateObject private var viewModel = ServiceContainer.shared.settingsViewModel
     
     @State private var showingResetConfirmation = false
-    @State private var showingExportSheet = false
-    @State private var showingImportSheet = false
-    @State private var exportedSettings = ""
     
     var body: some View {
         NavigationView {
@@ -37,8 +34,7 @@ struct SettingsView: View {
                     premiumSection
                 }
                 
-                // Data section
-                dataSection
+                // Data section removed
                 
                 // About section
                 aboutSection
@@ -53,12 +49,7 @@ struct SettingsView: View {
             } message: {
                 Text("This will reset all settings to their default values. This action cannot be undone.")
             }
-            .sheet(isPresented: $showingExportSheet) {
-                exportSettingsSheet
-            }
-            .sheet(isPresented: $showingImportSheet) {
-                importSettingsSheet
-            }
+
             .alert("Success", isPresented: .constant(viewModel.successMessage != nil)) {
                 Button("OK") {
                     viewModel.clearMessages()
@@ -150,7 +141,7 @@ struct SettingsView: View {
     }
     
     private var generalSection: some View {
-        VStack(spacing: 16) {
+        Section("General") {
             Toggle("Haptic Feedback", isOn: $viewModel.isHapticsEnabled)
                 .onChange(of: viewModel.isHapticsEnabled) { value in
                     appState.isHapticsEnabled = value
@@ -160,18 +151,6 @@ struct SettingsView: View {
                 .onChange(of: viewModel.isAutoLockDisabled) { value in
                     appState.isAutoLockDisabled = value
                 }
-            
-            // HStack {
-            //     Text("Background Quality")
-            //     Spacer()
-            //     Picker("Quality", selection: $viewModel.backgroundImageQuality) {
-            //         Text("Low").tag(0)
-            //         Text("Medium").tag(1)
-            //         Text("High").tag(2)
-            //     }
-            //     .pickerStyle(.segmented)
-            //     .frame(width: 150)
-            // }
         }
     }
     
@@ -205,28 +184,6 @@ struct SettingsView: View {
         }
     }
     
-    private var dataSection: some View {
-        Section("Data Management") {
-            Button("Export Settings") {
-                exportedSettings = viewModel.exportSettings()
-                showingExportSheet = true
-            }
-            
-            Button("Import Settings") {
-                showingImportSheet = true
-            }
-            
-            Button("Reset Database") {
-                viewModel.resetDatabase()
-            }
-            
-            Button("Reset All Settings") {
-                showingResetConfirmation = true
-            }
-            .foregroundColor(.red)
-        }
-    }
-    
     private var aboutSection: some View {
         Section("About") {
             HStack {
@@ -242,86 +199,6 @@ struct SettingsView: View {
                     Spacer()
                     Image(systemName: "checkmark.circle.fill")
                         .foregroundColor(.green)
-                }
-            }
-            
-            Button("Information & Help") {
-                appState.selectedTab = .information
-            }
-        }
-    }
-    
-    // MARK: - Sheets
-    
-    private var exportSettingsSheet: some View {
-        NavigationView {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
-                    Text("Your settings have been exported. You can copy this data and import it on another device.")
-                        .font(.body)
-                        .foregroundColor(.secondary)
-                    
-                    Text(exportedSettings)
-                        .font(.system(.caption, design: .monospaced))
-                        .padding()
-                        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 8))
-                        .textSelection(.enabled)
-                    
-                    PrimaryButton("Share Settings") {
-                        let activityController = UIActivityViewController(
-                            activityItems: [exportedSettings],
-                            applicationActivities: nil
-                        )
-                        
-                        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                           let window = windowScene.windows.first {
-                            window.rootViewController?.present(activityController, animated: true)
-                        }
-                    }
-                }
-                .padding()
-            }
-            .navigationTitle("Export Settings")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") {
-                        showingExportSheet = false
-                    }
-                }
-            }
-        }
-    }
-    
-    private var importSettingsSheet: some View {
-        NavigationView {
-            VStack(spacing: 16) {
-                Text("Paste your exported settings data below:")
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                
-                TextEditor(text: .constant(""))
-                    .font(.system(.caption, design: .monospaced))
-                    .padding()
-                    .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 8))
-                    .frame(minHeight: 200)
-                
-                PrimaryButton("Import Settings") {
-                    // In a real implementation, this would parse the pasted data
-                    viewModel.successMessage = "Settings imported successfully"
-                    showingImportSheet = false
-                }
-                
-                Spacer()
-            }
-            .padding()
-            .navigationTitle("Import Settings")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
-                        showingImportSheet = false
-                    }
                 }
             }
         }

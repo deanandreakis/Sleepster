@@ -246,27 +246,37 @@ struct CardView<Content: View>: View {
 
 // MARK: - Haptic Feedback
 struct HapticFeedback {
+    @MainActor
     static func light() {
+        guard ServiceContainer.shared.settingsManager.isHapticsEnabled else { return }
         let impactFeedback = UIImpactFeedbackGenerator(style: .light)
         impactFeedback.impactOccurred()
     }
     
+    @MainActor
     static func medium() {
+        guard ServiceContainer.shared.settingsManager.isHapticsEnabled else { return }
         let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
         impactFeedback.impactOccurred()
     }
     
+    @MainActor
     static func heavy() {
+        guard ServiceContainer.shared.settingsManager.isHapticsEnabled else { return }
         let impactFeedback = UIImpactFeedbackGenerator(style: .heavy)
         impactFeedback.impactOccurred()
     }
     
+    @MainActor
     static func success() {
+        guard ServiceContainer.shared.settingsManager.isHapticsEnabled else { return }
         let notificationFeedback = UINotificationFeedbackGenerator()
         notificationFeedback.notificationOccurred(.success)
     }
     
+    @MainActor
     static func error() {
+        guard ServiceContainer.shared.settingsManager.isHapticsEnabled else { return }
         let notificationFeedback = UINotificationFeedbackGenerator()
         notificationFeedback.notificationOccurred(.error)
     }
