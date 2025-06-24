@@ -1,0 +1,67 @@
+{
+  "identifier" : "BADF807F",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "identifier" : "sleepster99",
+      "localizations" : [
+        {
+          "description" : "Support app development with a generous tip",
+          "displayName" : "Generous Tip",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "sleepster99",
+      "referenceName" : "Generous Tip",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "1.99",
+      "familyShareable" : false,
+      "identifier" : "sleepster199",
+      "localizations" : [
+        {
+          "description" : "Support app development with a massive tip",
+          "displayName" : "Massive Tip",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "sleepster199",
+      "referenceName" : "Massive Tip",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "identifier" : "sleepster499",
+      "localizations" : [
+        {
+          "description" : "Support app development with an amazing tip",
+          "displayName" : "Amazing Tip",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "sleepster499",
+      "referenceName" : "Amazing Tip",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "123456789",
+    "_applicationUsername" : "",
+    "_askToBuyEnabled" : false,
+    "_locale" : "en_US",
+    "_storefront" : "USA"
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

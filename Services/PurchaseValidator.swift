@@ -256,22 +256,19 @@ class PurchaseEntitlementManager: ObservableObject {
         return entitlements.contains(productId)
     }
     
-    /// Check if user has premium entitlements
-    var hasPremiumEntitlements: Bool {
-        return hasEntitlement(for: StoreKitManager.ProductType.premiumPack.rawValue) ||
-               hasEntitlement(for: StoreKitManager.ProductType.yearlySubscription.rawValue)
+    /// Check if user has given any tips (no feature gating in tip jar model)
+    var hasSupportedApp: Bool {
+        return !entitlements.isEmpty
     }
     
-    /// Check if user has background entitlements
+    /// All users have background access (no premium gating)
     var hasBackgroundEntitlements: Bool {
-        return hasEntitlement(for: StoreKitManager.ProductType.multipleBackgrounds.rawValue) ||
-               hasPremiumEntitlements
+        return true
     }
     
-    /// Check if user has sound mixing entitlements
+    /// All users have sound mixing access (no premium gating)
     var hasSoundMixingEntitlements: Bool {
-        return hasEntitlement(for: StoreKitManager.ProductType.multipleSounds.rawValue) ||
-               hasPremiumEntitlements
+        return true
     }
 }
 

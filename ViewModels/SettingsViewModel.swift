@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import StoreKit
 
 @MainActor
 class SettingsViewModel: ObservableObject {
@@ -15,19 +16,20 @@ class SettingsViewModel: ObservableObject {
     // MARK: - Dependencies
     private let settingsManager: SettingsManager
     private let databaseManager: DatabaseManager
+    private let storeKitManager = StoreKitManager.shared
     
     // MARK: - Published Properties
-    @Published var isDarkModeEnabled = false
     @Published var isHapticsEnabled = true
     @Published var isAutoLockDisabled = true
     @Published var masterVolume: Float = 0.5
     @Published var timerFadeOutDuration: TimeInterval = 10.0
     @Published var defaultTimerDuration: TimeInterval = 1800 // 30 minutes
     
-    // MARK: - Premium Features
-    @Published var isPremiumUser = false
-    @Published var isMultipleSoundsEnabled = false
-    @Published var isMultipleBackgroundsEnabled = false
+    // MARK: - Tip Jar Features
+    @Published var tipProducts: [Product] = []
+    @Published var isProcessingPurchase = false
+    @Published var totalTipsGiven: Double = 0.0
+    @Published var numberOfTips: Int = 0
     
     // MARK: - App Info
     @Published var appVersion = "2.5"
@@ -49,17 +51,12 @@ class SettingsViewModel: ObservableObject {
         
         loadSettings()
         setupBindings()
+        loadTipProducts()
     }
     
     // MARK: - Setup
     private func setupBindings() {
         // Bind to settings manager
-        $isDarkModeEnabled
-            .dropFirst() // Skip initial value
-            .sink { [weak self] value in
-                self?.settingsManager.isDarkModeEnabled = value
-            }
-            .store(in: &cancellables)
         
         $isHapticsEnabled
             .dropFirst()
@@ -98,25 +95,31 @@ class SettingsViewModel: ObservableObject {
     }
     
     private func loadSettings() {
-        isDarkModeEnabled = settingsManager.isDarkModeEnabled
         isHapticsEnabled = settingsManager.isHapticsEnabled
         isAutoLockDisabled = settingsManager.isAutoLockDisabled
         masterVolume = settingsManager.masterVolume
         timerFadeOutDuration = settingsManager.timerFadeOutDuration
         defaultTimerDuration = settingsManager.defaultTimerDuration
         
-        // Load premium status (would check with StoreKit in real implementation)
-        loadPremiumStatus()
+        // Load tip status
+        loadTipStatus()
         
         // Load app version info
         loadAppInfo()
     }
     
-    private func loadPremiumStatus() {
-        // This would integrate with StoreKit for real IAP checking
-        isPremiumUser = settingsManager.isPremiumUser
-        isMultipleSoundsEnabled = settingsManager.isMultipleSoundsEnabled
-        isMultipleBackgroundsEnabled = settingsManager.isMultipleBackgroundsEnabled
+    private func loadTipStatus() {
+        totalTipsGiven = storeKitManager.totalTipAmount
+        numberOfTips = storeKitManager.numberOfTips
+    }
+    
+    private func loadTipProducts() {
+        Task {
+            await storeKitManager.loadProducts()
+            await MainActor.run {
+                self.tipProducts = storeKitManager.products
+            }
+        }
     }
     
     private func loadAppInfo() {
@@ -167,7 +170,6 @@ class SettingsViewModel: ObservableObject {
     
     func exportSettings() -> String {
         let settings: [String: Any] = [
-            "isDarkModeEnabled": isDarkModeEnabled,
             "isHapticsEnabled": isHapticsEnabled,
             "isAutoLockDisabled": isAutoLockDisabled,
             "masterVolume": masterVolume,
@@ -192,9 +194,6 @@ class SettingsViewModel: ObservableObject {
             
             let settings = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
             
-            if let darkMode = settings?["isDarkModeEnabled"] as? Bool {
-                isDarkModeEnabled = darkMode
-            }
             if let haptics = settings?["isHapticsEnabled"] as? Bool {
                 isHapticsEnabled = haptics
             }
@@ -218,25 +217,47 @@ class SettingsViewModel: ObservableObject {
         }
     }
     
-    // MARK: - Premium Features
-    func purchasePremium() {
-        // This would integrate with StoreKit
-        // For now, just toggle the flag
-        isPremiumUser = true
-        isMultipleSoundsEnabled = true
-        isMultipleBackgroundsEnabled = true
+    // MARK: - Tip Jar Features
+    func purchaseTip(_ product: Product) {
+        isProcessingPurchase = true
         
-        settingsManager.isPremiumUser = true
-        settingsManager.isMultipleSoundsEnabled = true
-        settingsManager.isMultipleBackgroundsEnabled = true
-        
-        successMessage = "Premium features unlocked!"
-    }
-    
-    func restorePurchases() {
-        // This would restore purchases via StoreKit
-        loadPremiumStatus()
-        successMessage = "Purchases restored"
+        Task {
+            // Listen for purchase success notification
+            let purchaseObserver = NotificationCenter.default.addObserver(
+                forName: NSNotification.Name("PurchaseSuccessful"),
+                object: nil,
+                queue: .main
+            ) { [weak self] notification in
+                if let productId = notification.userInfo?["productId"] as? String,
+                   productId == product.id {
+                    self?.successMessage = "Thank you for your support! ❤️"
+                    self?.loadTipStatus()
+                    self?.isProcessingPurchase = false
+                }
+            }
+            
+            let errorObserver = NotificationCenter.default.addObserver(
+                forName: NSNotification.Name("PurchaseFailed"),
+                object: nil,
+                queue: .main
+            ) { [weak self] notification in
+                if let error = notification.userInfo?["error"] as? Error {
+                    self?.errorMessage = "Purchase failed: \(error.localizedDescription)"
+                } else {
+                    self?.errorMessage = "Purchase was cancelled"
+                }
+                self?.isProcessingPurchase = false
+            }
+            
+            // Attempt the purchase
+            await storeKitManager.purchase(product)
+            
+            // Clean up observers after a delay
+            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                NotificationCenter.default.removeObserver(purchaseObserver)
+                NotificationCenter.default.removeObserver(errorObserver)
+            }
+        }
     }
     
     // MARK: - Helper Methods

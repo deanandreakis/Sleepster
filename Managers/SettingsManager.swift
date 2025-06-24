@@ -12,7 +12,6 @@ class SettingsManager: ObservableObject {
     
     // MARK: - UserDefaults Keys
     private enum Keys {
-        static let isDarkModeEnabled = "isDarkModeEnabled"
         static let isHapticsEnabled = "isHapticsEnabled"
         static let isAutoLockDisabled = "isAutoLockDisabled"
         static let masterVolume = "masterVolume"
@@ -38,7 +37,6 @@ class SettingsManager: ObservableObject {
     
     // MARK: - Default Values
     private enum Defaults {
-        static let isDarkModeEnabled = false
         static let isHapticsEnabled = true
         static let isAutoLockDisabled = true
         static let masterVolume: Float = 0.5
@@ -62,9 +60,6 @@ class SettingsManager: ObservableObject {
     private let userDefaults = UserDefaults.standard
     
     // MARK: - App Preferences
-    @Published var isDarkModeEnabled: Bool {
-        didSet { userDefaults.set(isDarkModeEnabled, forKey: Keys.isDarkModeEnabled) }
-    }
     
     @Published var isHapticsEnabled: Bool {
         didSet { 
@@ -228,7 +223,6 @@ class SettingsManager: ObservableObject {
     // MARK: - Initialization
     init() {
         // Load current values or set defaults
-        self.isDarkModeEnabled = userDefaults.object(forKey: Keys.isDarkModeEnabled) as? Bool ?? Defaults.isDarkModeEnabled
         self.isHapticsEnabled = userDefaults.object(forKey: Keys.isHapticsEnabled) as? Bool ?? Defaults.isHapticsEnabled
         self.isAutoLockDisabled = userDefaults.object(forKey: Keys.isAutoLockDisabled) as? Bool ?? Defaults.isAutoLockDisabled
         
@@ -247,7 +241,6 @@ class SettingsManager: ObservableObject {
     // MARK: - Default Registration
     private func registerDefaults() {
         let defaults: [String: Any] = [
-            Keys.isDarkModeEnabled: Defaults.isDarkModeEnabled,
             Keys.isHapticsEnabled: Defaults.isHapticsEnabled,
             Keys.isAutoLockDisabled: Defaults.isAutoLockDisabled,
             Keys.masterVolume: Defaults.masterVolume,
@@ -322,7 +315,6 @@ class SettingsManager: ObservableObject {
     // MARK: - Utility Methods
     func resetToDefaults() {
         let keysToRemove = [
-            Keys.isDarkModeEnabled,
             Keys.isHapticsEnabled,
             Keys.isAutoLockDisabled,
             Keys.masterVolume,
@@ -338,7 +330,6 @@ class SettingsManager: ObservableObject {
         keysToRemove.forEach { userDefaults.removeObject(forKey: $0) }
         
         // Reload default values
-        isDarkModeEnabled = Defaults.isDarkModeEnabled
         isHapticsEnabled = Defaults.isHapticsEnabled
         isAutoLockDisabled = Defaults.isAutoLockDisabled
         
@@ -347,7 +338,6 @@ class SettingsManager: ObservableObject {
     
     func exportSettings() -> [String: Any] {
         return [
-            "isDarkModeEnabled": isDarkModeEnabled,
             "isHapticsEnabled": isHapticsEnabled,
             "isAutoLockDisabled": isAutoLockDisabled,
             "masterVolume": masterVolume,
@@ -359,9 +349,6 @@ class SettingsManager: ObservableObject {
     }
     
     func importSettings(_ settings: [String: Any]) {
-        if let darkMode = settings["isDarkModeEnabled"] as? Bool {
-            isDarkModeEnabled = darkMode
-        }
         if let haptics = settings["isHapticsEnabled"] as? Bool {
             isHapticsEnabled = haptics
         }
@@ -417,7 +404,6 @@ class SettingsManager: ObservableObject {
     // MARK: - Debug Helpers
     func printAllSettings() {
         print("=== Settings Manager State ===")
-        print("Dark Mode: \(isDarkModeEnabled)")
         print("Haptics: \(isHapticsEnabled)")
         print("Auto-Lock Disabled: \(isAutoLockDisabled)")
         print("Master Volume: \(masterVolume)")

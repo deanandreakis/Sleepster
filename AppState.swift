@@ -76,8 +76,9 @@ class AppState: ObservableObject {
         currentVolume = UserDefaults.standard.float(forKey: "lastVolume")
     }
     
-    func updateColorScheme(isDarkMode: Bool) {
-        colorScheme = isDarkMode ? .dark : .light
+    func updateColorSchemeToSystem() {
+        // Setting colorScheme to nil makes SwiftUI follow the system appearance
+        colorScheme = nil
     }
     
     // MARK: - Notifications Setup

@@ -54,10 +54,10 @@ struct SleepsterApp: App {
             await serviceContainer.coreDataStack.initializeAsync()
             NSLog("📱 SleepsterApp: Core Data initialization complete")
             
-            // Initialize color scheme from settings (after Core Data is ready)
+            // Initialize color scheme to follow system setting (after Core Data is ready)
             await MainActor.run {
-                appState.updateColorScheme(isDarkMode: serviceContainer.settingsManager.isDarkModeEnabled)
-                NSLog("📱 SleepsterApp: Color scheme initialized")
+                appState.updateColorSchemeToSystem()
+                NSLog("📱 SleepsterApp: Color scheme initialized to follow system setting")
             }
             
             // Initialize database population in background (non-blocking)

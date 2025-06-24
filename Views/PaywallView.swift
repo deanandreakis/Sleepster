@@ -229,24 +229,13 @@ struct PaywallView: View {
     private var relevantProducts: [Product] {
         switch presentationContext {
         case .backgroundsLocked:
-            return storeKitManager.products.filter { 
-                $0.id == StoreKitManager.ProductType.multipleBackgrounds.rawValue ||
-                $0.id == StoreKitManager.ProductType.premiumPack.rawValue
-            }
+            return storeKitManager.products // Return all tip products
         case .soundMixingLocked:
-            return storeKitManager.products.filter { 
-                $0.id == StoreKitManager.ProductType.multipleSounds.rawValue ||
-                $0.id == StoreKitManager.ProductType.premiumPack.rawValue
-            }
+            return storeKitManager.products // Return all tip products
         case .premiumFeatures:
-            return storeKitManager.products.filter { 
-                $0.id == StoreKitManager.ProductType.premiumPack.rawValue ||
-                $0.id == StoreKitManager.ProductType.yearlySubscription.rawValue
-            }
+            return storeKitManager.products // Return all tip products
         case .subscription:
-            return storeKitManager.products.filter { 
-                $0.id == StoreKitManager.ProductType.yearlySubscription.rawValue
-            }
+            return storeKitManager.products // Return all tip products
         }
     }
     

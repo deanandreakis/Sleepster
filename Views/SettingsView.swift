@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct SettingsView: View {
     @EnvironmentObject var serviceContainer: ServiceContainer
@@ -17,9 +18,6 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             Form {
-                // Appearance section
-                appearanceSection
-                
                 // Audio section
                 audioSection
                 
@@ -29,10 +27,8 @@ struct SettingsView: View {
                 // General section
                 generalSection
                 
-                // Premium section
-                if !viewModel.isPremiumUser {
-                    premiumSection
-                }
+                // Tip Jar section
+                tipJarSection
                 
                 // Data section removed
                 
@@ -75,15 +71,6 @@ struct SettingsView: View {
     }
     
     // MARK: - Form Sections
-    
-    private var appearanceSection: some View {
-        Section("Appearance") {
-            Toggle("Dark Mode", isOn: $viewModel.isDarkModeEnabled)
-                .onChange(of: viewModel.isDarkModeEnabled) { value in
-                    appState.updateColorScheme(isDarkMode: value)
-                }
-        }
-    }
     
     private var audioSection: some View {
         Section("Audio") {
@@ -154,34 +141,58 @@ struct SettingsView: View {
         }
     }
     
-    private var premiumSection: some View {
-        Section("Premium Features") {
-            VStack(alignment: .leading, spacing: 12) {
-                HStack {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Unlock Premium")
-                            .font(.headline)
-                        Text("Get access to exclusive sounds and backgrounds")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
+    private var tipJarSection: some View {
+        Section("Support Development") {
+            VStack(alignment: .leading, spacing: 16) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Sleepster relies on your support to fund its development. If you find it useful to enhance your sleep, please consider supporting the app by leaving a tip in our Tip Jar.")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.leading)
+                }
+                
+                HStack(spacing: 12) {
+                    ForEach(viewModel.tipProducts, id: \.id) { product in
+                        tipButton(for: product)
                     }
-                    
-                    Spacer()
-                    
-                    Image(systemName: "star.fill")
-                        .foregroundColor(.yellow)
                 }
-                
-                PrimaryButton("Upgrade Now") {
-                    viewModel.purchasePremium()
-                }
-                
-                SecondaryButton("Restore Purchases") {
-                    viewModel.restorePurchases()
-                }
+                .frame(maxWidth: .infinity)
             }
             .padding(.vertical, 8)
         }
+    }
+    
+    private func tipButton(for product: Product) -> some View {
+        Button {
+            HapticFeedback.light()
+            viewModel.purchaseTip(product)
+        } label: {
+            VStack(spacing: 8) {
+                // Get the tip type from product ID
+                if let tipType = StoreKitManager.ProductType(rawValue: product.id) {
+                    Text(tipType.emoji)
+                        .font(.title)
+                    
+                    Text(tipType.displayName)
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                    
+                    Text("Tip of")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    
+                    Text(product.displayPrice)
+                        .font(.headline)
+                        .fontWeight(.bold)
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 16)
+            .padding(.horizontal, 8)
+            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 12))
+            .foregroundColor(.primary)
+        }
+        .disabled(viewModel.isProcessingPurchase)
     }
     
     private var aboutSection: some View {
@@ -193,12 +204,16 @@ struct SettingsView: View {
                     .foregroundColor(.secondary)
             }
             
-            if viewModel.isPremiumUser {
+            if viewModel.numberOfTips > 0 {
                 HStack {
-                    Text("Premium User")
+                    Text("Supporter")
                     Spacer()
-                    Image(systemName: "checkmark.circle.fill")
-                        .foregroundColor(.green)
+                    HStack(spacing: 4) {
+                        Text("\(viewModel.numberOfTips)")
+                            .fontWeight(.semibold)
+                        Image(systemName: "heart.fill")
+                            .foregroundColor(.red)
+                    }
                 }
             }
         }

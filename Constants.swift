@@ -28,12 +28,10 @@ struct APIKeys {
 
 // MARK: - StoreKit
 struct StoreKit {
-    static let backgroundsStatus = "enable_multiple_bg_selection"
-    static let soundStatus = "enable_sound_mixing"
-    
     struct ProductIDs {
-        static let backgrounds = "multiplebg"
-        static let sounds = "multiplesounds"
+        static let tip99 = "sleepster99"
+        static let tip199 = "sleepster199" 
+        static let tip499 = "sleepster499"
     }
 }
 

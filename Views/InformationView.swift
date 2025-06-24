@@ -27,8 +27,7 @@ struct InformationView: View {
                     // Support section
                     supportSection
                     
-                    // Social links
-                    socialLinksSection
+                    // Social links section removed
                     
                     // FAQ section
                     faqSection
@@ -46,6 +45,9 @@ struct InformationView: View {
         }
         .sheet(item: $selectedFAQItem) { faqItem in
             faqDetailSheet(faqItem)
+        }
+        .sheet(isPresented: $viewModel.showingShareSheet) {
+            ShareSheet(activityItems: viewModel.shareItems)
         }
     }
     
@@ -191,60 +193,6 @@ struct InformationView: View {
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
-            .padding()
-            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 12))
-        }
-    }
-    
-    private var socialLinksSection: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Connect With Us")
-                .font(.headline)
-                .foregroundColor(.primary)
-            
-            HStack(spacing: 16) {
-                socialButton(
-                    title: "Facebook",
-                    icon: "f.square.fill",
-                    color: .blue,
-                    action: { viewModel.openFacebook() }
-                )
-                
-                socialButton(
-                    title: "Twitter",
-                    icon: "bird.fill",
-                    color: .blue,
-                    action: { viewModel.openTwitter() }
-                )
-                
-                socialButton(
-                    title: "Website",
-                    icon: "globe",
-                    color: .green,
-                    action: { viewModel.openWebsite() }
-                )
-            }
-        }
-    }
-    
-    private func socialButton(
-        title: String,
-        icon: String,
-        color: Color,
-        action: @escaping () -> Void
-    ) -> some View {
-        Button(action: action) {
-            VStack(spacing: 8) {
-                Image(systemName: icon)
-                    .font(.title2)
-                    .foregroundColor(color)
-                
-                Text(title)
-                    .font(.caption)
-                    .fontWeight(.medium)
-                    .foregroundColor(.primary)
-            }
-            .frame(maxWidth: .infinity)
             .padding()
             .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 12))
         }
@@ -400,6 +348,21 @@ struct InformationView: View {
     private func setupViewModel() {
         // In real implementation, this would be handled by dependency injection
         // viewModel = serviceContainer.informationViewModel
+    }
+}
+
+// MARK: - Share Sheet
+
+struct ShareSheet: UIViewControllerRepresentable {
+    let activityItems: [Any]
+    
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        return activityViewController
+    }
+    
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
+        // No updates needed
     }
 }
 

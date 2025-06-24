@@ -22,70 +22,51 @@ class StoreKitManager: NSObject, ObservableObject {
     
     // MARK: - Product Configuration
     enum ProductType: String, CaseIterable {
-        case multipleBackgrounds = "multiplebg"
-        case multipleSounds = "multiplesounds"
-        case premiumPack = "premium_pack"
-        case yearlySubscription = "yearly_subscription"
+        case tip99 = "sleepster99"
+        case tip199 = "sleepster199"
+        case tip499 = "sleepster499"
         
         var displayName: String {
             switch self {
-            case .multipleBackgrounds:
-                return "Multiple Backgrounds"
-            case .multipleSounds:
-                return "Sound Mixing"
-            case .premiumPack:
-                return "Premium Pack"
-            case .yearlySubscription:
-                return "Premium Yearly"
+            case .tip99:
+                return "Generous"
+            case .tip199:
+                return "Massive"
+            case .tip499:
+                return "Amazing"
             }
         }
         
         var description: String {
             switch self {
-            case .multipleBackgrounds:
-                return "Unlock unlimited background images and Flickr search"
-            case .multipleSounds:
-                return "Mix multiple nature sounds simultaneously"
-            case .premiumPack:
-                return "All premium features + advanced audio effects"
-            case .yearlySubscription:
-                return "All features + sleep tracking + widgets + priority support"
+            case .tip99:
+                return "Tip of $0.99"
+            case .tip199:
+                return "Tip of $1.99"
+            case .tip499:
+                return "Tip of $4.99"
             }
         }
         
-        var benefits: [String] {
+        var emoji: String {
             switch self {
-            case .multipleBackgrounds:
-                return [
-                    "Unlimited background images",
-                    "Flickr photo search",
-                    "Custom backgrounds",
-                    "High-resolution images"
-                ]
-            case .multipleSounds:
-                return [
-                    "Mix up to 5 sounds",
-                    "Individual volume controls",
-                    "Sound presets",
-                    "Custom combinations"
-                ]
-            case .premiumPack:
-                return [
-                    "All background features",
-                    "All sound mixing features",
-                    "10-band equalizer",
-                    "Audio effects (reverb, delay)",
-                    "Premium sound library"
-                ]
-            case .yearlySubscription:
-                return [
-                    "Everything in Premium Pack",
-                    "Sleep tracking with HealthKit",
-                    "Home screen widgets",
-                    "Shortcuts integration",
-                    "Priority customer support",
-                    "Early access to new features"
-                ]
+            case .tip99:
+                return "☕️"
+            case .tip199:
+                return "🙌"
+            case .tip499:
+                return "🤩"
+            }
+        }
+        
+        var supportMessage: String {
+            switch self {
+            case .tip99:
+                return "Buy me a coffee!"
+            case .tip199:
+                return "Show your appreciation!"
+            case .tip499:
+                return "You're amazing!"
             }
         }
     }
@@ -159,11 +140,20 @@ class StoreKitManager: NSObject, ObservableObject {
                 case .unverified(_, let error):
                     // Transaction failed verification
                     errorMessage = "Purchase verification failed: \(error.localizedDescription)"
+                    NotificationCenter.default.post(
+                        name: NSNotification.Name("PurchaseFailed"),
+                        object: nil,
+                        userInfo: ["error": error]
+                    )
                 }
                 
             case .userCancelled:
                 // User cancelled the purchase
-                break
+                NotificationCenter.default.post(
+                    name: NSNotification.Name("PurchaseFailed"),
+                    object: nil,
+                    userInfo: ["cancelled": true]
+                )
                 
             case .pending:
                 // Purchase is pending (e.g., parental approval required)
@@ -175,6 +165,11 @@ class StoreKitManager: NSObject, ObservableObject {
             
         } catch {
             errorMessage = "Purchase failed: \(error.localizedDescription)"
+            NotificationCenter.default.post(
+                name: NSNotification.Name("PurchaseFailed"),
+                object: nil,
+                userInfo: ["error": error]
+            )
         }
     }
     
@@ -199,20 +194,20 @@ class StoreKitManager: NSObject, ObservableObject {
         return purchasedProducts.contains(productId)
     }
     
-    /// Check if any premium feature is unlocked
-    var hasPremiumAccess: Bool {
-        return isPurchased(ProductType.premiumPack.rawValue) ||
-               isPurchased(ProductType.yearlySubscription.rawValue)
+    /// Get total tip amount (sum of all tips purchased)
+    var totalTipAmount: Double {
+        var total: Double = 0.0
+        for product in products {
+            if isPurchased(product.id) {
+                total += Double(truncating: product.price as NSNumber)
+            }
+        }
+        return total
     }
     
-    /// Check if background features are unlocked
-    var hasBackgroundAccess: Bool {
-        return isPurchased(ProductType.multipleBackgrounds.rawValue) || hasPremiumAccess
-    }
-    
-    /// Check if sound mixing is unlocked
-    var hasSoundMixingAccess: Bool {
-        return isPurchased(ProductType.multipleSounds.rawValue) || hasPremiumAccess
+    /// Get number of tips given
+    var numberOfTips: Int {
+        return purchasedProducts.count
     }
     
     // MARK: - Private Methods
@@ -298,17 +293,12 @@ extension Product {
     }
     
     @MainActor
-    @objc func hasBackgroundAccess() -> Bool {
-        return swiftManager.hasBackgroundAccess
+    @objc func getTotalTipAmount() -> Double {
+        return swiftManager.totalTipAmount
     }
     
     @MainActor
-    @objc func hasSoundMixingAccess() -> Bool {
-        return swiftManager.hasSoundMixingAccess
-    }
-    
-    @MainActor
-    @objc func hasPremiumAccess() -> Bool {
-        return swiftManager.hasPremiumAccess
+    @objc func getNumberOfTips() -> Int {
+        return swiftManager.numberOfTips
     }
 }

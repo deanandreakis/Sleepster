@@ -262,9 +262,8 @@ class SubscriptionManager: ObservableObject {
         // For now, we have one subscription group
         // In a real app, you might have multiple subscription groups
         
-        let subscriptionProductIds = [
-            StoreKitManager.ProductType.yearlySubscription.rawValue
-        ]
+        // No subscriptions in tip jar model - empty array
+        let subscriptionProductIds: [String] = []
         
         do {
             let products = try await Product.products(for: subscriptionProductIds)
