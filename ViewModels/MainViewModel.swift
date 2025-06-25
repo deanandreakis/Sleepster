@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import UIKit
 
 struct TimeoutError: Error {}
 
@@ -271,6 +272,10 @@ class MainViewModel: ObservableObject {
         
         // Update UI state IMMEDIATELY
         isSleepModeActive = true
+        print("🛌 Sleep mode activated - isSleepModeActive = \(isSleepModeActive)")
+        
+        // Trigger orientation update to allow landscape
+        triggerOrientationUpdate()
         
         // Start timer if duration is set
         if timerDuration > 0 {
@@ -304,6 +309,10 @@ class MainViewModel: ObservableObject {
     func stopSleeping() {
         // Update UI state immediately
         isSleepModeActive = false
+        print("🛌 Sleep mode deactivated - isSleepModeActive = \(isSleepModeActive)")
+        
+        // Trigger orientation update to restrict to portrait
+        triggerOrientationUpdate()
         timerManager.stopTimer()
         UIApplication.shared.isIdleTimerDisabled = false
         
@@ -404,6 +413,9 @@ class MainViewModel: ObservableObject {
     private func handleTimerCompletion() {
         // Update UI state immediately to maintain responsiveness
         isSleepModeActive = false
+        
+        // Trigger orientation update to restrict to portrait
+        triggerOrientationUpdate()
         UIApplication.shared.isIdleTimerDisabled = false
         
         // Schedule brightness restoration for user touch instead of immediate restore
@@ -483,6 +495,32 @@ class MainViewModel: ObservableObject {
         } else {
             print("⚠️ Could not find animation for type: \(animationType)")
             AppState.shared.setAnimation(nil)
+        }
+    }
+    
+    // MARK: - Orientation Management
+    
+    private func triggerOrientationUpdate() {
+        // Force the system to re-evaluate supported orientations
+        DispatchQueue.main.async {
+            // Method 1: Post orientation change notification
+            NotificationCenter.default.post(name: UIDevice.orientationDidChangeNotification, object: nil)
+            
+            // Method 2: Force window scene to update
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                // This forces iOS to call supportedInterfaceOrientationsFor again
+                if #available(iOS 16.0, *) {
+                    let currentOrientation = windowScene.interfaceOrientation
+                    // Request the same orientation to trigger a re-evaluation
+                    windowScene.requestGeometryUpdate(.iOS(interfaceOrientations: UIInterfaceOrientationMask(rawValue: 1 << currentOrientation.rawValue))) { _ in }
+                } else {
+                    // For iOS 15 and below, try to force orientation update
+                    UIViewController.attemptRotationToDeviceOrientation()
+                }
+            }
+            
+            // Method 3: Fallback - attempt rotation to device orientation
+            UIViewController.attemptRotationToDeviceOrientation()
         }
     }
 }

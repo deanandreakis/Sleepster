@@ -312,15 +312,15 @@ struct SleepView: View {
                     sleepModeTimerOverlay(geometry: geometry, isLandscape: isLandscape)
                 }
                 
-                // Exit hint for landscape mode
+                // Exit hint for landscape mode - positioned in upper left to avoid timer overlap
                 if isLandscape {
                     VStack {
                         HStack {
-                            Spacer()
                             Text("Tap to wake")
                                 .font(.caption)
                                 .foregroundColor(.white.opacity(0.4))
                                 .padding()
+                            Spacer()
                         }
                         Spacer()
                     }

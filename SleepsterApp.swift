@@ -118,8 +118,18 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        // Allow portrait and landscape orientations for main screen
-        return [.portrait, .landscapeLeft, .landscapeRight]
+        // Allow landscape rotation when sleep mode is active, otherwise portrait only
+        let isSleepActive = serviceContainer?.mainViewModel.isSleepModeActive ?? false
+        
+        print("🔄 supportedInterfaceOrientationsFor called - Sleep mode active: \(isSleepActive)")
+        
+        if isSleepActive {
+            print("🔄 Allowing all orientations except upside down")
+            return .allButUpsideDown
+        } else {
+            print("🔄 Restricting to portrait only")
+            return .portrait
+        }
     }
 }
 
